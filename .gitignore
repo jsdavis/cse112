@@ -60,3 +60,5 @@ typings/
 # credentials
 credentials.tar.gz
 
+# sw? files
+*.sw?
