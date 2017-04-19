@@ -5,8 +5,8 @@ const express = require('express');
 const app = express();
 
 app.get('/', (req, res) => {
-  //res.sendFile(__dirname + '/index.html');
-  res.status(200).send("hi there");
+  res.sendFile(__dirname + '/test.html');
+  //res.status(200).send("hi there");
 });
 
 module.exports = app.listen(PORT, () => {
