@@ -22,6 +22,9 @@
     "express": "^4.15.2"
   },
   "devDependencies": {
-    "git-hooks": "^1.1.8"
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "git-hooks": "^1.1.8",
+    "mocha": "^3.2.0"
   }
 }
