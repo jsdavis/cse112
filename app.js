@@ -5,7 +5,8 @@ var firebase = require("firebase");
 const app = express();
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html');
+  //res.sendFile(__dirname + '/index.html');
+  res.status(200).send("hi there");
 });
 
 module.exports = app.listen(PORT, () => {
