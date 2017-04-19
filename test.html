@@ -1,0 +1,58 @@
+CTYPE html>
+<html>
+<body>
+
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+
+  <h1 class="text-danger text-center">
+  CSE 112 Project 1 
+</h1>
+
+  <form id="form1">
+    <div class="row">
+      <div class="col-lg-4 col-lg-offset-4">
+        <div class="input-group">
+          <input id="textID"
+                 type="text" 
+                 name="input"
+                 class="form-control"
+                 placeholder="Input text here"
+                 required>
+          <span class="input-group-btn">
+        <button class="btn btn-primary"
+                type="button"
+                onclick ="temp()">
+                Submit
+        </button>
+    </div>
+  </div>
+</div>
+</form>
+  
+<h3 id ="test"
+    class ="text-center">
+</h3>
+
+<script>
+function temp(){
+  var input = document.getElementById('textID').value;
+  var output = foo(input);
+  document.getElementById('test').innerHTML = output;
+}
+
+
+function foo(bar) {
+  if(bar ==""){
+    return bar;
+  }
+  else{
+    return (bar == "baz");
+  }
+}
+</script>
+  
+
+</body>
+</html>
+
+
