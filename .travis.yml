@@ -20,4 +20,4 @@ install:
 - gcloud config set project unlucky-geniuses
 - gcloud components update
 script:
-- gcloud preview app deploy app.yaml --promote
+- gcloud app deploy app.yaml --promote
