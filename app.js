@@ -1,7 +1,7 @@
 const PORT = process.env.PORT || 8080;
 
 const express = require('express');
-var firebase = require("firebase"); 
+//var firebase = require("firebase"); 
 const app = express();
 
 app.get('/', (req, res) => {
