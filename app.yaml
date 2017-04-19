@@ -1,4 +1,2 @@
 runtime: nodejs
-skip_files:
-- ^((?!app\.yaml).)*$
 env: flex
