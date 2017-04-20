@@ -4,9 +4,9 @@
   "description": "Unlucky Geniuses' CSE 112 project",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "node app.js ./bin/www",
     "lint": "echo 'eslint --fix ./*'",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "docs": "jsdoc -d=./docs ./*.js"
   },
   "repository": {
@@ -21,7 +21,8 @@
   "homepage": "https://github.com/jsdavis/cse112#readme",
   "dependencies": {
     "express": "^4.15.2",
-    "jsdoc": "^3.4.3"
+    "jsdoc": "^3.4.3",
+    "mocha": "^3.2.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
