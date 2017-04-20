@@ -13,7 +13,7 @@
       <div class="col-lg-4 col-lg-offset-4">
         <div class="input-group">
           <input id="textID"
-                 type="text" 
+                 type="text"
                  name="input"
                  class="form-control"
                  placeholder="Input text here"
@@ -21,36 +21,20 @@
           <span class="input-group-btn">
         <button class="btn btn-primary"
                 type="button"
-                onclick ="temp()">
+                onclick ="submit()">
                 Submit
         </button>
     </div>
   </div>
 </div>
 </form>
-  
+
 <h3 id ="test"
     class ="text-center">
 </h3>
 
-<script>
-function temp(){
-  var input = document.getElementById('textID').value;
-  var output = foo(input);
-  document.getElementById('test').innerHTML = output;
-}
-
-
-function foo(bar) {
-  if(bar ==""){
-    return bar;
-  }
-  else{
-    return (bar == "baz");
-  }
-}
-</script>
-  
+<script src="js/foo.js"></script>
+<script src="js/main.js"></script>
 
 </body>
 </html>

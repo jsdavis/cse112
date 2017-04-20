@@ -15,5 +15,5 @@
 	//sync object changes
 
 	dbRefObject.on('value', snap => console.log(snap.val()));
-	
+
 }());

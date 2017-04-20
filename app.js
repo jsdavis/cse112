@@ -1,12 +1,10 @@
 const PORT = process.env.PORT || 8080;
 
 const express = require('express');
-//var firebase = require("firebase"); 
 const app = express();
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/test.html');
-  //res.status(200).send("hi there");
+  res.sendFile(__dirname + '/public/index.html');
 });
 
 module.exports = app.listen(PORT, () => {

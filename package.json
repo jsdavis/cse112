@@ -4,10 +4,10 @@
   "description": "Unlucky Geniuses' CSE 112 project",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js ./bin/www",
+    "start": "node app.js",
     "lint": "echo 'eslint --fix ./*'",
     "test": "mocha",
-    "docs": "jsdoc -d=./docs ./*.js"
+    "doc": "jsdoc -d ./docs ./*.js public/js/*.js"
   },
   "repository": {
     "type": "git",
