@@ -1,7 +1,23 @@
-function submit() {
+function submitFoo() {
   var input = document.getElementById('textID').value;
   var output = foo(input);
-  document.getElementById('test').innerHTML = output;
+  document.getElementById('foo_retval').innerHTML = output;
+}
+
+function submitValidTime(){
+  var input = document.getElementById('isValidTimeText').value;
+  var output = isValidTime(input);
+  document.getElementById('valid_time_retval').innerHTML = output;
+}
+
+function submitFormatTime(){
+
+  var hours = document.getElementById('hourTime').value;
+  var minutes = document.getElementById('minuteTime').value;
+  var seconds = document.getElementById('secondsTime').value;
+  var milliseconds = document.getElementById('millisecondsTime').value;
+  var output = formatTime(hours, minutes, seconds, milliseconds);
+  document.getElementById('format_time_retval').innerHTML = output;
 }
 
 /*
@@ -20,7 +36,7 @@ function isValidTime(timeString) {
     var hours = timeString.slice(0, 2);
     var mins = timeString.slice(3, 5);
     if(parseInt(hours) > 12 || parseInt(mins) > 59) {
-      console.log('Invalid time format');
+      // console.log('Invalid time format');
       return false;
     }
     console.log('Valid time format');
@@ -28,6 +44,23 @@ function isValidTime(timeString) {
   }
 }
 
-function formatTime(timeString) {
+function formatTime(hour, minute, second = 0, millisecond = 0){
 
+  if(minute.length==1){
+    minute = "0"+minute;
+  }
+  if(second.length==1){
+    second = "0"+second;
+  }
+  if(millisecond.length==1){
+    millisecond = "0"+millisecond;
+  }
+  var time = hour+":"+minute; 
+  if(isValidTime(time)){
+    return time;
+  }
+  else {
+    return "This is an invalid time.";
+  }
 }
+
