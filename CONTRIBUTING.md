@@ -34,12 +34,17 @@ Single ASCII spaces should appear in the following places:
     ```        
     * In a template expansion: 
     ```javascript
-    abc$(1 + 2) def
+    abc${1 + 2}def
     ```       
 3. On both sides of any binary or ternary operator.     
 4. After a comma or semicolon, but never before.    
 5. After the colon in an object literal.    
 6. On both sides of the double-slash-comment-starter '//'.
+7. After an open-JSDoc comment character and on both sides of close characters.
+   ```javascript
+   this.foo = /** @type {number} */ (bar);
+   function(/** string */ foo) {}
+   ```
 
 
 ### Comments
@@ -54,4 +59,4 @@ All classes, fields, and methods are run through JSDoc. The basic formatting of 
 function Book(title, author) {
 }
 ```
-For more information on other types of tags, go to the JSDoc website [here](http://usejsdoc.org/).
+For more information on other types of tags, go to the JSDoc website [here](http://usejsdoc.org/). Formatting guidelines are also specified in the [Google stylesheet](https://google.github.io/styleguide/jsguide.html#jsdoc).
