@@ -4,6 +4,8 @@ Welcome! The following is a list of guidelines to use when contributing to the p
 
 Any submissisons to the project are encouraged to follow the [Google stylesheet](https://google.github.io/styleguide/jsguide.html). All recommended styling below is taken from this guide.
 
+**Note: Always make sure to run ```npm install``` before committing changes to the repository.** 
+
 #### Table of Contents
 1. [Documentation](#documentation)
     * [Whitespace](#whitespace)
