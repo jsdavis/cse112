@@ -1,14 +1,14 @@
 const should = chai.should();
 
-describe("Foo", () => {
-	describe("valid", () => {
-		it("should expect to return true", () => {
-			foo("baz").should.be.true;
+describe('Foo', () => {
+	describe('valid', () => {
+		it('should expect to return true', () => {
+			foo('baz').should.be.true;
 		});
 	});
-	describe("valid", () => {
-		it("should expect to return false", () => {
-			foo("baa").should.be.false;
+	describe('valid', () => {
+		it('should expect to return false', () => {
+			foo('baa').should.be.false;
 		});
 	});
 });
