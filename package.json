@@ -39,7 +39,7 @@
     },
     "ecmaFeatures": { "destructuring": true },
     "rules": {
-      "no-unused-vars": [2, {"vars": "all", "varsIgnorePattern": "Ignored"}]
+      "no-unused-vars": [1, {"vars": "all", "varsIgnorePattern": "Ignored"}]
     }
   }
 }
