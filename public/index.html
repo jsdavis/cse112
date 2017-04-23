@@ -61,49 +61,23 @@
   </h3>
 
 
-  <!-- Time is valid! -->
+  <!-- Format time -->
   <h3 align="center">Format the time!</h3>
-  <form id="formIsValidTime">
+  <form id="formatTimeForm">
     <div class="row">
-      <div class="col-sm-1 col-sm-offset-4">
-        <input id="hourTime"
-                 type="text"
-                 name="hourTime"
-                 class="form-control"
-                 placeholder="Hours"
-                 required>
-      </div>
-      <div class="col-sm-1">
-          <input id="minuteTime"
-                 type="text"
-                 name="minuteTime"
-                 class="form-control"
-                 placeholder="Minutes"
-                 required>
-      </div>
-      <div class="col-sm-1">
-          <input id="secondsTime"
-                 type="text"
-                 name="secondsTime"
-                 class="form-control"
-                 placeholder="Seconds"
-                 >
-      </div>
-      <div class="col-sm-1">
-          <input id="millisecondsTime"
-                 type="text"
-                 name="millisecondsTime"
-                 class="form-control"
-                 placeholder="Milliseconds"
-                 >
-      </div>
-      <div class="col-sm-1">
-        <span class="input-group-btn">
-        <button class="btn btn-primary"
-              type="button"
-              onclick ="submitFormatTime()">
-              Submit
-        </button>
+      <div class="col-lg-4 col-lg-offset-4">
+        <div class="input-group">
+          <input id="time_format_string"
+                   type="text"
+                   name="timeFormatString"
+                   class="form-control"
+                   placeholder="Formatting String">
+          <span class="input-group-btn">
+          <button class="btn btn-primary"
+                type="button"
+                onclick ="submitFormatTime()">
+                Submit
+          </button>
       </div>
     </div>
   </form>
@@ -118,5 +92,4 @@
 
 </body>
 </html>
-
 
