@@ -22,6 +22,7 @@ install:
 - npm install
 before-install:
 - npm install -g mocha
+- npm install -g chai
 notifications:
   email: false
   slack:
