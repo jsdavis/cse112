@@ -9,19 +9,14 @@ cache:
 env:
 - PATH=$PATH:${HOME}/google-cloud-sdk/bin
 before_install:
-- openssl aes-256-cbc -K $encrypted_9717804cea33_key -iv $encrypted_9717804cea33_iv
-  -in credentials.tar.gz.enc -out credentials.tar.gz -d
-- if [ ! -d ${HOME}/google-cloud-sdk ];then rm -rf $HOME/google-cloud-sdk; export
-  CLOUDSDK_CORE_DISABLE_PROMPTS=1; curl https://sdk.cloud.google.com | bash; fi
+- openssl aes-256-cbc -K $encrypted_9717804cea33_key -iv $encrypted_9717804cea33_iv -in credentials.tar.gz.enc -out credentials.tar.gz -d
 - tar -xzf credentials.tar.gz
-- mkdir -p lib
-- gcloud auth activate-service-account --key-file client-secret.json
-install:
-- gcloud config set project unlucky-geniuses
-- gcloud components update
-script:
-- gcloud app deploy app.yaml --promote
 notifications:
   email: false
   slack:
     secure: BLFZ6es88OidnNGf2vC5Ewhy90EP4b9dqjjV221OgeXN9qmJHbcDtfCymHnjzNhIAqiZLnELdGPTrYjISlVcFvAG3qKOd+YdpgOi4od/oVk8WEW5eIXPpBxLcd8scI+2C76GDNNfkLPhi7Vi7/8DocyNXwcm9mO3icuHfQEhF39verowCBJlPGosUGw2zcss7spvcGgsgF+WVY6GgZ6LTVe2IsIZEMOX+F6ci5tk/MBT6yIAjYtrc+qeqmHFC1u/fsJG0/9TS3SpOD+kU3UiTCfeJUvsHJQMv1EE4rjuLDeR5IiPEhEF0LVtblLXBCNWnDjePn3F0R1f+kpDMsdghsfw/5dZDAcpkl0e78o35se+Czb9r/yEPOYKiMWzwm6hCi7QrrU/DUtJcxvqBS8FYDlmkYThDHOGiSOLCt7Sln75HxGdPzS1xPPfNq9raWwCAseulknooFHJlGj/8l8jkjXs+gLhI3lyKoiiJhF8HIDCQ84SS+Pl2JsALkNd6dXnxUFeSofOoQA40ewI41m3Oa2MuzQYc8G2J8P7n1zJWrdU3cfqUkkblTLMw/78PjAB8SADTlFCfNjopuyG4somt3A1TLfKy9pVFK3aaNoWuUx4tCisEOQOMQXx/O0lgWC91iUPpZa+kSsSMJvPr0s5Edoxne76Md9oSWjY3dIShCw=
+deploy:
+  provider: gae
+  keyfile: client-secret.json
+  project: unlucky-geniuses
+  on: master
