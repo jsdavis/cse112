@@ -19,8 +19,8 @@ before_install:
 install:
 - gcloud config set project unlucky-geniuses
 - gcloud components update
-- npm install -g mocha
-- npm install
+- sudo npm install -g mocha
+- sudo npm install
 notifications:
   email: false
   slack:
