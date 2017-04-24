@@ -1,4 +1,4 @@
-sudo: required
+sudo: false
 language: node_js
 node_js:
 - '7'
@@ -19,8 +19,9 @@ before_install:
 install:
 - gcloud config set project unlucky-geniuses
 - gcloud components update
-- sudo npm install -g mocha
-- sudo npm install
+- npm install
+before-install:
+- npm install -g mocha
 notifications:
   email: false
   slack:
