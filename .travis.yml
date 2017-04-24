@@ -20,7 +20,6 @@ install:
 - gcloud config set project unlucky-geniuses
 - gcloud components update
 - npm install
-before-install:
 - npm install -g mocha
 - npm install -g chai
 notifications:
