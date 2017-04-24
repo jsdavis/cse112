@@ -19,6 +19,7 @@ before_install:
 install:
 - gcloud config set project unlucky-geniuses
 - gcloud components update
+- npm install
 notifications:
   email: false
   slack:
