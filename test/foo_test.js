@@ -1,4 +1,4 @@
-const should = chai.should();
+var should = require('chai').should();
 
 describe("Foo", () => {
 	describe("valid", () => {
