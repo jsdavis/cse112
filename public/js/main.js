@@ -27,15 +27,9 @@ function submitValidTime() {
  * Grabs submission details from the submit format HTML element
  */
 function submitFormatTime() {
-  /* get checked radio button */
-  let format = document.getElementsByName('formatSelector');
-  let selectedFormat;
-
-  for(let i = 0; i < format.length; i++) {
-     if(format[i].checked) {
-         selectedFormat = format[i].value;
-   }
- }
+  /* get selected format stylw */
+  let format = document.getElementById('timeFormatSelector');
+  let selectedFormat = format.options[format.selectedIndex].value;
 
   /* get time input */
   let timeFormat = document.getElementById('timeFormatString').value;
