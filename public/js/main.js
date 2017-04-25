@@ -174,7 +174,7 @@ function formatTime(formatStyle, inputString) {
           console.log(formatStyle);
     }
   } else {
-    return "Time is Invalid";
+    return 'Time is Invalid';
   }
 }
 
@@ -212,3 +212,6 @@ function isEmpty(string) {
   }
   return false;
 }
+
+module.exports.isValidTime = isValidTime;
+module.exports.formatTime = formatTime;
