@@ -74,6 +74,11 @@ function isValidTime(timeString, flag=0) {
     /* check each value for am/pm input.*/
     for(let i=0; i<valuesArr.length; i++) {
       /* update values in result array */
+
+      if(valuesArr[i].includes(' ')){
+        valuesArr[i] = valuesArr[i].replace(/\ /g, ''); // clean up match
+      }
+
       array[i] = valuesArr[i];
 
       if(valuesArr[i].includes('am')||valuesArr[i].includes('AM')) {
