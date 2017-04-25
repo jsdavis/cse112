@@ -1,14 +1,17 @@
-var chai = require('chai').should();
+const chai = require('chai').should();
+var app = require('../app.js');
+var foo = require('../public/js/foo.js');
+var main = require('../public/js/main.js');
 
 describe('Foo', () => {
 	describe('valid', () => {
 		it('should return true', () => {
-			foo('baz').should.be.true;
+			foo.foo('baz').should.be.true;
 		});
 	});
 	describe('invalid', () => {
 		it('should return false', () => {
-			foo('baa').should.be.false;
+			foo.foo('baa').should.be.false;
 		});
 	});
 });
@@ -16,12 +19,12 @@ describe('Foo', () => {
 describe('isValidTime', () => {
 	describe('valid time', () => {
 		it('should return true', () => {
-			isValidTime('5:23am').should.be.true;
+			main.isValidTime('5:23am').should.be.true;
 		});
 	});
 	describe('invalid time', () => {
 		it('should return false', () => {
-			isValidTime('25:23pm').should.be.false;
+			main.isValidTime('25:23pm').should.be.false;
 		});
 	});
 });
@@ -29,62 +32,62 @@ describe('isValidTime', () => {
 describe('formatTime', () => {
 	describe('valid format: HH', () => {
 		it('should return 03', () => {
-			formatTime('1', '03:23:50').should.equal('03');
+			main.formatTime('1', '03:23:50').should.equal('03');
 		});
 	});
 	describe('invalid format: HH', () => {
 		it('should return undefined', () => {
-			formatTime('1', '25:23pm').should.equal('undefined');
+			(typeof main.formatTime('1', '25:23pm')).should.be.equal('undefined');
 		});
 	});
 	describe('valid format: HH am/pm', () => {
 		it('should return 5 am', () => {
-			formatTime('2', '5:23am').should.equal('5 am');
+			main.formatTime('2', '5:23am').should.equal('5 am');
 		});
 	});
 	describe('invalid format: HH am/pm', () => {
 		it('should return undefined', () => {
-			formatTime('2', '25:23pm').should.equal('undefined');
+			(typeof main.formatTime('2', '25:23pm')).should.be.equal('undefined');
 		});
 	});
 	describe('valid format: HH:MM', () => {
 		it('should return 5:23', () => {
-			formatTime('3', '5:23am').should.equal('5:23');
+			main.formatTime('3', '5:23am').should.equal('5:23');
 		});
 	});
 	describe('invalid format: HH:MM', () => {
 		it('should return undefined', () => {
-			formatTime('3', '25:23pm').should.equal('undefined');
+			(typeof main.formatTime('3', '25:23pm')).should.be.equal('undefined');
 		});
 	});
 	describe('valid format: HH:MM am/pm', () => {
 		it('should return 5:23 am', () => {
-			formatTime('4', '5:23am').should.equal('5:23 am');
+			main.formatTime('4', '5:23am').should.equal('5:23 am');
 		});
 	});
 	describe('invalid format: HH:MM am/pm', () => {
 		it('should return undefined', () => {
-			formatTime('4', '25:23pm').should.equal('undefined');
+			(typeof main.formatTime('4', '25:23pm')).should.be.equal('undefined');
 		});
 	});
 	describe('valid format: HH:MM:SS', () => {
 		it('should return 5:23:00', () => {
-			formatTime('5', '5:23am').should.equal('5:23:00');
+			main.formatTime('5', '5:23am').should.equal('5:23:00');
 		});
 	});
 	describe('invalid format: HH:MM:SS', () => {
 		it('should return undefined', () => {
-			formatTime('5', '25:23pm').should.equal('undefined');
+			(typeof main.formatTime('5', '25:23pm')).should.be.equal('undefined');
 		});
 	});
 	describe('valid format: HH:MM:SS am/pm', () => {
 		it('should return 5:23:00 am', () => {
-			formatTime('6', '5:23am').should.equal('5:23:00 am');
+			main.formatTime('6', '5:23am').should.equal('5:23:00 am');
 		});
 	});
 	describe('invalid format: HH:MM:SS am/pm', () => {
 		it('should return undefined', () => {
-			formatTime('6', '25:23pm').should.equal('undefined');
+			(typeof main.formatTime('6', '25:23pm')).should.be.equal('undefined');
 		});
 	});
 

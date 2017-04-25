@@ -168,7 +168,8 @@ function formatTime(formatStyle, inputString) {
       default:
           console.log(formatStyle);
     }
-  }
+  } else
+    return undefined;
 }
 
 
@@ -205,3 +206,6 @@ function isEmpty(string) {
   }
   return false;
 }
+
+module.exports.isValidTime = isValidTime;
+module.exports.formatTime = formatTime;
