@@ -75,7 +75,7 @@ function isValidTime(timeString, flag=0) {
     for(let i=0; i<valuesArr.length; i++) {
       /* update values in result array */
 
-      if(valuesArr[i].includes(' ')){
+      if(valuesArr[i].includes(' ')) {
         valuesArr[i] = valuesArr[i].replace(/\ /g, ''); // clean up match
       }
 
@@ -173,8 +173,9 @@ function formatTime(formatStyle, inputString) {
       default:
           console.log(formatStyle);
     }
-  } else
-    return undefined;
+  } else {
+    return 'Time is Invalid';
+  }
 }
 
 
@@ -211,6 +212,3 @@ function isEmpty(string) {
   }
   return false;
 }
-
-module.exports.isValidTime = isValidTime;
-module.exports.formatTime = formatTime;
