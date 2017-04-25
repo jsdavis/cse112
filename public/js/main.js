@@ -79,9 +79,15 @@ function isValidTime(timeString, flag=0) {
 
     /* check each value for am/pm input.*/
     for(let i=0; i<valuesArr.length; i++) {
+      
+      /* update values in result array */
+      array[i] = valuesArr[i];
+      
       if(valuesArr[i].includes('am')||valuesArr[i].includes('AM')) {
         valuesArr[i] = valuesArr[i].replace(/am/g, ''); // clean up match
         valuesArr[i] = valuesArr[i].replace(/AM/g, '');
+
+        array[i] = valuesArr[i];//update
 
         /* 0 am invalid time. */
         if(parseInt(valuesArr[0])==0) {
@@ -96,6 +102,8 @@ function isValidTime(timeString, flag=0) {
         valuesArr[i] = valuesArr[i].replace(/pm/g, ''); // clean up match
         valuesArr[i] = valuesArr[i].replace(/PM/g, '');
 
+        array[i] = valuesArr[i];//update
+
         /* 0pm --> invalid time. */
         if(parseInt(valuesArr[0])==0) {
           return false;
@@ -109,9 +117,6 @@ function isValidTime(timeString, flag=0) {
           return false;
         }
       }
-
-      /* update values in result array */
-      array[i] = valuesArr[i];
 
       /* add padding for single digit minutes and seconds */
       if(i>0 && array[i].length == 1) {
@@ -140,7 +145,9 @@ function isValidTime(timeString, flag=0) {
 function formatTime(formatStyle, inputString) {
   /* check if input time is valid  */
   let time = isValidTime(inputString, 1 );
-  var ampm;
+  console.log("time");
+
+  let ampm;
   /* if so, format it accordingly */
   if(time) {
     switch(formatStyle) {
