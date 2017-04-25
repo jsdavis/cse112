@@ -174,7 +174,7 @@ function formatTime(formatStyle, inputString) {
           console.log(formatStyle);
     }
   } else {
-    return 'Time is Invalid';
+    return "Time is Invalid";
   }
 }
 
