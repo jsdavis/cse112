@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css?family=Righteous');
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+.header-font{
+    width: 18%;
+    background-color: #F2F5DE;
+    font-family: 'Righteous', sans-serif;
+    font-size: 30px;
+    margin:auto;
+    text-align: center; 
+    border-radius: 30%;
+}
+
+.enter-label{
+    font-size: 20px;
+    font-family: 'Nunito', sans-serif;
+}
+
+.submit-button{
+    width: 100%;
+    font-family: 'Righteous', sans-serif;
+    background-color: #85C7F2;
+    border-color: #85C7F2;
+}
+
+.submit-button:hover{
+    cursor: pointer;
+    background-color: #4D9AD6;
+    border-color: #4D9AD6;
+}
+
+.output{
+    color: #FFFFFF;
+    text-transform: capitalize;
+    width: 100%;
+}
+
+input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+div {
+    border-radius: 5px;
+    background-color: #98DFAF;
+    padding: 15px;
+}
+
+img { 
+    width:100%; 
+}
+
+

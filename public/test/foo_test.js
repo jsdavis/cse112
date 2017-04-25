@@ -2,12 +2,12 @@ const should = chai.should();
 
 describe('Foo', () => {
 	describe('valid', () => {
-		it('should expect to return true', () => {
+		it('should return true', () => {
 			foo('baz').should.be.true;
 		});
 	});
 	describe('valid', () => {
-		it('should expect to return false', () => {
+		it('should return false', () => {
 			foo('baa').should.be.false;
 		});
 	});

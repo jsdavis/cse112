@@ -59,3 +59,5 @@ typings/
 
 # sw? files
 *.sw?
+
+.DS_STORE

@@ -30,7 +30,10 @@
  * Handles retrieval of the foo function
  */
 function submitFoo() {
+  /* get time input */
   let input = document.getElementById('textID').value;
+
+  /* call foo with input */
   let output = foo(input);
   document.getElementById('foo_retval').innerHTML = output;
 }
@@ -39,8 +42,12 @@ function submitFoo() {
  * Grabs submission details from the submit isValid HTML element
  */
 function submitValidTime() {
-  let input = document.getElementById('isValidTimeText').value;
-  let output = isValidTime(input);
+  /* get time input */
+  let inputTime = document.getElementById('isValidTimeText').value;
+
+  /* call isValidTime with input */
+  let output = isValidTime(inputTime);
+
   document.getElementById('valid_time_retval').innerHTML = output;
 }
 
@@ -48,85 +55,176 @@ function submitValidTime() {
  * Grabs submission details from the submit format HTML element
  */
 function submitFormatTime() {
+  /* get checked radio button */
+  let format = document.getElementsByName('formatSelector');
+  let selectedFormat;
+
+  for(let i = 0; i &lt; format.length; i++) {
+     if(format[i].checked) {
+         selectedFormat = format[i].value;
+   }
+ }
+
+  /* get time input */
   let timeFormat = document.getElementById('timeFormatString').value;
-  let output = formatTime(timeFormat);
+
+  /* call formatTime with inputs */
+  let output = formatTime(selectedFormat, timeFormat);
+
   document.getElementById('formatTimeRetval').innerHTML = output;
 }
 
+
 /**
- * isValidTime takes in a string as the parameter and returns true or false
- * depending on if it is of the format hh:mm where hh cannot be greater than 12
- * and mm cannot be greater than 59
- * @param {string} timeString string to check if valid time.
- * @return {boolean} False if invalid time format, True otherwise.
+ * checks if time is valid using regex
+ * @param {string} timeString input by user as time.
+ * @param {bool} flag to see if we want to return the time object,
+ *  true if time is valid
+ * @return {bool} if object exists or not.
  */
-function isValidTime(timeString) {
+function isValidTime(timeString, flag=0) {
+  /* error checking */
   if(isEmpty(timeString)) {
-    console.log('Time input is empty');
-    return false;
-  }
-  console.log('starting is ValdiTime');
-  let time = getTime(timeString);
-  let date = getDate(timeString);
-
-  if(time==false) {
-    console.log('time is false');
-    return false;
+    console.log('Input is empty.');
+    return 'Empty Input';
   }
 
-  if(date==false) {
-    console.log('date is false');
-  }
+  /* Disabling eslint, regex longer than 80 characters */
+  /* eslint-disable */
+  let timeFormatRegex = /((^)|(\ ))([0-1]?[0-9]|2[0-3])((AM|PM|am|pm)|(:[0-5][0-9]((AM|PM|am|pm)|(:[0-5][0-9](AM|PM|am|pm)?)?)))(\ |$)/;
+  /* eslint-enable */
+
+  /* get strings that match the regex, valid time formats */
+  let match = timeString.match(timeFormatRegex);
+
+  if(match) {
+    let string = match[0];      // full match string/
+    string.replace(/\ /g, '');  // remove whitespaces.
+
+    let valuesArr = string.split(':');
+    let array = ['00', '00', '00']; // [hours, minutes, seconds]
+
+
+    /* check each value for am/pm input.*/
+    for(let i=0; i&lt;valuesArr.length; i++) {
+      
+      /* update values in result array */
+      array[i] = valuesArr[i];
+      
+      if(valuesArr[i].includes('am')||valuesArr[i].includes('AM')) {
+        valuesArr[i] = valuesArr[i].replace(/am/g, ''); // clean up match
+        valuesArr[i] = valuesArr[i].replace(/AM/g, '');
+
+        array[i] = valuesArr[i];//update
+
+        /* 0 am invalid time. */
+        if(parseInt(valuesArr[0])==0) {
+          return false;
+        } else if(parseInt(valuesArr[0])==12) {
+          /* 12am --> 00:00 */
+          array[0] = 0;
+        } else{
+          array[0] = valuesArr[0];
+        }
+      } else if(valuesArr[i].includes('pm')||valuesArr[i].includes('PM')) {
+        valuesArr[i] = valuesArr[i].replace(/pm/g, ''); // clean up match
+        valuesArr[i] = valuesArr[i].replace(/PM/g, '');
+
+        array[i] = valuesArr[i];//update
+
+        /* 0pm --> invalid time. */
+        if(parseInt(valuesArr[0])==0) {
+          return false;
+        } else if(parseInt(valuesArr[0])&lt;12) {
+          /* 3:15pm --> 15:15 */
+          array[0] = (parseInt(valuesArr[0])+12).toString();
+        } else if(parseInt(valuesArr[0]) == 12) {
+          /* 12:34 pm --> 12:34*/
+          array[0] = valuesArr[0];
+        } else {
+          return false;
+        }
+      }
+
+      /* add padding for single digit minutes and seconds */
+      if(i>0 &amp;&amp; array[i].length == 1) {
+        array[i] = '0'+array[i];
+      }
+    }
+
+    /* if flag is true, we want to return the time object. */
+    if(flag) {
+      return {hours: array[0], minutes: array[1], seconds: array[2]};
+    }
 
     return true;
+  }
+  /* did not find match --> not a valid time. */
+  return false;
 }
 
-/**
- * Formats Time based on the inputted hours, minutes, seconds, and milliseconds
- * @param {string} string to parse.
- * @return {string} valid time, "This is an invalid time." if fails
- */
-function formatTime(string) {
-  let time;
-  let date;
-  if(!isValidTime(string)) {
-    return false;
-  } else {
-    time = getTime(string);
-    date = getDate(string);
-  }
-
-  let format = (string.split(' - '))[1];
-  if(isEmpty(format) || format == null) {
-    return time.original;
-  } else {
-    format = format.replace(/%/g, '');
-    format = format.replace(/ /g, '');
-    let formatArr = format.split('');
-    format = manipulateString(time, date, formatArr);
-  }
-}
 
 /**
- * Formats Time based on the inputted hours, minutes, seconds, and milliseconds
- * @param {object} time object
- * @param {object} date object
- * @param {object} arr all flags for format
- * @return {string} valid time, "This is an invalid time." if fails
+ * formats the time from input string to specifed choice.
+ * @param {string} formatStyle selected.
+ * @param {string} inputString time as input by user.
+ * @return {string} formatted string.
  */
-function manipulateString(time, date, arr) {
-  if(time == false || date == false) {
-    console.log('Input is invalid');
-    return false;
-  }
+function formatTime(formatStyle, inputString) {
+  /* check if input time is valid  */
+  let time = isValidTime(inputString, 1 );
+  console.log("time");
 
-  for(let i=0; i&lt;arr.legnth; i++) {
-    switch(arr[i]) {
-      case 'a': break;
-      case 'b': break;
-      case 'c': break;
-      case 'd': break;
+  let ampm;
+  /* if so, format it accordingly */
+  if(time) {
+    switch(formatStyle) {
+      case '1': /* HH */
+          return time.hours;
+          break;
+      case '2': /* HH am/pm */
+          ampm = isAmPm(time.hours);
+          return ampm.hour+' '+ampm.ampm;
+          break;
+      case '3': /* HH:MM */
+          return time.hours+':'+time.minutes;
+          break;
+      case '4': /* HH:MM am/pm */
+          ampm = isAmPm(time.hours);
+          return ampm.hour+':'+time.minutes+' '+ampm.ampm;
+          break;
+      case '5': /* HH:MM:SS */
+          return time.hours+':'+time.minutes+':'+time.seconds;
+          break;
+      case '6': /* HH:MM:SS am/pm */
+          ampm = isAmPm(time.hours);
+          return ampm.hour+':'+time.minutes+':'+time.seconds+' '+ampm.ampm;
+          break;
+      default:
+          console.log(formatStyle);
     }
+  }
+}
+
+
+/**
+ * helper function which takes in an hour (base 24 hour) and returns
+ * an object containing the hour in base 12 and the am or pm tag.
+ * @param {string} hour, current hour in the time.
+ * @return {object} containing hour and ampm labels.
+ */
+function isAmPm(hour) {
+  /* if hour &lt; 12, it s the morning --> am tag. */
+  if(parseInt(hour) >= 0 &amp;&amp; parseInt(hour) &lt; 12) {
+    /* 0 am --> 12am */
+    if(parseInt(hour) == 0) {
+        return {hour: '12', ampm: 'am'};
+    } else {
+      return {hour: hour, ampm: 'am'};
+    }
+  } else {
+    /* 13:00 --> 1pm */
+    return {hour: (parseInt(hour)-12).toString(), ampm: 'pm'};
   }
 }
 
@@ -142,86 +240,6 @@ function isEmpty(string) {
   }
   return false;
 }
-
-/**
- * parses string to date object
- * @param {string} string to parse
- * @return {object} returns date boject
- */
-function getDate(string) {
-  if(isEmpty(string)) {
-    return false;
-  }
-
-  dateFormat=/(([0]?[0-9]|1[0-2])\/([0-2]?[0-9]|3[0-1])\/([0-9]{2}?[0-9]{2})?)/;
-
-  if(!string.match(dateFormat)) {
-    console.log('no matches');
-    return false;
-  } else {
-      let date = (string.match(dateFormat))[0];
-      let dateArr = date.split('/');
-
-      let month = dateArr[0];
-      let day = dateArr[1];
-      let year = dateArr[2];
-      console.log('found matches'+day);
-
-      if(parseInt(month) > 12 || parseInt(day) > 31) {
-        console.log('month: '+month+ 'day: '+day);
-        return false;
-      }
-      return {month: month, day: day, year: year,
-        weekday: null, timezone: null};
-    }
-}
-
-/**
- * parses string to time object
- * @param {string} string to parse
- * @return {object} returns time boject
- */
-function getTime(string) {
-  if(isEmpty(string)) {
-    return false;
-  }
-  timeFormat = /([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9](:([0-9]{4}))?)?/;
-
-  if(!string.match(timeFormat)) {
-    console.log('Time input is invalid');
-    return false;
-  } else {
-    let addS = false;
-    let addM = false;
-    let time = (string.match(timeFormat))[0];
-
-    let timeArr = time.split(':');
-    console.log(timeArr);
-    let hours = timeArr[0];
-    let mins = timeArr[1];
-    let seconds = 0;
-    let milliseconds = 0;
-
-    if(timeArr.length > 2) {
-      addS = true;
-      seconds = timeArr[2];
-    }
-    if(timeArr.length == 4) {
-      addM = true;
-      milliseconds = timeArr[3];
-    }
-
-    if(parseInt(hours) > 24 || parseInt(mins) > 59 ||
-      (addS &amp;&amp; parseInt(seconds) > 59) ||(addM &amp;&amp; parseInt(milliseconds))) {
-      console.log('Invalid time format');
-      return false;
-    }
-    return {hours: hours, minutes: mins, seconds: seconds,
-      milliseconds: milliseconds, original: time};
-  }
-}
-
-
 </code></pre>
         </article>
     </section>
@@ -232,13 +250,13 @@ function getTime(string) {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#foo">foo</a></li><li><a href="global.html#formatTime">formatTime</a></li><li><a href="global.html#getDate">getDate</a></li><li><a href="global.html#getTime">getTime</a></li><li><a href="global.html#isEmpty">isEmpty</a></li><li><a href="global.html#isValidTime">isValidTime</a></li><li><a href="global.html#manipulateString">manipulateString</a></li><li><a href="global.html#submitFoo">submitFoo</a></li><li><a href="global.html#submitFormatTime">submitFormatTime</a></li><li><a href="global.html#submitValidTime">submitValidTime</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#foo">foo</a></li><li><a href="global.html#formatTime">formatTime</a></li><li><a href="global.html#isAmPm">isAmPm</a></li><li><a href="global.html#isEmpty">isEmpty</a></li><li><a href="global.html#isValidTime">isValidTime</a></li><li><a href="global.html#submitFoo">submitFoo</a></li><li><a href="global.html#submitFormatTime">submitFormatTime</a></li><li><a href="global.html#submitValidTime">submitValidTime</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Sun Apr 23 2017 18:34:13 GMT-0700 (PDT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Tue Apr 25 2017 10:36:06 GMT-0700 (DST)
 </footer>
 
 <script> prettyPrint(); </script>

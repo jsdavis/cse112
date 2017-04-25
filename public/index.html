@@ -4,86 +4,110 @@
 <meta charset="utf-8">
 <title>CSE 112 Project 1</title>
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" type="text/css"/>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+<link rel="stylesheet" href="css/mainStyle.css" type="text/css"/>
 </head>
 <body>
-  <h1 class="text-danger text-center">CSE 112 Project 1</h1>
+  <!-- Header with full-height image -->
+<img src="image/UnluckyGeniuses.jpg" alt="Header" style="height:30;">
 
+
+  
   <!-- Foo! -->
   <form id="form1">
     <div class="row">
+     <h1 class="header-font text-center">Foo</h1>
       <div class="col-lg-4 col-lg-offset-4">
-        <div class="input-group">
+        <div>
+      <label for="isValidTimeText"
+             class = "enter-label">Enter a string:</label>
           <input id="textID"
                  type="text"
                  name="input"
                  class="form-control"
                  placeholder="Input text here"
                  required>
-          <span class="input-group-btn">
-          <button class="btn btn-primary"
+          <button class="btn submit-button"
                 type="button"
                 onclick ="submitFoo()">
-                Submit
-          </button>
+            Submit <i class="fa fa-share"> </i>
+          </button>  
+          <h3 id ="foo_retval"
+              class ="text-center output">
+          </h3>
         </div>
       </div>
     </div>
   </form>
 
-  <h3 id ="foo_retval"
-      class ="text-center">
-  </h3>
+  <hr>
 
   <!-- Time is valid! -->
-  <h3 align="center">Check if time is valid!</h3>
   <form id="formIsValidTime">
     <div class="row">
+	<h3 class="header-font text-center">Time Validator</h3>
       <div class="col-lg-4 col-lg-offset-4">
-        <div class="input-group">
+        <div>
+		  <label for="isValidTimeText"
+             class="enter-label">Enter Time:</label>
           <input id="isValidTimeText"
                  type="text"
                  name="inputValidtime"
                  class="form-control"
-                 placeholder="Input text here"
+                 placeholder="ex: 4:31am"
                  required>
-          <span class="input-group-btn">
-          <button class="btn btn-primary"
+				 
+		  <button class="btn submit-button"
                 type="button"
                 onclick ="submitValidTime()">
-                Submit
+                Submit <i class="fa fa-share"> </i>
           </button>
+          <h3 id ="valid_time_retval"
+              class ="text-center output"
+          </h3>
         </div>
       </div>
     </div>
   </form>
-  <h3 id ="valid_time_retval"
-    class ="text-center">
-  </h3>
 
+  <hr>
 
   <!-- Format time -->
-  <h3 align="center">Format the time!</h3>
   <form id="formatTimeForm">
     <div class="row">
+	<h3 class="header-font text-center">Time Formater</h3>
       <div class="col-lg-4 col-lg-offset-4">
-        <div class="input-group">
-          <input id="timeFormatString"
+        <div>
+          <label for="timeFormatString"
+                 class="enter-label">Enter Time and Select Format:</label>
+		  <input id="timeFormatString"
                    type="text"
                    name="timeFormatString"
                    class="form-control"
-                   placeholder="Formatting String">
-          <span class="input-group-btn">
-          <button class="btn btn-primary"
-                type="button"
+                   placeholder="ex: hh:mm:ss">
+          
+            <select id="timeFormat" name="timeFormat">
+              <option value="1">HH</option>
+              <option value="2">HH am/pm</option>
+			  <option value="3">HH:MM</option>
+			  <option value="4">HH:MM am/pm</option>
+			  <option value="5">HH:MM:SS</option>
+			  <option value="6">HH:MM:SS am/pm</option>
+            </select>
+			<button class="btn submit-button" type="button"
                 onclick ="submitFormatTime()">
-                Submit
+        Submit <i class="fa fa-share"> </i>
           </button>
+          <h3 id ="formatTimeRetval"
+              class ="text-center output">
+          </h3>
+        </div>
       </div>
-    </div>
+	</div>
   </form>
-  <h3 id ="formatTimeRetval"
-    class ="text-center">
-  </h3>
+
+
+
 
 
 
@@ -92,4 +116,3 @@
 
 </body>
 </html>
-
