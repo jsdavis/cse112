@@ -19,9 +19,15 @@ before_install:
 install:
 - gcloud config set project unlucky-geniuses
 - gcloud components update
-script:
-- gcloud app deploy app.yaml --promote
+- npm install
+- npm install -g mocha
+- npm install chai
 notifications:
   email: false
   slack:
     secure: BLFZ6es88OidnNGf2vC5Ewhy90EP4b9dqjjV221OgeXN9qmJHbcDtfCymHnjzNhIAqiZLnELdGPTrYjISlVcFvAG3qKOd+YdpgOi4od/oVk8WEW5eIXPpBxLcd8scI+2C76GDNNfkLPhi7Vi7/8DocyNXwcm9mO3icuHfQEhF39verowCBJlPGosUGw2zcss7spvcGgsgF+WVY6GgZ6LTVe2IsIZEMOX+F6ci5tk/MBT6yIAjYtrc+qeqmHFC1u/fsJG0/9TS3SpOD+kU3UiTCfeJUvsHJQMv1EE4rjuLDeR5IiPEhEF0LVtblLXBCNWnDjePn3F0R1f+kpDMsdghsfw/5dZDAcpkl0e78o35se+Czb9r/yEPOYKiMWzwm6hCi7QrrU/DUtJcxvqBS8FYDlmkYThDHOGiSOLCt7Sln75HxGdPzS1xPPfNq9raWwCAseulknooFHJlGj/8l8jkjXs+gLhI3lyKoiiJhF8HIDCQ84SS+Pl2JsALkNd6dXnxUFeSofOoQA40ewI41m3Oa2MuzQYc8G2J8P7n1zJWrdU3cfqUkkblTLMw/78PjAB8SADTlFCfNjopuyG4somt3A1TLfKy9pVFK3aaNoWuUx4tCisEOQOMQXx/O0lgWC91iUPpZa+kSsSMJvPr0s5Edoxne76Md9oSWjY3dIShCw=
+deploy:
+  provider: gae
+  keyfile: client-secret.json
+  project: unlucky-geniuses
+  on: master
