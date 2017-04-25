@@ -39,9 +39,10 @@ function submitFormatTime() {
 /**
  * checks if time is valid
  * @param {string} timeString to check
+ * @param {bool} flag to check
  * @return {bool}
  */
-function isValidTime(timeString) {
+function isValidTime(timeString, flag=0) {
   if(isEmpty(timeString)) {
     return 'Empty Input';
   }
@@ -84,8 +85,10 @@ function isValidTime(timeString) {
       }
       array[i] = valuesArr[i];
     }
-
-    return {hours: array[0], minutes: array[1], seconds: array[2]};
+    if(flag) {
+      return {hours: array[0], minutes: array[1], seconds: array[2]};
+    }
+    return true;
   }
   return false;
 }
@@ -98,7 +101,7 @@ function isValidTime(timeString) {
  * @return {bool}
  */
 function formatTime(formatStyle, inputString) {
-  let time = isValidTime(inputString);
+  let time = isValidTime(inputString, 1 );
   console.log('Hello');
   if(time) {
     switch(formatStyle) {
@@ -107,6 +110,18 @@ function formatTime(formatStyle, inputString) {
           break;
       case '2':
           return time.hours+':'+time.minutes+':'+time.seconds;
+          break;
+      case '3':
+          if(parseInt(time.hours) >= 0 && parseInt(time.hours) < 12) {
+            if(parseInt(time.hours) == 0) {
+                return '12:'+time.minutes+'AM';
+            } else {
+              return time.hours+':'+time.minutes+'AM';
+            }
+          } else {
+            return (parseInt(time.hours)-12).toString()+':'
+              +parseInt(time.minutes)+'PM';
+          }
           break;
       default:
           console.log(formatStyle);
