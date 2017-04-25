@@ -254,14 +254,14 @@
 
     
 
-    <h4 class="name" id="formatTime"><span class="type-signature"></span>formatTime<span class="signature">(string)</span><span class="type-signature"> &rarr; {string}</span></h4>
+    <h4 class="name" id="formatTime"><span class="type-signature"></span>formatTime<span class="signature">(formatStyle, inputString)</span><span class="type-signature"> &rarr; {bool}</span></h4>
 
     
 
 
 
 <div class="description">
-    Formats Time based on the inputted hours, minutes, seconds, and milliseconds
+    formats the time
 </div>
 
 
@@ -297,7 +297,7 @@
 
         <tr>
             
-                <td class="name"><code>string</code></td>
+                <td class="name"><code>formatStyle</code></td>
             
 
             <td class="type">
@@ -313,7 +313,30 @@
 
             
 
-            <td class="description last">to parse.</td>
+            <td class="description last">to check</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>inputString</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">to check</td>
         </tr>
 
     
@@ -354,7 +377,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="main.js.html">main.js</a>, <a href="main.js.html#line61">line 61</a>
+        <a href="main.js.html">main.js</a>, <a href="main.js.html#line100">line 100</a>
     </li></ul></dd>
     
 
@@ -380,10 +403,6 @@
 <h5>Returns:</h5>
 
         
-<div class="param-desc">
-    valid time, "This is an invalid time." if fails
-</div>
-
 
 
 <dl>
@@ -392,313 +411,7 @@
     </dt>
     <dd>
         
-<span class="param-type">string</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="getDate"><span class="type-signature"></span>getDate<span class="signature">(string)</span><span class="type-signature"> &rarr; {object}</span></h4>
-
-    
-
-
-
-<div class="description">
-    parses string to date object
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>string</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">to parse</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="main.js.html">main.js</a>, <a href="main.js.html#line123">line 123</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    returns date boject
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">object</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="getTime"><span class="type-signature"></span>getTime<span class="signature">(string)</span><span class="type-signature"> &rarr; {object}</span></h4>
-
-    
-
-
-
-<div class="description">
-    parses string to time object
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>string</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">to parse</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="main.js.html">main.js</a>, <a href="main.js.html#line156">line 156</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    returns time boject
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">object</span>
+<span class="param-type">bool</span>
 
 
     </dd>
@@ -813,7 +526,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="main.js.html">main.js</a>, <a href="main.js.html#line111">line 111</a>
+        <a href="main.js.html">main.js</a>, <a href="main.js.html#line123">line 123</a>
     </li></ul></dd>
     
 
@@ -866,16 +579,14 @@
 
     
 
-    <h4 class="name" id="isValidTime"><span class="type-signature"></span>isValidTime<span class="signature">(timeString)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    <h4 class="name" id="isValidTime"><span class="type-signature"></span>isValidTime<span class="signature">(timeString)</span><span class="type-signature"> &rarr; {bool}</span></h4>
 
     
 
 
 
 <div class="description">
-    isValidTime takes in a string as the parameter and returns true or false
-depending on if it is of the format hh:mm where hh cannot be greater than 12
-and mm cannot be greater than 59
+    checks if time is valid
 </div>
 
 
@@ -927,7 +638,7 @@ and mm cannot be greater than 59
 
             
 
-            <td class="description last">string to check if valid time.</td>
+            <td class="description last">to check</td>
         </tr>
 
     
@@ -968,7 +679,7 @@ and mm cannot be greater than 59
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="main.js.html">main.js</a>, <a href="main.js.html#line35">line 35</a>
+        <a href="main.js.html">main.js</a>, <a href="main.js.html#line44">line 44</a>
     </li></ul></dd>
     
 
@@ -994,10 +705,6 @@ and mm cannot be greater than 59
 <h5>Returns:</h5>
 
         
-<div class="param-desc">
-    False if invalid time format, True otherwise.
-</div>
-
 
 
 <dl>
@@ -1006,206 +713,7 @@ and mm cannot be greater than 59
     </dt>
     <dd>
         
-<span class="param-type">boolean</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="manipulateString"><span class="type-signature"></span>manipulateString<span class="signature">(time, date, arr)</span><span class="type-signature"> &rarr; {string}</span></h4>
-
-    
-
-
-
-<div class="description">
-    Formats Time based on the inputted hours, minutes, seconds, and milliseconds
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>time</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">object</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>date</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">object</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>arr</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">all flags for format</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="main.js.html">main.js</a>, <a href="main.js.html#line89">line 89</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    valid time, "This is an invalid time." if fails
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">string</span>
+<span class="param-type">bool</span>
 
 
     </dd>
@@ -1477,13 +985,13 @@ and mm cannot be greater than 59
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#foo">foo</a></li><li><a href="global.html#formatTime">formatTime</a></li><li><a href="global.html#getDate">getDate</a></li><li><a href="global.html#getTime">getTime</a></li><li><a href="global.html#isEmpty">isEmpty</a></li><li><a href="global.html#isValidTime">isValidTime</a></li><li><a href="global.html#manipulateString">manipulateString</a></li><li><a href="global.html#submitFoo">submitFoo</a></li><li><a href="global.html#submitFormatTime">submitFormatTime</a></li><li><a href="global.html#submitValidTime">submitValidTime</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#foo">foo</a></li><li><a href="global.html#formatTime">formatTime</a></li><li><a href="global.html#isEmpty">isEmpty</a></li><li><a href="global.html#isValidTime">isValidTime</a></li><li><a href="global.html#submitFoo">submitFoo</a></li><li><a href="global.html#submitFormatTime">submitFormatTime</a></li><li><a href="global.html#submitValidTime">submitValidTime</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Sun Apr 23 2017 16:33:29 GMT-0700 (PDT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Mon Apr 24 2017 17:52:30 GMT-0700 (PDT)
 </footer>
 
 <script> prettyPrint(); </script>

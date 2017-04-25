@@ -35,7 +35,7 @@
   </h3>
 
   <!-- Time is valid! -->
-  <h3 align="center">Check if time is valid!</h3>
+  <h3 align="center">Enter the time!</h3>
   <form id="formIsValidTime">
     <div class="row">
       <div class="col-lg-4 col-lg-offset-4">
@@ -44,7 +44,7 @@
                  type="text"
                  name="inputValidtime"
                  class="form-control"
-                 placeholder="Input text here"
+                 placeholder="ex: 4:31am"
                  required>
           <span class="input-group-btn">
           <button class="btn btn-primary"
@@ -62,7 +62,7 @@
 
 
   <!-- Format time -->
-  <h3 align="center">Format the time!</h3>
+  <h3 align="center">Type the time you want to format!</h3>
   <form id="formatTimeForm">
     <div class="row">
       <div class="col-lg-4 col-lg-offset-4">
@@ -71,19 +71,27 @@
                    type="text"
                    name="timeFormatString"
                    class="form-control"
-                   placeholder="Formatting String">
+                   placeholder="ex: mm/dd/yyyy hh:mm:ss">
+          <form action="">
+            <input type="radio" name="formatSelector" value="1"> HH:MM<br>
+            <input type="radio" name="formatSelector" value="2"> HH:MM:SS<br>
+            <input type="radio" name="formatSelector" value="3"> HH:MM am/pm
+          </form>
           <span class="input-group-btn">
           <button class="btn btn-primary"
                 type="button"
                 onclick ="submitFormatTime()">
                 Submit
           </button>
+
       </div>
     </div>
   </form>
   <h3 id ="formatTimeRetval"
     class ="text-center">
   </h3>
+
+
 
 
 
