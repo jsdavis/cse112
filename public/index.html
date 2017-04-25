@@ -72,19 +72,21 @@
                    name="timeFormatString"
                    class="form-control"
                    placeholder="ex: mm/dd/yyyy hh:mm:ss">
-          <form action="">
-            <input type="radio" name="formatSelector" value="1"> HH:MM<br>
-            <input type="radio" name="formatSelector" value="2"> HH:MM:SS<br>
-            <input type="radio" name="formatSelector" value="3"> HH:MM am/pm
-          </form>
           <span class="input-group-btn">
           <button class="btn btn-primary"
                 type="button"
                 onclick ="submitFormatTime()">
                 Submit
           </button>
-
       </div>
+      <form action="">
+        <input type="radio" name="formatSelector" value="1"> HH<br>
+        <input type="radio" name="formatSelector" value="2"> HH am/pm<br>
+        <input type="radio" name="formatSelector" value="3"> HH:MM<br>
+        <input type="radio" name="formatSelector" value="4"> HH:MM am/pm<br>
+        <input type="radio" name="formatSelector" value="5"> HH:MM:SS<br>
+        <input type="radio" name="formatSelector" value="6"> HH:MM:SS am/pm
+      </form>
     </div>
   </form>
   <h3 id ="formatTimeRetval"
