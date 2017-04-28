@@ -5,12 +5,13 @@ chai.use(chaiHttp);
 var app = require('../app.js')
 
 describe('AppTest', () => {
+	let app;
 	let server;
 
 	beforeEach((done) => {
 		delete require.cache[require.resolve('../app')];
-		server = require('../app');
-		server.listen(3000, done);
+		app = require('../app');
+		server = app.listen(3000, done);
 	});
 
 	afterEach(done => server.close(done));
