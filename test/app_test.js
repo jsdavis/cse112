@@ -8,7 +8,7 @@ describe('AppTest', () => {
 	let app;
 	let server;
 
-	beforeEach((done) => {
+	beforeEach(() => {
 		delete require.cache[require.resolve('../app')];
 		app = require('../app');
 		server = app.listen(3000, done);
