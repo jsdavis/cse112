@@ -1,5 +1,3 @@
-const PORT = process.env.PORT;
-
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -11,8 +9,4 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');
 });
 
-module.exports = app.listen(PORT, () => {
-  console.log('Example app listening on port ' + PORT);
-});
-
-
+module.exports = app;
