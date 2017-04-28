@@ -10,7 +10,7 @@ describe('AppTest', () => {
 	beforeEach((done) => {
 		delete require.cache[require.resolve('../app')];
 		server = require('../app');
-		server.on('listening', done);
+		server.listen(3000, done);
 	});
 
 	afterEach(done => server.close(done));
