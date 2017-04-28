@@ -7,9 +7,10 @@ var app = require('../app.js')
 describe('AppTest', () => {
 	let server;
 
-	beforeEach(() => {
+	beforeEach((done) => {
 		delete require.cache[require.resolve('../app')];
 		server = require('../app');
+		server.on('listening', done);
 	});
 
 	afterEach(done => server.close(done));

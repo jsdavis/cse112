@@ -1,4 +1,4 @@
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 8080;
 
 const express = require('express');
 const app = express();
@@ -12,6 +12,7 @@ app.get('/', (req, res) => {
 });
 
 module.exports = app.listen(PORT, () => {
+  app.emit('listening', null);
   console.log('Example app listening on port ' + PORT);
 });
 
