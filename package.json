@@ -2,7 +2,7 @@
   "name": "cse112",
   "version": "1.0.0",
   "description": "Unlucky Geniuses' CSE 112 project",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "lint": "eslint --fix ./*.js public/js/*.js",
