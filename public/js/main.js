@@ -1,7 +1,7 @@
 /**
  * Grabs submission details from the submit foo HTML element
  * Calls Foo function with the input string.
- * @param {string} str
+ * @param {TYPE} None
  * @return {undefined} None
  */
 function submitFoo() {
@@ -17,7 +17,7 @@ function submitFoo() {
 /**
  * Grabs submission details from the submit isValid HTML element
  * calls isValidTime with the time input String
- * @param {string} str
+ * @param {TYPE} None
  * @return {undefined} None
  */
 function submitValidTime() {
@@ -32,7 +32,7 @@ function submitValidTime() {
 /**
  * Grabs submission details from the submit format HTML element
  * Calls formatTime with the time input string and selected format style
- * @param {string} str
+ * @param {TYPE} None
  * @return {undefined}
  */
 function submitFormatTime() {
