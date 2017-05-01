@@ -1,7 +1,7 @@
 /**
  * Represents the "foo" function.
- * @param {string} bar - The string to compare with
- * @return {boolean} Whether bar is "baz"
+ * @param {string} bar - The string to compare to "baz"
+ * @return {boolean} True is bar is "baz", otherwise returns false
  */
 function foo(bar) {
   return (bar === 'baz');

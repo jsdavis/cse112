@@ -1,5 +1,8 @@
 /**
- * Handles retrieval of the foo function
+ * Grabs submission details from the submit foo HTML element
+ * Calls Foo function with the input string.
+ * @param {string} str
+ * @return {undefined} None
  */
 function submitFoo() {
   /* get time input */
@@ -10,8 +13,12 @@ function submitFoo() {
   document.getElementById('foo_retval').innerHTML = output;
 }
 
+
 /**
  * Grabs submission details from the submit isValid HTML element
+ * calls isValidTime with the time input String
+ * @param {string} str
+ * @return {undefined} None
  */
 function submitValidTime() {
   /* get time input */
@@ -19,34 +26,36 @@ function submitValidTime() {
 
   /* call isValidTime with input */
   let output = isValidTime(inputTime);
-
   document.getElementById('valid_time_retval').innerHTML = output;
 }
 
 /**
  * Grabs submission details from the submit format HTML element
+ * Calls formatTime with the time input string and selected format style
+ * @param {string} str
+ * @return {undefined}
  */
 function submitFormatTime() {
   /* get selected format stylw */
   let format = document.getElementById('timeFormatSelector');
   let selectedFormat = format.options[format.selectedIndex].value;
-
   /* get time input */
+
   let timeFormat = document.getElementById('timeFormatString').value;
 
   /* call formatTime with inputs */
   let output = formatTime(selectedFormat, timeFormat);
-
   document.getElementById('formatTimeRetval').innerHTML = output;
 }
 
 
 /**
- * checks if time is valid using regex
- * @param {string} timeString input by user as time.
- * @param {bool} flag to see if we want to return the time object,
- *  true if time is valid
- * @return {bool} if object exists or not.
+ * checks if time input string represents valid using regular expressions
+ * @param {string} timeString time as stringinput by user.
+ * @param {bool} flag flag to see if we want to return the time object or just
+ * know if the time is valid
+ * @return {bool} returns whether time is valid. If time is valid, and flag is
+ * 1, returns JSON object for time.
  */
 function isValidTime(timeString, flag=0) {
   /* error checking */
@@ -66,15 +75,12 @@ function isValidTime(timeString, flag=0) {
   if(match) {
     let string = match[0];      // full match string/
     string.replace(/\ /g, '');  // remove whitespaces.
-
     let valuesArr = string.split(':');
     let array = ['00', '00', '00']; // [hours, minutes, seconds]
-
 
     /* check each value for am/pm input.*/
     for(let i=0; i<valuesArr.length; i++) {
       /* update values in result array */
-
       if(valuesArr[i].includes(' ')) {
         valuesArr[i] = valuesArr[i].replace(/\ /g, ''); // clean up match
       }
@@ -84,7 +90,6 @@ function isValidTime(timeString, flag=0) {
       if(valuesArr[i].includes('am')||valuesArr[i].includes('AM')) {
         valuesArr[i] = valuesArr[i].replace(/am/g, ''); // clean up match
         valuesArr[i] = valuesArr[i].replace(/AM/g, '');
-
         array[i] = valuesArr[i];// update
 
         /* 0 am invalid time. */
@@ -135,10 +140,11 @@ function isValidTime(timeString, flag=0) {
 
 
 /**
- * formats the time from input string to specifed choice.
- * @param {string} formatStyle selected.
- * @param {string} inputString time as input by user.
- * @return {string} formatted string.
+ * formats the time from input string to the specifed choice.
+ * @param {string} formatStyle user's choice of formatting.
+ * @param {string} inputString time as string input by user.
+ * @return {string} time string formatted as per choice, or
+ * "Time is Invalid".
  */
 function formatTime(formatStyle, inputString) {
   /* check if input time is valid  */
@@ -180,10 +186,11 @@ function formatTime(formatStyle, inputString) {
 
 
 /**
- * helper function which takes in an hour (base 24 hour) and returns
- * an object containing the hour in base 12 and the am or pm tag.
- * @param {string} hour, current hour in the time.
- * @return {object} containing hour and ampm labels.
+ * helper function which takes in an hour (base 24 hour) as a string
+ * and returns object containing the hour in base 12 and the am or pm tag.
+ * @param {string} hour hour in base 24.
+ * @return {object} JSON object containing the hour base 12 and am or pm
+ * labels.
  */
 function isAmPm(hour) {
   /* if hour < 12, it s the morning --> am tag. */
@@ -200,11 +207,10 @@ function isAmPm(hour) {
   }
 }
 
-
 /**
  * Checks whether string is empty
- * @param {string} string to check
- * @return {boolean} true or false
+ * @param {string} string input string for which we want to check if empty
+ * @return {boolean} true if the input string is empty, otherwise false.
  */
 function isEmpty(string) {
   if(string == '') {
@@ -213,5 +219,7 @@ function isEmpty(string) {
   return false;
 }
 
+
 module.exports.isValidTime = isValidTime;
 module.exports.formatTime = formatTime;
+
