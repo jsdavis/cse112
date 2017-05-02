@@ -5,14 +5,16 @@ chai.use(chaiHttp);
 var app = require('../app.js')
 
 describe('AppTest', () => {
+	let app;
 	let server;
 
-	beforeEach(() => {
+	beforeEach((done) => {
 		delete require.cache[require.resolve('../app')];
-		server = require('../app');
+		app = require('../app');
+		server = app.listen(3000, done);
 	});
 
-	afterEach(done => server.close(done));
+	afterEach((done) => server.close(done));
 
 	describe('GET invalid page', () => {
 		it('should return a 404 error', (done) => {
