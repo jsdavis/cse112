@@ -66,7 +66,7 @@ function isValidTime(timeString, flag=0) {
 
   /* Disabling eslint, regex longer than 80 characters */
   /* eslint-disable */
-  let timeFormatRegex = /((^)|(\ ))([0-1]?[0-9]|2[0-3])((AM|PM|am|pm)|(:[0-5][0-9]((AM|PM|am|pm)|(:[0-5][0-9](AM|PM|am|pm)?)?)))(\ |$)/;
+  let timeFormatRegex = /((^)|(\ ))([0-1]?[0-9]|2[0-3])((\ )?(AM|PM|am|pm)|(:[0-5][0-9]((\ )?(AM|PM|am|pm)|(:[0-5][0-9]((\ )?(AM|PM|am|pm)?))?)))$/;
   /* eslint-enable */
 
   /* get strings that match the regex, valid time formats */
