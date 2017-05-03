@@ -7,7 +7,9 @@
     "start": "node index.js",
     "lint": "eslint --fix ./*.js public/js/*.js",
     "test": "mocha",
-    "doc": "jsdoc -d ./docs ./*.js public/js/*.js"
+    "doc": "jsdoc -d ./docs ./*.js public/js/*.js",
+    "e2e": "node_modules/.bin/nightwatch --config nightwatch.conf.js",
+    "postinstall": "node nightwatch.conf.js"  
   },
   "repository": {
     "type": "git",
@@ -30,16 +32,26 @@
     "eslint-config-google": "^0.7.1",
     "git-hooks": "^1.1.8",
     "jsdoc": "^3.4.3",
-    "mocha": "^3.2.0"
+    "mocha": "^3.2.0",
+    "nightwatch": "^0.9.15",
+    "selenium-download": "^2.0.10"
   },
   "eslintConfig": {
     "extends": "google",
     "parserOptions": {
       "ecmaVersion": 6
     },
-    "ecmaFeatures": { "destructuring": true },
+    "ecmaFeatures": {
+      "destructuring": true
+    },
     "rules": {
-      "no-unused-vars": [1, {"vars": "all", "varsIgnorePattern": "Ignored"}]
+      "no-unused-vars": [
+        1,
+        {
+          "vars": "all",
+          "varsIgnorePattern": "Ignored"
+        }
+      ]
     }
   }
 }
