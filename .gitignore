@@ -60,9 +60,7 @@ typings/
 # sw? files
 *.sw?
 
-<<<<<<< Updated upstream
 .DS_STORE
-=======
+
 # Global documentation
 docs/
->>>>>>> Stashed changes
