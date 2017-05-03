@@ -28,6 +28,7 @@
                  placeholder="Input text here"
                  required>
           <button class="btn submit-button"
+		  id="fooBtn"
                 type="button"
                 onclick ="submitFoo()">
             Submit <i class="fa fa-share"> </i>
@@ -58,6 +59,7 @@
                  required>
 
 		  <button class="btn submit-button"
+	    	id="validTimeBtn"
                 type="button"
                 onclick ="submitValidTime()">
                 Submit <i class="fa fa-share"> </i>
@@ -94,7 +96,9 @@
       			  <option value="5">HH:MM:SS</option>
       			  <option value="6">HH:MM:SS am/pm</option>
             </select>
-			<button class="btn submit-button" type="button"
+			<button class="btn submit-button" 
+	   		type="button"
+			id="formatTimeBtn"
                 onclick ="submitFormatTime()">
         Submit <i class="fa fa-share"> </i>
           </button>
