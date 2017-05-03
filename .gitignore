@@ -61,3 +61,6 @@ typings/
 *.sw?
 
 .DS_STORE
+
+# Global documentation
+docs/
