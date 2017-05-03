@@ -1,9 +1,9 @@
-// require('env2')('.env'); 
+// require('env2')('.env');
 // optionally store youre Evironment Variables in .env
 const SCREENSHOT_PATH = 'test/screenshots/';
 const BINPATH = './node_modules/nightwatch/bin/';
 
-// we use a nightwatch.conf.js file so we 
+// we use a nightwatch.conf.js file so we
 // can include comments and helper functions
 module.exports = {
   'src_folders': [
@@ -44,7 +44,7 @@ module.exports = {
  * selenium-download does exactly what it's name suggests;
  * downloads (or updates) the version of Selenium (& chromedriver)
  * on your localhost where it will be used by Nightwatch.
- /the following code checks for the existence of `selenium.jar` 
+ /the following code checks for the existence of `selenium.jar`
  *before trying to run our tests.
  */
 
@@ -57,6 +57,11 @@ require('fs').stat(BINPATH + 'selenium.jar', function(err, stat) { // got it?
   }
 });
 
+/**
+ * pad left
+ * @param {int} count
+ * @return {string}
+ **/
 function padLeft(count) { // theregister.co.uk/2016/03/23/npm_left_pad_chaos/
   return count < 10 ? '0' + count : count.toString();
 }
@@ -68,6 +73,8 @@ let FILECOUNT = 0; // "global" screenshot file count
  * function that returns the correct path for storing our screenshots.
  * While we're at it, we are adding some meta-data to the filename,specifically
  * the Platform/Browser where the test was run and the test (file) name.
+ * @param {string} browser
+ * @return {string}
  */
 function imgpath(browser) {
   let a = browser.options.desiredCapabilities;
