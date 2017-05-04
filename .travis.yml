@@ -2,10 +2,14 @@ sudo: false
 language: java
 jdk:
   - oraclejdk8
-node_js: "7"
 cache:
   directores:
   - node_modules/
+before_install:
+  - wget https://raw.githubusercontent.com/creationix/nvm/v0.33.2/nvm.sh -O ~/.nvm/nvm.sh
+  - source ~/.nvm/nvm.sh
+  - nvm install 7 # for Node v7
+  - node --version
 install:
 - npm install
 - npm install mocha
