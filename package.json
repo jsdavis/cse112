@@ -22,10 +22,10 @@
   "homepage": "https://github.com/jsdavis/cse112#readme",
   "dependencies": {
     "express": "^4.15.2",
-    "mocha": "^3.2.0"
+    "mocha": "^3.2.0",
+    "bunyan": "^1.8.10"
   },
   "devDependencies": {
-    "bunyan": "^1.8.10",
     "chai": "^3.5.0",
     "chai-http": "^3.0.0",
     "eslint": "^3.19.0",
