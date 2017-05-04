@@ -4,9 +4,10 @@
   "description": "Unlucky Geniuses' CSE 112 project",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "NODE_ENV=production node index.js",
+    "dev": "NODE_ENV=development node index.js | bunyan -o short",
     "lint": "eslint --fix .",
-    "test": "mocha",
+    "test": "NODE_ENV=test mocha",
     "doc": "jsdoc -d ./docs ./*.js public/js/*.js"
   },
   "repository": {
@@ -24,6 +25,7 @@
     "mocha": "^3.2.0"
   },
   "devDependencies": {
+    "bunyan": "^1.8.10",
     "chai": "^3.5.0",
     "chai-http": "^3.0.0",
     "eslint": "^3.19.0",
@@ -37,9 +39,17 @@
     "parserOptions": {
       "ecmaVersion": 6
     },
-    "ecmaFeatures": { "destructuring": true },
+    "ecmaFeatures": {
+      "destructuring": true
+    },
     "rules": {
-      "no-unused-vars": [1, {"vars": "all", "varsIgnorePattern": "Ignored"}]
+      "no-unused-vars": [
+        1,
+        {
+          "vars": "all",
+          "varsIgnorePattern": "Ignored"
+        }
+      ]
     }
   }
 }
