@@ -9,11 +9,8 @@ install:
 - npm install
 - npm install mocha
 - npm install chai
-before_script:
-- npm start
-- sleep 30
 script:
-- npm run e2e
+- npm start && npm run e2e
 after_script:
 - pkill node
 notifications:
