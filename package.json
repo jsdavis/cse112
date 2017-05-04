@@ -13,7 +13,8 @@
     "clean": "rm -rf public/js-es5",
     "build": "npm run clean && mkdir public/js-es5 && babel public/js -s -d public/js-es5",
     "production": "npm run build && node bin/production",
-    "postinstall": "node nightwatch.conf.js"
+    "postinstall": "node nightwatch.conf.js",
+    "clean": "rm -rf public/js-es5"
   },
   "repository": {
     "type": "git",
