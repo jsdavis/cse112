@@ -1,6 +1,6 @@
 // require('env2')('.env');
 // optionally store youre Evironment Variables in .env
-const SCREENSHOT_PATH = 'test/screenshots/';
+const SCREENSHOT_PATH = './screenshots/';
 const BINPATH = './node_modules/nightwatch/bin/';
 
 // we use a nightwatch.conf.js file so we

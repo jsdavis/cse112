@@ -160,7 +160,7 @@
 
             
 
-            <td class="description last">The string to compare with</td>
+            <td class="description last">The string to compare to "baz"</td>
         </tr>
 
     
@@ -228,7 +228,7 @@
 
         
 <div class="param-desc">
-    Whether bar is "baz"
+    True is bar is "baz", otherwise returns false
 </div>
 
 
@@ -261,7 +261,7 @@
 
 
 <div class="description">
-    formats the time from input string to specifed choice.
+    formats the time from input string to the specifed choice.
 </div>
 
 
@@ -313,7 +313,7 @@
 
             
 
-            <td class="description last">selected.</td>
+            <td class="description last">user's choice of formatting.</td>
         </tr>
 
     
@@ -336,7 +336,7 @@
 
             
 
-            <td class="description last">time as input by user.</td>
+            <td class="description last">time as string input by user.</td>
         </tr>
 
     
@@ -377,7 +377,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="public_js_main.js.html">public/js/main.js</a>, <a href="public_js_main.js.html#line143">line 143</a>
+        <a href="public_js_main.js.html">public/js/main.js</a>, <a href="public_js_main.js.html#line149">line 149</a>
     </li></ul></dd>
     
 
@@ -404,7 +404,8 @@
 
         
 <div class="param-desc">
-    formatted string.
+    time string formatted as per choice, or
+"Time is Invalid".
 </div>
 
 
@@ -583,15 +584,15 @@ the Platform/Browser where the test was run and the test (file) name.
 
     
 
-    <h4 class="name" id="isAmPm"><span class="type-signature"></span>isAmPm<span class="signature">(hour,)</span><span class="type-signature"> &rarr; {object}</span></h4>
+    <h4 class="name" id="isAmPm"><span class="type-signature"></span>isAmPm<span class="signature">(hour)</span><span class="type-signature"> &rarr; {object}</span></h4>
 
     
 
 
 
 <div class="description">
-    helper function which takes in an hour (base 24 hour) and returns
-an object containing the hour in base 12 and the am or pm tag.
+    helper function which takes in an hour (base 24 hour) as a string
+and returns object containing the hour in base 12 and the am or pm tag.
 </div>
 
 
@@ -627,7 +628,7 @@ an object containing the hour in base 12 and the am or pm tag.
 
         <tr>
             
-                <td class="name"><code>hour,</code></td>
+                <td class="name"><code>hour</code></td>
             
 
             <td class="type">
@@ -643,7 +644,7 @@ an object containing the hour in base 12 and the am or pm tag.
 
             
 
-            <td class="description last">current hour in the time.</td>
+            <td class="description last">hour in base 24.</td>
         </tr>
 
     
@@ -684,7 +685,7 @@ an object containing the hour in base 12 and the am or pm tag.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="public_js_main.js.html">public/js/main.js</a>, <a href="public_js_main.js.html#line188">line 188</a>
+        <a href="public_js_main.js.html">public/js/main.js</a>, <a href="public_js_main.js.html#line195">line 195</a>
     </li></ul></dd>
     
 
@@ -711,7 +712,8 @@ an object containing the hour in base 12 and the am or pm tag.
 
         
 <div class="param-desc">
-    containing hour and ampm labels.
+    JSON object containing the hour base 12 and am or pm
+labels.
 </div>
 
 
@@ -796,7 +798,7 @@ an object containing the hour in base 12 and the am or pm tag.
 
             
 
-            <td class="description last">to check</td>
+            <td class="description last">input string for which we want to check if empty</td>
         </tr>
 
     
@@ -837,7 +839,7 @@ an object containing the hour in base 12 and the am or pm tag.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="public_js_main.js.html">public/js/main.js</a>, <a href="public_js_main.js.html#line209">line 209</a>
+        <a href="public_js_main.js.html">public/js/main.js</a>, <a href="public_js_main.js.html#line215">line 215</a>
     </li></ul></dd>
     
 
@@ -864,7 +866,7 @@ an object containing the hour in base 12 and the am or pm tag.
 
         
 <div class="param-desc">
-    true or false
+    true if the input string is empty, otherwise false.
 </div>
 
 
@@ -897,7 +899,7 @@ an object containing the hour in base 12 and the am or pm tag.
 
 
 <div class="description">
-    checks if time is valid using regex
+    checks if time input string represents valid using regular expressions
 </div>
 
 
@@ -955,7 +957,7 @@ an object containing the hour in base 12 and the am or pm tag.
                 </td>
             
 
-            <td class="description last">input by user as time.</td>
+            <td class="description last">time as stringinput by user.</td>
         </tr>
 
     
@@ -984,8 +986,8 @@ an object containing the hour in base 12 and the am or pm tag.
                 </td>
             
 
-            <td class="description last">to see if we want to return the time object,
- true if time is valid</td>
+            <td class="description last">flag to see if we want to return the time object or just
+know if the time is valid</td>
         </tr>
 
     
@@ -1026,7 +1028,7 @@ an object containing the hour in base 12 and the am or pm tag.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="public_js_main.js.html">public/js/main.js</a>, <a href="public_js_main.js.html#line51">line 51</a>
+        <a href="public_js_main.js.html">public/js/main.js</a>, <a href="public_js_main.js.html#line60">line 60</a>
     </li></ul></dd>
     
 
@@ -1053,7 +1055,8 @@ an object containing the hour in base 12 and the am or pm tag.
 
         
 <div class="param-desc">
-    if object exists or not.
+    returns whether time is valid. If time is valid, and flag is
+1, returns JSON object for time.
 </div>
 
 
@@ -1228,14 +1231,15 @@ an object containing the hour in base 12 and the am or pm tag.
 
     
 
-    <h4 class="name" id="submitFoo"><span class="type-signature"></span>submitFoo<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="submitFoo"><span class="type-signature"></span>submitFoo<span class="signature">(None)</span><span class="type-signature"> &rarr; {undefined}</span></h4>
 
     
 
 
 
 <div class="description">
-    Handles retrieval of the foo function
+    Grabs submission details from the submit foo HTML element
+Calls Foo function with the input string.
 </div>
 
 
@@ -1244,6 +1248,55 @@ an object containing the hour in base 12 and the am or pm tag.
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>None</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">TYPE</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -1279,7 +1332,7 @@ an object containing the hour in base 12 and the am or pm tag.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="public_js_main.js.html">public/js/main.js</a>, <a href="public_js_main.js.html#line4">line 4</a>
+        <a href="public_js_main.js.html">public/js/main.js</a>, <a href="public_js_main.js.html#line7">line 7</a>
     </li></ul></dd>
     
 
@@ -1302,6 +1355,28 @@ an object containing the hour in base 12 and the am or pm tag.
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    None
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">undefined</span>
+
+
+    </dd>
+</dl>
+
+    
 
 
 
@@ -1310,7 +1385,7 @@ an object containing the hour in base 12 and the am or pm tag.
 
     
 
-    <h4 class="name" id="submitFormatTime"><span class="type-signature"></span>submitFormatTime<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="submitFormatTime"><span class="type-signature"></span>submitFormatTime<span class="signature">(None)</span><span class="type-signature"> &rarr; {undefined}</span></h4>
 
     
 
@@ -1318,6 +1393,7 @@ an object containing the hour in base 12 and the am or pm tag.
 
 <div class="description">
     Grabs submission details from the submit format HTML element
+Calls formatTime with the time input string and selected format style
 </div>
 
 
@@ -1326,6 +1402,55 @@ an object containing the hour in base 12 and the am or pm tag.
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>None</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">TYPE</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -1361,7 +1486,7 @@ an object containing the hour in base 12 and the am or pm tag.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="public_js_main.js.html">public/js/main.js</a>, <a href="public_js_main.js.html#line29">line 29</a>
+        <a href="public_js_main.js.html">public/js/main.js</a>, <a href="public_js_main.js.html#line38">line 38</a>
     </li></ul></dd>
     
 
@@ -1384,6 +1509,24 @@ an object containing the hour in base 12 and the am or pm tag.
 
 
 
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">undefined</span>
+
+
+    </dd>
+</dl>
+
+    
 
 
 
@@ -1392,7 +1535,7 @@ an object containing the hour in base 12 and the am or pm tag.
 
     
 
-    <h4 class="name" id="submitValidTime"><span class="type-signature"></span>submitValidTime<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="submitValidTime"><span class="type-signature"></span>submitValidTime<span class="signature">(None)</span><span class="type-signature"> &rarr; {undefined}</span></h4>
 
     
 
@@ -1400,6 +1543,7 @@ an object containing the hour in base 12 and the am or pm tag.
 
 <div class="description">
     Grabs submission details from the submit isValid HTML element
+calls isValidTime with the time input String
 </div>
 
 
@@ -1408,6 +1552,55 @@ an object containing the hour in base 12 and the am or pm tag.
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>None</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">TYPE</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -1443,7 +1636,7 @@ an object containing the hour in base 12 and the am or pm tag.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="public_js_main.js.html">public/js/main.js</a>, <a href="public_js_main.js.html#line16">line 16</a>
+        <a href="public_js_main.js.html">public/js/main.js</a>, <a href="public_js_main.js.html#line23">line 23</a>
     </li></ul></dd>
     
 
@@ -1466,6 +1659,28 @@ an object containing the hour in base 12 and the am or pm tag.
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    None
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">undefined</span>
+
+
+    </dd>
+</dl>
+
+    
 
 
 
@@ -1491,7 +1706,7 @@ an object containing the hour in base 12 and the am or pm tag.
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Wed May 03 2017 15:20:26 GMT-0700 (PDT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Wed May 03 2017 15:25:04 GMT-0700 (PDT)
 </footer>
 
 <script> prettyPrint(); </script>
