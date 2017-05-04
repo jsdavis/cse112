@@ -2,7 +2,7 @@
 // optionally store youre Evironment Variables in .env
 const SCREENSHOT_PATH = './screenshots/';
 const BINPATH = './node_modules/nightwatch/bin/';
-const log = require('log.js');
+// const log = require('log.js');
 
 // we use a nightwatch.conf.js file so we
 // can include comments and helper functions
@@ -53,7 +53,7 @@ require('fs').stat(BINPATH + 'selenium.jar', (err, stat) => { // got it?
   if (err || !stat || stat.size < 1) {
     require('selenium-download').ensure(BINPATH, (error) => {
       if (error) throw new Error(error); // no point continuing so exit!
-      log.info('✔ Selenium & Chromedriver downloaded to:', BINPATH);
+ //     log.info('✔ Selenium & Chromedriver downloaded to:', BINPATH);
     });
   }
 });

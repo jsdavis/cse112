@@ -4,12 +4,14 @@
   "description": "Unlucky Geniuses' CSE 112 project",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "lint": "eslint --fix ./*.js public/js/*.js",
-    "test": "mocha",
+    "start": "NODE_ENV=production node index.js",
+    "dev": "NODE_ENV=development node index.js | bunyan -o short",
+    "lint": "eslint --fix .",
+    "test": "NODE_ENV=test mocha",
     "doc": "jsdoc -d ./docs ./*.js public/js/*.js",
     "e2e": "node_modules/.bin/nightwatch --config nightwatch.conf.js",
-    "postinstall": "node nightwatch.conf.js"  
+    "postinstall": "node nightwatch.conf.js" 
+  
   },
   "repository": {
     "type": "git",
