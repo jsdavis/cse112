@@ -10,6 +10,7 @@
     "test": "NODE_ENV=test mocha",
     "doc": "jsdoc -d ./docs ./*.js public/js/*.js",
     "e2e": "node_modules/.bin/nightwatch --config nightwatch.conf.js",
+    "distribute": "npm run build:front && npm run compile && npm run mvasset",
     "postinstall": "node nightwatch.conf.js" 
   
   },
