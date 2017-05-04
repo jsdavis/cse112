@@ -1,16 +1,16 @@
-//const config = require('../../nightwatch.conf.js');
+// const config = require('../../nightwatch.conf.js');
 
 module.exports = { // adapted from: https://git.io/vodU0
   'Unlucky Geniuses Assert Title Test': function(browser) {
     browser
-      .url('https://unlucky-geniuses.appspot.com/')
+      .url('http://localhost:8080')
       .waitForElementVisible('body')
       .assert.title('CSE 112 Project 1')
       .end();
   },
   'Unlucky Geniuses Foo Form Test': function(browser) {
     browser
-      .url('https://unlucky-geniuses.appspot.com/')
+      .url('http://localhost:8080')
       .waitForElementVisible('body')
 			.waitForElementVisible('input[name="input"]')
 			.setValue('input[name="input"]', 'baz')
@@ -26,7 +26,7 @@ module.exports = { // adapted from: https://git.io/vodU0
   },
   'Unlucky Geniuses Time Valid Test': function(browser) {
     browser
-      .url('https://unlucky-geniuses.appspot.com/')
+      .url('http://localhost:8080')
       .waitForElementVisible('body')
 			.waitForElementVisible('input[name="inputValidtime"]')
 			.setValue('input[name="inputValidtime"]', '5:24am')
@@ -42,7 +42,7 @@ module.exports = { // adapted from: https://git.io/vodU0
   },
   'Unlucky Geniuses Time Formatter Test': function(browser) {
     browser
-      .url('https://unlucky-geniuses.appspot.com/')
+      .url('http://localhost:8080')
       .waitForElementVisible('body')
 			.waitForElementVisible('input[name="timeFormatString"]')
 			.setValue('input[name="timeFormatString"]', '5:24am')
