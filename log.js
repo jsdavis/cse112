@@ -14,8 +14,7 @@ const errLevel = env === 'test' ? silent : 'error';
 // Create the logs directory if it doesn't already exist
 try {
   fs.mkdirSync(path.join(__dirname, 'logs'));
-}
-catch (e) {
+}catch (e) {
   if (e.code != 'EEXIST') throw e;
 }
 
@@ -26,17 +25,17 @@ const log = bunyan.createLogger({
   streams: [
     {
       level: stdoutLevel,
-      stream: process.stdout
+      stream: process.stdout,
     },
     {
       level: errLevel,
       type: 'rotating-file',
       path: path.join(__dirname, 'logs', 'error.log'),
       period: '1d',
-      count: 7
-    }
+      count: 7,
+    },
   ],
-  src: env !== 'production'
+  src: env !== 'production',
 });
 
 log.info('Logger initialized with environment', env);
