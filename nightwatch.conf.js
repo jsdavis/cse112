@@ -2,6 +2,7 @@
 // optionally store youre Evironment Variables in .env
 const SCREENSHOT_PATH = './screenshots/';
 const BINPATH = './node_modules/nightwatch/bin/';
+const log = require('log.js');
 
 // we use a nightwatch.conf.js file so we
 // can include comments and helper functions
@@ -48,11 +49,11 @@ module.exports = {
  *before trying to run our tests.
  */
 
-require('fs').stat(BINPATH + 'selenium.jar', function(err, stat) { // got it?
+require('fs').stat(BINPATH + 'selenium.jar', (err, stat) => { // got it?
   if (err || !stat || stat.size < 1) {
-    require('selenium-download').ensure(BINPATH, function(error) {
+    require('selenium-download').ensure(BINPATH, (error) => {
       if (error) throw new Error(error); // no point continuing so exit!
-      console.log('✔ Selenium & Chromedriver downloaded to:', BINPATH);
+      log.info('✔ Selenium & Chromedriver downloaded to:', BINPATH);
     });
   }
 });
@@ -77,12 +78,12 @@ let FILECOUNT = 0; // "global" screenshot file count
  * @return {string}
  */
 function imgpath(browser) {
-  let a = browser.options.desiredCapabilities;
-  let meta = [a.platform];
+  const a = browser.options.desiredCapabilities;
+  const meta = [a.platform];
   meta.push(a.browserName ? a.browserName : 'any');
   meta.push(a.version ? a.version : 'any');
   meta.push(a.name); // this is the test filename so always exists.
-  let metadata = meta.join('~').toLowerCase().replace(/ /g, '');
+  const metadata = meta.join('~').toLowerCase().replace(/ /g, '');
   return SCREENSHOT_PATH + metadata + '_' + padLeft(FILECOUNT++) + '_';
 }
 

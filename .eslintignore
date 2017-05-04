@@ -1,0 +1,7 @@
+*.md
+*.json
+*.min.js
+
+node_modules/*
+docs/*
+vendor/*
