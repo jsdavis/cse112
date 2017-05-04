@@ -8,7 +8,9 @@
     "dev": "NODE_ENV=development node index.js | bunyan -o short",
     "lint": "eslint --fix .",
     "test": "NODE_ENV=test mocha",
-    "doc": "jsdoc -d ./docs ./*.js public/js/*.js"
+    "doc": "jsdoc -d ./docs ./*.js public/js/*.js",
+    "clean": "rm -rf public/js-es5",
+    "build": "npm run clean && mkdir public/js-es5 && babel public/js -s -d public/js-es5"
   },
   "repository": {
     "type": "git",
@@ -26,6 +28,9 @@
     "bunyan": "^1.8.10"
   },
   "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
     "chai": "^3.5.0",
     "chai-http": "^3.0.0",
     "eslint": "^3.19.0",
