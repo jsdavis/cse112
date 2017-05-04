@@ -1,3 +1,6 @@
+/* global foo */
+/* eslint no-unused-vars: ["warn"]*/
+
 /**
  * Grabs submission details from the submit foo HTML element
  * Calls Foo function with the input string.
@@ -6,10 +9,10 @@
  */
 function submitFoo() {
   /* get time input */
-  let input = document.getElementById('textID').value;
+  const input = document.getElementById('textID').value;
 
   /* call foo with input */
-  let output = foo(input);
+  const output = foo(input);
   document.getElementById('foo_retval').innerHTML = output;
 }
 
@@ -22,10 +25,10 @@ function submitFoo() {
  */
 function submitValidTime() {
   /* get time input */
-  let inputTime = document.getElementById('isValidTimeText').value;
+  const inputTime = document.getElementById('isValidTimeText').value;
 
   /* call isValidTime with input */
-  let output = isValidTime(inputTime);
+  const output = isValidTime(inputTime);
   document.getElementById('valid_time_retval').innerHTML = output;
 }
 
@@ -37,14 +40,14 @@ function submitValidTime() {
  */
 function submitFormatTime() {
   /* get selected format stylw */
-  let format = document.getElementById('timeFormatSelector');
-  let selectedFormat = format.options[format.selectedIndex].value;
+  const format = document.getElementById('timeFormatSelector');
+  const selectedFormat = format.options[format.selectedIndex].value;
   /* get time input */
 
-  let timeFormat = document.getElementById('timeFormatString').value;
+  const timeFormat = document.getElementById('timeFormatString').value;
 
   /* call formatTime with inputs */
-  let output = formatTime(selectedFormat, timeFormat);
+  const output = formatTime(selectedFormat, timeFormat);
   document.getElementById('formatTimeRetval').innerHTML = output;
 }
 
@@ -60,23 +63,22 @@ function submitFormatTime() {
 function isValidTime(timeString, flag=0) {
   /* error checking */
   if(isEmpty(timeString)) {
-    console.log('Input is empty.');
     return 'Empty Input';
   }
 
   /* Disabling eslint, regex longer than 80 characters */
   /* eslint-disable */
-  let timeFormatRegex = /((^)|(\ ))([0-1]?[0-9]|2[0-3])((AM|PM|am|pm)|(:[0-5][0-9]((AM|PM|am|pm)|(:[0-5][0-9](AM|PM|am|pm)?)?)))(\ |$)/;
+  let timeFormatRegex = /((^)|(\ ))([0-1]?[0-9]|2[0-3])((\ )?(AM|PM|am|pm)|(:[0-5][0-9]((\ )?(AM|PM|am|pm)|(:[0-5][0-9]((\ )?(AM|PM|am|pm)?))?)))$/;
   /* eslint-enable */
 
   /* get strings that match the regex, valid time formats */
-  let match = timeString.match(timeFormatRegex);
+  const match = timeString.match(timeFormatRegex);
 
   if(match) {
-    let string = match[0];      // full match string/
+    const string = match[0];      // full match string/
     string.replace(/\ /g, '');  // remove whitespaces.
-    let valuesArr = string.split(':');
-    let array = ['00', '00', '00']; // [hours, minutes, seconds]
+    const valuesArr = string.split(':');
+    const array = ['00', '00', '00']; // [hours, minutes, seconds]
 
     /* check each value for am/pm input.*/
     for(let i=0; i<valuesArr.length; i++) {
@@ -148,36 +150,27 @@ function isValidTime(timeString, flag=0) {
  */
 function formatTime(formatStyle, inputString) {
   /* check if input time is valid  */
-  let time = isValidTime(inputString, 1 );
-  console.log('time');
+  const time = isValidTime(inputString, 1 );
 
   let ampm;
   /* if so, format it accordingly */
   if(time) {
     switch(formatStyle) {
-      case '1': /* HH */
-          return time.hours;
-          break;
-      case '2': /* HH am/pm */
-          ampm = isAmPm(time.hours);
-          return ampm.hour+' '+ampm.ampm;
-          break;
-      case '3': /* HH:MM */
-          return time.hours+':'+time.minutes;
-          break;
-      case '4': /* HH:MM am/pm */
-          ampm = isAmPm(time.hours);
-          return ampm.hour+':'+time.minutes+' '+ampm.ampm;
-          break;
-      case '5': /* HH:MM:SS */
-          return time.hours+':'+time.minutes+':'+time.seconds;
-          break;
-      case '6': /* HH:MM:SS am/pm */
-          ampm = isAmPm(time.hours);
-          return ampm.hour+':'+time.minutes+':'+time.seconds+' '+ampm.ampm;
-          break;
-      default:
-          console.log(formatStyle);
+    case '1': /* HH */
+      return time.hours;
+    case '2': /* HH am/pm */
+      ampm = isAmPm(time.hours);
+      return ampm.hour+' '+ampm.ampm;
+    case '3': /* HH:MM */
+      return time.hours+':'+time.minutes;
+    case '4': /* HH:MM am/pm */
+      ampm = isAmPm(time.hours);
+      return ampm.hour+':'+time.minutes+' '+ampm.ampm;
+    case '5': /* HH:MM:SS */
+      return time.hours+':'+time.minutes+':'+time.seconds;
+    case '6': /* HH:MM:SS am/pm */
+      ampm = isAmPm(time.hours);
+      return ampm.hour+':'+time.minutes+':'+time.seconds+' '+ampm.ampm;
     }
   } else {
     return 'Time is Invalid';
@@ -197,7 +190,7 @@ function isAmPm(hour) {
   if(parseInt(hour) >= 0 && parseInt(hour) < 12) {
     /* 0 am --> 12am */
     if(parseInt(hour) == 0) {
-        return {hour: '12', ampm: 'am'};
+      return {hour: '12', ampm: 'am'};
     } else {
       return {hour: hour, ampm: 'am'};
     }
