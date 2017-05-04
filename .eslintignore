@@ -5,3 +5,4 @@
 node_modules/*
 docs/*
 vendor/*
+public/js-es5/*
