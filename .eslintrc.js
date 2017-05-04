@@ -7,5 +7,10 @@ module.exports = {
       "mocha": true,
       "node": true
     },
-    "rules": {}
+    "rules": {
+      "indent": ["error", 2],
+      "no-mixed-spaces-and-tabs": "error",
+      "prefer-const": "error",
+      "prefer-arrow-callback": "error"
+    }
 };
