@@ -10,6 +10,7 @@ install:
 - npm install mocha
 - npm install chai
 before_script:
+- npm install
 - npm start &
 script:
 - npm run e2e
