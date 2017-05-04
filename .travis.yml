@@ -18,6 +18,7 @@ before_script:
 - npm install
 - npm start &
 script:
+- sleep 6
 - npm run e2e
 after_script:
 - pkill node
