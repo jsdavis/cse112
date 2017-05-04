@@ -1,4 +1,7 @@
-var chai = require('chai').should();
+/* global foo, isValidTime, formatTime */
+
+const chai = require('chai');
+chai.should();
 
 describe('Foo', () => {
 	describe('valid', () => {
@@ -87,5 +90,4 @@ describe('formatTime', () => {
 			formatTime('6', '25:23pm').should.equal('undefined');
 		});
 	});
-
 });

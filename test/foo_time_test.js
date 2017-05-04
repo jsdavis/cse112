@@ -1,7 +1,8 @@
-const chai = require('chai').should();
-var app = require('../app.js');
-var foo = require('../public/js/foo.js');
-var main = require('../public/js/main.js');
+const chai = require('chai');
+let foo = require('../public/js/foo.js');
+let main = require('../public/js/main.js');
+
+chai.should();
 
 describe('Foo', () => {
 	describe('valid', () => {
@@ -90,5 +91,4 @@ describe('formatTime', () => {
 			main.formatTime('6', '25:23pm').should.equal('Time is Invalid');
 		});
 	});
-
 });

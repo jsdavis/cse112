@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "lint": "eslint --fix ./*.js public/js/*.js",
+    "lint": "eslint --fix .",
     "test": "mocha",
     "doc": "jsdoc -d ./docs ./*.js public/js/*.js"
   },

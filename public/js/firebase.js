@@ -1,3 +1,6 @@
+/* global firebase */
+/* eslint no-unused-vars: ["warn"]*/
+
 (function() {
 let config = {
    apiKey: ' AIzaSyAjwkHGCRF5APcvJlI84UYI5POfYI7rvuA',
@@ -14,5 +17,5 @@ const preObject = document.getElementById('object');
 const dbRefObject = firebase.database().ref().child('object');
 // sync object changes
 
-dbRefObject.on('value', (snap) => console.log(snap.val()));
+dbRefObject.on('value', (snap) => {/* console.log(snap.val())*/});
 }());
