@@ -1,0 +1,5 @@
+eslint:
+  enabled: true
+  config:
+    config: ./.eslintrc.js
+    ignore_warnings: true
