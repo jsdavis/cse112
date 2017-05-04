@@ -11,6 +11,7 @@ install:
 - npm install chai
 before_script:
 - npm start
+- sleep 30
 script:
 - npm run e2e
 after_script:
