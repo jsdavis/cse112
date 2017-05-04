@@ -2,7 +2,6 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 chai.should();
 chai.use(chaiHttp);
-var app = require('../app.js')
 
 describe('AppTest', () => {
 	let app;
@@ -20,7 +19,7 @@ describe('AppTest', () => {
 		it('should return a 404 error', (done) => {
 			chai.request(server)
 				.get('/invalidroute')
-				.end((err,res) => {
+				.end((err, res) => {
 					if (!err || !res) return done(err);
 					err.should.have.status(404);
 					res.should.have.status(404);
@@ -42,9 +41,6 @@ describe('AppTest', () => {
 				});
 		});
 	});
-
-
-
 });
 
 

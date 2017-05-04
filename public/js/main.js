@@ -1,3 +1,6 @@
+/* global foo */
+/* eslint no-unused-vars: ["warn"]*/
+
 /**
  * Grabs submission details from the submit foo HTML element
  * Calls Foo function with the input string.
@@ -60,13 +63,12 @@ function submitFormatTime() {
 function isValidTime(timeString, flag=0) {
   /* error checking */
   if(isEmpty(timeString)) {
-    console.log('Input is empty.');
     return 'Empty Input';
   }
 
   /* Disabling eslint, regex longer than 80 characters */
   /* eslint-disable */
-  let timeFormatRegex = /((^)|(\ ))([0-1]?[0-9]|2[0-3])((AM|PM|am|pm)|(:[0-5][0-9]((AM|PM|am|pm)|(:[0-5][0-9](AM|PM|am|pm)?)?)))(\ |$)/;
+  let timeFormatRegex = /((^)|(\ ))([0-1]?[0-9]|2[0-3])((\ )?(AM|PM|am|pm)|(:[0-5][0-9]((\ )?(AM|PM|am|pm)|(:[0-5][0-9]((\ )?(AM|PM|am|pm)?))?)))$/;
   /* eslint-enable */
 
   /* get strings that match the regex, valid time formats */
@@ -149,7 +151,6 @@ function isValidTime(timeString, flag=0) {
 function formatTime(formatStyle, inputString) {
   /* check if input time is valid  */
   let time = isValidTime(inputString, 1 );
-  console.log('time');
 
   let ampm;
   /* if so, format it accordingly */
@@ -157,27 +158,19 @@ function formatTime(formatStyle, inputString) {
     switch(formatStyle) {
       case '1': /* HH */
           return time.hours;
-          break;
       case '2': /* HH am/pm */
           ampm = isAmPm(time.hours);
           return ampm.hour+' '+ampm.ampm;
-          break;
       case '3': /* HH:MM */
           return time.hours+':'+time.minutes;
-          break;
       case '4': /* HH:MM am/pm */
           ampm = isAmPm(time.hours);
           return ampm.hour+':'+time.minutes+' '+ampm.ampm;
-          break;
       case '5': /* HH:MM:SS */
           return time.hours+':'+time.minutes+':'+time.seconds;
-          break;
       case '6': /* HH:MM:SS am/pm */
           ampm = isAmPm(time.hours);
           return ampm.hour+':'+time.minutes+':'+time.seconds+' '+ampm.ampm;
-          break;
-      default:
-          console.log(formatStyle);
     }
   } else {
     return 'Time is Invalid';
