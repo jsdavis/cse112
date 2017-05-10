@@ -1,6 +1,9 @@
 engines:
   eslint:
     enabled: true
+    checks:
+      complexity:
+        enabled: true
     config:
       config: ./.eslintrc.js
       ignore_warnings: true
@@ -8,11 +11,14 @@ engines:
     enabled: true
   duplication:
     enabled: true
+  fixme:
+    enabled: true
 
 ratings:
   paths:
     - "public/**/*"
     - "test/**/*"
     - "./*.js"
+    - "**.css"
   exclude_paths:
     - "public/js-es5/**"
