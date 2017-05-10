@@ -17,13 +17,12 @@ engines:
           mass_threshold: 40
   fixme:
     enabled: true
-
 ratings:
   paths:
     - "public/**/*"
     - "./*.js"
     - "**.css"
-  exclude_paths:
-    - "public/js-es5/**"
-    - "**/vendor/**"
-    - "**/test/**"
+exclude_paths:
+  - "public/js-es5/**"
+  - "**/vendor/**"
+  - "**/test/**"
