@@ -24,9 +24,8 @@ engines:
     enabled: true
 ratings:
   paths:
-    - "public/**/*"
-    - "./*.js"
-    - "**.css"
+    - "**/**.js"
+    - "**/**.css"
 exclude_paths:
   - "public/js-es5/**"
   - "**/vendor/**"
