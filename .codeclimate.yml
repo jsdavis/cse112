@@ -9,6 +9,11 @@ engines:
       ignore_warnings: true
   csslint:
     enabled: true
+    checks:
+      box-sizing:
+        enabled: false
+      important:
+        enabled: false
   duplication:
     enabled: true
     config:
