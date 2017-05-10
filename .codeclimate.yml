@@ -21,10 +21,9 @@ engines:
 ratings:
   paths:
     - "public/**/*"
-    - "test/**/*"
     - "./*.js"
     - "**.css"
   exclude_paths:
     - "public/js-es5/**"
     - "**/vendor/**"
-    - "vendor/**"
+    - "**/test/**"
