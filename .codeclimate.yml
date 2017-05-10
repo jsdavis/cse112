@@ -27,3 +27,4 @@ ratings:
   exclude_paths:
     - "public/js-es5/**"
     - "**/vendor/**"
+    - "vendor/**"
