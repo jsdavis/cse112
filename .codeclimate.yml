@@ -4,3 +4,8 @@ engines:
     config:
       config: ./.eslintrc.js
       ignore_warnings: true
+ratings:
+  paths:
+    - "public/**/*"
+    - "test/**/*"
+    - "./*.js"
