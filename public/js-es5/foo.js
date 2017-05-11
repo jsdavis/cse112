@@ -10,4 +10,4 @@ function foo(bar) {
 }
 
 module.exports.foo = foo;
-// # sourceMappingURL=foo.js.map
+//# sourceMappingURL=foo.js.map

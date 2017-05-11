@@ -1,6 +1,32 @@
 engines:
   eslint:
     enabled: true
+    checks:
+      complexity:
+        enabled: true
     config:
       config: ./.eslintrc.js
       ignore_warnings: true
+  csslint:
+    enabled: true
+    checks:
+      box-sizing:
+        enabled: false
+      important:
+        enabled: false
+  duplication:
+    enabled: true
+    config:
+      languages:
+        javascript:
+          mass_threshold: 40
+  fixme:
+    enabled: true
+ratings:
+  paths:
+    - "**/**.js"
+    - "**/**.css"
+exclude_paths:
+  - "public/js-es5/**"
+  - "**/vendor/**"
+  - "**/test/**"
