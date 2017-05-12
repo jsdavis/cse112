@@ -1,4 +1,4 @@
-/*const chai = require('chai');
+/* const chai = require('chai');
 const foo = require('../public/js/foo.js');
 const main = require('../public/js/main.js');
 
