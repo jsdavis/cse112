@@ -1,35 +1,24 @@
-sudo: required
-dist: trusty
-language: java
-jdk:
-  - oraclejdk8
+sudo: false
+language: node_js
+node_js:
+- '7'
+addons:
+  sauce_connect: true
+  username: jsdavis
+jwt:
+  secure: R9xBxYdugs1SXIKJVzMVWAtdBqB4+VQE6Bb5mx+Pq5Irv36qPou3tCfaVpVki3l7RjCPD6RNhBOoRBUCMhXoF3W+cqzQ0lgsVK6CQnneTbJGeYNwRXM2ZzF3cEnR6wOOZW+t5t/hEbHffH9jCw4VcZhFMOoEA+MAKYqT2AFsvKIuE0LsAb2VOPmtYMXB8QWoNdFNW4wu+erQB8QxW4kSB5zQImb4gArSfCcgrn4vs6UAH++fwgoKNqzFI6tYYP+J3LtW/umpFbxw+O7KT273HaxF9e5cRatompOfQ08KAybEOKluv7Vm5Yn5BIp9QKnY1yKRFIUweMjjew4s0/AUzqIPIfgCWUjGsCY3hyCQvEa542cT1rJDYmwD7ZEhaId+6E4Aw9RWGCe0kEN2IithjAIiTkh5xONUw11suXSJgsO2DUnB/cmqYK/ahYdRggIHD7ycF0ZTFTJb4ILIYKezCdZLBlDvVM8byguiGDb1lcm39I7vfQyyYPM8mt/jRxMPcWKz8wnVpfcuUeHsXbi503vrw4lIUCmkID7bSn/oC2w8ST+LNHPBUmoFnjbUJRdr9fx9uDPRME3p3qbxAXz5Pre/EOI3w393TqRkoue2qz+xvsuFFDsY7lx1c8js/JCzpBPPbR9ugFm4+sqGvJuiwEsCCxffHNCLjWe/lCHKQ5w=
 cache:
   directores:
   - node_modules/
-before_install:
-  - wget https://raw.githubusercontent.com/creationix/nvm/v0.33.2/nvm.sh -O ~/.nvm/nvm.sh
-  - source ~/.nvm/nvm.sh
-  - nvm install 7 # for Node v7
-  - node --version
-  - export CHROME_BIN=/usr/bin/google-chrome
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-  - sudo apt-get update
-  - sudo apt-get install -y libappindicator1 fonts-liberation
-  - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-  - sudo dpkg -i google-chrome*.deb
 install:
-- npm install
-- npm install mocha
-- npm install chai
+  - npm install
+  - npm install -g mocha nightwatch
 before_script:
-- npm install
-- npm start &
+  - npm start&
 script:
-- sleep 6
-- npm run e2e
-after_script:
-- pkill node
+  - npm test
+  - nightwatch --config nightwatch.js --env chrome,ie11,firefox
+  - pkill node
 notifications:
   email: false
   slack:
@@ -38,9 +27,9 @@ deploy:
   provider: heroku
   api_key:
     secure: uYkzRh7zxrmbj9MKhjSDIabjvJrlthdMtdPRzknMEpmlgQwIfVnUVcZsjB2z7tfbfLFT+UP5hm/7wRHwU1K9jWAzibfWyudDVk8wn0xTtiAnxmABmHt4rsKONpIDlGwrf3wRtVEip/a14CzGBvr8uqYhqk66PsKJGbl0xxJC9aFKt08GkGOft22PoZdwLYAW/KA6bnqyLYAWc+Fa7X86BfEDSvoJGnPlyBU0yhWbPXTOrvoZu7v46oPcofvZBkOqRpLMKi9CQQT1R1YFDXyTk8nqopvIbzBKx4STyjIR46jxpyVTpPCDwNzS2VeeTAlaQWpWKFGSKVy4k5YxWimNON77YsoHndWkFcZWWjKp4NEUMCm190g/Zy6osrIqXFZpcRur18Ivgr90HEq1bmL0fFNIpYNVJKM9GITHT1BsS//VQzuIKM8hXBuIxHXxDvwEovvV63g+g7Pq3zXFJ8k0BLtkTsV4XjO8d8OrBYgu3hG84ldifq29kWauhHcPHkI1zD7g7icpV7GSJLHvZ6M9eXuA7auxQrWOPdc5S046hqyeeFvQnxgwvHIMVcsY8Mb6V1p+JquUWGYZGwTJ/vHvryuFmYngWFoFQ0c4lflcpcEHrCP1nP6lxyScYmp/Z559J8hX6JdcKasf0u1BPJiCB5prm70KXRFtueix4R3TUe8=
-  app: 
+  app:
     staging: unlucky-geniuses-staging
     master: unlucky-geniuses
-
-
-
+env:
+  global:
+    secure: R9xBxYdugs1SXIKJVzMVWAtdBqB4+VQE6Bb5mx+Pq5Irv36qPou3tCfaVpVki3l7RjCPD6RNhBOoRBUCMhXoF3W+cqzQ0lgsVK6CQnneTbJGeYNwRXM2ZzF3cEnR6wOOZW+t5t/hEbHffH9jCw4VcZhFMOoEA+MAKYqT2AFsvKIuE0LsAb2VOPmtYMXB8QWoNdFNW4wu+erQB8QxW4kSB5zQImb4gArSfCcgrn4vs6UAH++fwgoKNqzFI6tYYP+J3LtW/umpFbxw+O7KT273HaxF9e5cRatompOfQ08KAybEOKluv7Vm5Yn5BIp9QKnY1yKRFIUweMjjew4s0/AUzqIPIfgCWUjGsCY3hyCQvEa542cT1rJDYmwD7ZEhaId+6E4Aw9RWGCe0kEN2IithjAIiTkh5xONUw11suXSJgsO2DUnB/cmqYK/ahYdRggIHD7ycF0ZTFTJb4ILIYKezCdZLBlDvVM8byguiGDb1lcm39I7vfQyyYPM8mt/jRxMPcWKz8wnVpfcuUeHsXbi503vrw4lIUCmkID7bSn/oC2w8ST+LNHPBUmoFnjbUJRdr9fx9uDPRME3p3qbxAXz5Pre/EOI3w393TqRkoue2qz+xvsuFFDsY7lx1c8js/JCzpBPPbR9ugFm4+sqGvJuiwEsCCxffHNCLjWe/lCHKQ5w=

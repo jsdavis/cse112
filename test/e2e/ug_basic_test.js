@@ -86,3 +86,19 @@ module.exports = { // adapted from: https://git.io/vodU0
   },
 
 };
+
+/*
+module.exports = {
+  beforeEach: (browser) => {
+    browser
+      .url('http://unlucky-geniuses.herokuapp.com')
+      .waitForElementVisible('body');
+  },
+  'Smoke test': (browser) => {
+    browser
+      .assert.visible('body', 'Check if page has loaded')
+      .assert.title('CSE 112 Project 2');
+  },
+  after: (browser) => browser.end()
+};
+*/

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="1"
+            tests="4">
+
+  <testsuite name="ug_basic_test"
+    errors="0" failures="1" hostname="" id="" package="ug_basic_test" skipped="3"
+    tests="4" time="7.454" timestamp="Fri, 12 May 2017 18:44:51 GMT">
+  
+    <testcase name="Unlucky Geniuses Assert Title Test" classname="ug_basic_test" time="7.454" assertions="2">
+
+      <failure message="Testing if the page title equals &quot;CSE 112 Project 1&quot;.">    at Object.Unlucky Geniuses Assert Title Test (/mnt/c/Users/Jacob Davis/Documents/college/cse112/test/e2e/ug_basic_test.js:8:15)
+    at _combinedTickCallback (internal/process/next_tick.js:73:7)</failure>
+
+    
+    </testcase>
+  
+  
+    
+    <testcase
+      name="Unlucky Geniuses Foo Form Test" classname="ug_basic_test">
+      <skipped />
+    </testcase>
+    
+    <testcase
+      name="Unlucky Geniuses Time Valid Test" classname="ug_basic_test">
+      <skipped />
+    </testcase>
+    
+    <testcase
+      name="Unlucky Geniuses Time Formatter Test" classname="ug_basic_test">
+      <skipped />
+    </testcase>
+    
+  
+  </testsuite>
+</testsuites>
