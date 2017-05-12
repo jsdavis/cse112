@@ -64,3 +64,6 @@ typings/
 
 # Global documentation
 docs/
+
+# Test reports
+test/reports/
