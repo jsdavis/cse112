@@ -7,7 +7,7 @@ module.exports = {
   ],
   'output_folder': 'test/reports',
   'selenium': {
-    'start_process': true,
+    'start_process': false,
     'server_path': './node_modules/nightwatch/bin/selenium.jar',
     'host': '127.0.0.1',
     'port': 4444,
