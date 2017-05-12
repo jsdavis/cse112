@@ -1,10 +1,10 @@
-const chai = require('chai');
+/*const chai = require('chai');
 const foo = require('../public/js/foo.js');
 const main = require('../public/js/main.js');
 
 chai.should();
 
-describe('Foo', () => {
+ describe('Foo', () => {
   describe('valid', () => {
     it('should return true', () => {
       foo.foo('baz').should.be.true;
@@ -91,4 +91,4 @@ describe('formatTime', () => {
       main.formatTime('6', '25:23pm').should.equal('Time is Invalid');
     });
   });
-});
+});*/
