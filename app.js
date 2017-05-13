@@ -10,8 +10,8 @@ app.use('/js', express.static(path.join(__dirname, 'public/js')));
 /*
  *  Connect to MongoDB
  */
-if(process.env.NODE_ENV === "production") 
-	mongoose.connect("mongodb://unluckygeniuses:password@ds137891.mlab.com:37891/unluckygeniuses");
+if(process.env.NODE_ENV === 'production')
+  mongoose.connect('mongodb://unluckygeniuses:password@ds137891.mlab.com:37891/unluckygeniuses');
 else
 	mongoose.connect(config.mongoDBUrl);
 
