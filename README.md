@@ -6,3 +6,19 @@
 - [ ] Evaluate/Fix linting errors neon-custom.js
 - [ ] Evaluate/Fix linting errors resizeable.js
 
+## HTML Files to Evaluate
+- [X] index.html
+- [X] 404.html
+- [ ] admin-companies.html
+- [ ] admin-dashboard.html
+- [ ] admin-settings.html
+- [ ] analytics_raw.html
+- [ ] appointments.html
+- [ ] checkin.html
+- [ ] employees.html
+- [ ] forgot-password.html
+- [ ] form-builder.html
+- [ ] login.html
+- [ ] settings.html
+- [ ] signup.html
+- [ ] visitors.html
