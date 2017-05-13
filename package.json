@@ -13,7 +13,8 @@
     "clean": "rm -rf public/js-es5",
     "build": "npm run clean && mkdir public/js-es5 && babel public/js -s -d public/js-es5",
     "production": "npm run build && node bin/production",
-    "postinstall": "node nightwatch.conf.js"
+    "postinstall": "node nightwatch.conf.js",
+    "clean": "rm -rf public/js-es5"
   },
   "repository": {
     "type": "git",
@@ -26,10 +27,9 @@
   },
   "homepage": "https://github.com/jsdavis/cse112#readme",
   "dependencies": {
-    "bunyan": "^1.8.10",
     "express": "^4.15.2",
     "mocha": "^3.2.0",
-    "mongoose": "^4.9.8",
+    "bunyan": "^1.8.10",
     "selenium-download": "^2.0.10"
   },
   "devDependencies": {
