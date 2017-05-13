@@ -44,23 +44,5 @@
     "jsdoc": "^3.4.3",
     "mocha": "^3.2.0",
     "nightwatch": "^0.9.15"
-  },
-  "eslintConfig": {
-    "extends": "google",
-    "parserOptions": {
-      "ecmaVersion": 6
-    },
-    "ecmaFeatures": {
-      "destructuring": true
-    },
-    "rules": {
-      "no-unused-vars": [
-        1,
-        {
-          "vars": "all",
-          "varsIgnorePattern": "Ignored"
-        }
-      ]
-    }
   }
 }

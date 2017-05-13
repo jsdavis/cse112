@@ -1,5 +1,5 @@
 module.exports = {
-    "extends": ["eslint:recommended", "google"],
+    "extends": ["google"],
     "env": {
       "browser": true,
       "es6": true,
@@ -8,6 +8,7 @@ module.exports = {
       "node": true
     },
     "rules": {
+      "no-unused-vars": [1, {"vars": "all", "varsIgnorePattern": "Ignored"}],
       "indent": ["error", 2],
       "no-mixed-spaces-and-tabs": "error",
       "prefer-const": "error",
