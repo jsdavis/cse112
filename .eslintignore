@@ -6,3 +6,5 @@ node_modules/*
 docs/*
 vendor/*
 public/js-es5/*
+public/js/neon*
+public/js/resizeable.js
