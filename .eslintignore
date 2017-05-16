@@ -23,9 +23,8 @@ public/js/jscolor.js
 public/js/jquery.inputmask.bundle.js
 public/**/js.cookie.js
 public/**/datatables.js
+public/js/toastr.js
 
 /*front-end fix later (Arash) */
-public/js/toastr.js
-public/js/form-builder.js
 public/js/employees.js
 public/js/checkin.js
