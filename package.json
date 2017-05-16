@@ -6,15 +6,15 @@
   "scripts": {
     "start": "NODE_ENV=production node index.js",
     "dev": "NODE_ENV=development node index.js | bunyan -o short",
-    "lint": "eslint --fix .",
+    "lint": "eslint .",
+    "lintfix": "eslint . --fix",
     "test": "NODE_ENV=test mocha",
-    "doc": "jsdoc -d ./docs ./*.js public/js/*.js",
+    "doc": "jsdoc -d ./docs -c jsdoc.json",
     "e2e": "node_modules/.bin/nightwatch --config nightwatch.conf.js",
     "clean": "rm -rf public/js-es5",
     "build": "npm run clean && mkdir public/js-es5 && babel public/js -s -d public/js-es5",
     "production": "npm run build && node bin/production",
-    "postinstall": "node nightwatch.conf.js",
-    "clean": "rm -rf public/js-es5"
+    "postinstall": "node nightwatch.js"
   },
   "repository": {
     "type": "git",
@@ -27,10 +27,15 @@
   },
   "homepage": "https://github.com/jsdavis/cse112#readme",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.17.1",
+    "bunyan": "^1.8.10",
     "express": "^4.15.2",
     "mocha": "^3.2.0",
-    "bunyan": "^1.8.10",
-    "selenium-download": "^2.0.10"
+    "mongoose": "^4.9.9",
+    "mongoose-encryption": "^1.5.0",
+    "selenium-download": "^2.0.10",
+    "socket.io": "^2.0.1"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
@@ -44,23 +49,5 @@
     "jsdoc": "^3.4.3",
     "mocha": "^3.2.0",
     "nightwatch": "^0.9.15"
-  },
-  "eslintConfig": {
-    "extends": "google",
-    "parserOptions": {
-      "ecmaVersion": 6
-    },
-    "ecmaFeatures": {
-      "destructuring": true
-    },
-    "rules": {
-      "no-unused-vars": [
-        1,
-        {
-          "vars": "all",
-          "varsIgnorePattern": "Ignored"
-        }
-      ]
-    }
   }
 }
