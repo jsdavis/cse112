@@ -18,6 +18,7 @@ public/js/min/jquery-jvectormap-europe-merc-en.js
 public/js/min/d3.v3.js
 public/js/min/raphael-min.js
 public/js/jscolor.js
+public/js/jquery.inputmask.bundle.js
 
 /*front-end fix later (Arash) */
 public/js/dashboard.js
