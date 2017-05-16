@@ -16,7 +16,7 @@
 - [ ] appointments.html
 - [ ] checkin.html
 - [ ] employees.html
-- [ ] forgot-password.html
+- [X] forgot-password.html
 - [X] form-builder.html
 - [x] login.html
 - [X] settings.html
