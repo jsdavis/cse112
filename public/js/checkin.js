@@ -1,89 +1,111 @@
-$(document).ready(() => {
-  const socket = io();
-  if(localStorage.getItem('slackToken')&&localStorage.getItem('slackChannel')) {
-    alert('WTF');
-    $.post('https://slack.com/api/chat.postMessage',
-      {
-        'token': localStorage.getItem('slackToken'),
-        'channel': localStorage.getItem('slackChannel'),
-        'text': 'interesting',
-                // 'text': "Name: " + data['firstName'] + " " + data['lastName'] + " Appointment Time: " + data['appointment']
-      },
-             (data, status) => {
-             });
-  }
-  $('#tap-to-check').on('click', function() {
-    console.log('click');
-        // $('.check-in').addClass('show');
-    $('.check-in').animate({
-      top: '25%',
-      opacity: '1',
-    }, 700);
-    $(this).addClass('hide');
-  });
+$(document).ready(function(){
 
-   /* $('.check-in').on('submit', function() {
-        event.preventDefault;
-        console.log("data submitted");
+    var socket = io();
+
+    var VALIDATE_COMPANY_ID = "validate_company_id";
+    var ADD_VISITOR = "add_visitor";
+    
+    var companyData = JSON.parse(localStorage.getItem("currentCompany"));
+    console.log(companyData);
+    socket.emit(VALIDATE_COMPANY_ID, companyData);
+    
+    //Prevent users from scrolling around on iPad
+    document.ontouchmove = function(e) {
+        e.preventDefault();
+    };
+
+    //Bind Listeners
+    $('#tap-to-check').on('click', startCheckIn);
+    $('.check-in').on('submit', submitForm);
+
+    //When a user starts their check in
+    function startCheckIn(){
+        $('.check-in').addClass('show');
+        $('.check-in').animate({
+            top:'10%',
+            opacity: '1'
+        }, 700);
+        $(this).addClass('hide');
+        $('#clock').addClass('hide');
+    }
+
+    //When a patient submits their form
+    function submitForm(){
+        //event.preventDefault();
         var data = grabFormElements();
-        console.log(data);
-
-        socket.emit('update list',data);
-
-        $(this).animate({
-            top:'35%',
-            opacity:'0'
-        },0);
+        //console.log(data.company_id);
         if(localStorage.getItem("slackToken")&&localStorage.getItem("slackChannel"))
         {
              $.post("https://slack.com/api/chat.postMessage",
              {
                 'token': localStorage.getItem("slackToken"),
-                'channel': localStorage.getItem("slackChannel"),
-                'text': "Name: " + data['firstName'] + " " + data['lastName'] + " Appointment Time: " + data['appointment']
+                'channel': localStorage.getItem("slackChannel"), 
+                'text': "Name: " + data['first_name'] + " " + data['last_name'] + " Phone Number: " + data['phone_number']
              },
              function(data, status){
               });
         }
+        socket.emit(ADD_VISITOR, data);
 
-    });*/
+        $(this).animate({
+            top:'35%',
+            opacity:'0'
+        },0);
 
-  document.ontouchmove = function(e) {
-    e.preventDefault();
-  };
-
-
-    // Grabs elements from the check in and puts it into an object
-  function grabFormElements() {
-    const newVisitor = {};
-    newVisitor.firstName= $('#visitor-first').val();
-    newVisitor.lastName = $('#visitor-last').val();
-    newVisitor.appointment = $('#visitor-appointment').val();
-    newVisitor.checkin = getCurrentTime();
-    return newVisitor;
-  }
-
-    // Function to get Current Time of Check in
-  function getCurrentTime() {
-    let currentTime;
-    const today = new Date();
-    let currentHour = today.getHours();
-    let currentMinute = today.getMinutes();
-
-    if(currentMinute < 10) {
-      currentMinute = '0' + currentMinute;
+    }
+    //Grabs elements from the check in and puts it into an object
+    function grabFormElements(){
+        var newVisitor = {};
+        newVisitor.company_id = companyData._id;
+        newVisitor.first_name= $('#visitor-first').val();
+        newVisitor.last_name = $('#visitor-last').val();
+        newVisitor.phone_number = $('#visitor-number').val();
+        newVisitor.checkin_time = new Date();
+        return newVisitor;
     }
 
-    if(currentHour >= 13) {
-      currentHour = currentHour - 12;
-      currentTime = currentHour + ':' + currentMinute + 'PM';
-    } else if(currentHour === 12) {
-      currentTime = currentHour + ':' + currentMinute + 'PM';
-    } else if (currentHour === 0)
-      currentTime = 1 + ':' + currentMinute + 'AM';
-    else
-            currentTime = currentHour + ':' + currentMinute + 'AM';
+    //CLOCK
+    function updateClock () {
+        var currentTime = new Date ( );
+        var currentHours = currentTime.getHours ( );
+        var currentMinutes = currentTime.getMinutes ( );
+        //var currentSeconds = currentTime.getSeconds ( );
+        // Pad the minutes and seconds with leading zeros, if required
+        currentMinutes = ( currentMinutes < 10 ? "0" : "" ) + currentMinutes;
+        //currentSeconds = ( currentSeconds < 10 ? "0" : "" ) + currentSeconds;
 
-    return currentTime;
-  }
+        // Convert the hours component to 12-hour format if needed
+        currentHours = ( currentHours > 12 ) ? currentHours - 12 : currentHours;
+
+        // Convert an hours component of "0" to "12"
+        currentHours = ( currentHours == 0 ) ? 12 : currentHours;
+
+        // Compose the string for display
+        var currentTimeString = currentHours + ":" + currentMinutes;
+
+        $("#clock").html(currentTimeString);
+    }
+    updateClock();
+    setInterval(updateClock, 60 * 1000);
+
+    /***
+     * Find a specific cookie name
+     * @param cName
+     * @returns {string|*}
+     */
+    function getCookie(cName) {
+        var name = cName + '=';
+        var cookieArray = document.cookie.split(';');
+
+        for (var i = 0, len = cookieArray.length; i < len; i++) {
+            var cookie = cookieArray[i];
+            while (cookie.charAt(0) == ' ')
+                cookie.substring(1);
+            if (cookie.indexOf(name) == 0)
+                return cookie.substring(name.length, cookie.length);
+        }
+
+    }
+
+
 });

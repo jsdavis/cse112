@@ -9,11 +9,11 @@
 ## HTML Files to Evaluate
 - [X] index.html
 - [X] 404.html
-- [ ] admin-companies.html
-- [ ] admin-dashboard.html
-- [ ] admin-settings.html
-- [ ] analytics_raw.html
-- [ ] appointments.html
+- [x] admin-companies.html
+- [x] admin-dashboard.html
+- [x] admin-settings.html
+- [x] analytics_raw.html
+- [x] appointments.html
 - [X] checkin.html
 - [X] employees.html
 - [X] forgot-password.html
