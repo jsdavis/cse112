@@ -7,7 +7,7 @@ var companyName = companyData.name;
 console.log(companyData);
 $('#user-name').text(curUser.first_name + ' ' +  curUser.last_name);*/
 
-const userState = JSON.parse(localStorage.getItem('userState'));
+userState = JSON.parse(localStorage.getItem('userState'));
 if(!userState || userState == 2) {
   location.href= 'login.html';
 }
