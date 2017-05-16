@@ -12,6 +12,9 @@ module.exports = {
       "indent": ["error", 2],
       "no-mixed-spaces-and-tabs": "error",
       "prefer-const": "error",
-      "prefer-arrow-callback": "error"
+      "prefer-arrow-callback": "error",
+      "new-cap": "off",
+      "max-len": ["warn", {"code": 100, "ignoreUrls": true}],
+      "require-jsdoc": "warn"
     }
 };
