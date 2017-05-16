@@ -1,6 +1,6 @@
 
 $(document).ready(() => {
-  var socket = io(); // Initialize Socket
+  const socket = io(); // Initialize Socket
 
   // Socket variables
   // var CONNECTION = "connection";
@@ -35,7 +35,9 @@ $(document).ready(() => {
   * Function Listener for Opening a Modal
   */
   $(document).on('click', '.patient-check-out', function() {
+    /* eslint-disable */ // eslint doesn't like 'this'
     const uniqueId = $(this).attr('value');
+    /* eslint-enable */
 
     socket.on(VALIDATE_COMPANY_ID, (socket) => {
       socket.emit('send Id', uniqueId);
@@ -47,7 +49,9 @@ $(document).ready(() => {
   });
 
   $(document).on('click', '.check-in-btn', function() {
+    /* eslint-disable */ // eslint doesn't like 'this'
     const id = $(this).closest('.modal-content').find('.phone-number').attr('value');
+    /* eslint-enable */
 
     socket.on(VALIDATE_COMPANY_ID, (socket) => {
       socket.emit('check-in-patient', id);
