@@ -21,4 +21,4 @@
 - [x] login.html
 - [ ] settings.html
 - [x] signup.html
-- [ ] visitors.html
+- [X] visitors.html

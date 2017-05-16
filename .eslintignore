@@ -8,3 +8,14 @@ vendor/*
 public/js-es5/*
 public/js/neon*
 public/js/resizeable.js
+
+/*Files added for front-end (Arash)*/
+public/js/scripts.js
+public/js/socket.io.js
+public/js/bootstrap.js
+public/js/handlebars-v4.0.5.js
+
+/*front-end fix later (Arash) */
+public/js/dashboard.js
+public/js/signup.js
+public/js/login.js
