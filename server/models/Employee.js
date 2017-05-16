@@ -15,7 +15,8 @@ const employeeSchema = mongoose.Schema({
   password: {type: String, required: true},
   phone_number: {type: String, required: true},
   role: {type: String, required: true},
-  company_id: {type: Schema.Types.ObjectId, ref: 'Company', required: true},
+  //company_id: {type: Schema.Types.ObjectId, ref: 'Company', required: true},
+  company_id: {type: String, required: true}
 });
 
 // checking if password is valid

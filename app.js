@@ -23,6 +23,9 @@ app.set('view engine', 'html');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
+//Connect to all of the api routes
+require('./server/routes')(app);
+
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');
 });

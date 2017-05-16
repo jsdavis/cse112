@@ -4,11 +4,9 @@
  * This module is meant to house all of the API
  * routes that pertain to users
  */
-const exports = module.exports;
-
 const Employee = require('../../models/Employee');
 
-exports.login = function(req, res) {
+module.exports.login = function(req, res) {
   Employee.findOne({email: req.body.email}, (err, e) => {
     if(err || !e) {
       return res.status(400).send({error: 'Can not Find'});
@@ -21,7 +19,7 @@ exports.login = function(req, res) {
   });
 };
 
-exports.getAllEmployees = function(req, res) {
+module.exports.getAllEmployees = function(req, res) {
   Employee.find({company_id: req.params.id}, {password: 0}, (err, result) => {
     if(err) {
       return res.status(400).send({error: 'Can not Find'});
@@ -30,7 +28,7 @@ exports.getAllEmployees = function(req, res) {
   });
 };
 
-exports.getById = function(req, res) {
+module.exports.getById = function(req, res) {
   Employee.findById(req.params.id, {password: 0}, (err, employee) => {
     if(err) {
       return res.status(400).json({error: 'Can not Find'});
@@ -41,21 +39,21 @@ exports.getById = function(req, res) {
   });
 };
 
-exports.insert = function(req, res) {
+module.exports.insert = function(req, res) {
   const employee = new Employee();
 
     /* required info */
   employee.first_name = req.body.first_name;
   employee.last_name = req.body.last_name;
-  employee.email = req.body.email,
-    employee.phone_number = req.body.phone_number,
-    employee.company_id = req.body.company_id,
-    employee.password = employee.generateHash(req.body.password),
-    employee.role = req.body.role;
+  employee.email = req.body.email;
+  employee.phone_number = req.body.phone_number;
+  employee.company_id = req.body.company_id;
+  employee.password = employee.generateHash(req.body.password);
+  employee.role = req.body.role;
 
   employee.save((err, e) => {
     if(err) {
-      return res.status(400).json({error: 'Can not Save'});
+      return res.status(400).json({error: 'Can Not Save: ' + err});
     }
     const employeeJson=e.toJSON();
     delete employeeJson.password;
@@ -64,7 +62,7 @@ exports.insert = function(req, res) {
 };
 
 
-exports.update = function(req, res) {
+module.exports.update = function(req, res) {
   Employee.findById(req.params.id, (err, employee) => {
     if(err)
       return res.status(400).json({error: 'Can not Update'});
@@ -89,7 +87,7 @@ exports.update = function(req, res) {
   });
 };
 
-exports.delete = function(req, res) {
+module.exports.delete = function(req, res) {
   Employee.findById(req.params.id, (err, employee) => {
     return employee.remove((err) => {
       if(err) {

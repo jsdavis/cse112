@@ -26,11 +26,13 @@
   },
   "homepage": "https://github.com/jsdavis/cse112#readme",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.17.1",
     "bunyan": "^1.8.10",
     "express": "^4.15.2",
     "mocha": "^3.2.0",
     "mongoose": "^4.9.9",
+    "mongoose-encryption": "^1.5.0",
     "selenium-download": "^2.0.10"
   },
   "devDependencies": {
