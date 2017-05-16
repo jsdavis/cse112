@@ -635,7 +635,7 @@ body .carousel-inner > .active {
   display: inline-block;
 }
 .testimonials-container {
-  background: url(../images/testimonials-bg.png) repeat-x;
+  background: url(../image/testimonials-bg.png) repeat-x;
   padding: 50px 0;
   padding-bottom: 40px;
   -webkit-background-size: cover;
@@ -913,7 +913,7 @@ section.breadcrumb .alt-select-field {
   left: 50%;
   margin-top: -16px;
   margin-left: -16px;
-  background: url(../images/zoom-icon.png) no-repeat center center;
+  background: url(../image/zoom-icon.png) no-repeat center center;
   z-index: 10;
   width: 32px;
   height: 32px;
@@ -1142,7 +1142,7 @@ section.breadcrumb .alt-select-field {
 .portfolio-item-details .item-images .next-prev-nav a {
   float: left;
   display: block;
-  background: url(../images/prev-next-icons.png) no-repeat left center;
+  background: url(../image/prev-next-icons.png) no-repeat left center;
   width: 18px;
   height: 30px;
   zoom: 1;
@@ -1434,7 +1434,7 @@ section.blog .blog-posts .blog-post .post-thumb a .hover-zoom {
   left: 50%;
   margin-top: -16px;
   margin-left: -16px;
-  background: url(../images/zoom-icon.png) no-repeat center center;
+  background: url(../image/zoom-icon.png) no-repeat center center;
   z-index: 10;
   width: 32px;
   height: 32px;
