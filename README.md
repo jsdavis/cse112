@@ -17,7 +17,7 @@
 - [ ] checkin.html
 - [ ] employees.html
 - [ ] forgot-password.html
-- [ ] form-builder.html
+- [X] form-builder.html
 - [x] login.html
 - [X] settings.html
 - [x] signup.html

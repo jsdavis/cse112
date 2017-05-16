@@ -17,6 +17,7 @@ public/js/handlebars-v4.0.5.js
 public/js/min/jquery-jvectormap-europe-merc-en.js
 public/js/min/d3.v3.js
 public/js/min/raphael-min.js
+public/js/jscolor.js
 
 /*front-end fix later (Arash) */
 public/js/dashboard.js
@@ -25,3 +26,4 @@ public/js/login.js
 public/js/settings.js
 public/js/toastr.js
 public/js/appointments.js
+public/js/form-builder.js
