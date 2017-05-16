@@ -14,7 +14,7 @@
 - [ ] admin-settings.html
 - [ ] analytics_raw.html
 - [ ] appointments.html
-- [ ] checkin.html
+- [X] checkin.html
 - [X] employees.html
 - [X] forgot-password.html
 - [X] form-builder.html
