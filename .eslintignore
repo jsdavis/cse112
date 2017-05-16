@@ -23,13 +23,4 @@ public/js/jscolor.js
 public/js/jquery.inputmask.bundle.js
 public/**/js.cookie.js
 public/**/datatables.js
-
-/*front-end fix later (Arash) */
-public/js/dashboard.js
-public/js/signup.js
-public/js/login.js
-public/js/settings.js
 public/js/toastr.js
-public/js/form-builder.js
-public/js/employees.js
-public/js/checkin.js
