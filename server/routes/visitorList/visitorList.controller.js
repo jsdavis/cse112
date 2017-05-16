@@ -6,7 +6,7 @@
 // var TextModel = require('../../notification/text');
 
 const VisitorList = require('../../models/VisitorList');
-const Employee = require('../../models/Employee');
+// const Employee = require('../../models/Employee');
 const Appointment = require('../../models/Appointment');
 
 /* handles route for getting the Company's visitor list */

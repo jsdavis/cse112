@@ -4,14 +4,6 @@
  * This module is meant to house all of the API
  * routes that pertain to theme settings
  */
-const express = require('express');
-const router = express.Router();
-
-/* need this to enable cross origin resource sharing.If disabled, we might
- * not need this later. This is just to get the example to work
- * when front end is served from a something other than our app server.
- */
-const cors = require('cors');
 
 const Theme = require('../../models/Theme');
 

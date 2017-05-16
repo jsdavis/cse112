@@ -1,6 +1,5 @@
 'use strict';
 
-const express = require('express');
 let server;
 let io = require('socket.io')();
 const exports = module.exports;
@@ -94,7 +93,6 @@ exports.createServer = function(ioIn) {
       console.log('ADDING VISITOR');
       console.log(data);
       console.log(data.company_id);
-      const companyIdIn = data.company_id;
       VisitorListCtr.create(data, (errMsg, result) => {
         if(errMsg) {
           console.log('error');
@@ -129,7 +127,7 @@ exports.notifyError = function(companyIdIn, data) {
  * On the client side get the socket as follows to robobetty:
  *   var socket = io('/visitorList');
  */
-const nsp = io.of('/visitorList');
+// const nsp = io.of('/visitorList');
 
 // To be used with authorization.
 // io.set('authorization', socketioJwt.authorize({

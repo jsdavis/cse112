@@ -11,14 +11,11 @@
  */
 
 
-const config = require('../../config/config');
-
 /* need this to enable cross origin resource sharing.If disabled, we might
  * not need this later. This is just to get the example to work
  * when front end is served from a something other than our app server.
  */
 const Company = require('../../models/Company');
-const jwt = require('jwt-simple');
 
 /** **** Company TEMPLATE ROUTES ******/
 module.exports.template = {};

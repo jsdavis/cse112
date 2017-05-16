@@ -3,8 +3,6 @@
 /* This module is meant to house all of the API
  * routes that pertain to forms
  */
-const express = require('express');
-const router = express.Router();
 
 const SubmittedForm = require('../../models/form/SubmittedForm');
 const mongoose = require('mongoose');

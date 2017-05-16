@@ -8,15 +8,6 @@ const express = require('express');
 const router = express.Router();
 const controller = require('./theme.controller');
 
-/* need this to enable cross origin resource sharing.If disabled, we might
- * not need this later. This is just to get the example to work
- * when front end is served from a something other than our app server.
- */
-const cors = require('cors');
-
-const Theme = require('../../models/Theme');
-
-
 // post with default values
 router.post('/:user_id/theme', controller.template.create);
 

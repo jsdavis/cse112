@@ -5,8 +5,8 @@ const controller = require('./form.controller');
 
 const router = express.Router();
 
-const bodyparser = require('body-parser');
-const urlparser = bodyparser.urlencoded({extended: false});
+// const bodyparser = require('body-parser');
+// app.use(bodyparser.urlencoded{extended: false});
 
 router.get('/template/company/:id', controller.template.findByCompanyId);
 router.get('/template/:adminid', controller.template.findByAdminId);
