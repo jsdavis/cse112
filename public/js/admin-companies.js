@@ -1,4 +1,4 @@
-//var valid = false;
+// var valid = false;
 
 // $('#inForm').validate({ // initialize the plugin
 //     rules: {
@@ -37,7 +37,7 @@
 //             }
 //             if (this.elements[i].tagName.toLowerCase() === 'input' && this.elements[i].type === 'email')
 //             {
-//                 newRow += '<td>'+this.elements[i].value+'</td><td>' +                       
+//                 newRow += '<td>'+this.elements[i].value+'</td><td>' +
 //                             '<a href="#" class="btn btn-danger btn-sm btn-icon icon-left btnSuspend">' +
 //                                 '<i class="entypo-cancel"></i>' +
 //                                 'Suspend' +
@@ -47,18 +47,17 @@
 //         }
 //         document.getElementById('table-2').innerHTML += newRow + '</tr>';
 //     }
-    
+
 //     return false;
 // };
 
 
-$("#table-2").on('click', '.btnSuspend', function () {
-    if($(this).closest('td').children('p').length == 0) {
-        $(this).closest('td').append("<p><b>Suspended.</b></p>");
-        $(this).closest('td').children('a').text("Unsuspend");
-    }
-    else {
-        $(this).closest('td').children('p').remove();
-        $(this).closest('td').children('a').text("Suspend");
-    }
+$('#table-2').on('click', '.btnSuspend', function() {
+  if($(this).closest('td').children('p').length == 0) {
+    $(this).closest('td').append('<p><b>Suspended.</b></p>');
+    $(this).closest('td').children('a').text('Unsuspend');
+  } else {
+    $(this).closest('td').children('p').remove();
+    $(this).closest('td').children('a').text('Suspend');
+  }
 });

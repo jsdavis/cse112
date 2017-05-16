@@ -1,4 +1,5 @@
 'use strict';
+const log = require('../../../log');
 
 /*
  * This module is meant to house all of the API
@@ -30,10 +31,10 @@ module.exports.getAllEmployees = function(req, res) {
 
 module.exports.getById = function(req, res) {
   Employee.findById(req.params.id, {password: 0}, (err, employee) => {
-    if(err) {
+    if (err) {
       return res.status(400).json({error: 'Can not Find'});
     } else {
-      console.log(employee);
+      log.info(employee);
       return res.status(200).json(employee);
     }
   });
@@ -76,11 +77,10 @@ module.exports.update = function(req, res) {
     employee.role = req.body.role || employee.role;
 
     employee.save((err) => {
-      console.log(err);
-      console.log(employee);
-      if(err)
+      log.warn(err, employee);
+      if (err)
         return res.status(400).json({error: 'Can not Save'});
-      const employeeJson=employee.toJSON();
+      const employeeJson = employee.toJSON();
       delete employeeJson.password;
       return res.status(200).send(employeeJson);
     });

@@ -1,4 +1,5 @@
 'use strict';
+const log = require('../../../log');
 
 /*
  * This module is meant to house all of the API
@@ -11,8 +12,8 @@ const Theme = require('../../models/Theme');
 module.exports.template = {};
 
 module.exports.template.use = function(req, res, next) {
-    // do logging
-  console.log('Intializing.....');
+  // do logging
+  log.info('Intializing theme controller.....');
   next();
 };
 

@@ -4,6 +4,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const config = require('./server/config/config');
+const log = require('./log');
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/js', express.static(path.join(__dirname, 'public/js')));
@@ -14,16 +15,16 @@ app.use('/js', express.static(path.join(__dirname, 'public/js')));
 mongoose.connect(config.mongoLabUrl);
 
 const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
+db.on('error', (err) => log.error('Database error:', err));
 db.once('open', () => {
-  console.log('Connected to mongodb');
+  log.info('Connected to mongodb');
 });
 
 app.set('view engine', 'html');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-//Connect to all of the api routes
+// Connect to all of the api routes
 require('./server/routes')(app);
 
 app.get('/', (req, res) => {

@@ -1,4 +1,5 @@
 'use strict';
+const log = require('../../log');
 
 let server;
 let io = require('socket.io')();
@@ -34,10 +35,10 @@ exports.createServer = function(ioIn) {
      * room and notified when changes are being made.
      */
   io.on(CONNECTION, (socket) => {
-    console.log('SOCKET CONNECTED');
+    log.info('SOCKET CONNECTED');
         /* company_id is required to connect to join right socket to listen to*/
     socket.on(VALIDATE_COMPANY_ID, (data) => {
-      console.log(data);
+      log.debug(data);
       const companyIdIn = data.company_id;
       Company.findOne({_id: companyIdIn}, (err, c) => {
         if(err || !c)
@@ -59,7 +60,7 @@ exports.createServer = function(ioIn) {
         // requires the company_id to be sent
     socket.on(VISITOR_LIST_UPDATE, (data) => {
       const companyIdIn = data.company_id;
-      console.log('Visitor List Update' + data);
+      log.debug('Visitor List Update' + data);
       VisitorListCtr.getCompanyVisitorList(companyIdIn, (errMsg, result) => {
         if(errMsg) {
           exports.notifyError(companyIdIn, {error: errMsg});
@@ -69,19 +70,19 @@ exports.createServer = function(ioIn) {
     });
 
     socket.on(DISCONNECT, () => {
-            // console.log('user disconnected from ' + company_id);
+            // log.info('user disconnected from ' + company_id);
     });
 
         // requires the company_id and visitor_id to be sent
     socket.on(REMOVE_VISITOR, (data) => {
-      console.log(data.company_id);
+      log.debug(data.company_id);
       const companyIdIn = data.company_id;
       const visitorIdIn = data.visitor_id;
       if(!companyIdIn || !visitorIdIn) return;
       VisitorListCtr.deleteVisitor(companyIdIn, visitorIdIn,
        (errMsg, result) => {
-         if(errMsg) {
-           console.log('error');
+         if (errMsg) {
+           log.error('Socket Remove Visitor Error:', errMsg);
            exports.notifyError(companyIdIn, {error: errMsg});
          } else
                     exports.notifyNewList(companyIdIn, result);
@@ -90,12 +91,11 @@ exports.createServer = function(ioIn) {
 
         // require the params to be set with info of the visitor
     socket.on(ADD_VISITOR, (data) => {
-      console.log('ADDING VISITOR');
-      console.log(data);
-      console.log(data.company_id);
+      log.info('ADDING VISITOR');
+      log.debug(data, data.company_id);
       VisitorListCtr.create(data, (errMsg, result) => {
         if(errMsg) {
-          console.log('error');
+          log.error('Socket Add Visitor Error:', errMsg);
           exports.notifyError(company_id, {error: errMsg});
         } else {
           exports.notifyNewList(company_id, result);

@@ -12,6 +12,8 @@ module.exports = {
       "no-mixed-spaces-and-tabs": "error",
       "prefer-const": "error",
       "prefer-arrow-callback": "error",
-      "new-cap": "off"
+      "new-cap": "off",
+      "max-len": ["warn", {"code": 100, "ignoreUrls": true}],
+      "require-jsdoc": "warn"
     }
 };
