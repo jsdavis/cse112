@@ -3,7 +3,8 @@
    * Config var for app
    **/
 module.exports = {
-  mongoDBUrl: process.env.MONGODB_URL || process.env.MONGOLAB_URI || 'mongodb://localhost:27017/webstormtroopers',
+  localMongoDBUrl: 'mongodb://localhost:27017/webstormtroopers',
+  mongoLabUrl: 'mongodb://unluckygeniuses:password@ds137891.mlab.com:37891/unluckygeniuses',
   port: process.env.PORT || 4941,
   secret: process.env.SECRET || 'mysecret',
 };
