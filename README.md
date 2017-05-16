@@ -19,6 +19,6 @@
 - [ ] forgot-password.html
 - [ ] form-builder.html
 - [x] login.html
-- [ ] settings.html
+- [X] settings.html
 - [x] signup.html
 - [X] visitors.html
