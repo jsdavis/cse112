@@ -1,10 +1,6 @@
 'use strict';
 const log = require('../../log');
 
-let server;
-let io = require('socket.io')();
-const exports = module.exports;
-
 // Constants for listening to Sockets
 const CONNECTION = 'connection';
 const VALIDATE_COMPANY_ID = 'validate_company_id';
@@ -20,12 +16,11 @@ const Company = require('../models/Company');
 /**
  * Grabs submission details from the submit foo HTML element
  * Calls Foo function with the input string.
- * @param {TYPE} ioIn
+ * @param {TYPE} io
  * @return {undefined} ret
  */
-exports.createServer = function(ioIn) {
-  io = ioIn;
-
+module.exports.createServer = function(io) {
+  log.info('Socket created');
     /*
      * This handles the 'connection' event, which is send when the user is
      * trying to connect a socket.
@@ -48,9 +43,9 @@ exports.createServer = function(ioIn) {
           VisitorListCtr.getCompanyVisitorList(companyIdIn,
               (errMsg, result) => {
                 if(errMsg)
-                  exports.notifyError(companyIdIn, {error: errMsg});
+                  module.exports.notifyError(companyIdIn, {error: errMsg});
                 else {
-                  exports.notifyNewList(companyIdIn, result);
+                  module.exports.notifyNewList(companyIdIn, result);
                 }
               });
         }
@@ -63,9 +58,9 @@ exports.createServer = function(ioIn) {
       log.debug('Visitor List Update' + data);
       VisitorListCtr.getCompanyVisitorList(companyIdIn, (errMsg, result) => {
         if(errMsg) {
-          exports.notifyError(companyIdIn, {error: errMsg});
+          module.exports.notifyError(companyIdIn, {error: errMsg});
         } else
-                    exports.notifyNewList(companyIdIn, result);
+                    module.exports.notifyNewList(companyIdIn, result);
       });
     });
 
@@ -83,9 +78,9 @@ exports.createServer = function(ioIn) {
        (errMsg, result) => {
          if (errMsg) {
            log.error('Socket Remove Visitor Error:', errMsg);
-           exports.notifyError(companyIdIn, {error: errMsg});
+           module.exports.notifyError(companyIdIn, {error: errMsg});
          } else
-                    exports.notifyNewList(companyIdIn, result);
+                    module.exports.notifyNewList(companyIdIn, result);
        });
     });
 
@@ -96,14 +91,13 @@ exports.createServer = function(ioIn) {
       VisitorListCtr.create(data, (errMsg, result) => {
         if(errMsg) {
           log.error('Socket Add Visitor Error:', errMsg);
-          exports.notifyError(company_id, {error: errMsg});
+          module.exports.notifyError(company_id, {error: errMsg});
         } else {
-          exports.notifyNewList(company_id, result);
+          module.exports.notifyNewList(company_id, result);
         }
       });
     });
   });
-  return server;
 };
 /*
  * A function that allows you to notify all clients that
@@ -113,11 +107,11 @@ exports.createServer = function(ioIn) {
  * this event is triggered, the client side can retrieve the whole queue of
  * patients to reflect the changes.
  */
-exports.notifyNewList = function(companyIdIn, data) {
+module.exports.notifyNewList = function(companyIdIn, data) {
   io.to(companyIdIn).emit(VISITOR_LIST_UPDATE, data);
 };
 
-exports.notifyError = function(companyIdIn, data) {
+module.exports.notifyError = function(companyIdIn, data) {
   io.to(companyIdIn).emit(NOTIFY_ERROR, data);
 };
 
