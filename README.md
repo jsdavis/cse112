@@ -9,16 +9,16 @@
 ## HTML Files to Evaluate
 - [X] index.html
 - [X] 404.html
-- [ ] admin-companies.html
-- [ ] admin-dashboard.html
-- [ ] admin-settings.html
-- [ ] analytics_raw.html
-- [ ] appointments.html
-- [ ] checkin.html
-- [ ] employees.html
-- [ ] forgot-password.html
-- [ ] form-builder.html
-- [ ] login.html
-- [ ] settings.html
-- [ ] signup.html
-- [ ] visitors.html
+- [x] admin-companies.html
+- [x] admin-dashboard.html
+- [x] admin-settings.html
+- [x] analytics_raw.html
+- [x] appointments.html
+- [X] checkin.html
+- [X] employees.html
+- [X] forgot-password.html
+- [X] form-builder.html
+- [x] login.html
+- [X] settings.html
+- [x] signup.html
+- [X] visitors.html
