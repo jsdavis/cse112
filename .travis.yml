@@ -18,6 +18,7 @@ before_script:
   - sleep 15
 script:
   - npm test
+  - npm run coverage
   - nightwatch --config nightwatch.js --env chrome,ie11,firefox
   - pkill node
 notifications:

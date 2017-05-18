@@ -5,6 +5,7 @@
 
 node_modules/*
 docs/*
+coverage/*
 **/vendor/**
 public/js-es5/*
 public/js/neon*
