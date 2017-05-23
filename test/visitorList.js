@@ -23,7 +23,7 @@ describe('VisitorList', () => {
 
     // info for the company
   const companyInfo = {
-    email: 'test@test.edu',
+    email: 'test2@test.edu',
     credit_card_number: '1231231241251',
     name: 'test',
     expiration_date: '6/17',
