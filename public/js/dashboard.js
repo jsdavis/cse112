@@ -1,7 +1,6 @@
 
 $(document).ready(() => {
   const socket = io(); // Initialize Socket
-  // alert("Created socket");
   // Socket variables
   // var CONNECTION = "connection";
   const VALIDATE_COMPANY_ID = 'validate_company_id';
@@ -12,7 +11,6 @@ $(document).ready(() => {
   /** *
    * Compile all the Handle Bar Templates
    */
-  // alert("socket  on");
 
   const companyData = JSON.parse(localStorage.getItem('currentCompany'));
   const myCompanyId = companyData._id;
@@ -48,7 +46,6 @@ $(document).ready(() => {
     /* eslint-enable */
 
     const visitorData = getVisitorData(myCompanyId, uniqueId);
-    alert('Hello dATA:::' + JSON.stringify(visitorData));
     const compiledTemplate = modalTemplate(visitorData);
     $('.modal-dialog').html(compiledTemplate);
     // socket.on(VALIDATE_COMPANY_ID, (socket) => {
@@ -61,7 +58,6 @@ $(document).ready(() => {
   });
 
   $(document).on('click', '.check-in-btn', function() {
-    // alert("in CHECKIN BTN CLICK");
     /* eslint-disable */ // eslint doesn't like 'this'
     const id = $(this).closest('.modal-content').find('.phone-number').attr('value');
     /* eslint-enable */
@@ -74,7 +70,6 @@ $(document).ready(() => {
 
   // Makes a get request to display list of employees
 function getVisitors(myCompanyId) {
-  // alert("egfsd");
   let json;
   $.ajax({
     dataType: 'json',
@@ -83,18 +78,15 @@ function getVisitors(myCompanyId) {
     async: false,
     url: '/api/visitorLists/company/' + myCompanyId,
     success: function(response) {
-      // alert("was success");
       json = response;
       console.log(response);
     },
   });
-  alert(JSON.stringify(json.visitors));
   return json.visitors;
 }
 
 
 function getVisitorData(myCompanyId, uniqueId) {
-  // alert("egfsd");
   let json;
   $.ajax({
     dataType: 'json',
@@ -103,7 +95,6 @@ function getVisitorData(myCompanyId, uniqueId) {
     async: false,
     url: '/api/visitorLists/company/' + myCompanyId,
     success: function(response) {
-      // alert("was success");
       json = response;
       console.log(response);
     },
