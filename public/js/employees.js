@@ -1,7 +1,6 @@
 $(document).ready(() => {
   const companyData = JSON.parse(localStorage.getItem('currentCompany'));
   const myCompanyId = companyData._id;
-
   console.log(myCompanyId);
 
   const curUser = JSON.parse(localStorage.getItem('currentUser'));
