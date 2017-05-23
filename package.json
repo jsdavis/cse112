@@ -8,7 +8,7 @@
     "dev": "NODE_ENV=development node index.js | bunyan -o short",
     "lint": "eslint .",
     "lintfix": "eslint . --fix",
-    "test": "NODE_ENV=test mocha",
+    "test": "NODE_ENV=test mocha --timeout 6000",
     "doc": "jsdoc -d ./docs -c jsdoc.json",
     "e2e": "node_modules/.bin/nightwatch --config nightwatch.conf.js",
     "clean": "rm -rf public/js-es5",
