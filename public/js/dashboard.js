@@ -103,7 +103,7 @@ function getVisitorData(myCompanyId, uniqueId) {
   const container = json.visitors;
   // return JSON.stringify(container[0]);
   for (let i = 0; i < container.length; i++) {
-    if (container[i]['_id'] == uniqueId) {
+    if (container != null && container[i] != null && container[i]['_id'] == uniqueId) {
       return(container[i]);
     }
   }
