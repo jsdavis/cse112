@@ -1,8 +1,35 @@
 *.md
 *.json
 *.min.js
+*-min.js
 
 node_modules/*
 docs/*
-vendor/*
+**/vendor/**
 public/js-es5/*
+public/js/neon*
+public/js/min/*
+public/js/resizeable.js
+
+/*Files added for front-end (Arash)*/
+public/js/scripts.js
+public/js/socket.io.js
+public/js/bootstrap.js
+public/js/handlebars-v4.0.5.js
+public/**/jquery-jvectormap-europe-merc-en.js
+public/**/d3.v3.js
+public/**/raphael-min.js
+public/js/jscolor.js
+public/js/jquery.inputmask.bundle.js
+public/**/js.cookie.js
+public/**/datatables.js
+
+/*front-end fix later (Arash) */
+public/js/dashboard.js
+public/js/signup.js
+public/js/login.js
+public/js/settings.js
+public/js/toastr.js
+public/js/form-builder.js
+public/js/employees.js
+public/js/checkin.js
