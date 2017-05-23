@@ -158,9 +158,9 @@ describe('Appointment Test', () => {
             .expect(200)
             .end((err, res) => {
               res.body.should.have.property('_id');
-              Appointment.find({_id: currAppointment._id}, (err, _) => {
-                // should.equal(err, null);
-                should.exist(err);
+              Appointment.find({_id: currAppointment._id}, (err, result) => {
+                should.not.exist(err);
+                result.should.be.empty;
                 done();
               });
             });
