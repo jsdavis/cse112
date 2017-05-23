@@ -16,7 +16,8 @@
     <link rel="stylesheet" href="css/shared-dashboard.css">
     <link rel="stylesheet" href="css/vendor/jquery-ui-1.10.3.custom.min.css">
     <link rel="stylesheet" href="font/entypo.css">
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic">
+    <link rel="stylesheet" href="font/NotoSans.css">
+    <!-- <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic"> -->
     <link rel="stylesheet" href="css/vendor/bootstrap.css">
     <link rel="stylesheet" href="css/vendor/neon-core.css">
     <link rel="stylesheet" href="css/vendor/neon-theme.css">
@@ -268,7 +269,8 @@
         <h2>Payment</h2>
         <form action="/payment/subscription" method="POST">
             <script
-                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                    src="js/vendor/stripe_checkout.js" 
+                    class="stripe-button"
                     data-key="pk_test_uSawJia2zzBWj6zvXtgMcvg8"
                     data-name="Emissary"
                     data-description="Subscription for 1 month of service"
@@ -278,7 +280,7 @@
         </form>
 
         <h2>Get Check-In Notifications Via Slack</h2>
-        <a href="https://slack.com/oauth/authorize?scope=incoming-webhook,bot,chat:write:bot&client_id=11293703667.22923580850"><img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" /></a>
+        <a href="https://slack.com/oauth/authorize?scope=incoming-webhook,bot,chat:write:bot&client_id=11293703667.22923580850"><img alt="Add to Slack" height="40" width="139" src="image/add_to_slack.png" srcset="image/add_to_slack.png 1x, image/add_to_slack.png@2x.png 2x" /></a>
     </div>
 </div>
 <!-- Imported styles on this page -->
