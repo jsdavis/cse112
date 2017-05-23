@@ -8,7 +8,7 @@
     "dev": "NODE_ENV=development nodemon index.js | bunyan -o short",
     "lint": "eslint .",
     "lintfix": "eslint . --fix",
-    "test": "NODE_ENV=test nyc --reporter=lcov mocha",
+    "test": "NODE_ENV=test nyc --reporter=lcov mocha --timeout 6000",
     "coverage": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/.bin/codacy-coverage && rm -rf ./coverage",
     "doc": "jsdoc -d ./docs -c jsdoc.json",
     "e2e": "node_modules/.bin/nightwatch --config nightwatch.conf.js",
