@@ -28,8 +28,8 @@ $(document).ready(() => {
   const modalTemplate = Handlebars.compile(modal);
   const compiledHtml = template(visitors);
   $('#visitor-list').html(compiledHtml);
-  // alert("socket  on");
 
+  // alert("socket  on");
   // Update Patient List
   // socket.on(VALIDATE_COMPANY_ID, (socket) => {
     // alert("in socket on");
@@ -39,8 +39,6 @@ $(document).ready(() => {
   //   });
   // });
 
-
-  // alert("socket out");
   /** *
   * Function Listener for Opening a Modal
   */
@@ -48,8 +46,10 @@ $(document).ready(() => {
     /* eslint-disable */ // eslint doesn't like 'this'
     const uniqueId = $(this).attr('value');
     /* eslint-enable */
-    // alert("in patient checkout click");
-    const compiledTemplate = modalTemplate(visitors);
+
+    const visitorData = getVisitorData(myCompanyId, uniqueId);
+    alert('Hello dATA:::' + JSON.stringify(visitorData));
+    const compiledTemplate = modalTemplate(visitorData);
     $('.modal-dialog').html(compiledTemplate);
     // socket.on(VALIDATE_COMPANY_ID, (socket) => {
     //   socket.emit('send Id', uniqueId);
@@ -62,11 +62,9 @@ $(document).ready(() => {
 
   $(document).on('click', '.check-in-btn', function() {
     // alert("in CHECKIN BTN CLICK");
-
     /* eslint-disable */ // eslint doesn't like 'this'
     const id = $(this).closest('.modal-content').find('.phone-number').attr('value');
     /* eslint-enable */
-
     socket.on(VALIDATE_COMPANY_ID, (socket) => {
       socket.emit('check-in-patient', id);
     });
@@ -90,6 +88,32 @@ function getVisitors(myCompanyId) {
       console.log(response);
     },
   });
-  // alert(JSON.stringify(json.visitors));
+  alert(JSON.stringify(json.visitors));
   return json.visitors;
+}
+
+
+function getVisitorData(myCompanyId, uniqueId) {
+  // alert("egfsd");
+  let json;
+  $.ajax({
+    dataType: 'json',
+    type: 'GET',
+    data: $('#response').serialize(),
+    async: false,
+    url: '/api/visitorLists/company/' + myCompanyId,
+    success: function(response) {
+      // alert("was success");
+      json = response;
+      console.log(response);
+    },
+  });
+
+  const container = json.visitors;
+  // return JSON.stringify(container[0]);
+  for (let i = 0; i < container.length; i++) {
+    if (container[i]['_id'] == uniqueId) {
+      return(container[i]);
+    }
+  }
 }
