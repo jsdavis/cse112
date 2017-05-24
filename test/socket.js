@@ -1,6 +1,8 @@
 /*
  * Created by kevingu on 2/26/16.
- */
+ *
+ * Sockets were removed, so test was commented out. -Reebal
+ *
 const io = require('socket.io-client');
 const config = require('../server/config/config');
 const Company = require('../server/models/Company');
@@ -234,3 +236,4 @@ describe('Visitor List Socket', () => {
     });
   });
 });
+*/
