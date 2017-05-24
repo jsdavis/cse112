@@ -1,4 +1,4 @@
-/**
+/*
  * Created by kevingu on 2/26/16.
  */
 const io = require('socket.io-client');

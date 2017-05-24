@@ -124,7 +124,7 @@ describe('Employee', () => {
     });
 
             // TEST PUT
-    describe('PUT /api/employee/:id', () => {
+    describe('PUT /api/employees/:id', () => {
       it('Should update the employee data', (done) => {
         request(url)
                         .put('/api/employees/' + returnedId)
