@@ -8,12 +8,12 @@ describe('Company Test', () => {
   let token;
   let currCompany;
 
-  const email = 'test@test.edu';
+  const email = 'testies@test.edu';
   const name = 'test';
   const expirationDate='6/17';
   const phoneNumber='1234567890';
 
-  const newEmail = 'test1@test.edu'; ;
+  const newEmail = 'testies1@test.edu'; ;
   const newName = 'test1';
   const newExpirationDate='3/19';
   const newPhoneNumber='1231267890';
@@ -122,7 +122,8 @@ describe('Company Test', () => {
             .end((err, res) => {
               res.body.should.have.property('_id');
               Company.find({_id: currCompany._id}, (err, _) => {
-                should.exist(err);
+                //should.exist(err);
+		should.equal(err, null);
                 done();
               });
             });
