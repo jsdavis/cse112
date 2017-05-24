@@ -57,6 +57,9 @@ $(document).ready(() => {
     // Grabs elements from the check in and puts it into an object
   function grabFormElements() {
     const newVisitor = {};
+    if(companyData==null) {
+      return null;
+    }
     newVisitor.company_id = companyData._id;
     newVisitor.first_name= $('#visitor-first').val();
     newVisitor.last_name = $('#visitor-last').val();

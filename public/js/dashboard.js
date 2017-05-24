@@ -1,4 +1,16 @@
 
+let visitors;
+let source;
+let template;
+
+let modal;
+let modalTemplate;
+let compiledHtml;
+
+let companyData;
+let myCompanyId;
+
+
 $(document).ready(() => {
   const socket = io(); // Initialize Socket
   // Socket variables
@@ -12,20 +24,11 @@ $(document).ready(() => {
    * Compile all the Handle Bar Templates
    */
 
-  const companyData = JSON.parse(localStorage.getItem('currentCompany'));
-  const myCompanyId = companyData._id;
-  const visitors = getVisitors(myCompanyId);
+  companyData = JSON.parse(localStorage.getItem('currentCompany'));
+  myCompanyId = companyData._id;
 
-  // DashBoard Template
-  const source = $('#visitor-list-template').html();
-  const template = Handlebars.compile(source);
-
-
-  // Modal Template
-  const modal = $('#visitor-info-template').html();
-  const modalTemplate = Handlebars.compile(modal);
-  const compiledHtml = template(visitors);
-  $('#visitor-list').html(compiledHtml);
+  updateVisitors();
+  updateModalVisitor();
 
   // alert("socket  on");
   // Update Patient List
@@ -40,9 +43,10 @@ $(document).ready(() => {
   /** *
   * Function Listener for Opening a Modal
   */
+  let uniqueId;
   $(document).on('click', '.patient-check-out', function() {
     /* eslint-disable */ // eslint doesn't like 'this'
-    const uniqueId = $(this).attr('value');
+    uniqueId = $(this).attr('value');
     /* eslint-enable */
 
     const visitorData = getVisitorData(myCompanyId, uniqueId);
@@ -65,10 +69,44 @@ $(document).ready(() => {
       socket.emit('check-in-patient', id);
     });
   });
+
+  /* eslint-disable */ // eslint doesn't like 'this'
+  $(document).on('click', '.removeButton', function() {
+    let json;
+    $.ajax({
+      dataType: 'json',
+      type: 'DELETE',
+      data: $('#response').serialize(),
+      async: false,
+      url: '/api/visitorLists/company/' + myCompanyId + '/visitor/' + uniqueId,
+      success: function(response) {
+        json = response;
+        console.log(response);
+
+        updateVisitors();
+        updateModalVisitor();
+      },
+    });
+  });
+  /* eslint-enable */ // eslint doesn't like 'this'
 });
 
+function updateVisitors() {
+  visitors = getVisitors(myCompanyId);
+  // DashBoard Template
+  source = $('#visitor-list-template').html();
+  template = Handlebars.compile(source);
+}
 
-  // Makes a get request to display list of employees
+function updateModalVisitor() {
+    // Modal Template
+  modal = $('#visitor-info-template').html();
+  modalTemplate = Handlebars.compile(modal);
+  compiledHtml = template(visitors);
+  $('#visitor-list').html(compiledHtml);
+}
+
+// Makes a get request to display list of employees
 function getVisitors(myCompanyId) {
   let json;
   $.ajax({
