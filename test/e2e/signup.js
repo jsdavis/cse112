@@ -19,7 +19,7 @@ module.exports = {
       .url('http://localhost:8080/signup.html')
       .assert.containsText('#signup-form-one', 'Step 1/2:')
 			.waitForElementVisible('input[id="form-company-name"]')
-			.setValue('input[id="form-company-name', 'Test' + num)
+			.setValue('input[id="form-company-name"]', 'Test' + num)
 			.waitForElementVisible('input[id="form-email"]')
 			.setValue('input[id="form-email"]', 'Test' + num)
 			.waitForElementVisible('input[id="form-phone"]')

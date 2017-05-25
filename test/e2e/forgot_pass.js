@@ -17,7 +17,7 @@ module.exports = {
     browser
       .url('http://localhost:8080/forgot-password.html')
 			.waitForElementVisible('input[id="email"]')
-			.setValue('input[id="email', 'test5@test.com')
+			.setValue('input[id="email"]', 'test5@test.com')
 			.waitForElementVisible('button[id="send-reset-btn"]')
 			.click('button[id="send-reset-btn"]')
       .end();

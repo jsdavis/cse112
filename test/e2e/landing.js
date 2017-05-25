@@ -37,33 +37,33 @@ module.exports = {
 			.assert.containsText('#features-sec', '24/7 SUPPORT')
       .end();
   },
-	'Unlucky Geniuses Pricing Text Test': function(browser) {
-  	browser
+  'Unlucky Geniuses Pricing Text Test': function(browser) {
+    browser
       .url('http://localhost:8080')
       .assert.containsText('#pricing-opts', 'Free Trial')
 			.assert.containsText('#pricing-opts', 'Subscription')
       .end();
   },
-	'Unlucky Geniuses Trial Text Test': function(browser) {
+  'Unlucky Geniuses Trial Text Test': function(browser) {
     browser
       .url('http://localhost:8080')
       .assert.containsText('#trial-ad', 'Sign up for a free trial of Emissary now')
 			.assert.containsText('#trial-ad', 'SIGN-UP')
       .end();
   },
-	'Unlucky Geniuses Testimonials Text Test': function(browser) {
+  'Unlucky Geniuses Testimonials Text Test': function(browser) {
     browser
       .url('http://localhost:8080')
       .assert.containsText('#testimonials', 'Perfection')
       .end();
   },
-	'Unlucky Geniuses Footer Widget Text Test': function(browser) {
+  'Unlucky Geniuses Footer Widget Text Test': function(browser) {
     browser
       .url('http://localhost:8080')
       .assert.containsText('#footer-widget', 'Checking In Made Simple.')
       .end();
   },
-	'Unlucky Geniuses Footer Test': function(browser) {
+  'Unlucky Geniuses Footer Test': function(browser) {
     browser
       .url('http://localhost:8080')
       .assert.containsText('#footer', 'Copyright © Emissary - All Rights Reserved.')

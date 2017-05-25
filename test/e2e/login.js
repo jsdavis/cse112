@@ -17,7 +17,7 @@ module.exports = {
     browser
       .url('http://localhost:8080/login.html')
 			.waitForElementVisible('input[id="username"]')
-			.setValue('input[id="username', 'test')
+			.setValue('input[id="username"]', 'test')
 			.waitForElementVisible('input[id="password"]')
 			.setValue('input[id="password"]', 'test')
 			.waitForElementVisible('button[id="loginButton"]')
