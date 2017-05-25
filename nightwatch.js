@@ -27,8 +27,8 @@ module.exports = {
       'selenium_port': 80,
       'selenium_host': 'ondemand.saucelabs.com',
       'silent': true,
-      'username': '${SAUCE_USERNAME}',
-      'access_key': '${SAUCE_ACCESS_KEY}',
+      'username': 'jsdavis',
+      'access_key': '73bfbc4d-1919-4d0a-90ca-d8e772acce9d',
       'globals': {
         'waitForConditionTimeout': 10000,
       },
