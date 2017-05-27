@@ -27,7 +27,7 @@ describe('Appointment Test', () => {
   const newProviderName = 'test1 test1';
 
     // company info
-  const email = 'new@test.edu';
+  const email = 'verynew@test.edu';
   const creditCardNumber='1231231241251';
   const name = 'test';
   const expirationDate='6/17';
