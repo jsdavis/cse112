@@ -122,8 +122,8 @@ describe('Company Test', () => {
             .end((err, res) => {
               res.body.should.have.property('_id');
               Company.find({_id: currCompany._id}, (err, _) => {
-                //should.exist(err);
-		should.equal(err, null);
+                // should.exist(err);
+                should.equal(err, null);
                 done();
               });
             });
