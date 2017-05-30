@@ -8,12 +8,12 @@ describe('Company Test', () => {
   let token;
   let currCompany;
 
-  const email = 'tests@test.edu';
+  const email = 'testsw@test.edu';
   const name = 'test';
   const expirationDate='6/17';
   const phoneNumber='1234567890';
 
-  const newEmail = 'tests1@test.edu'; ;
+  const newEmail = 'testw1@test.edu'; ;
   const newName = 'test1';
   const newExpirationDate='3/19';
   const newPhoneNumber='1231267890';
