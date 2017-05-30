@@ -97,7 +97,7 @@ module.exports = {
   'Smoke test': (browser) => {
     browser
       .assert.visible('body', 'Check if page has loaded')
-      .assert.title('Emissary');
+      .assert.title('Unlucky Geniuses');
   },
   'Unlucky Geniuses Assert Title Test': function(browser) {
     browser
