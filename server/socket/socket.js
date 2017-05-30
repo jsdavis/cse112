@@ -1,5 +1,6 @@
 'use strict';
 const log = require('../../log');
+const io = require('socket.io')();
 
 // Constants for listening to Sockets
 const CONNECTION = 'connection';
@@ -91,9 +92,9 @@ module.exports.createServer = function(io) {
       VisitorListCtr.create(data, (errMsg, result) => {
         if(errMsg) {
           log.error('Socket Add Visitor Error:', errMsg);
-          module.exports.notifyError(company_id, {error: errMsg});
+          module.exports.notifyError(data.company_id, {error: errMsg});
         } else {
-          module.exports.notifyNewList(company_id, result);
+          module.exports.notifyNewList(data.company_id, result);
         }
       });
     });

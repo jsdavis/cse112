@@ -15,7 +15,6 @@ describe('Employee', () => {
 
   // before function is called at the very beginning of the 'Forms' test suite, no tests are run until the done() callback is called.
   before((done) => {
-
     // Nuke it before testing
     mongoose.connection.dropDatabase();
 
