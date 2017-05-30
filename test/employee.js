@@ -2,6 +2,7 @@ const request = require('supertest');
 
 const config = require('../server/config/config');
 const should = require('chai').should();
+const mongoose = require('mongoose');
 
 // Wrapper that creates admin user to allow api calls
 const ConfigureAuth = require('./ConfigureAuth');
@@ -12,11 +13,13 @@ describe('Employee', () => {
 
   let credentials;  // variable to hold all the need authentication variables.
 
-        // before function is called at the very beginning of the 'Forms' test suite,
-        // no tests are run until the done() callback is called.
+  // before function is called at the very beginning of the 'Forms' test suite, no tests are run until the done() callback is called.
   before((done) => {
-            // setupAdmin will create and admin and log you in, give it a callback that will give you
-            // the credentials you need. Make sure to call done() inside ConfigureAuth's callback!
+
+    // Nuke it before testing
+    mongoose.connection.dropDatabase();
+
+    // setupAdmin will create and admin and log you in, give it a callback that will give you the credentials you need. Make sure to call done() inside ConfigureAuth's callback!
     ConfigureAuth.setupAdmin((cred) => {
       credentials = cred;
       done();
@@ -27,30 +30,28 @@ describe('Employee', () => {
 
 
   describe('Employee Testing', () => {
-            // TEST POST
     describe('POST /api/employees', () => {
       it('should save submitted employee', (done) => {
         request(url)
-                        .post('/api/employees')
-                        .query({email: credentials.email, token: credentials.token})
-                        .send({
-                          company_id: credentials.admin._id,
-                          first_name: 'John',
-                          last_name: 'Smith',
-                          email: 'jt@tomcruise.com',
-                          phone_number: '123456789',
-                          role: 'c_admin',
-                          password: 'test',
-                        })
-                        .end((err, res) => {
-                          if(err)
-                            throw(err);
-                          res.body.should.have.property('first_name').and.be.equal('John');
-                          res.body.should.have.property('email').and.be.equal('jt@tomcruise.com');
-                          res.body.should.not.have.property('password');
-                          returnedId = res.body._id;
-                          done();
-                        });
+          .post('/api/employees')
+          .send({
+            first_name: 'John',
+            last_name: 'Smith',
+            email: 'jt@tomcruise.com',
+            phone_number: '123456789',
+            company_id: credentials.admin._id,
+            password: 'test',
+            role: 'c_admin',
+          })
+          .end((err, res) => {
+            if (err)
+              throw(err);
+            res.body.should.have.property('first_name').and.be.equal('John');
+            res.body.should.have.property('email').and.be.equal('jt@tomcruise.com');
+            res.body.should.not.have.property('password');
+            returnedId = res.body._id;
+            done();
+          });
       });
     });
     describe('Login', () => {

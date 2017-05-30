@@ -105,7 +105,6 @@ describe('Appointment Test', () => {
             .get('/api/appointments/'+0)
             .expect(400)
             .end((err, res) => {
-              console.log(res.body);
               res.body.should.have.property('error');
               done();
             });

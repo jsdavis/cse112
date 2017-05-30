@@ -112,7 +112,6 @@ describe('Themes Route Test', () => {
                       additionalComments: _additionalComments,
                     })
                     .end((err, res) => {
-                      console.log(res.body);
                       res.body.should.have.property('user_id');
                       res.body.should.have.property('form_color');
                       res.body.should.have.property('background_img');

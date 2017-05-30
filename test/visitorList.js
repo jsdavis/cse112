@@ -91,7 +91,6 @@ describe('VisitorList', () => {
       appointment1.company_id = c._id;
       appointment1.provider_name = firstAppointmentInfo.provider_name;
       appointment1.save((err, a1) => {
-        console.log(err);
         if(err) throw(err);
         appointment1=a1;
         appointment2 = new Appointment();

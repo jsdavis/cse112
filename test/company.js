@@ -73,7 +73,6 @@ describe('Company Test', () => {
             .get('/api/companies/'+0)
             .expect(400)
             .end((err, res) => {
-              console.log(res.body);
               res.body.should.have.property('error');
               done();
             });
