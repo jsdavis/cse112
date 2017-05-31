@@ -12,7 +12,7 @@ app.use('/js', express.static(path.join(__dirname, 'public/js')));
 /*
  *  Connect to MongoDB
  */
-mongoose.connect(config.mongoLabUrl);
+mongoose.connect(config.mongoUri);
 
 const db = mongoose.connection;
 db.on('error', (err) => log.error('Database error:', err));

@@ -1,4 +1,3 @@
-
        // Replace with your client ID from the developer console.
     console.log('googlestuff');
     const CLIENT_ID = '146644134636-h2i32dh4th00aqo4d4honm0o4vkcpaup.apps.googleusercontent.com';
@@ -7,6 +6,10 @@
     const SCOPES = ['https://www.googleapis.com/auth/analytics.readonly'];
 
 
+    /**
+     * Click handler for the 'auth-button' element; handles authorization flow
+     * @param {Object} event - event object for click event
+    */
     function authorize(event) {
         // Handles the authorization flow.
         // `immediate` should be false when invoked from the button click.
@@ -29,7 +32,9 @@
       });
     }
 
-
+    /**
+     * Gets a list of all Google Analytics accounts for this user
+     */
     function queryAccounts() {
         // Load the Google Analytics client library.
       console.log('querying accounts');
@@ -40,6 +45,27 @@
     }
 
 
+    /**
+     * Callback function referenced in queryAccounts(); handles response
+     *     from the accounts list method
+     * @param {Object} response
+     *     response object from accounts.list()
+     * @param {string} response.result.kind
+     *     Collection type; value is "analytics#profiles"
+     * @param {string} response.result.username
+     *     Email ID of authenticated user
+     * @param {integer} response.result.totalResults
+     *     total number of query results
+     * @param {integer} response.result.startIndex
+     *     starting index for resources, which is 1 by default
+     * @param {integer} response.result.itemsPerPage
+     *     maximum number of resources the response can contain
+     * @param {string} response.result.previousLink
+     *     link to previous page for this view (profile) collection
+     * @param {string} response.result.nextLink
+     *     link to next page for this view (profile collection)
+     * @param {items[]} items - list of views (profiles)
+     */
     function handleAccounts(response) {
       console.log('handling accounts');
 
@@ -63,9 +89,12 @@
       }
     }
 
-
+    /**
+     * Gets a list of all properties for the account corresponding
+     *     to accountId, then calls handleProperties
+     * @param {string} accountId - id from Google Analytics account entry
+     */
     function queryProperties(accountId) {
-        // Get a list of all the properties for the account.
       gapi.client.analytics.management.webproperties.list(
                 {'accountId': accountId})
                 .then(handleProperties)
@@ -75,9 +104,12 @@
                 });
     }
 
-
+    /**
+     * Handles the response from the webproperties list method; calls
+     *     calls queryProfiles on the first property of the first account
+     * @param {Object} response - response object from webproperties.list()
+     */
     function handleProperties(response) {
-        // Handles the response from the webproperties list method.
       if (response.result.items && response.result.items.length) {
             // Get the first Google Analytics account
         const firstAccountId = response.result.items[0].accountId;
@@ -92,10 +124,13 @@
       }
     }
 
-
+    /**
+     * Gets list of all Views (Profiles) for the given accountID and propertyId;
+     *     this will generally be the first property of the first account
+     * @param {string} accountId - account ID belonging to this view (profile)
+     * @param {string} propertyId - view (profile) id
+     */
     function queryProfiles(accountId, propertyId) {
-        // Get a list of all Views (Profiles) for the first property
-        // of the first Account.
       gapi.client.analytics.management.profiles.list({
         'accountId': accountId,
         'webPropertyId': propertyId,
@@ -107,7 +142,12 @@
                 });
     }
 
-
+    /**
+     * Handles response from the profiles list() method; calls
+     *     queryCoreReportingApi(), queryEventReportingApi(),
+     *     queryConversionRate(), queryChart() on first View (Profile) ID
+     * @param {Object} response - response object from profiles.list()
+     */
     function handleProfiles(response) {
         // Handles the response from the profiles list method.
       if (response.result.items && response.result.items.length) {
@@ -126,7 +166,11 @@
       }
     }
 
-
+    /**
+     * Query the Core Reporting API for the number of sessions for the
+     *     past seven days
+     * @param {string} profileId - View (Profile) ID
+     */
     function queryCoreReportingApi(profileId) {
         // Query the Core Reporting API for the number sessions for
         // the past seven days.
@@ -153,6 +197,13 @@
                   console.log(err);
                 });
     }
+
+    /**
+     * Query the Core Reporting API for the number of converted customers(?)
+     *      made over the past seven days; insert percentage into page
+     * @todo Check why 'start-date' is the first day of 2016
+     * @param {string} profileId - View (Profile) ID
+     */
     function queryConversionRate(profileId) {
         // Query the Core Reporting API for the number sessions for
         // the past seven days.
@@ -180,6 +231,13 @@
                   console.log(err);
                 });
     }
+
+    /**
+     * Query the Core Reporting API, then create and insert a chart
+     *     based off of the result
+     * @todo Check why 'start-date' is '59daysAgo'
+     * @param {string} profileId - View (Profile) ID
+     */
     function queryChart(profileId) {
         // Query the Core Reporting API for the number sessions for
         // the past seven days.
@@ -219,6 +277,13 @@
                   console.log(err);
                 });
     }
+
+    /**
+     * Query the Core Reporting API, then insert a result string
+     *     concatenated from rows into the .eventCount element
+     * @todo Check why 'start-date' is '6daysAgo'
+     * @param {string} profileId - View (Profile) ID
+     */
     function queryEventReportingApi(profileId) {
         // Query the Core Reporting API for the events
       gapi.client.analytics.data.ga.get({
@@ -248,6 +313,12 @@
                   console.log(err);
                 });
     }
+
+    /**
+     * Sends an AJAX request to server; on success, will return object
+     *     containing response and log it onto the console
+     * @return {Object} json - Object containing server response
+     */
     function getCompanies() {
       let json;
       $.ajax({

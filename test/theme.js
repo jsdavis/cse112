@@ -17,31 +17,31 @@ describe('Theme Settings Model', () => {
       displaySignature: false,
       additionalComments: false,
     });
-    theme.save((err) => {
+    theme.save(done);
+  });
+
+  it.skip('should GET theme setting', (done) => {
+    Theme.findOne({
+      user_id: 'test',
+    },
+    (err, theme) => {
       if (err) return done(err);
+
+      theme.background_img.should.equal('default');
+      theme.form_color.should.equal('default');
+      theme.displayClock.should.equal(false);
+      theme.displayPhone.should.equal(false);
+      theme.displaySignature.should.equal(false);
+      theme.additionalComments.should.equal(false);
       done();
     });
   });
 
-    /* it('should GET theme setting', function(done) {
-        Theme.findOne({
-            user_id: "test"
-        }, function(err, theme) {
-            if (err) return done(err);
-            theme.background_img.should.equal('default');
-            theme.form_color.should.equal('default');
-            theme.displayClock.should.equal(false);
-            theme.displayPhone.should.equal(false);
-            theme.displaySignature.should.equal(false);
-            theme.additionalComments.should.equal(false);
-            done();
-        });
-    });*/
-
   it('should update(PUT) theme setting', (done) => {
     Theme.findOne({
       user_id: 'test',
-    }, (err, theme) => {
+    },
+    (err, theme) => {
       theme.user_id = 'test'; // company or user id
       theme.form_color = 'default';
       theme.background_img = 'default';
@@ -49,8 +49,10 @@ describe('Theme Settings Model', () => {
       theme.displayClock = true;
       theme.displaySignature = false;
       theme.additionalComments = true;
+
       theme.save((err) => {
         if (err) return done(err);
+
         theme.background_img.should.equal('default');
         theme.form_color.should.equal('default');
         theme.displayClock.should.equal(true);
@@ -62,15 +64,17 @@ describe('Theme Settings Model', () => {
     });
   });
 
-    /* it('should remove(DELETE) theme setting', function(done) {
-        Theme.remove({
-            user_id: "test"
-        }, function(err, theme) {
-            if (err) return done(err);
-            theme.should.equal(1);
-            done();
-        });
-    });*/
+  it.skip('should remove(DELETE) theme setting', (done) => {
+    Theme.remove({
+      user_id: 'test',
+    },
+    (err, theme) => {
+      if (err) return done(err);
+
+      theme.should.equal(1);
+      done();
+    });
+  });
 });
 
 // Route Tests need to be changed to work with auth
@@ -78,17 +82,16 @@ describe('Theme Settings Model', () => {
 describe('Themes Route Test', () => {
   let credentials;  // variable to hold all the need authentication variables.
 
-        // before function is called at the very beginning of the 'Forms' test suite,
-        // no tests are run until the done() callback is called.
+  // before function is called at the very beginning of the 'Forms' test suite,
+  // no tests are run until the done() callback is called.
   before((done) => {
-            // setupAdmin will create and admin and log you in, give it a callback that will give you
-            // the credentials you need. Make sure to call done() inside ConfigureAuth's callback!
+    // setupAdmin will create and admin and log you in, give it a callback that will give you
+    // the credentials you need. Make sure to call done() inside ConfigureAuth's callback!
     ConfigureAuth.setupAdmin((cred) => {
       credentials = cred;
       done();
     });
   });
-
 
   describe('POST /api/:user_id/theme', () => {
     it('should respond with theme info for respective user_id settings that were created for first time user', (done) => {
@@ -100,37 +103,37 @@ describe('Themes Route Test', () => {
       const _displayClock = false;
       const _displaySignature = false;
       const _additionalComments = false;
+
       request(url)
-                    .post('/api/' + _userID + '/theme')
-                    .query({email: credentials.email, token: credentials.token})
-                    .send({
-                      form_color: _formColor,
-                      background_img: _backgroundImg,
-                      displayPhone: _displayPhone,
-                      displayClock: _displayClock,
-                      displaySignature: _displaySignature,
-                      additionalComments: _additionalComments,
-                    })
-                    .end((err, res) => {
-                      console.log(res.body);
-                      res.body.should.have.property('user_id');
-                      res.body.should.have.property('form_color');
-                      res.body.should.have.property('background_img');
-                      res.body.should.have.property('displayPhone');
-                      res.body.should.have.property('displayClock');
-                      res.body.should.have.property('displaySignature');
-                      res.body.should.have.property('additionalComments');
+        .post('/api/' + _userID + '/theme')
+        .query({email: credentials.email, token: credentials.token})
+        .send({
+          form_color: _formColor,
+          background_img: _backgroundImg,
+          displayPhone: _displayPhone,
+          displayClock: _displayClock,
+          displaySignature: _displaySignature,
+          additionalComments: _additionalComments,
+        })
+        .end((err, res) => {
+          res.body.should.have.property('user_id');
+          res.body.should.have.property('form_color');
+          res.body.should.have.property('background_img');
+          res.body.should.have.property('displayPhone');
+          res.body.should.have.property('displayClock');
+          res.body.should.have.property('displaySignature');
+          res.body.should.have.property('additionalComments');
 
-                      res.body.user_id.should.equal(_userID);
-                      res.body.form_color.should.equal(_formColor);
-                      res.body.background_img.should.equal(_backgroundImg);
-                      res.body.displayPhone.should.equal(_displayPhone);
-                      res.body.displayClock.should.equal(_displayClock);
-                      res.body.displaySignature.should.equal(_displaySignature);
-                      res.body.additionalComments.should.equal(_additionalComments);
+          res.body.user_id.should.equal(_userID);
+          res.body.form_color.should.equal(_formColor);
+          res.body.background_img.should.equal(_backgroundImg);
+          res.body.displayPhone.should.equal(_displayPhone);
+          res.body.displayClock.should.equal(_displayClock);
+          res.body.displaySignature.should.equal(_displaySignature);
+          res.body.additionalComments.should.equal(_additionalComments);
 
-                      done();
-                    });
+          done();
+        });
     });
   });
 
@@ -139,20 +142,20 @@ describe('Themes Route Test', () => {
       const url = 'localhost:' + config.port;
       const userID = '1';
       request(url)
-                    .get('/api/' + userID + '/theme')
-                    .query({email: credentials.email, token: credentials.token})
-                    .end((err, res) => {
-                      res.body.should.have.property('_id');
-                      res.body.should.have.property('additionalComments');
-                      res.body.should.have.property('user_id');
-                      res.body.should.have.property('form_color');
-                      res.body.should.have.property('background_img');
-                      res.body.should.have.property('displayPhone');
-                      res.body.should.have.property('displayClock');
-                      res.body.should.have.property('displaySignature');
+        .get('/api/' + userID + '/theme')
+        .query({email: credentials.email, token: credentials.token})
+        .end((err, res) => {
+          res.body.should.have.property('_id');
+          res.body.should.have.property('additionalComments');
+          res.body.should.have.property('user_id');
+          res.body.should.have.property('form_color');
+          res.body.should.have.property('background_img');
+          res.body.should.have.property('displayPhone');
+          res.body.should.have.property('displayClock');
+          res.body.should.have.property('displaySignature');
 
-                      done();
-                    });
+          done();
+        });
     });
   });
 
@@ -167,36 +170,37 @@ describe('Themes Route Test', () => {
       const _displayClock = false;
       const _displaySignature = false;
       const _additionalComments = false;
+
       request(url)
-                    .put('/api/' + _userID + '/theme')
-                    .query({email: credentials.email, token: credentials.token})
-                    .send({
-                      form_color: _formColor,
-                      background_img: _backgroundImg,
-                      displayPhone: _displayPhone,
-                      displayClock: _displayClock,
-                      displaySignature: _displaySignature,
-                      additionalComments: _additionalComments,
-                    })
-                    .end((err, res) => {
-                      res.body.should.have.property('user_id');
-                      res.body.should.have.property('form_color');
-                      res.body.should.have.property('background_img');
-                      res.body.should.have.property('displayPhone');
-                      res.body.should.have.property('displayClock');
-                      res.body.should.have.property('displaySignature');
-                      res.body.should.have.property('additionalComments');
+        .put('/api/' + _userID + '/theme')
+        .query({email: credentials.email, token: credentials.token})
+        .send({
+          form_color: _formColor,
+          background_img: _backgroundImg,
+          displayPhone: _displayPhone,
+          displayClock: _displayClock,
+          displaySignature: _displaySignature,
+          additionalComments: _additionalComments,
+        })
+        .end((err, res) => {
+          res.body.should.have.property('user_id');
+          res.body.should.have.property('form_color');
+          res.body.should.have.property('background_img');
+          res.body.should.have.property('displayPhone');
+          res.body.should.have.property('displayClock');
+          res.body.should.have.property('displaySignature');
+          res.body.should.have.property('additionalComments');
 
-                      res.body.user_id.should.equal(_userID);
-                      res.body.form_color.should.equal(_formColor);
-                      res.body.background_img.should.equal(_backgroundImg);
-                      res.body.displayPhone.should.equal(_displayPhone);
-                      res.body.displayClock.should.equal(_displayClock);
-                      res.body.displaySignature.should.equal(_displaySignature);
-                      res.body.additionalComments.should.equal(_additionalComments);
+          res.body.user_id.should.equal(_userID);
+          res.body.form_color.should.equal(_formColor);
+          res.body.background_img.should.equal(_backgroundImg);
+          res.body.displayPhone.should.equal(_displayPhone);
+          res.body.displayClock.should.equal(_displayClock);
+          res.body.displaySignature.should.equal(_displaySignature);
+          res.body.additionalComments.should.equal(_additionalComments);
 
-                      done();
-                    });
+          done();
+        });
     });
   });
 
@@ -205,19 +209,18 @@ describe('Themes Route Test', () => {
       const url = 'localhost:' + config.port;
       const userID = '1';
       request(url)
-                    .delete('/api/' + userID + '/theme')
-                    .query({email: credentials.email, token: credentials.token})
-                    .expect(200)
-                    .end((err, res) => {
-                      res.body.should.have.property('msg');
-                      done();
-                    });
+        .delete('/api/' + userID + '/theme')
+        .query({email: credentials.email, token: credentials.token})
+        .expect(200)
+        .end((err, res) => {
+          res.body.should.have.property('msg');
+          done();
+        });
     });
   });
 
-
   after((done) => {
-            // give cleanupAuth the email of the admin user it created earlier.
+    // give cleanupAuth the email of the admin user it created earlier.
     ConfigureAuth.cleanupAuth(credentials.email, done);
   });
 });

@@ -17,7 +17,7 @@ exports.getCompanyVisitorListReq = function(req, res) {
     if(result == null) {
       result = new VisitorList();
       result.visitors = [];
-      result.company_id=companyId;
+      result.company_id = companyId;
       result.save((err) => {
         return res.status(200).json(result);
       });
@@ -151,7 +151,7 @@ exports.create = function(param, callback) {
               }
               list.visitors.push(visitor);
               list.save((err) => {
-                if(err) return callback({error: 'an error in saving'}, null);
+                if (err) return callback({error: 'an error in saving'}, null);
                 return callback(null, list);
                     /* Employee.find({company : req.body.company_id},
                      function(err, employees) {

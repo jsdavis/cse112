@@ -67,6 +67,8 @@ module.exports = {
     browser
       .url('http://localhost:8080')
       .assert.containsText('#footer', 'Copyright © Emissary - All Rights Reserved.')
+      .waitForElementVisible('body')
+      .assert.title('Unlucky Geniuses')
       .end();
   },
   'after': (browser) => browser.end(),
