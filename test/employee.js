@@ -43,8 +43,8 @@ describe('Employee', () => {
             role: 'c_admin',
           })
           .end((err, res) => {
-            if (err)
-              throw(err);
+            if (err) throw(err);
+
             res.body.should.have.property('first_name').and.be.equal('John');
             res.body.should.have.property('email').and.be.equal('jt@tomcruise.com');
             res.body.should.not.have.property('password');
@@ -53,154 +53,150 @@ describe('Employee', () => {
           });
       });
     });
+
     describe('Login', () => {
       it('Should login with employee data', (done) => {
         request(url)
-                        .post('/api/employees/login')
-                            .send(
-          {
+          .post('/api/employees/login')
+          .send({
             email: 'jt@tomcruise.com',
             password: 'test',
-          }
-                            )
-                            .end((err, res) => {
-                              if(err) throw (err);
-                              res.body.should.have.property('_id');
-                              res.body.should.not.have.property('password');
-                              done();
-                            });
+          })
+          .end((err, res) => {
+            if (err) throw (err);
+
+            res.body.should.have.property('_id');
+            res.body.should.not.have.property('password');
+            done();
+          });
       });
+
       it('Should not login with employee data', (done) => {
         request(url)
-                        .post('/api/employees/login')
-                        .send(
-          {
+          .post('/api/employees/login')
+          .send({
             email: 'jt@tomcruise.com',
             password: 'incorrect',
-          }
-                        )
-                        .end((err, res) => {
-                          if(err) throw (err);
-                          res.body.should.have.property('error');
+          })
+          .end((err, res) => {
+            if (err) throw (err);
 
-                          done();
-                        });
+            res.body.should.have.property('error');
+            done();
+          });
       });
+
       it('Should update the employee data', (done) => {
         request(url)
-                        .put('/api/employees/' + returnedId)
-                        .query({email: credentials.email, token: credentials.token})
-                        .send({
-                          _admin_id: credentials.admin._id,
-                          password: 'new_password',
-                        })
-                        .end((err, res) => {
-                          if(err)
-                            throw(err);
+          .put('/api/employees/' + returnedId)
+          .query({email: credentials.email, token: credentials.token})
+          .send({
+            _admin_id: credentials.admin._id,
+            password: 'new_password',
+          })
+          .end((err, res) => {
+            if (err) throw(err);
 
-                          res.body.should.have.property('email');
-                          res.body.should.have.property('phone_number');
-                          res.body.should.not.have.property('password');
-                          done();
-                        });
+            res.body.should.have.property('email');
+            res.body.should.have.property('phone_number');
+            res.body.should.not.have.property('password');
+            done();
+          });
       });
+
       it('Should login with new password', (done) => {
         request(url)
-                        .post('/api/employees/login')
-                        .send(
-          {
+          .post('/api/employees/login')
+          .send({
             email: 'jt@tomcruise.com',
             password: 'new_password',
-          }
-                        )
-                        .end((err, res) => {
-                          if(err) throw (err);
-                          res.body.should.have.property('email');
-                          res.body.should.have.property('phone_number');
-                          res.body.should.not.have.property('password');
-                          done();
-                        });
+          })
+          .end((err, res) => {
+            if (err) throw (err);
+
+            res.body.should.have.property('email');
+            res.body.should.have.property('phone_number');
+            res.body.should.not.have.property('password');
+            done();
+          });
       });
     });
 
-            // TEST PUT
+    // TEST PUT
     describe('PUT /api/employees/:id', () => {
       it('Should update the employee data', (done) => {
         request(url)
-                        .put('/api/employees/' + returnedId)
-                        .query({email: credentials.email, token: credentials.token})
-                        .send({
-                          _admin_id: credentials.admin._id,
-                          email: 'updated_email@tomcruise.com',
-                          phone_number: '987654321',
-                        })
-                        .end((err, res) => {
-                          if(err)
-                            throw(err);
+          .put('/api/employees/' + returnedId)
+          .query({email: credentials.email, token: credentials.token})
+          .send({
+            _admin_id: credentials.admin._id,
+            email: 'updated_email@tomcruise.com',
+            phone_number: '987654321',
+          })
+          .end((err, res) => {
+            if (err) throw(err);
 
-                          res.body.should.have.property('email').and.be.equal('updated_email@tomcruise.com');
-                          res.body.should.have.property('phone_number').and.be.equal('987654321');
-                          res.body.should.not.have.property('password');
-                          done();
-                        });
+            res.body.should.have.property('email').and.be.equal('updated_email@tomcruise.com');
+            res.body.should.have.property('phone_number').and.be.equal('987654321');
+            res.body.should.not.have.property('password');
+            done();
+          });
       });
     });
 
-            // TEST GET ALL EMPLOYEES
+    // TEST GET ALL EMPLOYEES
     describe('GET /api/employees/company/:id', () => {
       it('should return all employees', (done) => {
         request(url)
-                        .get('/api/employees/company/'+credentials.admin._id)
-                        .send({
-                          _admin_id: credentials.admin._id,
-                        })
-                        .end((err, res) => {
-                            // console.log("RESPONSE", res)
-                          res.body.should.be.instanceof(Object);
-                            // res.body.should.not.be.empty;
-                          res.body.should.not.be.empty;
-                            // res.body.should.exist;
-                          should.exist(res.body);
-                          res.body.should.have.length.of(1);
-                          res.body.should.be.an.instanceof(Array);
-                          res.body[0].should.not.have.property('password');
-                          done();
-                        });
+          .get('/api/employees/company/'+credentials.admin._id)
+          .send({
+            _admin_id: credentials.admin._id,
+          })
+          .end((err, res) => {
+            res.body.should.be.instanceof(Object);
+            // res.body.should.not.be.empty;
+            res.body.should.not.be.empty;
+            // res.body.should.exist;
+            should.exist(res.body);
+            res.body.should.have.length.of(1);
+            res.body.should.be.an.instanceof(Array);
+            res.body[0].should.not.have.property('password');
+            done();
+          });
       });
     });
 
-            // TEST GET A SPECIFIC EMPLOYEE
+    // TEST GET A SPECIFIC EMPLOYEE
     describe('GET /api/employees/:id', () => {
       it('should return a specific employee', (done) => {
         request(url)
-                        .get('/api/employees/' + returnedId)
-                        .query({email: credentials.email, token: credentials.token})
-                        .end((err, res) => {
-                          res.body.should.have.property('_id');
-                          res.body.should.have.property('email');
-                          res.body.should.have.property('first_name');
-                          res.body.should.have.property('last_name');
-                          res.body.should.have.property('phone_number');
-                          res.body.should.not.have.property('password');
-                          res.body.should.be.instanceof(Object);
-
-                          res.body._id.should.equal(returnedId);
-                          done();
-                        });
+          .get('/api/employees/' + returnedId)
+          .query({email: credentials.email, token: credentials.token})
+          .end((err, res) => {
+            res.body.should.have.property('_id');
+            res.body.should.have.property('email');
+            res.body.should.have.property('first_name');
+            res.body.should.have.property('last_name');
+            res.body.should.have.property('phone_number');
+            res.body.should.not.have.property('password');
+            res.body.should.be.instanceof(Object);
+            res.body._id.should.equal(returnedId);
+            done();
+          });
       });
     });
 
-            // TEST DELETE
+    // TEST DELETE
     describe('DELETE /api/employees/:id', () => {
       it('Should delete the employee data', (done) => {
         request(url)
-                        .delete('/api/employees/' + returnedId)
-                        .query({email: credentials.email, token: credentials.token})
-                        .end((err, res) => {
-                          res.body.should.have.property('_id');
-                          res.body.should.not.have.property('password');
-                          done();
-                        });
+          .delete('/api/employees/' + returnedId)
+          .query({email: credentials.email, token: credentials.token})
+          .end((err, res) => {
+            res.body.should.have.property('_id');
+            res.body.should.not.have.property('password');
+            done();
+          });
       });
     });
   });

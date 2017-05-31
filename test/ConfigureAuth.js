@@ -1,7 +1,5 @@
 const request = require('supertest');
-
 const config = require('../server/config/config');
-
 const AdminUser = require('../server/models/Company');
 const Employee = require('../server/models/Employee');
 
@@ -32,38 +30,37 @@ function setupUser(done, isEmployee) {
 
   const url = 'localhost:' + config.port;
   request(url)
-      .post(path)
-      .send({
-        email: email,
-        password: password,
-        credit_card_number: creditCardNumber,
-        name: name,
-        expiration_date: expirationDate,
-        phone_number: phoneNumber,
-      })
-      .expect(200)
-      .end((err, res) => {
-        if(err)
-          throw(err);
-        res.body.should.have.property('_id');
-        login(res.body._id);
-      });
+    .post(path)
+    .send({
+      email: email,
+      password: password,
+      credit_card_number: creditCardNumber,
+      name: name,
+      expiration_date: expirationDate,
+      phone_number: phoneNumber,
+    })
+    .expect(200)
+    .end((err, res) => {
+      if (err) throw(err);
+
+      res.body.should.have.property('_id');
+      login(res.body._id);
+    });
 
   function login(id) {
     request(url)
-        .get(path+'/'+id)
-        .expect(200)
-        .end((err, res) => {
-          if(err)
-            throw(err);
-          retrieveAdmin();
-        });
+      .get(path+'/'+id)
+      .expect(200)
+      .end((err, res) => {
+        if (err) throw(err);
+        retrieveAdmin();
+      });
   }
 
   function retrieveAdmin() {
     AdminUser.findOne({email: email}, (err, dbAdmin) => {
-      if(err)
-        throw(err);
+      if (err) throw(err);
+
       admin = dbAdmin;
       done({
         admin: admin,
@@ -77,8 +74,7 @@ function setupUser(done, isEmployee) {
 
 function cleanupAuth(email, callback) {
   AdminUser.remove({email: email}, (err) => {
-    if(err)
-      throw(err);
+    if (err) throw(err);
     callback();
   });
 }
@@ -86,8 +82,7 @@ function cleanupAuth(email, callback) {
 // Employee login feature
 function cleanupEmployee(email, callback) {
   Employee.remove({email: email}, (err) => {
-    if(err)
-      throw(err);
+    if (err) throw(err);
     callback();
   });
 }
