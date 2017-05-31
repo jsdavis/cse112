@@ -8,20 +8,20 @@ docs/*
 coverage/*
 **/vendor/**
 public/js-es5/*
-public/js/neon*
+public/js/vendor/neon*
 public/js/min/*
-public/js/resizeable.js
+public/js/vendor/resizeable.js
 
 /*Files added for front-end (Arash)*/
-public/js/scripts.js
-public/js/socket.io.js
-public/js/bootstrap.js
-public/js/handlebars-v4.0.5.js
+public/**/scripts.js
+public/**/socket.io.js
+public/**/bootstrap.js
+public/**/handlebars-v4.0.5.js
 public/**/jquery-jvectormap-europe-merc-en.js
 public/**/d3.v3.js
 public/**/raphael-min.js
-public/js/jscolor.js
-public/js/jquery.inputmask.bundle.js
+public/**/jscolor.js
+public/**/jquery.inputmask.bundle.js
 public/**/js.cookie.js
 public/**/datatables.js
-public/js/toastr.js
+public/**/toastr.js
