@@ -17,12 +17,12 @@ describe('Theme Settings Model', () => {
       displaySignature: false,
       additionalComments: false,
     });
-    theme.save(done(err));
+    theme.save(done);
   });
 
   it.skip('should GET theme setting', (done) => {
     Theme.findOne({
-      user_id: "test"
+      user_id: 'test',
     },
     (err, theme) => {
       if (err) return done(err);
@@ -64,9 +64,9 @@ describe('Theme Settings Model', () => {
     });
   });
 
-  it.skip('should remove(DELETE) theme setting', function(done) {
+  it.skip('should remove(DELETE) theme setting', (done) => {
     Theme.remove({
-      user_id: "test"
+      user_id: 'test',
     },
     (err, theme) => {
       if (err) return done(err);

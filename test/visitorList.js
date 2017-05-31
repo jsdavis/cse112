@@ -36,7 +36,7 @@ describe('VisitorList', () => {
     last_name: 'test1',
     phone_number: '1234567890',
     checkin_time: new Date(),
-    additional_info: { allergies: 'peanuts' }
+    additional_info: {allergies: 'peanuts'},
   };
 
   // info for second visitor
@@ -45,7 +45,7 @@ describe('VisitorList', () => {
     last_name: 'test2',
     phone_number: '1234567890',
     checkin_time: new Date(),
-    additional_info: { allergies: 'seafood' }
+    additional_info: {allergies: 'seafood'},
   };
 
   // info for visitor_one's appointment
@@ -54,7 +54,7 @@ describe('VisitorList', () => {
     last_name: firstVisitorInfo.last_name,
     phone_number: firstVisitorInfo.phone_number,
     date: new Date(),
-    provider_name: 'provider1'
+    provider_name: 'provider1',
   };
 
   // info for visitor_two's appointment
@@ -63,7 +63,7 @@ describe('VisitorList', () => {
     last_name: secondVisitorInfo.last_name,
     phone_number: secondVisitorInfo.phone_number,
     date: tomorrow,
-    provider_name: 'provider2'
+    provider_name: 'provider2',
   };
 
 

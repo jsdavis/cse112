@@ -1,3 +1,6 @@
+/* This test relies on removed features
+ * -Reebal
+
 const request = require('supertest');
 const config = require('../server/config/config');
 
@@ -9,18 +12,19 @@ const Email = require('../notification/email');
 const TextModel = require('../notification/text');
 
 // SAMPLE : [{phone_number: "XXX-XXX-XXXX", email: "XXXXX@XXXXX.com"}];
-let employees = [];
+const employees = [];
 
-describe.skip("Notification", () => {
+describe.skip('Notification', () => {
   it('It should send an email', (done) => {
     this.timeout(9000);
-    Email.sendEmail("Tony Montana", employees, done);
+    Email.sendEmail('Tony Montana', employees, done);
     done();
   });
 
   it('It should send an text', (done) => {
     this.timeout(9000);
-    TextModel.sendText("Tony Montana", employees, done);
+    TextModel.sendText('Tony Montana', employees, done);
     done();
   });
 });
+*/
