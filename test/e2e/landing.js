@@ -103,7 +103,7 @@ module.exports = {
     browser
       .url('http://localhost:8080')
       .waitForElementVisible('body')
-      .assert.title('Emissary')
+      .assert.title('Unlucky Geniuses')
       .end();
   },
   'after': (browser) => browser.end(),

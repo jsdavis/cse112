@@ -193,7 +193,6 @@ describe('VisitorList', () => {
             .send()
             .expect(404)
             .end((err, res) => {
-              console.log(res.body);
               res.body.should.have.property('error');
               done();
             });

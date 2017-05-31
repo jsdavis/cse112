@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "lintfix": "eslint . --fix",
     "test": "NODE_ENV=test nyc --reporter=lcov mocha --timeout 6000",
-    "coverage": "NODE_ENV=test istanbul cover mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | codacy-coverage && rm -rf ./coverage",
+    "coverage": "npm test && cat ./coverage/lcov.info | codacy-coverage && rm -rf ./coverage",
     "doc": "jsdoc -d ./docs -c jsdoc.json",
     "e2e": "nightwatch --config nightwatch.js --env chrome,ie11,firefox",
     "clean": "rm -rf public/js-es5",
