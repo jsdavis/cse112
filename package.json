@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "NODE_ENV=production node index.js",
-    "dev": "NODE_ENV=development nodemon index.js | bunyan -o short",
+    "dev": "NODE_ENV=development node index.js | bunyan -o short",
+    "test-start": "NODE_ENV=test node index.js",
     "lint": "eslint .",
     "lintfix": "eslint . --fix",
-    "test": "NODE_ENV=test nyc --reporter=lcov mocha --timeout 6000",
-    "coverage": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/.bin/codacy-coverage && rm -rf ./coverage",
+    "test": "NODE_ENV=test mocha --timeout 6000",
+    "coverage": "npm test && cat ./coverage/lcov.info | codacy-coverage && rm -rf ./coverage",
     "doc": "jsdoc -d ./docs -c jsdoc.json",
-    "e2e": "node_modules/.bin/nightwatch --config nightwatch.conf.js",
+    "e2e": "nightwatch --config nightwatch.js --env chrome,ie11,firefox",
     "clean": "rm -rf public/js-es5",
     "build": "npm run clean && mkdir public/js-es5 && babel public/js -s -d public/js-es5",
     "production": "npm run build && node bin/production",
@@ -54,6 +55,7 @@
     "jsdoc": "^3.4.3",
     "mocha": "^3.2.0",
     "nightwatch": "^0.9.15",
+    "supertest": "^3.0.0",
     "nodemon": "^1.11.0",
     "nyc": "^10.3.2"
   }
