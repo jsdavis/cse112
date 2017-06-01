@@ -27,7 +27,7 @@ function ajaxPostUser(url, data) {
     dataType: 'json',
     success: function(response) {
       console.log(response);
-      if(response.role == 'a_admin') {
+      if(response.role == 'admin') {
         localStorage.setItem('userState', 2);
         location.href = '/admin-dashboard.html';
       } else{
