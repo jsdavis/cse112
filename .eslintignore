@@ -4,6 +4,7 @@
 *-min.js
 
 node_modules/*
+coverage/*
 docs/*
 coverage/*
 **/vendor/**
