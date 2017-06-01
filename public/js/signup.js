@@ -35,7 +35,8 @@ $(document).ready(() => {
     employee.email = $('#form-employee-email').val();
     employee.password = $('#form-password').val();
     employee.phone_number = $('#form-employee-phone').val();
-    employee.role = 'admin';
+    employee.role = $('#form-employee-role').val();
+    console.log('Role = ' + employee.role);
     employee.company_id = companyId;
     return employee;
   }
@@ -61,7 +62,7 @@ $(document).ready(() => {
           } else if(response.role == 'customer') {
             localStorage.setItem('userState', 3);
             localStorage.setItem('currentUser', JSON.stringify(response));
-            location.href = '/visitors-customer.html';
+            location.href = '/user-dashboard.html';
           }
         } else if (url == '/api/companies') {
           localStorage.setItem('currentCompany', JSON.stringify(response));

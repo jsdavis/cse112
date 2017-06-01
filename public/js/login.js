@@ -30,11 +30,15 @@ function ajaxPostUser(url, data) {
       if(response.role == 'admin') {
         localStorage.setItem('userState', 2);
         location.href = '/admin-dashboard.html';
-      } else{
+      } else if(response.role == 'client') {
         localStorage.setItem('userState', 1);
         localStorage.setItem('currentUser', JSON.stringify(response));
         ajaxGetCompanyInfo('/api/companies/' + response.company_id);
         location.href = '/visitors.html';
+      }else if(response.role == 'customer') {
+        localStorage.setItem('userState', 3);
+        localStorage.setItem('currentUser', JSON.stringify(response));
+        location.href = '/user-dashboard.html';
       }
     },
     error: function() {
