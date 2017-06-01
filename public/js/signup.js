@@ -35,7 +35,7 @@ $(document).ready(() => {
     employee.email = $('#form-employee-email').val();
     employee.password = $('#form-password').val();
     employee.phone_number = $('#form-employee-phone').val();
-    employee.role = 'c_admin';
+    employee.role = 'a_admin';
     employee.company_id = companyId;
     return employee;
   }
@@ -48,17 +48,24 @@ $(document).ready(() => {
       data: data,
       dataType: 'json',
       success: function(response) {
-                // console.log(response);
         if(url == '/api/employees') {
-          localStorage.setItem('userState', 1);
-          localStorage.setItem('currentUser', JSON.stringify(response));
-          location.href = '/visitors.html';
+          console.log(response);
+          if(response.role == 'a_admin') {
+            localStorage.setItem('userState', 2);
+            localStorage.setItem('currentUser', JSON.stringify(response));
+            location.href = '/admin-dashboard.html';
+          } else {
+            localStorage.setItem('userState', 1);
+            localStorage.setItem('currentUser', JSON.stringify(response));
+            location.href = '/visitors.html';
+          }
         } else if (url == '/api/companies') {
           localStorage.setItem('currentCompany', JSON.stringify(response));
           companyId = response._id;
         }
       },
       error: function(response) {
+        console.log('HELLO');
         console.log(response);
         const resJSON = JSON.stringify(response);
         alert(jQuery.parseJSON(resJSON).responseText);
