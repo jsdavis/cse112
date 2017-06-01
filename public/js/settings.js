@@ -10,6 +10,7 @@ $(document).ready(() => {
   const employees = getEmployee();
 
   const source = $('#setting-list-template').html();
+
   const template = Handlebars.compile(source);
   const compiledHtml = template(employees);
 
@@ -23,6 +24,48 @@ $(document).ready(() => {
    // Pulls up form to change employee info
   $('.update-btn').click(updateEmployeeInfo);
   $('#setting-list').html(compiledHtml);
+  $('#slackButton').click(authenticateSlack);
+
+  slack();
+
+  function slack() {
+    let url = window.location.href;
+    if (url.includes('code=')) {
+      url = url.slice(url.indexOf('code='), url.length);
+      const code = url.slice(5, url.indexOf('&'));
+      const clientId = '167318334051.189600788818';
+      const clientSecret = 'f72390af7662c6570ad8dc21cb00a5c1';
+
+      let json;
+      $.ajax({
+        dataType: 'json',
+        type: 'POST',
+        data: {},
+        async: false,
+        url: 'https://slack.com/api/oauth.access?&client_id='+clientId+'&client_secret='+clientSecret+'&code='+code+'&redirect_uri='+window.location.href,
+        success: function(response) {
+          json = response;
+          alert('success'+window.location.href);
+          console.log(JSON.stringify(json));
+        },
+        error: function(response) {
+          alert('error');
+        },
+      });
+      return json;
+    } else {
+      // authenticateSlack();
+    }
+  }
+  function authenticateSlack() {
+    const redirectUri = window.location.href;
+    const link='https://slack.com/oauth/authorize?scope=incoming-webhook,bot,chat:write:bot&client_id=167318334051.189600788818&redirect_uri='+redirectUri;
+    window.open(link, '_self');
+    // localStorage.setItem("slackToken", "xoxp-167318334051-167150907856-190181455090-f7c8c1446b10d3682d42b1668ff7691a");
+    // localStorage.setItem("slackChannel", "#general");
+    // alert("adding to local localStorage");
+  }
+
 
   // Makes a get request to display list of employees
   function getEmployee() {
@@ -35,7 +78,7 @@ $(document).ready(() => {
       url: '/api/employees/' + curUser._id,
       success: function(response) {
         json = response;
-        console.log(response);
+        console.log(JSON.stringify(json));
       },
     });
     return json;
@@ -56,6 +99,7 @@ $(document).ready(() => {
     const data = grabFormElementsUpdate();
     console.log(data);
     updateEmployee(data);
+
     $('#setting-list').html(template(employees));
     document.getElementById('settings-form').reset();
   }
@@ -71,6 +115,8 @@ $(document).ready(() => {
       success: function(response) {
         console.log(response);
         localStorage.setItem('currentUser', JSON.stringify(response));
+      },
+      error: function(response) {
       },
     });
   }
