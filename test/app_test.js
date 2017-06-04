@@ -1,3 +1,9 @@
+/* ESLints indentation checker appears to fail on this file
+ * -jsdavis
+ */
+
+/* eslint indent: "off" */
+
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 chai.should();
@@ -20,11 +26,12 @@ describe('AppTest', () => {
       chai.request(server)
 				.get('/invalidroute')
 				.end((err, res) => {
-  if (!err || !res) return done(err);
-  err.should.have.status(404);
-  res.should.have.status(404);
-  done();
-});
+          if (!err || !res) return done(err);
+
+          err.should.have.status(404);
+          res.should.have.status(404);
+          done();
+        });
     });
   });
 
@@ -33,14 +40,14 @@ describe('AppTest', () => {
       chai.request(server)
 				.get('/')
 				.end((err, res) => {
-  if (err) return done(err);
-  res.should.have.status;
-  res.status.should.be.above(199);
-  res.status.should.be.below(300);
-  done();
-});
+          if (err) return done(err);
+
+          res.should.have.status;
+          res.status.should.be.above(199);
+          res.status.should.be.below(300);
+          done();
+        });
     });
   });
 });
-
 
