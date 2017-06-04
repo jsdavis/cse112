@@ -4,6 +4,8 @@ $(document).ready(() => {
   const curUser = JSON.parse(localStorage.getItem('currentUser'));
 
 
+  $('#appt-date').datepicker();
+
   $('#user-name').text(curUser.first_name + ' ' + curUser.last_name);
 
   let appts = getAppts();
