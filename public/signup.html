@@ -81,15 +81,15 @@
                             <div class="form-bottom">
                                 <div class="form-group">
                                     <label class="sr-only" for="form-company-name">Company name</label>
-                                    <input type="text" name="name" placeholder="Company Name" class="form-company-name form-control" id="form-company-name">
+                                    <input type="text" name="name" placeholder="Company Name" class="form-company-name form-control" id="form-company-name" required>
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="form-email">Email</label>
-                                    <input type="text" name="email" placeholder="Email" class="form-email form-control" id="form-email">
+                                    <input type="text" name="email" placeholder="Email" class="form-email form-control" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" title="(name@email.com)" id="form-email" required>
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="form-phone">Phone Number</label>
-                                    <input type="text" name="phone_number" placeholder="Phone Number" class="form-phone form-control" id="form-phone">
+                                    <input type="text" name="phone_number" placeholder="Phone Number" class="form-phone form-control" pattern="^\d{3}-\d{3}-\d{4}$" title="(123-123-1234)" id="form-phone" required>
                                 </div>
                                 <!--<div class="form-group">
                                     <label class="sr-only" for="form-card">Phone Number</label>
@@ -101,7 +101,7 @@
                                 </div>
                                 -->
 
-                                <button id="submit-company-btn" type="button" class="btn btn-next">Next</button>
+                                <button id="submit-company-btn" type="submit" class="btn">Next</button>
                             </div>
                         </fieldset>
 

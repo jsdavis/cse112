@@ -11,12 +11,36 @@ $(document).ready(() => {
     ajaxPost('/api/employees', employeeData);
   });
 
-    // Listener for creating a company
-  $('#submit-company-btn').on('click', () => {
+   // Listener for creating a company
+  function submitCompany() {
+  	if( validateCompany() === false){
+  	  return false;
+  	}
+  	else{
     const companyData = grabCompanyData();
     console.log(companyData);
-    ajaxPost('/api/companies', companyData);
-  });
+    //ajaxPost('/api/companies', companyData);
+    return true;
+    }
+  }
+
+    // next step
+    $('#submit-company-btn').on('click', function() {
+    	var parent_fieldset = $(this).parents('fieldset');
+    	var next_step = true;
+    	console.log(next_step);
+    	if(!submitCompany()){
+    		next_step = false;
+    	}
+    	console.log(next_step);
+
+    	if( next_step ) {
+    		parent_fieldset.fadeOut(400, function() {
+	    		$(this).next().fadeIn();
+	    	});
+    	}
+    	
+    });
 
     // Grab Company Data from form
   function grabCompanyData() {
@@ -87,17 +111,32 @@ $(document).ready(() => {
 
     if(companyName == '') {
       console.log('username cannot be blank');
+      return false;
     }
 
-    if(validateEmail(companyEmail)) {
+    if(!validateEmail(companyEmail)) {
       console.log('please enter a valid email');
+      return false;
     }
+
+    if(!validatePhone(companyNumber)) {
+      console.log('please enter a valid phone number');
+      return false;
+    }
+
+    return true;
   }
 
 
   function validateEmail(email) {
-    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    //const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const re = /([^@\s]+@[^@\s]+\.[^@\s]+)$/;
     return re.test(email);
+  }
+
+  function validatePhone(phone){
+  	const phone_format = /(\d{3}-\d{3}-\d{4}$)/;
+  	return phone_format.test(phone);
   }
 
   function checkPassword(form) {
