@@ -16,6 +16,7 @@ const customerSchema= mongoose.Schema({
   role: {type: String, required: true},
   // company_id: {type: Schema.Types.ObjectId, ref: 'Company', required: true},
   company_id: {type: String, required: true},
+  companies: [{type: mongoose.Schema.Types.ObjectId, ref: 'Company'}],
 });
 
 // checking if password is valid
@@ -26,4 +27,4 @@ customerSchema.methods.validPassword = function(password) {
 customerSchema.methods.generateHash = function(password) {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
-module.exports = mongoose.model('customerSchema', customerSchema);
+module.exports = mongoose.model('Customer', employeeSchema);

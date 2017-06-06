@@ -25,7 +25,7 @@ module.exports.getAllCompanies = function(req, res) {
     if(err) {
       return res.status(400).send({error: 'Can not Find'});
     }
-    return res.status(200).json(result);
+    return res.status(200).json(result.companies);
   });
 };
 
