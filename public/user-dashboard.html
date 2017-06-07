@@ -2,33 +2,33 @@
 <html lang="en">
 <head>
 	<script>
-		var userState = JSON.parse(localStorage.getItem("userState"));
-  		if(userState != 2)
-    		location.href= "login.html";
+		<!--var userState = JSON.parse(localStorage.getItem("userState"));-->
+  		<!--if(userState != 2)-->
+    		<!--location.href= "login.html";-->
 	</script>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta name="description" content="Admin Panel" />
+	<meta name="description" content="User Panel" />
 	<meta name="author" content="" />
 
 	<link rel="icon" href="image/logo-emissary.png">
 
-	<title>Admin | Companies</title>
+	<title>User | Dashboard</title>
 
 	<link rel="stylesheet" href="css/vendor/jquery-ui-1.10.3.custom.min.css">
 	<link rel="stylesheet" href="font/entypo.css">
 	<link rel="stylesheet" href="font/NotoSans.css">
 	<!-- <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic"> -->
 	<link rel="stylesheet" href="css/vendor/bootstrap.css">
+	<link rel="stylesheet" href="css/vendor/loader.css">
+
 	<link rel="stylesheet" href="css/vendor/neon-core.css">
 	<link rel="stylesheet" href="css/vendor/neon-theme.css">
 	<link rel="stylesheet" href="css/vendor/neon-forms.css">
-
 	<script src="js/min/jquery-1.11.3.min.js"></script>
-	<script type = "text/javascript" src= "js/vendor/handlebars-v4.0.5.js"></script>
-	<script src="js/vendor/adminpanel.js"></script>
+
 	<!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 	
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -51,7 +51,7 @@
 
 				<!-- logo -->
 				<div class="logo">
-					<a href="admin-dashboard.html">
+					<a href="user-dashboard.html">
 						<img src="image/emissary.png" width="150" alt="" />
 					</a>
 				</div>
@@ -78,17 +78,22 @@
 				<!-- add class "multiple-expanded" to allow multiple submenus to open -->
 				<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
 				<li>
-					<a href="admin-dashboard.html">
-						<span class="title">Admin Dashboard</span>
+					<a href="user-dashboard.html">
+						<span class="title">User Dashboard</span>
 					</a>
 				</li>
 				<li>
-					<a href="admin-companies.html">
-						<span class="title">Companies</span>
+					<a href="XXXX.html">
+						<span class="title"> BLANK </span>
 					</a>
 				</li>
 				<li>
-					<a href="admin-settings.html">
+					<a href="XXXX.html">
+						<span class="title"> BLANK </span>
+					</a>
+				</li>
+				<li>
+					<a href="XXXX.html">
 						<span class="title">Settings</span>
 					</a>
 				</li>
@@ -109,11 +114,10 @@
 		
 					<!-- Profile Info -->
 					<li class="profile-info dropdown"><!-- add class "pull-right" if you want to place this from right -->
-		
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<img src="image/thumb-1@2x.png" alt="" class="img-circle" width="44" />
-							Peter
+						<a href="#" id="company-name">
+							<h3>User Dashboard</h3>
 						</a>
+						
 					</li>
 		
 				</ul>
@@ -136,85 +140,7 @@
 		
 		</div>
 		
-		<hr />
-		
-		
-		<h3>Companies</h3>
-		
-		<!-- TO DO: Move js functions to js files -->
-		<script type="text/javascript">
-		jQuery( window ).load( function() {
-			var $table2 = jQuery( "#table-2" );
-			
-			// Initialize DataTable
-			$table2.DataTable( {
-				"sDom": "tip",
-				"bStateSave": false,
-				"iDisplayLength": 8,
-				"aoColumns": [
-					{ "bSortable": false },
-					null,
-					null,
-					null
-				],
-				"bStateSave": true
-			});
-			
-			// Highlighted rows
-			$table2.find( "tbody input[type=checkbox]" ).each(function(i, el) {
-				var $this = $(el),
-					$p = $this.closest('tr');
-				
-				$( el ).on( 'change', function() {
-					var is_checked = $this.is(':checked');
-					
-					$p[is_checked ? 'addClass' : 'removeClass']( 'highlight' );
-				} );
-			} );
-			
-			// Replace Checboxes
-			$table2.find( ".pagination a" ).click( function( ev ) {
-				replaceCheckboxes();
-			} );
-		} );
-			
-		// Sample Function to add new row
-		var giCount = 1;
-		
-		function fnClickAddRow() {
-			jQuery('#table-2').dataTable().fnAddData( [ '<div class="checkbox checkbox-replace"><input type="checkbox" /></div>', giCount + ".1", giCount + ".2", giCount + ".4" ] );
-			replaceCheckboxes(); // because there is checkbox, replace it
-			giCount++;
-		}
-		</script>
-		
-		<table class="table table-bordered table-striped datatable" id="table-2">
-			<thead>
-				<tr>
-					<th>Company Name</th>
-					<th>Email</th>
-					<th>Phone Number</th>
-				</tr>
-			</thead>
-			
-			<tbody id = "company-list">
-			
-			</tbody>
-		</table>
-		<script type = "text/x-handlebars-template" id = "company-list-template">
-            {{#each []}}
-            <tr>
-                <td>{{this.name}}</td>
-                <td>{{this.email}}</td>
-                <td>{{this.phone_number}}</td>
-                <!-- Modal -->
-            </tr>
-            {{/each}}
-        </script>
-		<br />
-		<br />
-		<br />
-		
+
 		<!-- Footer -->
 		<footer class="main">
 			
@@ -230,26 +156,26 @@
 
 
 	<!-- Imported styles on this page -->
-
-	<link rel="stylesheet" href="css/vendor/datatables.css">
-	<link rel="stylesheet" href="css/vendor/select2-bootstrap.css">
-	<link rel="stylesheet" href="css/vendor/select2.css">
+	<link rel="stylesheet" href="css/vendor/jquery-jvectormap-1.2.2.css">
+	<link rel="stylesheet" href="css/vendor/rickshaw.min.css">
 
 	<!-- Bottom scripts (common) -->
 	<script src="js/min/TweenMax.min.js"></script>
 	<script src="js/min/jquery-ui-1.10.3.minimal.min.js"></script>
     <script src="js/min/ajax.jquery.validate.min.js"></script>
 	<!-- <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script> -->
-	<script src="js/vendor/bootstrap.js"></script>
-	<script src="js/vendor/admin-companies.js"></script>
 	<script src="js/vendor/joinable.js"></script>
 	<script src="js/vendor/resizeable.js"></script>
 	<script src="js/vendor/neon-api.js"></script>
 
 
 	<!-- Imported scripts on this page -->
-	<script src="js/vendor/datatables.js"></script>
-	<script src="js/min/select2.min.js"></script>
+	<script src="js/min/jquery.sparkline.min.js"></script>
+	<script src="js/vendor/d3.v3.js"></script>
+	<script src="js/min/rickshaw.min.js"></script>
+	<script src="js/min/raphael-min.js"></script>
+	<script src="js/min/morris.min.js"></script>
+	<script src="js/vendor/toastr.js"></script>
 	<script src="js/vendor/neon-chat.js"></script>
 
 
@@ -259,6 +185,6 @@
 
 	<!-- Demo Settings -->
 	<script src="js/vendor/neon-demo.js"></script>
-
+	<!--<script src="https://apis.google.com/js/client.js?onload=authorize"></script> -->	
 </body>
 </html>
