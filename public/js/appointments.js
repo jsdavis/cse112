@@ -54,7 +54,7 @@ $(document).ready(() => {
     appts = getAppts();
     appts = initializeAppts(appts);
     $('#appt-list').html(template(appts));
-    //document.getElementById('appt-form').reset();
+    // document.getElementById('appt-form').reset();
   }
 
   // Makes a post request to update list of appts when adding a new employee

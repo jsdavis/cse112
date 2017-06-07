@@ -13,34 +13,33 @@ $(document).ready(() => {
 
    // Listener for creating a company
   function submitCompany() {
-  	if( validateCompany() === false){
-  	  return false;
-  	}
-  	else{
-    const companyData = grabCompanyData();
-    console.log(companyData);
-    //ajaxPost('/api/companies', companyData);
-    return true;
+    if( validateCompany() === false)
+      return false;
+
+    else {
+      const companyData = grabCompanyData();
+      console.log(companyData);
+      // ajaxPost('/api/companies', companyData);
+      return true;
     }
   }
 
     // next step
-    $('#submit-company-btn').on('click', function() {
-    	var parent_fieldset = $(this).parents('fieldset');
-    	var next_step = true;
-    	console.log(next_step);
-    	if(!submitCompany()){
-    		next_step = false;
-    	}
-    	console.log(next_step);
+  $('#submit-company-btn').on('click', function() {
+    const ParentFieldset = $(this).parents('fieldset');
+    let NextStep = true;
+    console.log(NextStep);
+    if(!submitCompany()) {
+      NextStep = false;
+    }
+    console.log(NextStep);
 
-    	if( next_step ) {
-    		parent_fieldset.fadeOut(400, function() {
-	    		$(this).next().fadeIn();
-	    	});
-    	}
-    	
-    });
+    if( NextStep ) {
+      ParentFieldset.fadeOut(400, function() {
+        $(this).next().fadeIn();
+      });
+    }
+  });
 
     // Grab Company Data from form
   function grabCompanyData() {
@@ -129,14 +128,14 @@ $(document).ready(() => {
 
 
   function validateEmail(email) {
-    //const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    // const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const re = /([^@\s]+@[^@\s]+\.[^@\s]+)$/;
     return re.test(email);
   }
 
-  function validatePhone(phone){
-  	const phone_format = /(\d{3}-\d{3}-\d{4}$)/;
-  	return phone_format.test(phone);
+  function validatePhone(phone) {
+    const PhoneFormat = /(\d{3}-\d{3}-\d{4}$)/;
+    return PhoneFormat.test(phone);
   }
 
   function checkPassword(form) {
