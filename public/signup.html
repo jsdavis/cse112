@@ -115,34 +115,43 @@
                             <div class="form-bottom">
                                 <div class="form-group">
                                     <label class="sr-only" for="form-employee-role">Role</label>
-                                    <input type="text" name="first" placeholder="Role (admin, client, customer)" class="form-control" id="form-employee-role">
+                                    Select a role level:
+                                    <select name="role" id="form-employee-role"> 
+                                      <option value = "admin">Admin</option>
+                                      <option value = "client">Client</option>
+                                      <option value = "customer">Customer</option>                                   
+                                     </select>
+                                     <!--
+                                    <input type="text" name="first" placeholder="Role (admin, client, customer)" class="form-control" id="form-employee-role" title="(admin, client, customer)"  required>  -->
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="form-employee-first">First Name</label>
-                                    <input type="text" name="first" placeholder="First Name" class="first form-control" id="form-employee-first">
+                                    <input type="text" name="first" placeholder="First Name" class="first form-control" id="form-employee-first" required>
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="form-employee-last">Last Name</label>
-                                    <input type="text" name="last" placeholder="Last Name" class="form-control" id="form-employee-last">
+                                    <input type="text" name="last" placeholder="Last Name" class="form-control" id="form-employee-last" required>
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="form-employee-email">Email</label>
-                                    <input type="text" name="email" placeholder="Email" class="form-email form-control" id="form-employee-email">
+                                    <input type="text" name="email" placeholder="Email" class="form-email form-control" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" title="(name@email.com)" id="form-employee-email" required>
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="form-employee-phone">Phone Number</label>
-                                    <input type="text" name="phone_number" placeholder="Phone Number" class="form-phone form-control" id="form-employee-phone">
+                                    <input type="text" name="phone_number" placeholder="Phone Number" class="form-phone form-control" pattern="^\d{3}-\d{3}-\d{4}$" title="(123-123-1234)" id="form-employee-phone" required>
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="form-password">Password</label>
-                                    <input type="password" name="form-password" placeholder="Password" class="form-password form-control" id="form-password">
+                                    <input type="password" name="form-password" placeholder="Password" class="form-password form-control" id="form-password" title="Requires: At least one lowercase letter: a-z 
+                                    At least one uppercase letter: A-Z
+                                    At least one number 0-9" required>
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="form-repeat-password">Repeat password</label>
                                     <input type="password" name="form-repeat-password" placeholder="Confirm Password"
-                                           class="form-repeat-password form-control" id="form-repeat-password">
+                                           class="form-repeat-password form-control" id="form-repeat-password" required>
                                 </div>
-                                <button id="submit-btn" type="button" class="btn btn-next">Next</button>
+                                <button id="submit-btn" type="btn" class="btn">Next</button>
                             </div>
                         </fieldset>
 
@@ -173,7 +182,7 @@
         ga('create', 'UA-74424228-1', {'cookieDomain': 'none'});
         ga('send', 'pageview');
     </script>
-<script src="js/vendor/scripts.js"></script>
+<script src="js/vendor/scripts.js"></script> 
 
 <!--[if lt IE 10]>
     <script src="assets/js/placeholder.js"></script>
