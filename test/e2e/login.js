@@ -22,7 +22,7 @@ module.exports = {
 			.setValue('input[id="password"]', 'test')
 			.waitForElementVisible('button[id="loginButton"]')
 			.click('button[id="loginButton"]')
-			.assert.urlEquals('http://localhost:8080/visitors.html')
+			.assert.urlEquals('http://localhost:8080/admin-dashboard.html')
       .end();
   },
   'after': (browser) => browser.end(),
