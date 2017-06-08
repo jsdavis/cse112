@@ -34,7 +34,7 @@ module.exports.getById = function(req, res) {
     if (err) {
       return res.status(400).json({error: 'Can not Find'});
     } else {
-      log.info(customer);
+      // log.info(customer);
       return res.status(200).json(customer);
     }
   });

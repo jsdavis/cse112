@@ -29,6 +29,9 @@ $(document).ready(() => {
   function slack() {
     let url = window.location.href;
     if (url.includes('code=')) {
+      const userid = JSON.parse(localStorage.getItem('currentUser'))._id;
+      console.log(localStorage.getItem('currentUser'));
+
       const baseUrl = (window.location.href).slice(0, url.indexOf('.html')+5);
       url = url.slice(url.indexOf('code='), url.length);
       const code = url.slice(5, url.indexOf('&'));
@@ -46,9 +49,22 @@ $(document).ready(() => {
         success: function(response) {
           json = response;
           if(json.incoming_webhook!=undefined&&json.access_token!=undefined) {
-            
             window.localStorage.setItem('slackToken', json.access_token);
             window.localStorage.setItem('slackChannel', json.incoming_webhook.channel);
+            alert(JSON.stringify(localStorage));
+            $.ajax({
+              dataType: 'json',
+              type: 'POST',
+              data: {userid: userid, slackToken: json.access_token, slackChannel: json.incoming_webhook.channel},
+              async: false,
+              url: 'api/slack/',
+              success: function(response) {
+                console.log('success!!!');
+              },
+              error: function(response) {
+                console.log(JSON.stringify(response));
+              },
+            });
           }
           console.log('success');
         },
