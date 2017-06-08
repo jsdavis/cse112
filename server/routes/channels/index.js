@@ -30,14 +30,14 @@ router.delete('/appointments/:id', controller.deleteAppointment);
 router.put('/checkin/:id', controller.checkIn);
 
 // GET/POST/DELETE for managing companies I'm registered with
-router.get('/customer/companies', controller.getRegisteredCompanies);
-router.post('/customer/companies', controller.registerCompany);
-router.delete('/customer/companies', controller.deregisterCompany);
+// router.get('/customer/companies', controller.getRegisteredCompanies);
+// router.post('/customer/companies', controller.registerCompany);
+// router.delete('/customer/companies', controller.deregisterCompany);
 
 // GET/POST/DELETE for managing channels I'm registered with
-router.get('/customer/channels', controller.getChannels);
-router.post('/customer/channels', controller.registerChannel);
-router.delete('/customer/channels', controller.deregisterChannel);
+// router.get('/customer/channels', controller.getChannels);
+// router.post('/customer/channels', controller.registerChannel);
+// router.delete('/customer/channels', controller.deregisterChannel);
 
 // GET/POST/DELETE for managing reminder channels
 router.get('/customer/reminders', controller.getReminders);

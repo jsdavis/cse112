@@ -16,13 +16,11 @@ module.exports.createReq = function(req, res) {
   const slack = new SlackDB();
   const param = req.body;
     // require provided info
-  console.log('Hello World2');
 
   slack.userid = param.userid;
   slack.slackToken = param.slackToken;
   slack.slackChannel = param.slackChannel;
   slack.date = new Date();
-  console.log('Hello World3');
 
   SlackDB.find(
     {
