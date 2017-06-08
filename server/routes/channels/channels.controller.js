@@ -21,7 +21,7 @@ module.exports.getById = function(req, res) {
     if (err) {
       return res.status(400).json({error: 'Can not Find'});
     } else {
-      log.info(employee);
+      // log.info(employee);
       return res.status(200).json(employee);
     }
   });

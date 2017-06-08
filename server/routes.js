@@ -14,6 +14,7 @@ module.exports = function(app) {
   app.use('/api/companies', r('./routes/company'));
   app.use('/api/appointments', r('./routes/appointment'));
   // app.use('/api/channels', r('./routes/channels'));
+  app.use('/api/slack', r('./routes/slack'));
 
   // app.use('/payment'          , r('./routes/payment'));
 };
