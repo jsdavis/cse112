@@ -7,19 +7,6 @@ const log = require('../../../log');
  */
 const Employee = require('../../models/Employee');
 
-module.exports.login = function(req, res) {
-  Employee.findOne({email: req.body.email}, (err, e) => {
-    if(err || !e) {
-      return res.status(400).send({error: 'Can not Find'});
-    }
-    if(!e.validPassword(req.body.password))
-      return res.status(400).send({error: 'Incorrect Credentials'});
-    const employeeJson=e.toJSON();
-    delete employeeJson.password;
-    return res.status(200).json(employeeJson);
-  });
-};
-
 module.exports.getAllEmployees = function(req, res) {
   Employee.find({company_id: req.params.id}, {password: 0}, (err, result) => {
     if(err) {

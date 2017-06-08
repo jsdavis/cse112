@@ -1,36 +1,44 @@
 'use strict';
 
-/* This module is meant to house the functions
- * used by the authorization (auth) API. The
- * actual API is set up in index.js
-
- Functions:
- authSignup()
- authLogin()
- authResetCredentials()
- */
-
-
-/* need this to enable cross origin resource sharing.If disabled, we might
- * not need this later. This is just to get the example to work
- * when front end is served from a something other than our app server.
- */
 const Appointment = require('../../models/Appointment');
+const Company = require('../../models/Company');
+const Customer = require('../../models/Customer');
 
 /** **** Company TEMPLATE ROUTES ******/
-module.exports.template = {};
+module.exports = {};
 
-module.exports.template.create = function(req, res) {
+module.exports.create = function(req, res) {
   const appointment = new Appointment();
   const param = req.body;
 
-    // require provided info
-  appointment.first_name = param.first_name;
-  appointment.last_name = param.last_name;
+  // require provided info
   appointment.phone_number = param.phone_number;
-  appointment.date = param.date;
-  appointment.company_id = param.company_id;
-  appointment.provider_name = param.provider_name;
+  appointment.start = param.start;
+  appointment.end = param.end;
+  appointment.extras = param.extras;
+
+  if (param.customer_id)
+    appointments.customer_id = param.customer_id;
+  else {
+    Customer.find({
+      first_name: param.first_name,
+      last_name: param.last_name,
+    }, (err, customers) => {
+      if (err)
+        return res.status(400).json({
+          error: 'Could not find customer ' + param.first_name + ' ' + param.last_name,
+          message: err.message,
+        });
+
+      else if (customers.length > 1) {
+        return res.status(400).json({
+          error: 'There are multiple customers with that name.',
+        });
+      } else {
+        appointment.customer_id = customers[0]._id;
+      }
+    });
+  }
 
   Appointment.find(
     {
@@ -50,7 +58,7 @@ module.exports.template.create = function(req, res) {
   });
 };
 
-module.exports.template.getAll = function(req, res) {
+module.exports.getAll = function(req, res) {
   Appointment.find({company_id: req.params.id}, (err, result) => {
     if(err) {
       return res.status(400).json(err);
@@ -59,7 +67,7 @@ module.exports.template.getAll = function(req, res) {
   });
 };
 
-module.exports.template.get = function(req, res) {
+module.exports.get = function(req, res) {
   Appointment.findOne({_id: req.params.id}, (err, a) => {
     if(err || !a)
       return res.status(400).send({error: 'Could Not Find'});
@@ -67,7 +75,7 @@ module.exports.template.get = function(req, res) {
   });
 };
 
-module.exports.template.update = function(req, res) {
+module.exports.update = function(req, res) {
   Appointment.findOne({_id: req.params.id}, (err, a) => {
     if(err || !a)
       return res.status(401).json({error: 'Could Not Find'});
@@ -95,7 +103,7 @@ module.exports.template.update = function(req, res) {
   });
 };
 
-module.exports.template.delete = function(req, res) {
+module.exports.delete = function(req, res) {
   Appointment.findById(req.params.id, (err, a) => {
     if(err)
       res.status(400).json({error: 'Could Not Find'});

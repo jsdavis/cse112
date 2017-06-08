@@ -10,14 +10,14 @@ const Schema = mongoose.Schema;
  * Appointment schema
  */
 
-// TODO add last and first name field
 const appointmentSchema = mongoose.Schema({
   first_name: {type: String, required: true},
   last_name: {type: String, required: true},
-  phone_number: {type: String, required: true},
-  date: {type: Date, required: true},
-  provider_name: {type: String, required: true},
+  start: {type: Date, required: true},
+  end: {type: Date, required: true},
   company_id: {type: Schema.Types.ObjectId, ref: 'Company', required: true},
+  customer_id: {type: Schema.Types.ObjectId, ref: 'Customer', required: true},
+  extras: {type: Object, required: false},
 });
 
 

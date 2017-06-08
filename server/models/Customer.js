@@ -27,4 +27,4 @@ customerSchema.methods.validPassword = function(password) {
 customerSchema.methods.generateHash = function(password) {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
-module.exports = mongoose.model('Customer', employeeSchema);
+// module.exports = mongoose.model('Customer', employeeSchema);
