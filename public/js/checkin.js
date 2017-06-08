@@ -35,7 +35,8 @@ $(document).ready(() => {
         // event.preventDefault();
     const data = grabFormElements();
         // console.log(data.company_id);
-    if(localStorage.getItem('slackToken')&&localStorage.getItem('slackChannel')) {
+    if(localStorage.getItem('slackToken')!=undefined&&localStorage.getItem('slackChannel')!=undefined) {
+      alert('about to post to channel'+localStorage.getItem('slackChannel'));
       $.post('https://slack.com/api/chat.postMessage',
         {
           'token': localStorage.getItem('slackToken'),

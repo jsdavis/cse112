@@ -23,6 +23,50 @@ $(document).ready(() => {
    // Pulls up form to change employee info
   $('.update-btn').click(updateEmployeeInfo);
   $('#setting-list').html(compiledHtml);
+  $('#slackButton').click(authenticateSlack);
+  slack();
+
+  function slack() {
+    let url = window.location.href;
+    if (url.includes('code=')) {
+      const baseUrl = (window.location.href).slice(0, url.indexOf('.html')+5);
+      url = url.slice(url.indexOf('code='), url.length);
+      const code = url.slice(5, url.indexOf('&'));
+      const clientId = '167318334051.189600788818';
+      const clientSecret = 'f72390af7662c6570ad8dc21cb00a5c1';
+      const redirectUri = url.slice(0, 5+url.indexOf('.html'));
+
+      let json;
+      $.ajax({
+        dataType: 'json',
+        type: 'POST',
+        data: {},
+        async: false,
+        url: 'https://slack.com/api/oauth.access?&client_id='+clientId+'&client_secret='+clientSecret+'&code='+code+'&redirect_uri='+baseUrl,
+        success: function(response) {
+          json = response;
+          if(json.incoming_webhook!=undefined&&json.access_token!=undefined) {
+            
+            window.localStorage.setItem('slackToken', json.access_token);
+            window.localStorage.setItem('slackChannel', json.incoming_webhook.channel);
+          }
+          console.log('success');
+        },
+        error: function(response) {
+          console.log(JSON.stringify(json));
+        },
+      });
+      return json;
+    } else {
+      // authenticateSlack();
+    }
+  }
+  function authenticateSlack() {
+    const url = window.location.href;
+    const redirectUri = url.slice(0, 5+url.indexOf('.html'));
+    const link='https://slack.com/oauth/authorize?scope=incoming-webhook,bot,chat:write:bot&client_id=167318334051.189600788818&redirect_uri='+redirectUri;
+    window.open(link, '_self');
+  }
 
   // Makes a get request to display list of employees
   function getEmployee() {
