@@ -7,16 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="description" content="Neon Admin Panel"/>
     <meta name="author" content=""/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
 
     <link rel="icon" href="image/logo-emissary.png">
-
+    <link type="text/css" rel="stylesheet" href="css/vendor/materialize.min.css"  media="screen,projection"/>
     <title>Unlucky Geniuses</title>
 
-    <link rel="stylesheet" href="css/vendor/bootstrap_v3.3.6.css">
+    <!--
+    <link rel="stylesheet" href="css/vendor/bootstrap_v3.3.6.css"> -->
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.css"> -->
+    <!--
     <link rel="stylesheet" href="font/entypo.css">
     <link rel="stylesheet" href="css/vendor/neon.css">
-
+	-->
     <!--[if lt IE 9]>
     <script src="assets/js/ie8-responsive-file-warning.js" async></script><![endif]-->
 
@@ -33,40 +37,31 @@
 <div class="wrap">
 
     <!-- Logo and Navigation -->
-    <div class="site-header-container container">
+    <div class="container">
 
         <div class="row">
 
-            <div class="col-md-12">
+                <header class="section">
 
-                <header class="site-header">
 
-                    <section class="site-logo">
+                    <nav class="grey">
 
-                        <a href="index.html">
-                            <img src="image/logo@2x.png" width="165"/>
+                    	<div class="nav-wrapper">
+
+                    	<div class="col s12">
+
+                        <a href="index.html" class="brand-logo left">
+                        	<img src="image/logo@2x.png" width="165"/>
                         </a>
 
-                    </section>
+                        <ul class="right" id="main-menu">
 
-                    <nav class="site-nav">
-
-                        <ul class="main-menu hidden-xs" id="main-menu">
                             <li class="active">
                                 <a href="index.html">
                                     <span>Home</span>
                                 </a>
                             </li>
-                            <li>
-                                <a href="#features">
-                                    <span>Features</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#pricing">
-                                    <span>Pricing</span>
-                                </a>
-                            </li>
+
                             <li>
                                 <a href="login.html">
                                     <span>Login</span>
@@ -79,28 +74,22 @@
                             </li>
                         </ul>
 
-
-                        <div class="visible-xs">
-
-                            <a href="#" class="menu-trigger">
-                                <i class="entypo-menu"></i>
-                            </a>
-
                         </div>
+
                     </nav>
 
                 </header>
 
-            </div>
-
         </div>
 
     </div>
+
+
     <!-- Main Slider --><a name="features"></a>
     <section class="slider-container"
              style="background-image: url(image/slide-img-1-bg.png);">
 
-        <div class="container">
+        <div class="carousel">
 
             <div class="row">
 
@@ -512,12 +501,8 @@
     </footer>
 </div>
 </body>
-<script src="js/min/jquery-1.11.3.min.js"></script>
-<script src="js/min/TweenMax.min.js"></script>
-<script src="js/vendor/bootstrap_v3.3.6.js"></script>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.js"></script> -->
-<script src="js/vendor/resizeable.js"></script>
-<script src="js/vendor/neon-slider.js"></script>
-<script src="js/vendor/neon-custom.js"></script>
+
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="js/vendor/materialize.min.js"></script>
 
 </html>

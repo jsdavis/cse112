@@ -6,9 +6,9 @@ $(document).ready(() => {
 
     // Listener for Initial Sign up of an Employee
   $('#submit-btn').on('click', () => {
-    var p_fieldset = $(this).parents('fieldset');
-    var n_step = true;
-    if(!submitEmployee()){
+    const p_fieldset = $(this).parents('fieldset');
+    let n_step = true;
+    if(!submitEmployee()) {
   	  n_step = false;
     }
     if( next_step ) {
@@ -19,45 +19,43 @@ $(document).ready(() => {
   });
 
   function submitEmployee() {
-  	if( validateEmployee() === false ){
+  	if( validateEmployee() === false ) {
   		return false;
-  	}
-  	else{
-      const employeeData = grabEmployeeData();
-      console.log(employeeData);
-      ajaxPost('/api/employees', employeeData);
-      return true;
-	}
+  	}  	else{
+    const employeeData = grabEmployeeData();
+    console.log(employeeData);
+    ajaxPost('/api/employees', employeeData);
+    return true;
+  }
   }
 
    // Listener for creating a company
   function submitCompany() {
-  	if( validateCompany() === false){
+  	if( validateCompany() === false) {
   	  return false;
-  	}
-  	else{
-      const companyData = grabCompanyData();
-      console.log(companyData);
+  	}  	else{
+    const companyData = grabCompanyData();
+    console.log(companyData);
       // ajaxPost('/api/companies', companyData);
-      return true;
-    }
+    return true;
+  }
   }
 
     // next step
-    $('#submit-company-btn').on('click', function() {
-      var parent_fieldset = $(this).parents('fieldset');
-      var next_step = true;
-      console.log(next_step);
-      if(!submitCompany()){
-        next_step = false;
-      }
-      console.log(next_step);
-      if( next_step ) {
-        parent_fieldset.fadeOut(400, function() {
+  $('#submit-company-btn').on('click', function() {
+    const parent_fieldset = $(this).parents('fieldset');
+    let next_step = true;
+    console.log(next_step);
+    if(!submitCompany()) {
+      next_step = false;
+    }
+    console.log(next_step);
+    if( next_step ) {
+      parent_fieldset.fadeOut(400, function() {
 	      $(this).next().fadeIn();
 	    });
-      }	
-    });
+    }
+  });
 
     // Grab Company Data from form
   function grabCompanyData() {
@@ -146,7 +144,7 @@ $(document).ready(() => {
       return false;
     }
 
-    if(!checkPassword() ){
+    if(!checkPassword() ) {
       return false;
     }
     return true;
@@ -176,7 +174,7 @@ $(document).ready(() => {
   }
 
   function validateRole(role) {
-  	if( role != 'admin' || role != 'client' || role != 'customer' ){
+  	if( role != 'admin' || role != 'client' || role != 'customer' ) {
   	  return false;
   	}
   	return true;
@@ -197,7 +195,7 @@ $(document).ready(() => {
     const password = $('#form-password').val();
     const confirmPassword = $('#form-repeat-password').val();
 
-    if(password != '' ) {  
+    if(password != '' ) {
       if(password.length < 6) {
         console.log('Password must contain at least six characters!');
         return false;
@@ -217,18 +215,16 @@ $(document).ready(() => {
         console.log('Error: password must contain at least one uppercase letter (A-Z)!');
         return false;
       }
-      if(password != confirmPassword ){
+      if(password != confirmPassword ) {
       	console.log('Error: passwords must match!');
       	return false;
       }
       return true;
-    } 
-    else {
+    } else {
       console.log('Error: Please check that you\'ve entered and confirmed your password!');
       return false;
     }
     // console.log('You entered a valid password: ' + password.value);
     return false;
   }
-
 });
