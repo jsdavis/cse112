@@ -10,7 +10,19 @@ router.get('/appointments/customer/:id', controller.getCustomerAppointments);
 router.get('/appointments/company/:id', controller.getCompanyAppointments);
 
 // POST/PUT/DELETE for managing appointments
+/*
 router.post('/appointments/', controller.addAppointment);
+  Added to /api/appointments/ POST. Accepts JSON as follows:
+    {
+      start: date,
+      end: date,
+      first_name: optional. if given, need last_name as well,
+      last_name: optional. if given, need first_name as well,
+      customer_id: alternative to first_name and last_name,
+      company_name: optional. can give company_id instead,
+      company_id: optional. can give company_name instead
+    }
+*/
 router.put('/appointments/:id', controller.updateAppointment);
 router.delete('/appointments/:id', controller.deleteAppointment);
 

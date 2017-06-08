@@ -1,5 +1,6 @@
 'use strict';
 
+const async = require('async');
 const Appointment = require('../../models/Appointment');
 const Company = require('../../models/Company');
 const Customer = require('../../models/Customer');
@@ -12,50 +13,78 @@ module.exports.create = function(req, res) {
   const param = req.body;
 
   // require provided info
-  appointment.phone_number = param.phone_number;
   appointment.start = param.start;
   appointment.end = param.end;
   appointment.extras = param.extras;
 
-  if (param.customer_id)
-    appointments.customer_id = param.customer_id;
-  else {
-    Customer.find({
-      first_name: param.first_name,
-      last_name: param.last_name,
-    }, (err, customers) => {
-      if (err)
-        return res.status(400).json({
-          error: 'Could not find customer ' + param.first_name + ' ' + param.last_name,
-          message: err.message,
-        });
-
-      else if (customers.length > 1) {
-        return res.status(400).json({
-          error: 'There are multiple customers with that name.',
-        });
+  async.series([
+    // Get the customer id
+    (callback) => {
+      if (param.customer_id) {
+        appointments.customer_id = param.customer_id;
+        callback();
       } else {
-        appointment.customer_id = customers[0]._id;
-      }
-    });
-  }
+        Customer.find({
+          first_name: param.first_name,
+          last_name: param.last_name,
+        }, (err, customers) => {
+          if (err)
+            res.status(400).json({
+              error: 'Could not find customer ' + param.first_name + ' ' + param.last_name,
+              message: err.message,
+            });
 
-  Appointment.find(
-    {
-      company_id: param.company_id,
-      date: param.date,
-    }, (err, appointments) => {
-    if(err) return res.status(400).json({error: 'Could Not Find'});
-    if(appointments.length==0) {
-      appointment.save((err, a) => {
+          else if (customers.length > 1)
+            return res.status(500).json({
+              error: 'There are multiple customers with that name.',
+            });
+
+          else
+            appointment.customer_id = customers[0]._id;
+
+          callback();
+        });
+      }
+    },
+    // Get the company id
+    (callback) => {
+      if (param.company_id) {
+        appointments.company_id = param.company_id;
+        callback();
+      } else {
+        Company.find({
+          company_name: param.company_name,
+        }, (err, companies) => {
+          if (err)
+            return res.status(400).json({
+              error: 'Could not find company ' + param.company_name,
+              message: err.message,
+            });
+
+          else if (companies.length > 1) {
+            return res.status(500).json({
+              error: 'There are multiple companies with that name.',
+            });
+          } else
+            appointment.company_id = companies[0]._id;
+
+          callback();
+        });
+      }
+    },
+    // Save the appointment to the database
+    (callback) => {
+      appointment.save((err) => {
         if (err)
-          return res.status(400).json({error: 'Could Not Save'});
-        return res.status(200).json(a);
+          return res.status(500).json({
+            error: 'Saving the appointment failed',
+            param: param,
+            message: err.message,
+          });
+        res.status(200).json(appointment);
       });
-    }else{
-      return res.status(400).json({error: 'Already Created'});
-    }
-  });
+    },
+  ]);
 };
 
 module.exports.getAll = function(req, res) {
