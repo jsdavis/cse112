@@ -15,6 +15,7 @@ const appointmentSchema = mongoose.Schema({
   last_name: {type: String, required: true},
   start: {type: Date, required: true},
   end: {type: Date, required: true},
+  checked_in: {type: Boolean, default: false},
   company_id: {type: Schema.Types.ObjectId, ref: 'Company', required: true},
   customer_id: {type: Schema.Types.ObjectId, ref: 'Customer', required: true},
   extras: {type: Object, required: false},

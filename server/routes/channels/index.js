@@ -27,7 +27,7 @@ router.post('/appointments/', controller.addAppointment);
 // router.delete('/appointments/:id', controller.deleteAppointment);
 
 // PUT for checking in. Accepts an appointmentId
-router.put('/checkin/:id', controller.checkIn);
+// router.put('/checkin/:id', controller.checkIn);
 
 // GET/POST/DELETE for managing companies I'm registered with
 // router.get('/customer/companies', controller.getRegisteredCompanies);

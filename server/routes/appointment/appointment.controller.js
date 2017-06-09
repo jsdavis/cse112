@@ -105,6 +105,9 @@ module.exports.update = function(req, res) {
     if (req.body.customer_id)
       appointment.customer_id = req.body.customer_id;
 
+    if (req.body.checked_in)
+      appointment.checked_in = req.body.checked_in;
+
     if (req.body.extras)
       appointment.extras = appointment.extras;
 
@@ -133,7 +136,7 @@ module.exports.delete = function(req, res) {
 
   Appointment.findAppointment(req.body.find, (err, appointment) => {
     if (err)
-      res.status(400).json({
+      return res.status(400).json({
         error: 'Could not find appointment.',
         message: err.message,
         param: req.body,
@@ -144,6 +147,30 @@ module.exports.delete = function(req, res) {
         return res.status(500).json({
           error: 'Could not save',
           param: req.body,
+          message: err.message,
+        });
+
+      return res.status(200).json(appointment);
+    });
+  });
+};
+
+module.exports.checkin = function(req, res) {
+  if (req.params.id)
+    req.body.find.id = req.params.id;
+
+  Appointment.findAppointment(req.body.find, (err, appointment) => {
+    if (err)
+      res.status(400).json({
+        error: 'Could not find appointment.',
+        message: err.message,
+        param: req.body,
+      });
+    appointment.checked_in = true;
+    appointment.save((err) => {
+      if (err)
+        return res.status(500).json({
+          error: 'Saving the appointment failed',
           message: err.message,
         });
 
