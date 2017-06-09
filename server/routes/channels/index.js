@@ -23,8 +23,8 @@ router.post('/appointments/', controller.addAppointment);
       company_id: optional. can give company_name instead
     }
 */
-router.put('/appointments/:id', controller.updateAppointment);
-router.delete('/appointments/:id', controller.deleteAppointment);
+// router.put('/appointments/:id', controller.updateAppointment);
+// router.delete('/appointments/:id', controller.deleteAppointment);
 
 // PUT for checking in. Accepts an appointmentId
 router.put('/checkin/:id', controller.checkIn);

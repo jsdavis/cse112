@@ -85,13 +85,12 @@ module.exports.update = function(req, res) {
   if (req.params.id)
     req.body.find.id = req.params.id;
 
-  const toFind = req.body.find;
-
-  Appointment.findAppointment(toFind, (err, appointment) => {
+  Appointment.findAppointment(req.body.find, (err, appointment) => {
     if (err)
       return res.status(400).json({
         error: 'Could not find appointment.',
-        message: req.body,
+        message: err.message,
+        param: req.body,
       });
 
     if (req.body.first_name)
@@ -129,15 +128,26 @@ module.exports.update = function(req, res) {
 };
 
 module.exports.delete = function(req, res) {
-  Appointment.findById(req.params.id, (err, a) => {
-    if(err)
-      res.status(400).json({error: 'Could Not Find'});
-    a.remove((err) => {
-      if(err) {
-        res.status(400).json({error: 'Could Not Save'});
-      } else {
-        return res.status(200).json(a);
-      }
+  if (req.params.id)
+    req.body.find.id = req.params.id;
+
+  Appointment.findAppointment(req.body.find, (err, appointment) => {
+    if (err)
+      res.status(400).json({
+        error: 'Could not find appointment.',
+        message: err.message,
+        param: req.body,
+      });
+
+    appointment.remove((err) => {
+      if (err)
+        return res.status(500).json({
+          error: 'Could not save',
+          param: req.body,
+          message: err.message,
+        });
+
+      return res.status(200).json(appointment);
     });
   });
 };
