@@ -75,7 +75,6 @@ module.exports.insert = function(req, res) {
   employee.password = employee.generateHash(req.body.password);
   employee.role = req.body.role;
   employee.channels = [];
-
   employee.save((err, e) => {
     if(err) {
       return res.status(400).json({error: 'Can Not Save: ' + err});
