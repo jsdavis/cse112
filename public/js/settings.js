@@ -103,18 +103,18 @@ $(document).ready(() => {
                 },
               });
 
-              $.ajax({
-                dataType: 'json',
-                type: 'PUT',
-                async: false,
-                url: 'api/employees/'+curUser._id+'/channels/add/slack',
-                success: function(response) {
-                  console.log('successfully added channel to user.');
-                },
-                error: function(response) {
-                  console.log('Could not add channel to user.'+JSON.stringify(response));
-                },
-              });
+              // $.ajax({
+              //   dataType: 'json',
+              //   type: 'PUT',
+              //   async: false,
+              //   url: 'api/employees/'+curUser._id+'/channels/add/slack',
+              //   success: function(response) {
+              //     console.log('successfully added channel to user.');
+              //   },
+              //   error: function(response) {
+              //     console.log('Could not add channel to user.'+JSON.stringify(response));
+              //   },
+              // });
             }
           }
           console.log('success');
@@ -136,6 +136,11 @@ $(document).ready(() => {
   }
 
   function removeSlack() {
+    if(localStorage.getItem('slackChannel'))
+      localStorage.removeItem('slackChannel');
+    if(localStorage.getItem('slackToken'))
+      localStorage.removeItem('slackToken');
+
     $.ajax({
       dataType: 'json',
       type: 'DELETE',
@@ -151,20 +156,19 @@ $(document).ready(() => {
 
     alert(curUser._id);
     const url = 'api/employees/'+curUser._id+'/channels/remove/slack';
-    $.ajax({
-      dataType: 'json',
-      type: 'PUT',
-      async: false,
-      url: url,
-      success: function(response) {
-        localStorage.removeItem('slackChannel');
-        localStorage.removeItem('slackToken');
-        console.log('success!!!');
-      },
-      error: function(response) {
-        console.log(JSON.stringify(response));
-      },
-    });
+    // $.ajax({
+    //   dataType: 'json',
+    //   type: 'PUT',
+    //   async: false,
+    //   url: url,
+    //   success: function(response) {
+
+    //     console.log('success!!!');
+    //   },
+    //   error: function(response) {
+    //     console.log(JSON.stringify(response));
+    //   },
+    // });
   }
 
   // Makes a get request to display list of employees
