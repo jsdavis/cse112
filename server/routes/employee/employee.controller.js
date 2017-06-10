@@ -17,6 +17,8 @@ module.exports.login = function(req, res) {
       return res.status(400).send({error: 'Incorrect Credentials'});
     const employeeJson=e.toJSON();
     delete employeeJson.password;
+
+
     return res.status(200).json(employeeJson);
   });
 };
@@ -88,10 +90,14 @@ module.exports.insert = function(req, res) {
 
 // channels
 module.exports.addChannel = function(req, res) {
-  const channelName = req.body.name;
-  const id = req.body.id;
+  const obj = {};
 
-  exports.getById(id, (errMsg, employee) => {
+  const channelName = req.params.name;
+  const id = req.params.id;
+  obj.params = {};
+  obj.params.id =id;
+
+  exports.getById(obj, (errMsg, employee) => {
     if(errMsg) return res.status(400).json(errMsg);
 
     employee.first_name = req.body.first_name || employee.first_name;
@@ -101,7 +107,9 @@ module.exports.addChannel = function(req, res) {
     employee.password = employee.generateHash(req.body.password) ||
         employee.password;
     employee.role = req.body.role || employee.role;
+    console.log('in here!!!');
     if(employee.channels.indexOf(channelName) < 0) {
+      console.log('An here!!'+employee.channels);
       employee.channels.push(channelName);
     }
 
@@ -154,21 +162,23 @@ module.exports.delete = function(req, res) {
 
 // channels
 module.exports.deleteChannel = function(req, res) {
-  const channelName = req.body.name;
-  const id = req.body.id;
+  const obj = {};
+  const channelName = req.params.name;
+  const id = req.params.id;
+  obj.params.id =id;
 
   exports.getById(id, (errMsg, employee) => {
     if(errMsg) return res.status(400).json(errMsg);
 
-    employee.first_name = req.body.first_name || employee.first_name;
-    employee.last_name = req.body.last_name || employee.last_name;
-    employee.email = req.body.email || employee.email;
-    employee.phone_number = req.body.phone_number || employee.phone_number;
-    employee.password = employee.generateHash(req.body.password) ||
-        employee.password;
-    employee.role = req.body.role || employee.role;
+    employee.first_name = employee.first_name;
+    employee.last_name = employee.last_name;
+    employee.email = employee.email;
+    employee.phone_number = employee.phone_number;
+    employee.password = employee.password;
+    employee.role = employee.role;
     const index = employee.channels.indexOf(channelName);
-    employee.channels.splice(index, 1);
+    if(index >= 0)
+      employee.channels.splice(index, 1);
 
     employee.save((err) => {
       const employeeJson=employee.toJSON();

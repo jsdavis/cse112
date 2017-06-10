@@ -16,7 +16,7 @@ const companySchema = mongoose.Schema({
 // create the model for users and expose it to our app
 module.exports = mongoose.model('Company', companySchema);
 
-customerSchema.statics.findCompany = function(param, callback) {
+companySchema.statics.findCompany = function(param, callback) {
   if (param.company_id)
     this.findById(param.company_id, callback);
   else if (param.id)

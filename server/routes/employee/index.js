@@ -15,9 +15,9 @@ router.delete('/:id', controller.delete);
 router.post('/login', controller.login);
 
 // Channels
-router.get(':id/channels/', controller.getAllChannels);
+router.get('/:id/channels/', controller.getAllChannels);
 // router.get(':id/channels/reminders', controller.getAllReminders);
-router.put(':id/channels', controller.addChannel);
-router.put(':id/channels/:name', controller.deleteChannel);
+router.put('/:id/channels/add/:name', controller.addChannel);
+router.put('/:id/channels/remove/:name', controller.deleteChannel);
 
 module.exports = router;

@@ -5,85 +5,86 @@ const log = require('../../../log');
  * This module is meant to house all of the API
  * routes that pertain to users
  */
-const Employee = require('../../models/Employee');
+const SlackDB = require('../../models/SlackDB');
 
-module.exports.getAllEmployees = function(req, res) {
-  Employee.find({company_id: req.params.id}, {password: 0}, (err, result) => {
-    if(err) {
-      return res.status(400).send({error: 'Can not Find'});
+
+module.exports.getSlackInfo = function(req, res) {
+  SlackDB.findOne({userid: req.params.userid}, (err, a) => {
+    if(err || !a) {
+      return res.status(400).send({error: 'Could Not Find'});
     }
-    return res.status(200).json(result);
+    return res.status(200).json(a);
   });
 };
 
-module.exports.getById = function(req, res) {
-  Employee.findById(req.params.id, {password: 0}, (err, employee) => {
-    if (err) {
-      return res.status(400).json({error: 'Can not Find'});
-    } else {
-      // log.info(employee);
-      return res.status(200).json(employee);
-    }
+module.exports.addSlackInfo = function(req, res) {
+  const slackInfo = SlackDB();
+  const param = req.params;
+  slackInfo.userid = param.userid;
+  slackInfo.slackToken = param.slackToken;
+  slackInfo.date = new Date();
+
+  if(param.slackChannel.slice(0, 1)=='@')
+    slackInfo.slackChannel = param.slackChannel;
+  else
+    slackInfo.slackChannel = '#'+param.slackChannel;
+
+  slackInfo.save((err) => {
+    if (err)
+      return res.status(500).json({
+        error: 'Saving the slackInfo failed',
+        param: param,
+        message: err.message,
+      });
+
+    res.status(200).json(slackInfo);
   });
 };
 
-module.exports.insert = function(req, res) {
-  const employee = new Employee();
+module.exports.modifySlackInfo = function(req, res) {
+  const param = req.params;
 
-    /* required info */
-  employee.first_name = req.body.first_name;
-  employee.last_name = req.body.last_name;
-  employee.email = req.body.email;
-  employee.phone_number = req.body.phone_number;
-  employee.company_id = req.body.company_id;
-  employee.password = employee.generateHash(req.body.password);
-  employee.role = req.body.role;
+  SlackDB.findOne({userid: param.userid}, (err, slackInfo) => {
+    if(err || !slackInfo)
+      return res.status(400).send({error: 'Could Not Find'});
 
-  employee.save((err, e) => {
-    if(err) {
-      return res.status(400).json({error: 'Can Not Save: ' + err});
-    }
-    const employeeJson=e.toJSON();
-    delete employeeJson.password;
-    return res.status(200).json(employeeJson);
-  });
-};
+    slackInfo.date = new Date();
+    if(param.slackChannel)
+      if(param.slackChannel.slice(0, 1)=='@')
+        slackInfo.slackChannel = param.slackChannel;
+      else
+        slackInfo.slackChannel = '#'+param.slackChannel;
+    if(param.userid)
+      slackInfo.userid = param.userid;
+    if(param.slackToken)
+      slackInfo.slackToken = param.slackToken;
 
-
-module.exports.update = function(req, res) {
-  Employee.findById(req.params.id, (err, employee) => {
-    if(err)
-      return res.status(400).json({error: 'Can not Update'});
-
-    employee.first_name = req.body.first_name || employee.first_name;
-    employee.last_name = req.body.last_name || employee.last_name;
-    employee.email = req.body.email || employee.email;
-    employee.phone_number = req.body.phone_number || employee.phone_number;
-    employee.password = employee.generateHash(req.body.password) ||
-      employee.password;
-    employee.role = req.body.role || employee.role;
-
-    employee.save((err) => {
-      log.warn(err, employee);
+    slackInfo.save((err) => {
       if (err)
-        return res.status(400).json({error: 'Can not Save'});
-      const employeeJson = employee.toJSON();
-      delete employeeJson.password;
-      return res.status(200).send(employeeJson);
+        return res.status(500).json({
+          error: 'Saving the slack info failed',
+          param: req.body,
+          message: err.message,
+        });
+      return res.status(200).json(slackInfo);
     });
   });
 };
 
-module.exports.delete = function(req, res) {
-  Employee.findById(req.params.id, (err, employee) => {
-    return employee.remove((err) => {
-      if(err) {
-        res.status(400).json({error: 'Can not Find'});
-      } else {
-        const employeeJson=employee.toJSON();
-        delete employeeJson.password;
-        return res.status(200).send(employeeJson);
-      }
+module.exports.deleteSlackInfo = function(req, res) {
+  SlackDB.findOne({userid: req.params.userid}, (err, slackInfo) => {
+    if(err || !slackInfo)
+      return res.status(400).send({error: 'Could Not Find'});
+
+    slackInfo.remove((err) => {
+      if (err)
+        return res.status(500).json({
+          error: 'Could not save',
+          param: req.body,
+          message: err.message,
+        });
+      return res.status(200).json(slackInfo);
     });
   });
 };
+

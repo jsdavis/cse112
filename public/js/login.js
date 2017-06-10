@@ -15,6 +15,8 @@ $(() => {
     localStorage.removeItem('userState');
     localStorage.removeItem('currentUser');
     localStorage.removeItem('currentCompany');
+    localStorage.removeItem('slackChannel');
+    localStorage.removeItem('slackToken');
   });
 });
 
@@ -40,6 +42,7 @@ function ajaxPostUser(url, data) {
         localStorage.setItem('currentUser', JSON.stringify(response));
         location.href = '/user-dashboard.html';
       }
+      ajaxGetSlackInfo('api/channels/slack');
     },
     error: function() {
       window.onerror=handleError();
@@ -61,6 +64,21 @@ function ajaxGetCompanyInfo(url) {
       console.log(response);
            // alert(response.name);
       localStorage.setItem('currentCompany', JSON.stringify(response));
+    },
+  });
+}
+function ajaxGetSlackInfo(url) {
+  $.ajax({
+    type: 'GET',
+    url: url+'/'+JSON.parse(localStorage.getItem('currentUser'))._id,
+    async: false,
+    dataType: 'json',
+    success: function(response) {
+      console.log(response);
+      if(response.slackToken)
+        localStorage.setItem('slackToken', response.slackToken);
+      if(response.slackChannel)
+        localStorage.setItem('slackChannel', response.slackChannel);
     },
   });
 }
