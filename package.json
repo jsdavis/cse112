@@ -29,6 +29,8 @@
   },
   "homepage": "https://github.com/jsdavis/cse112#readme",
   "dependencies": {
+    "apiai": "^4.0.2",
+    "async": "^2.4.1",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.17.1",
     "bunyan": "^1.8.10",

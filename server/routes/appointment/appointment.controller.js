@@ -1,5 +1,6 @@
 'use strict';
 
+const async = require('async');
 const Appointment = require('../../models/Appointment');
 const Company = require('../../models/Company');
 const Customer = require('../../models/Customer');
@@ -12,50 +13,55 @@ module.exports.create = function(req, res) {
   const param = req.body;
 
   // require provided info
-  appointment.phone_number = param.phone_number;
   appointment.start = param.start;
   appointment.end = param.end;
   appointment.extras = param.extras;
 
-  if (param.customer_id)
-    appointments.customer_id = param.customer_id;
-  else {
-    Customer.find({
-      first_name: param.first_name,
-      last_name: param.last_name,
-    }, (err, customers) => {
-      if (err)
-        return res.status(400).json({
-          error: 'Could not find customer ' + param.first_name + ' ' + param.last_name,
-          message: err.message,
-        });
-
-      else if (customers.length > 1) {
-        return res.status(400).json({
-          error: 'There are multiple customers with that name.',
-        });
-      } else {
-        appointment.customer_id = customers[0]._id;
-      }
-    });
-  }
-
-  Appointment.find(
-    {
-      company_id: param.company_id,
-      date: param.date,
-    }, (err, appointments) => {
-    if(err) return res.status(400).json({error: 'Could Not Find'});
-    if(appointments.length==0) {
-      appointment.save((err, a) => {
+  async.series([
+    // Get the customer id
+    (callback) => {
+      Customer.findCustomer(param, (err, customer) => {
         if (err)
-          return res.status(400).json({error: 'Could Not Save'});
-        return res.status(200).json(a);
+          res.status(400).json({
+            error: 'Could not find customer ' + param.first_name + ' ' + param.last_name,
+            message: err.message,
+          });
+
+        else
+          appointment.customer_id = customer._id;
+
+        callback();
       });
-    }else{
-      return res.status(400).json({error: 'Already Created'});
-    }
-  });
+    },
+    // Get the company id
+    (callback) => {
+      Company.findCompany(param, (err, company) => {
+        if (err)
+          return res.status(400).json({
+            error: 'Could not find company ' + param.company_name,
+            message: err.message,
+          });
+
+        else
+          appointment.company_id = company._id;
+
+        callback();
+      });
+    },
+    // Save the appointment to the database
+    (callback) => {
+      appointment.save((err) => {
+        if (err)
+          return res.status(500).json({
+            error: 'Saving the appointment failed',
+            param: param,
+            message: err.message,
+          });
+
+        res.status(200).json(appointment);
+      });
+    },
+  ]);
 };
 
 module.exports.getAll = function(req, res) {
@@ -76,43 +82,99 @@ module.exports.get = function(req, res) {
 };
 
 module.exports.update = function(req, res) {
-  Appointment.findOne({_id: req.params.id}, (err, a) => {
-    if(err || !a)
-      return res.status(401).json({error: 'Could Not Find'});
+  if (req.params.id)
+    req.body.find.id = req.params.id;
 
-    if (req.body.first_name !== undefined)
-      a.first_name = req.body.first_name;
+  Appointment.findAppointment(req.body.find, (err, appointment) => {
+    if (err)
+      return res.status(400).json({
+        error: 'Could not find appointment.',
+        message: err.message,
+        param: req.body,
+      });
 
-    if (req.body.last_name !== undefined)
-      a.last_name = req.body.last_name;
+    if (req.body.first_name)
+      appointment.first_name = req.body.first_name;
 
-    if (req.body.phone_number !== undefined)
-      a.phone_number = req.body.phone_number;
+    if (req.body.last_name)
+      appointment.last_name = req.body.last_name;
 
-    if (req.body.date!== undefined)
-      a.date = req.body.date;
-    if (req.body.provider_name!== undefined)
-      a.provider_name = req.body.provider_name;
-        // TODO check if the date is taken already
-    a.save((err) => {
-      if(err) {
-        return res.status(400).json({error: 'Could Not Save'});
-      }
-      return res.status(200).json(a);
+    if (req.body.company_id)
+      appointment.company_id = req.body.company_id;
+
+    if (req.body.customer_id)
+      appointment.customer_id = req.body.customer_id;
+
+    if (req.body.checked_in)
+      appointment.checked_in = req.body.checked_in;
+
+    if (req.body.extras)
+      appointment.extras = appointment.extras;
+
+    // TODO: Check validity of date
+    if (req.body.start)
+      appointment.start = req.body.start;
+    if (req.body.end)
+      appointment.end = req.body.end;
+
+    appointment.save((err) => {
+      if (err)
+        return res.status(500).json({
+          error: 'Saving the appointment failed',
+          param: req.body,
+          message: err.message,
+        });
+
+      return res.status(200).json(appointment);
     });
   });
 };
 
 module.exports.delete = function(req, res) {
-  Appointment.findById(req.params.id, (err, a) => {
-    if(err)
-      res.status(400).json({error: 'Could Not Find'});
-    a.remove((err) => {
-      if(err) {
-        res.status(400).json({error: 'Could Not Save'});
-      } else {
-        return res.status(200).json(a);
-      }
+  if (req.params.id)
+    req.body.find.id = req.params.id;
+
+  Appointment.findAppointment(req.body.find, (err, appointment) => {
+    if (err)
+      return res.status(400).json({
+        error: 'Could not find appointment.',
+        message: err.message,
+        param: req.body,
+      });
+
+    appointment.remove((err) => {
+      if (err)
+        return res.status(500).json({
+          error: 'Could not save',
+          param: req.body,
+          message: err.message,
+        });
+
+      return res.status(200).json(appointment);
+    });
+  });
+};
+
+module.exports.checkin = function(req, res) {
+  if (req.params.id)
+    req.body.find.id = req.params.id;
+
+  Appointment.findAppointment(req.body.find, (err, appointment) => {
+    if (err)
+      res.status(400).json({
+        error: 'Could not find appointment.',
+        message: err.message,
+        param: req.body,
+      });
+    appointment.checked_in = true;
+    appointment.save((err) => {
+      if (err)
+        return res.status(500).json({
+          error: 'Saving the appointment failed',
+          message: err.message,
+        });
+
+      return res.status(200).json(appointment);
     });
   });
 };

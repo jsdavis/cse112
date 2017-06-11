@@ -24,6 +24,7 @@ $(document).ready(() => {
   $('.update-btn').click(updateEmployeeInfo);
   $('#setting-list').html(compiledHtml);
   $('#slackButton').click(authenticateSlack);
+  $('#slackRemove').click(removeSlack);
   slack();
 
   function slack() {
@@ -40,31 +41,78 @@ $(document).ready(() => {
       const redirectUri = url.slice(0, 5+url.indexOf('.html'));
 
       let json;
+      let slackInDB=false;
+
+      $.ajax({
+        dataType: 'json',
+        type: 'GET',
+        url: 'api/channels/slack/'+ userid,
+        success: function(response) {
+          slackInDB=true;
+        },
+      });
+
       $.ajax({
         dataType: 'json',
         type: 'POST',
-        data: {},
-        async: false,
+        atype: 'POST',
         url: 'https://slack.com/api/oauth.access?&client_id='+clientId+'&client_secret='+clientSecret+'&code='+code+'&redirect_uri='+baseUrl,
         success: function(response) {
           json = response;
           if(json.incoming_webhook!=undefined&&json.access_token!=undefined) {
             window.localStorage.setItem('slackToken', json.access_token);
             window.localStorage.setItem('slackChannel', json.incoming_webhook.channel);
-            alert(JSON.stringify(localStorage));
-            $.ajax({
-              dataType: 'json',
-              type: 'POST',
-              data: {userid: userid, slackToken: json.access_token, slackChannel: json.incoming_webhook.channel},
-              async: false,
-              url: 'api/slack/',
-              success: function(response) {
-                console.log('success!!!');
-              },
-              error: function(response) {
-                console.log(JSON.stringify(response));
-              },
-            });
+            if(json.incoming_webhook.channel.slice(0, 1)=='#')
+              url='api/channels/slack/'+userid+'/'+(json.incoming_webhook.channel).slice(1)+'/'+json.access_token;
+            else
+              url='api/channels/slack/'+userid+'/'+json.incoming_webhook.channel+'/'+json.access_token;
+
+            if(slackInDB) {
+              $.ajax({
+                dataType: 'json',
+                type: 'PUT',
+                async: false,
+                url: url,
+                success: function(response) {
+                  localStorage.setItem('slackChannel', json.incoming_webhook.channel);
+                  localStorage.setItem('slackToken', json.access_token);
+                  console.log('success!!!');
+                },
+                error: function(response) {
+                  console.log(JSON.stringify(response));
+                },
+              });
+            } else{
+              // if No channel saved in DB.
+              $.ajax({
+                dataType: 'json',
+                type: 'POST',
+                async: false,
+                url: url,
+                success: function(response) {
+                  localStorage.setItem('slackChannel', json.incoming_webhook.channel);
+                  localStorage.setItem('slackToken', json.access_token);
+                  alert('Successfully Added Slack Integration');
+                  console.log('Successfully Added Slack Integration');
+                },
+                error: function(response) {
+                  console.log(JSON.stringify(response));
+                },
+              });
+
+              // $.ajax({
+              //   dataType: 'json',
+              //   type: 'PUT',
+              //   async: false,
+              //   url: 'api/employees/'+curUser._id+'/channels/add/slack',
+              //   success: function(response) {
+              //     console.log('successfully added channel to user.');
+              //   },
+              //   error: function(response) {
+              //     console.log('Could not add channel to user.'+JSON.stringify(response));
+              //   },
+              // });
+            }
           }
           console.log('success');
         },
@@ -82,6 +130,42 @@ $(document).ready(() => {
     const redirectUri = url.slice(0, 5+url.indexOf('.html'));
     const link='https://slack.com/oauth/authorize?scope=incoming-webhook,bot,chat:write:bot&client_id=167318334051.189600788818&redirect_uri='+redirectUri;
     window.open(link, '_self');
+  }
+
+  function removeSlack() {
+    if(localStorage.getItem('slackChannel'))
+      localStorage.removeItem('slackChannel');
+    if(localStorage.getItem('slackToken'))
+      localStorage.removeItem('slackToken');
+
+    $.ajax({
+      dataType: 'json',
+      type: 'DELETE',
+      async: false,
+      url: 'api/channels/slack/'+curUser._id,
+      success: function(response) {
+        alert('Successfully Removed Slack Integration');
+        console.log('successfully removed channel from user.');
+      },
+      error: function(response) {
+        console.log('Could not remove channel from user.');
+      },
+    });
+
+    const url = 'api/employees/'+curUser._id+'/channels/remove/slack';
+    // $.ajax({
+    //   dataType: 'json',
+    //   type: 'PUT',
+    //   async: false,
+    //   url: url,
+    //   success: function(response) {
+
+    //     console.log('success!!!');
+    //   },
+    //   error: function(response) {
+    //     console.log(JSON.stringify(response));
+    //   },
+    // });
   }
 
   // Makes a get request to display list of employees
