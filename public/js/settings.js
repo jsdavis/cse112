@@ -68,25 +68,21 @@ $(document).ready(() => {
               url='api/channels/slack/'+userid+'/'+json.incoming_webhook.channel+'/'+json.access_token;
 
             if(slackInDB) {
-              alert('Modify Slcak');
               $.ajax({
                 dataType: 'json',
                 type: 'PUT',
                 async: false,
                 url: url,
                 success: function(response) {
-                  alert('In mdify success');
                   localStorage.setItem('slackChannel', json.incoming_webhook.channel);
                   localStorage.setItem('slackToken', json.access_token);
                   console.log('success!!!');
                 },
                 error: function(response) {
-                  alert('In mdify faile'+JSON.stringify(response));
                   console.log(JSON.stringify(response));
                 },
               });
             } else{
-              alert('New Slack!');
               // if No channel saved in DB.
               $.ajax({
                 dataType: 'json',
@@ -96,7 +92,8 @@ $(document).ready(() => {
                 success: function(response) {
                   localStorage.setItem('slackChannel', json.incoming_webhook.channel);
                   localStorage.setItem('slackToken', json.access_token);
-                  console.log('success!!!');
+                  alert('Successfully Added Slack Integration');
+                  console.log('Successfully Added Slack Integration');
                 },
                 error: function(response) {
                   console.log(JSON.stringify(response));
@@ -147,6 +144,7 @@ $(document).ready(() => {
       async: false,
       url: 'api/channels/slack/'+curUser._id,
       success: function(response) {
+        alert('Successfully Removed Slack Integration');
         console.log('successfully removed channel from user.');
       },
       error: function(response) {
@@ -154,7 +152,6 @@ $(document).ready(() => {
       },
     });
 
-    alert(curUser._id);
     const url = 'api/employees/'+curUser._id+'/channels/remove/slack';
     // $.ajax({
     //   dataType: 'json',

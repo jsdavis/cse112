@@ -44,6 +44,9 @@ router.post('/slack/:userid/:slackChannel/:slackToken', controller.addSlackInfo)
 router.put('/slack/:userid/:slackChannel/:slackToken', controller.modifySlackInfo);
 router.delete('/slack/:userid', controller.deleteSlackInfo);
 
+
+router.post('/apiai', controller.chatBotPostResponse);
+
 // GET/POST/DELETE for managing reminder channels
 // router.get('/customer/reminders', controller.getReminders);
 // router.post('/customer/reminders', controller.addReminder);

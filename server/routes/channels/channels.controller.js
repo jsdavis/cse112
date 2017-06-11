@@ -7,6 +7,8 @@ const log = require('../../../log');
  */
 const SlackDB = require('../../models/SlackDB');
 
+const apiai = require('apiai');
+const apiaiApp = apiai('a0569614aa254d96a49d6068db16a718');
 
 module.exports.getSlackInfo = function(req, res) {
   SlackDB.findOne({userid: req.params.userid}, (err, a) => {
@@ -86,5 +88,23 @@ module.exports.deleteSlackInfo = function(req, res) {
       return res.status(200).json(slackInfo);
     });
   });
+};
+
+module.exports.chatBotPostResponse = function(req, res) {
+  const param = req.body;
+  console.log('RECEIVED REQUEST FROM chatbot');
+  // var request = apiaiApp.textRequest('<Your text query>', {
+  //     sessionId: '<unique session id>'
+  // });
+
+  // request.on('response', function(response) {
+  //     console.log(response);
+  // });
+
+  // request.on('error', function(error) {
+  //     console.log(error);
+  // });
+
+  // request.end();
 };
 
