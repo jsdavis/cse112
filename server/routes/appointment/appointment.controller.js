@@ -21,10 +21,10 @@ module.exports.create = function(req, res) {
     // Get the customer id
     (callback) => {
       Customer.findCustomer(param, (err, customer) => {
-        if (err)
-          res.status(400).json({
+        if (err || !customer)
+          return res.status(400).json({
             error: 'Could not find customer ' + param.first_name + ' ' + param.last_name,
-            message: err.message,
+            message: err,
           });
 
         else
@@ -36,10 +36,10 @@ module.exports.create = function(req, res) {
     // Get the company id
     (callback) => {
       Company.findCompany(param, (err, company) => {
-        if (err)
+        if (err || !company)
           return res.status(400).json({
             error: 'Could not find company ' + param.company_name,
-            message: err.message,
+            message: err,
           });
 
         else

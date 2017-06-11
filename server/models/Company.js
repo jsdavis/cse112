@@ -13,9 +13,6 @@ const companySchema = mongoose.Schema({
   paid_time: {type: Date, required: true},
 });
 
-// create the model for users and expose it to our app
-module.exports = mongoose.model('Company', companySchema);
-
 companySchema.statics.findCompany = function(param, callback) {
   if (param.company_id)
     this.findById(param.company_id, callback);

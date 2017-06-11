@@ -18,8 +18,6 @@ const customerSchema= mongoose.Schema({
   reminders: {type: [String], required: false},
 });
 
-const Customer = mongoose.model('Customer', customerSchema);
-
 // checking if password is valid
 customerSchema.methods.validPassword = function(password) {
   return bcrypt.compareSync(password, this.password);
