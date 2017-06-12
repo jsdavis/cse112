@@ -96,8 +96,8 @@ module.exports.chatBotPostResponse = function(req, res) {
 
   $.post('https://slack.com/api/chat.postMessage',
     {
-      'token': slTok,
-      'channel': slChan,
+      'token': 'xoxp-167318334051-167150907856-190424847319-e55dd37b87b552a95a322d45ff6e69b8',
+      'channel': '#emissarycheckins',
       'text': 'Name: ' + data['first_name'] + ' ' + data['last_name'] + ' Phone Number: ' + data['phone_number'],
     },
      (data, status) => {
