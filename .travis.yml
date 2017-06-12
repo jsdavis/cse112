@@ -14,12 +14,11 @@ install:
   - npm install
   - npm install -g mocha nightwatch
 before_script:
-  - npm start&
-  - sleep 15
+  - npm run test-start&
+  - sleep 10
 script:
-  - npm test
   - npm run coverage
-  - nightwatch --config nightwatch.js --env chrome,ie11,firefox
+  - npm run e2e
   - pkill node
 notifications:
   email: false

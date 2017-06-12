@@ -13,5 +13,18 @@ const companySchema = mongoose.Schema({
   paid_time: {type: Date, required: true},
 });
 
-// create the model for users and expose it to our app
+companySchema.statics.findCompany = function(param, callback) {
+  if (param.company_id)
+    this.findById(param.company_id, callback);
+  else if (param.id)
+    this.findById(param.id, callback);
+  else if (param.company_name) {
+    this.findOne({name: param.company_name}, callback);
+  } else
+    callback({
+      error: 'Bad request for finding company.',
+      message: param,
+    });
+};
+
 module.exports = mongoose.model('Company', companySchema);

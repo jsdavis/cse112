@@ -35,7 +35,8 @@ $(document).ready(() => {
         // event.preventDefault();
     const data = grabFormElements();
         // console.log(data.company_id);
-    if(localStorage.getItem('slackToken')&&localStorage.getItem('slackChannel')) {
+
+    if(localStorage.getItem('slackToken')!=undefined&&localStorage.getItem('slackChannel')!=undefined) {
       $.post('https://slack.com/api/chat.postMessage',
         {
           'token': localStorage.getItem('slackToken'),
@@ -57,6 +58,9 @@ $(document).ready(() => {
     // Grabs elements from the check in and puts it into an object
   function grabFormElements() {
     const newVisitor = {};
+    if(companyData==null) {
+      return null;
+    }
     newVisitor.company_id = companyData._id;
     newVisitor.first_name= $('#visitor-first').val();
     newVisitor.last_name = $('#visitor-last').val();

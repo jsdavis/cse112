@@ -22,7 +22,9 @@
     var CLIENT_ID = '146644134636-h2i32dh4th00aqo4d4honm0o4vkcpaup.apps.googleusercontent.com';
 
     // Set authorized scope.
-    var SCOPES = ['https://www.googleapis.com/auth/analytics.readonly'];
+
+    var SCOPES = ['analytics.readonly'];
+    // var SCOPES = ['https://www.googleapis.com/auth/analytics.readonly']; 
 
 
     function authorize(event) {
@@ -204,7 +206,8 @@
     document.getElementById('auth-button').addEventListener('click', authorize);
 </script>
 
-<script src="https://apis.google.com/js/client.js?onload=authorize"></script>
+    <script src="js/vendor/client_authorize"></script>
+<!--<script src="https://apis.google.com/js/client.js?onload=authorize"></script> -->   
 
 </body>
 </html>

@@ -80,8 +80,12 @@ module.exports.template.getAll = function(req, res) {
  */
 module.exports.template.get = function(req, res) {
   Company.findOne({_id: req.params.id}, (err, company) => {
-    if(err)
-      return res.status(400).json({error: 'Could Not Save'});
+    if(err || !company)
+      return res.status(400).json({
+        error: 'Could not find company with id ' + req.params.id,
+        params: req.params,
+        message: err,
+      });
     return res.status(200).json(showCompanyPublicInfo(company));
   });
 };
