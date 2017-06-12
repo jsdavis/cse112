@@ -7,8 +7,8 @@ const log = require('../../../log');
  */
 const SlackDB = require('../../models/SlackDB');
 
-const apiai = require('apiai');
-const apiaiApp = apiai('a0569614aa254d96a49d6068db16a718');
+// const apiai = require('apiai');
+// const apiaiApp = apiai('a0569614aa254d96a49d6068db16a718');
 
 module.exports.getSlackInfo = function(req, res) {
   SlackDB.findOne({userid: req.params.userid}, (err, a) => {
@@ -93,6 +93,16 @@ module.exports.deleteSlackInfo = function(req, res) {
 module.exports.chatBotPostResponse = function(req, res) {
   const param = req.body;
   console.log('RECEIVED REQUEST FROM chatbot');
+
+  $.post('https://slack.com/api/chat.postMessage',
+    {
+      'token': slTok,
+      'channel': slChan,
+      'text': 'Name: ' + data['first_name'] + ' ' + data['last_name'] + ' Phone Number: ' + data['phone_number'],
+    },
+     (data, status) => {
+     });
+
   // var request = apiaiApp.textRequest('<Your text query>', {
   //     sessionId: '<unique session id>'
   // });
