@@ -21,10 +21,10 @@ module.exports.create = function(req, res) {
     // Get the customer id
     (callback) => {
       Customer.findCustomer(param, (err, customer) => {
-        if (err)
-          res.status(400).json({
+        if (err || !customer)
+          return res.status(400).json({
             error: 'Could not find customer ' + param.first_name + ' ' + param.last_name,
-            message: err.message,
+            message: err,
           });
 
         else
@@ -36,10 +36,10 @@ module.exports.create = function(req, res) {
     // Get the company id
     (callback) => {
       Company.findCompany(param, (err, company) => {
-        if (err)
+        if (err || !company)
           return res.status(400).json({
             error: 'Could not find company ' + param.company_name,
-            message: err.message,
+            message: err,
           });
 
         else
@@ -55,7 +55,7 @@ module.exports.create = function(req, res) {
           return res.status(500).json({
             error: 'Saving the appointment failed',
             param: param,
-            message: err.message,
+            message: JSON.stringify(err),
           });
 
         res.status(200).json(appointment);
@@ -75,8 +75,12 @@ module.exports.getAll = function(req, res) {
 
 module.exports.get = function(req, res) {
   Appointment.findOne({_id: req.params.id}, (err, a) => {
-    if(err || !a)
-      return res.status(400).send({error: 'Could Not Find'});
+    if (err || !a)
+      return res.status(400).send({
+        error: 'Could not find appointment with id ' + req.params.id,
+        params: req.params,
+        message: err,
+      });
     return res.status(200).json(a);
   });
 };
