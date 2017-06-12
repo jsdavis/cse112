@@ -1,0 +1,24 @@
+{
+  "type": "suite",
+  "seleniumVersion": "2",
+  "formatVersion": 1,
+  "scripts": [
+    {
+      "where": "local",
+      "path": "forgot.json"
+    },
+    {
+      "where": "local",
+      "path": "login.json"
+    },
+    {
+      "where": "local",
+      "path": "signup.json"
+    },
+    {
+      "where": "local",
+      "path": "landingPageTest.json"
+    }
+  ],
+  "shareState": false
+}

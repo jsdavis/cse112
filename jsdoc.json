@@ -1,0 +1,24 @@
+{
+  "source": {
+    "include": [
+      "./",
+      "public/js"
+    ],
+    "exclude": [
+      "public/js/min/*",
+      "public/js/neon*",
+      "public/js/resizeable.js",
+      "public/js/scripts.js",
+      "public/js/socket.io.js",
+      "public/js/bootstrap.js",
+      "public/js/handlebars-v4.0.5.js",
+      "public/js/jquery*",
+      "public/js/d3.v3.js",
+      "public/js/raphael-min.js",
+      "public/js/js.cookie.js",
+      "public/js/datatables.js"
+    ],
+    "includePattern":"^.+\\.js$",
+    "excludePattern":"^.+min\\.js$"
+  }
+}
