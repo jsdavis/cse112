@@ -62,6 +62,7 @@ $(document).ready(() => {
           if(json.incoming_webhook!=undefined&&json.access_token!=undefined) {
             window.localStorage.setItem('slackToken', json.access_token);
             window.localStorage.setItem('slackChannel', json.incoming_webhook.channel);
+            console.log(json.access_token);
             if(json.incoming_webhook.channel.slice(0, 1)=='#')
               url='api/channels/slack/'+userid+'/'+(json.incoming_webhook.channel).slice(1)+'/'+json.access_token;
             else
