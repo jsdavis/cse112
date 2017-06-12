@@ -35,12 +35,9 @@
 
 </head>
 <body>
-
-
-
 <!-- Logo and Navigation -->
 <div class="header-wrapper navbar-fixed-top z-depth-3" style="margin-top: 0px;">
-    <nav class="navbar navbar-default white">
+	<nav class="navbar navbar-default white">
         <div class="container">
             <div class="navbar-header">
                 <div class="navbar-brand">
@@ -60,15 +57,27 @@
                     <span class="black-text">Login</span>
                 </a>
             </li>
-            <li>
-                <a href="signup.html">
-                    <span class="black-text">Sign-Up</span>
-                </a>
-            </li>
+			<!-- Dropdown Trigger -->
+			<li>
+				<a class="dropdown-button black-text" href="#!" data-activates="dropdown1">Sign-Up<i class="material-icons right">arrow_drop_down</i></a>
+			</li>
         </ul>
-        </div>
+		
     </nav>
 </div>
+<!-- Dropdown Structure -->
+<ul id="dropdown1" class="dropdown-content">
+	<li>
+        <a href="signup.html">
+            <span class="black-text">Employee Sign-Up</span>
+        </a>
+    </li>
+	<li>
+		<a href="signup-company.html">
+			<span class="black-text">Create a Company</span>
+		</a>
+	</li>
+</ul>
 
 <div class="parallax-container z-depth-1">
     <div class="parallax"><img src="image/background4.jpeg" style="opacity: 0.5;" >

@@ -8,7 +8,6 @@ module.exports = {
       "node": true
     },
     "rules": {
-      "eslint-no-invalid-this-except/rule-name": 2,
       "no-unused-vars": [1, {"vars": "all", "varsIgnorePattern": "Ignored"}],
       "indent": ["error", 2],
       "no-mixed-spaces-and-tabs": "error",
