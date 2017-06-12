@@ -11,8 +11,6 @@ const Schema = mongoose.Schema;
  */
 
 const appointmentSchema = mongoose.Schema({
-  first_name: {type: String, required: true},
-  last_name: {type: String, required: true},
   start: {type: Date, required: true},
   end: {type: Date, required: true},
   checked_in: {type: Boolean, default: false},

@@ -70,6 +70,14 @@ describe('Appointment Test', () => {
       customer.role = 'customer';
 
       customer.save((err, cust) => {
+        if (err || !cust) {
+          return done({
+            error: 'Failed to save customer',
+            message: err,
+            result: cust,
+            params: customer,
+          });
+        }
         currCustomer = cust;
         request(url)
           .post('/api/appointments')
@@ -83,13 +91,10 @@ describe('Appointment Test', () => {
             customer_id: currCustomer._id,
             extras: providerNameExtra,
           })
-          .expect(200)
           .end((err, res) => {
-            console.log('currCompany ' + currCompany);
-            console.log('currCustomer ' + currCustomer);
-//            res.body.should.have.property('_id');
+            res.should.have.status(200);
+            res.body.should.have.property('_id');
             currAppointment = res.body;
-            console.log('currAppointment ' + res.body);
             done();
           });
       });
@@ -120,8 +125,8 @@ describe('Appointment Test', () => {
   it('should get appointment', (done) => {
     request(url)
       .get('/api/appointments/'+currAppointment._id)
-      .expect(200)
       .end((err, res) => {
+        res.should.have.status(200);
         res.body.should.have.property('_id');
         done();
       });
