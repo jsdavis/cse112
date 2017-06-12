@@ -7,8 +7,8 @@ const log = require('../../../log');
  */
 const SlackDB = require('../../models/SlackDB');
 
-const apiai = require('apiai');
-const apiaiApp = apiai('a0569614aa254d96a49d6068db16a718');
+// const apiai = require('apiai');
+// const apiaiApp = apiai('a0569614aa254d96a49d6068db16a718');
 
 module.exports.getSlackInfo = function(req, res) {
   SlackDB.findOne({userid: req.params.userid}, (err, a) => {
