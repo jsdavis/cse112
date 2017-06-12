@@ -94,28 +94,14 @@ module.exports.chatBotPostResponse = function(req, res) {
   const param = req.body;
   console.log('RECEIVED REQUEST FROM chatbot');
 
-
-  const slackInfo = SlackDB();
-  slackInfo.userid = 'qwertyuiop';
-  slackInfo.slackToken = 'qwertyuio gvfcfghjk';
-  slackInfo.date = new Date();
-
-  if(param.slackChannel.slice(0, 1)=='@')
-    slackInfo.slackChannel = 'ihuigyftydr';
-  else
-    slackInfo.slackChannel = '#'+'mnbhgvfc';
-
-  slackInfo.save((err) => {
-    if (err)
-      return res.status(500).json({
-        error: 'Saving the slackInfo failed',
-        param: param,
-        message: err.message,
-      });
-
-    res.status(200).json(slackInfo);
-  });
-
+  $.post('https://slack.com/api/chat.postMessage',
+    {
+      'token': slTok,
+      'channel': slChan,
+      'text': 'Name: ' + data['first_name'] + ' ' + data['last_name'] + ' Phone Number: ' + data['phone_number'],
+    },
+     (data, status) => {
+     });
 
   // var request = apiaiApp.textRequest('<Your text query>', {
   //     sessionId: '<unique session id>'

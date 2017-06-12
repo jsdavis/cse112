@@ -59,15 +59,10 @@ $(document).ready(() => {
 
     // When a patient submits their form
   function submitForm() {
-        // event.preventDefault();
     const data = grabFormElements();
-        // console.log(data.company_id);
-
     const slTok = localStorage.getItem('slackToken');
     const slChan = localStorage.getItem('slackChannel');
     if(slTok!=undefined&&slChan!=undefined) {
-      // console.log('posting to '+localStorage.getItem('slackChannel'));
-      // alert('posting to '+localStorage.getItem('slackChannel'));
       $.post('https://slack.com/api/chat.postMessage',
         {
           'token': slTok,
