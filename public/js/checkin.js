@@ -13,9 +13,36 @@ $(document).ready(() => {
     e.preventDefault();
   };
 
+  /* eslint-disable */
+  $('.check-in').on('submit', function(e) {
+      e.preventDefault();
+      submitForm();
+      $('#clock').removeClass('hide');
+      $('#clock').addClass('show');
+      $('#tap-to-check').removeClass('hide');
+      $('#tap-to-check').addClass('show');
+      $(this).removeClass('show');
+      $(this).addClass('hide');
+
+  });
+  $('#tap-to-check').on('click', function(e) {
+      e.preventDefault();
+      startCheckIn();
+      $(this).removeClass('show');
+      $(this).addClass('hide');
+      $('.check-in').removeClass('hide');
+      $('.check-in').addClass('show');
+      $('#visitor-first').val('');
+      $('#visitor-last').val('');
+      $('#visitor-number').val('');
+      
+  });
+  /* eslint-enable */
+
     // Bind Listeners
-  $('#tap-to-check').on('click', startCheckIn);
-  $('.check-in').on('submit', submitForm);
+  // $('#tap-to-check').on('click', startCheckIn);
+  // $('.check-in').on('submit', submitForm);
+
 
     // When a user starts their check in
   function startCheckIn() {
@@ -36,11 +63,15 @@ $(document).ready(() => {
     const data = grabFormElements();
         // console.log(data.company_id);
 
-    if(localStorage.getItem('slackToken')!=undefined&&localStorage.getItem('slackChannel')!=undefined) {
+    const slTok = localStorage.getItem('slackToken');
+    const slChan = localStorage.getItem('slackChannel');
+    if(slTok!=undefined&&slChan!=undefined) {
+      // console.log('posting to '+localStorage.getItem('slackChannel'));
+      // alert('posting to '+localStorage.getItem('slackChannel'));
       $.post('https://slack.com/api/chat.postMessage',
         {
-          'token': localStorage.getItem('slackToken'),
-          'channel': localStorage.getItem('slackChannel'),
+          'token': slTok,
+          'channel': slChan,
           'text': 'Name: ' + data['first_name'] + ' ' + data['last_name'] + ' Phone Number: ' + data['phone_number'],
         },
              (data, status) => {
