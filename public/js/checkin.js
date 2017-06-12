@@ -70,9 +70,11 @@ $(document).ready(() => {
           'text': 'Name: ' + data['first_name'] + ' ' + data['last_name'] + ' Phone Number: ' + data['phone_number'],
         },
              (data, status) => {
-             });
+             }
+        );
     }
     socket.emit(ADD_VISITOR, data);
+
 
     /* eslint-disable */ // eslint doesn't like 'this'
     $(this).animate({
