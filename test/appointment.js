@@ -14,8 +14,6 @@ describe('Appointment Test', () => {
   let currAppointment;
   let currCustomer;
   let currCompany;
-  let cust_id;
-  let c_id;
 
   // appointment info
   const firstName = 'test';
@@ -33,7 +31,7 @@ describe('Appointment Test', () => {
   const customerPassword = 'customer_password';
   const customerChannels = ['facebook', 'slack'];
   const customerCompanies = ['test'];
-  const customerReminders = ['meet up at 1']; 
+  const customerReminders = ['meet up at 1'];
 
   // new appointment info
   const newFirstName = 'test1';
@@ -83,15 +81,15 @@ describe('Appointment Test', () => {
             checked_in: checkedIn,
             company_id: currCompany._id,
             customer_id: currCustomer._id,
-            extras: providerNameExtra
+            extras: providerNameExtra,
           })
           .expect(200)
           .end((err, res) => {
-console.log("currCompany " + currCompany);
-console.log("currCustomer " + currCustomer);
+            console.log('currCompany ' + currCompany);
+            console.log('currCustomer ' + currCustomer);
 //            res.body.should.have.property('_id');
             currAppointment = res.body;
-console.log("currAppointment " + res.body);
+            console.log('currAppointment ' + res.body);
             done();
           });
       });
