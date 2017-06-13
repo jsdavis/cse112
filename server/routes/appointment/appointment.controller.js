@@ -20,7 +20,7 @@ module.exports.create = function(req, res) {
   async.series([
     // Get the customer id
     (callback) => {
-      Customer.findCustomer(param, (err, customer) => {
+      Customer.getById(param, (err, customer) => {
         if (err)
           res.status(400).json({
             error: 'Could not find customer ' + param.first_name + ' ' + param.last_name,
