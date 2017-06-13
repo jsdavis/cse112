@@ -1,5 +1,6 @@
 'use strict';
 const log = require('../../../log');
+const request = require('request');
 
 /*
  * This module is meant to house all of the API
@@ -94,13 +95,22 @@ module.exports.chatBotPostResponse = function(req, res) {
   const param = req.body;
   console.log('RECEIVED REQUEST FROM chatbot');
 
-  $.post('https://slack.com/api/chat.postMessage',
+  request.post('https://slack.com/api/chat.postMessage',
     {
       'token': 'xoxp-167318334051-167150907856-190424847319-e55dd37b87b552a95a322d45ff6e69b8',
       'channel': '#emissarycheckins',
-      'text': 'Name: ' + data['first_name'] + ' ' + data['last_name'] + ' Phone Number: ' + data['phone_number'],
+      'text': 'Your request via messenger chatbot to make an appointment with ' + param.given_name +
+              ' ' + param.any + ' on ' + param.date + ' at ' + param.time,
     },
-     (data, status) => {
+     (err, response, body) => {
+       if (err)
+         res.status(500).send({
+           error: 'Posting to Slack failed',
+           message: err,
+           param: param,
+         });
+       else
+        res.status(200).send(body);
      });
 
   // var request = apiaiApp.textRequest('<Your text query>', {
