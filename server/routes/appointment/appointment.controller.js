@@ -4,6 +4,7 @@ const async = require('async');
 const Appointment = require('../../models/Appointment');
 const Company = require('../../models/Company');
 const Customer = require('../../models/Customer');
+const Employee = require('../../models/Employee');
 
 /** **** Company TEMPLATE ROUTES ******/
 module.exports = {};
@@ -11,6 +12,9 @@ module.exports = {};
 module.exports.create = function(req, res) {
   const appointment = new Appointment();
   const param = req.body;
+
+  let customer = null;
+  let employee = null;
 
   // require provided info
   appointment.start = param.start;
@@ -20,31 +24,56 @@ module.exports.create = function(req, res) {
   async.series([
     // Get the customer id
     (callback) => {
-      Customer.getById(param, (err, customer) => {
-        if (err)
-          res.status(400).json({
-            error: 'Could not find customer ' + param.first_name + ' ' + param.last_name,
-            message: err.message,
+      Customer.findCustomer(param, (err, cust) => {
+        if (err || !cust)
+          return res.status(400).json({
+            error: 'Could not find customer.',
+            message: err,
+            param: param,
           });
 
-        else
-          appointment.customer_id = customer._id;
+        customer = cust;
+        appointment.customer_id = customer._id;
+        callback();
+      });
+    },
+    // Get the client id
+    (callback) => {
+      Employee.findEmployee(param, (err, emp) => {
+        if (err || !emp)
+          return res.status(400).json({
+            error: 'Could not find employee ' + param.first_name + ' ' + param.last_name,
+            message: err,
+          });
 
+        employee = emp;
+        appointment.client_id = employee._id;
         callback();
       });
     },
     // Get the company id
     (callback) => {
-      Company.findCompany(param, (err, company) => {
-        if (err)
+      Company.findCompany(employee, (err, company) => {
+        if (err || !company)
           return res.status(400).json({
-            error: 'Could not find company ' + param.company_name,
-            message: err.message,
+            error: 'Could not find company.',
+            message: err,
+            param: param,
+            employee: employee,
           });
 
-        else
-          appointment.company_id = company._id;
+        // Workaround for weird typing errors with id's
+        const companies = customer.companies.map((comp) => {
+          return '' + comp;
+        });
 
+        if (!companies.includes('' + company._id))
+          return res.status(400).json({
+            error: 'Customer ' + customer.first_name + ' ' + customer.last_name + ' is not registered with company ' + company.name,
+            param: param,
+          });
+
+        appointment.company_id = company._id;
         callback();
       });
     },
@@ -55,7 +84,7 @@ module.exports.create = function(req, res) {
           return res.status(500).json({
             error: 'Saving the appointment failed',
             param: param,
-            message: err.message,
+            message: JSON.stringify(err),
           });
 
         res.status(200).json(appointment);
@@ -75,8 +104,12 @@ module.exports.getAll = function(req, res) {
 
 module.exports.get = function(req, res) {
   Appointment.findOne({_id: req.params.id}, (err, a) => {
-    if(err || !a)
-      return res.status(400).send({error: 'Could Not Find'});
+    if (err || !a)
+      return res.status(400).send({
+        error: 'Could not find appointment with id ' + req.params.id,
+        params: req.params,
+        message: err,
+      });
     return res.status(200).json(a);
   });
 };

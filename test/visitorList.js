@@ -5,7 +5,7 @@ const Appointment = require('../server/models/Appointment');
 const VisitorList = require('../server/models/VisitorList');
 const should = require('chai').should();
 
-describe('VisitorList', () => {
+describe.skip('VisitorList', () => {
   const url = 'localhost:' + config.port;
 
   let currCompany;

@@ -160,7 +160,7 @@ const submittedForm = {
 };
 
 
-describe('Forms', () => {
+describe.skip('Forms', () => {
   const url = 'localhost:' + config.port;
 
   let credentials;

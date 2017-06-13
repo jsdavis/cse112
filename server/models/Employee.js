@@ -17,12 +17,11 @@ const employeeSchema = mongoose.Schema({
   last_name: {type: String, required: true},
   email: {type: String, unique: true, index: true, required: true},
   password: {type: String, required: true},
-  phone_number: {type: String, required: true},
+  phone_number: {type: String, required: false},
   role: {type: String, required: true},
-  channels: {type: [channelSchema], default: []},
-  // reminders: {type: [reminderSchema], default: []},
-  // company_id: {type: Schema.Types.ObjectId, ref: 'Company', required: true},
-  company_id: {type: String, required: false},
+  channels: {type: [String], default: []},
+  company_id: {type: mongoose.Schema.Types.ObjectId, ref: 'Company', required: true},
+  // reminders: {type: [String], default: []},
 });
 
 
@@ -30,6 +29,35 @@ const employeeSchema = mongoose.Schema({
 //   text: {type: String, required: true},
 //   date: {type: Date, required: true},
 // })
+
+employeeSchema.statics.findEmployee = function(param, callback) {
+  // Make it impossible to screw this up
+  const id = param.employee_id || param.client_id || param.id || param._id || undefined;
+  const email = param.employee_email || param.client_email || param.email || undefined;
+  const name = {
+    first: param.first_name || param.firstName || param.firstname || undefined,
+    last: param.last_name || param.lastName || param.lastname || undefined,
+  };
+
+  if (id)
+    this.findById(id, callback);
+
+  else if (email)
+    this.findOne({
+      email: param.email,
+    }, callback);
+
+  else if (name.first && name.last)
+    this.findOne({
+      first_name: name.first,
+      last_name: name.last,
+    }, callback);
+  else
+    callback({
+      error: 'Bad request for finding customer.',
+      message: param,
+    });
+};
 
 // checking if password is valid
 employeeSchema.methods.validPassword = function(password) {

@@ -6,8 +6,8 @@ const controller = require('./channels.controller');
 const router = express.Router();
 
 // GET for list of appointments
-router.get('/appointments/customer/:id', controller.getCustomerAppointments);
-router.get('/appointments/company/:id', controller.getCompanyAppointments);
+// router.get('/appointments/customer/:id', controller.getCustomerAppointments);
+// router.get('/appointments/company/:id', controller.getCompanyAppointments);
 
 // POST/PUT/DELETE for managing appointments
 /*
@@ -39,9 +39,17 @@ router.post('/appointments/', controller.addAppointment);
 // router.post('/customer/channels', controller.registerChannel);
 // router.delete('/customer/channels', controller.deregisterChannel);
 
+router.get('/slack/:userid', controller.getSlackInfo);
+router.post('/slack/:userid/:slackChannel/:slackToken', controller.addSlackInfo);
+router.put('/slack/:userid/:slackChannel/:slackToken', controller.modifySlackInfo);
+router.delete('/slack/:userid', controller.deleteSlackInfo);
+
+
+router.post('/apiai', controller.chatBotPostResponse);
+
 // GET/POST/DELETE for managing reminder channels
-router.get('/customer/reminders', controller.getReminders);
-router.post('/customer/reminders', controller.addReminder);
-router.delete('customer/reminders', controller.deleteReminder);
+// router.get('/customer/reminders', controller.getReminders);
+// router.post('/customer/reminders', controller.addReminder);
+// router.delete('customer/reminders', controller.deleteReminder);
 
 module.exports = router;

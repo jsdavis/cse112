@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 const ConfigureAuth = require('./ConfigureAuth');
 
 
-describe('Employee', () => {
+describe.skip('Employee', () => {
   const url = 'localhost:' + config.port;
 
   let credentials;  // variable to hold all the need authentication variables.

@@ -18,8 +18,6 @@ const customerSchema= mongoose.Schema({
   reminders: {type: [String], required: false},
 });
 
-const Customer = mongoose.model('Customer', customerSchema);
-
 // checking if password is valid
 customerSchema.methods.validPassword = function(password) {
   return bcrypt.compareSync(password, this.password);
@@ -30,19 +28,33 @@ customerSchema.methods.generateHash = function(password) {
 };
 
 customerSchema.statics.findCustomer = function(param, callback) {
-  if (param.customer_id)
-    this.findById(param.customer_id, callback);
-  else if (param.id)
-    this.findById(param.id, callback);
-  else if (param.first_name && param.last_name)
+  // Make it impossible to screw this up
+  const id = param.customer_id || param.id || param._id || undefined;
+  const email = param.customer_email || param.email || undefined;
+  const name = {
+    first: param.first_name || param.firstName || param.firstname || undefined,
+    last: param.last_name || param.lastName || param.lastname || undefined,
+  };
+
+  if (id)
+    this.findById(id, callback);
+
+  else if (email)
     this.findOne({
-      first_name: param.first_name,
-      last_name: param.last_name,
+      email: email,
     }, callback);
+
+  else if (name.first && name.last)
+    this.findOne({
+      first_name: name.first,
+      last_name: name.last,
+    }, callback);
+
   else
     callback({
       error: 'Bad request for finding customer.',
       message: param,
+      id: id,
     });
 };
 
