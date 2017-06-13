@@ -29,7 +29,7 @@ describe('Appointment Test', () => {
   const customerFirstName = 'Mer';
   const customerLastName = 'Custo';
   const customerEmail = 'customer@customer.com';
-  const customerPassword = '';
+  const customerPassword = '1234567890';
   const customerChannels = ['facebook', 'slack'];
   const customerReminders = ['meet up at 1'];
 
