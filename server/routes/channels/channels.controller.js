@@ -103,7 +103,7 @@ module.exports.chatBotPostResponse = function(req, res) {
               ' ' + param.any + ' on ' + param.date + ' at ' + param.time,
     },
      (err, response, body) => {
-       if (err)
+       if (err || response.error)
          res.status(500).send({
            error: 'Posting to Slack failed',
            message: err,
