@@ -97,6 +97,7 @@ module.exports.chatBotPostResponse = function(req, res) {
   const param = req.body.result;
   console.log('RECEIVED REQUEST FROM chatbot');
 
+
   const action = param.action;
   appointment = {};
   if(action=='createAppointment') {
@@ -112,17 +113,18 @@ module.exports.chatBotPostResponse = function(req, res) {
     AppointmentContr.create(req, res);
   }
   // var request = apiaiApp.textRequest('<Your text query>', {
+  // let req = apiaiApp.textRequest('<Your text query>', {
   //     sessionId: '<unique session id>'
   // });
 
-  // request.on('response', function(response) {
+  // req.on('response', function(response) {
   //     console.log(response);
   // });
 
-  // request.on('error', function(error) {
+  // req.on('error', function(error) {
   //     console.log(error);
   // });
 
-  // request.end();
+  // req.end();
 };
 
