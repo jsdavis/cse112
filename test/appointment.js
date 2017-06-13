@@ -25,10 +25,10 @@ describe('Appointment Test', () => {
 
   // customer info
   const customer = new Customer();
-  const customerFirstName = 'customer_name';
-  const customerLastName = 'customer_last_name';
-  const customerEmail = 'customer_test@ucsd.edu';
-  const customerPassword = 'customer_password';
+  const customerFirstName = 'Mer';
+  const customerLastName = 'Custo';
+  const customerEmail = 'customer@customer.com';
+  const customerPassword = '';
   const customerChannels = ['facebook', 'slack'];
   const customerCompanies = ['test'];
   const customerReminders = ['meet up at 1'];
