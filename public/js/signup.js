@@ -6,9 +6,17 @@ $(document).ready(() => {
 
     // Listener for Initial Sign up of an Employee
   $('#submit-btn').on('click', () => {
-    const employeeData = grabEmployeeData();
-    console.log(employeeData);
-    ajaxPost('/api/employees', employeeData);
+    const userData = grabUserData();
+    console.log(userData);
+    if(userData.role=="employee") {
+      ajaxPost('/api/employees', userData);
+    } else if(userData.role=="customer") {
+      ajaxPost('/api/customers', userData);
+    } else if(userData.role=="admin") {
+      ajaxPost('/api/admins', userData);
+    } else {
+      alert('Enter in a valid role.');
+    }
   });
 
     // Listener for creating a company
@@ -27,18 +35,18 @@ $(document).ready(() => {
     return company;
   }
 
-    // Grab employee data from form
-  function grabEmployeeData() {
-    const employee = {};
-    employee.first_name = $('#form-employee-first').val();
-    employee.last_name = $('#form-employee-last').val();
-    employee.email = $('#form-employee-email').val();
-    employee.password = $('#form-password').val();
-    employee.phone_number = $('#form-employee-phone').val();
-    employee.role = $('#form-employee-role').val();
-    console.log('Role = ' + employee.role);
-    employee.company_id = companyId;
-    return employee;
+    // Grab user data from form
+  function grabUserData() {
+    const user = {};
+    user.first_name = $('#form-user-first').val();
+    user.last_name = $('#form-user-last').val();
+    user.email = $('#form-user-email').val();
+    user.password = $('#form-password').val();
+    user.phone_number = $('#form-user-phone').val();
+    user.role = $('#form-user-role').val();
+    console.log('Role = ' + user.role);
+    user.company_id = companyId;
+    return user;
   }
 
     // Ajax function to create a POST request to server
@@ -55,7 +63,7 @@ $(document).ready(() => {
             localStorage.setItem('userState', 2);
             localStorage.setItem('currentUser', JSON.stringify(response));
             location.href = '/admin-dashboard.html';
-          } else if(response.role == 'client') {
+          } else if(response.role == 'employee') {
             localStorage.setItem('userState', 1);
             localStorage.setItem('currentUser', JSON.stringify(response));
             location.href = '/visitors.html';
