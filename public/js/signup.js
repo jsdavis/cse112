@@ -15,7 +15,7 @@ $(document).ready(() => {
     } else if(userData.role=='admin') {
       ajaxPost('/api/admins', userData);
     } else {
-      alert('Enter in a valid role.');
+      console.log('Error invalid role');
     }
   });
 
@@ -44,7 +44,6 @@ $(document).ready(() => {
     user.password = $('#form-password').val();
     user.phone_number = $('#form-user-phone').val();
     user.role = $('#form-user-role').val();
-    console.log('Role = ' + user.role);
     user.company_id = companyId;
     return user;
   }
@@ -57,7 +56,7 @@ $(document).ready(() => {
       data: data,
       dataType: 'json',
       success: function(response) {
-        if(url == '/api/employees') {
+        if(url == '/api/employees' || url == '/api/admins' || url == '/api/customers') {
           console.log(response);
           if(response.role == 'admin') {
             localStorage.setItem('userState', 2);

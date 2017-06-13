@@ -4,7 +4,14 @@ $(() => {
     const userData = grabUserData();
        // alert(userData);
     event.preventDefault();
-    ajaxPostUser('/api/employees/login', userData);
+    const role = $('#role').val();
+    if(role == 'employee') {
+      ajaxPostUser('/api/employees/login', userData);
+    } else if(role == 'customer') {
+      ajaxPostUser('/api/customers/login', userData);
+    } else if(role == 'admin') {
+      ajaxPostUser('/api/admins/login', userData);
+    }
   });
 });
 
@@ -32,7 +39,7 @@ function ajaxPostUser(url, data) {
       if(response.role == 'admin') {
         localStorage.setItem('userState', 2);
         location.href = '/admin-dashboard.html';
-      } else if(response.role == 'client') {
+      } else if(response.role == 'employee') {
         localStorage.setItem('userState', 1);
         localStorage.setItem('currentUser', JSON.stringify(response));
         ajaxGetCompanyInfo('/api/companies/' + response.company_id);

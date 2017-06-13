@@ -16,6 +16,7 @@ const customerSchema= mongoose.Schema({
   channels: {type: [String], required: false},
   companies: [{type: mongoose.Schema.Types.ObjectId, ref: 'Company'}],
   reminders: {type: [String], required: false},
+  role: {type: String, required: true},
 });
 
 // checking if password is valid

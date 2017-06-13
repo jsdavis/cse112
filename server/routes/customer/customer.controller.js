@@ -9,14 +9,14 @@ const Customer = require('../../models/Customer');
 
 module.exports.login = function(req, res) {
   Customer.findOne({email: req.body.email}, (err, c) => {
-    if(err || !e) {
+    if(err || !c) {
       return res.status(400).send({error: 'Can not Find'});
     }
-    if(!e.validPassword(req.body.password))
+    if(!c.validPassword(req.body.password))
       return res.status(400).send({error: 'Incorrect Credentials'});
     const customerJson=c.toJSON();
     delete customerJson.password;
-    return res.status(200).json(customerJSon);
+    return res.status(200).json(customerJson);
   });
 };
 
