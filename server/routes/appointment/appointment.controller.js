@@ -13,6 +13,9 @@ module.exports.create = function(req, res) {
   const appointment = new Appointment();
   const param = req.body;
 
+  let customer = null;
+  let employee = null;
+
   // require provided info
   appointment.start = param.start;
   appointment.end = param.end;
@@ -21,46 +24,56 @@ module.exports.create = function(req, res) {
   async.series([
     // Get the customer id
     (callback) => {
-      Customer.findCustomer(param, (err, customer) => {
-        if (err || !customer)
+      Customer.findCustomer(param, (err, cust) => {
+        if (err || !cust)
           return res.status(400).json({
-            error: 'Could not find customer ' + param.first_name + ' ' + param.last_name,
+            error: 'Could not find customer.',
             message: err,
+            param: param,
           });
 
-        else
-          appointment.customer_id = customer._id;
-
-        callback();
-      });
-    },
-    // Get the company id
-    (callback) => {
-      Company.findCompany(param, (err, company) => {
-        if (err || !company)
-          return res.status(400).json({
-            error: 'Could not find company ' + param.company_name,
-            message: err,
-          });
-
-        else
-          appointment.company_id = company._id;
-
+        customer = cust;
+        appointment.customer_id = customer._id;
         callback();
       });
     },
     // Get the client id
     (callback) => {
-      Employee.findEmployee(param, (err, employee) => {
-        if (err || !employee)
+      Employee.findEmployee(param, (err, emp) => {
+        if (err || !emp)
           return res.status(400).json({
             error: 'Could not find employee ' + param.first_name + ' ' + param.last_name,
             message: err,
           });
 
-        else
-          appointment.client_id = employee._id;
+        employee = emp;
+        appointment.client_id = employee._id;
+        callback();
+      });
+    },
+    // Get the company id
+    (callback) => {
+      Company.findCompany(employee, (err, company) => {
+        if (err || !company)
+          return res.status(400).json({
+            error: 'Could not find company.',
+            message: err,
+            param: param,
+            employee: employee,
+          });
 
+        // Workaround for weird typing errors with id's
+        const companies = customer.companies.map((comp) => {
+          return '' + comp;
+        });
+
+        if (!companies.includes('' + company._id))
+          return res.status(400).json({
+            error: 'Customer ' + customer.first_name + ' ' + customer.last_name + ' is not registered with company ' + company.name,
+            param: param,
+          });
+
+        appointment.company_id = company._id;
         callback();
       });
     },
