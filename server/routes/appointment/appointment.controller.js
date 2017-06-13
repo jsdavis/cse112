@@ -4,6 +4,7 @@ const async = require('async');
 const Appointment = require('../../models/Appointment');
 const Company = require('../../models/Company');
 const Customer = require('../../models/Customer');
+const Employee = require('../../models/Employee');
 
 /** **** Company TEMPLATE ROUTES ******/
 module.exports = {};
@@ -20,6 +21,7 @@ module.exports.create = function(req, res) {
   async.series([
     // Get the customer id
     (callback) => {
+      console.log('Finding customer');
       Customer.findCustomer(param, (err, customer) => {
         if (err || !customer)
           return res.status(400).json({
@@ -44,6 +46,21 @@ module.exports.create = function(req, res) {
 
         else
           appointment.company_id = company._id;
+
+        callback();
+      });
+    },
+    // Get the client id
+    (callback) => {
+      Employee.findEmployee(param, (err, employee) => {
+        if (err || !employee)
+          return res.status(400).json({
+            error: 'Could not find employee ' + param.first_name + ' ' + param.last_name,
+            message: err,
+          });
+
+        else
+          appointment.client_id = employee._id;
 
         callback();
       });

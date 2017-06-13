@@ -17,12 +17,11 @@ const employeeSchema = mongoose.Schema({
   last_name: {type: String, required: true},
   email: {type: String, unique: true, index: true, required: true},
   password: {type: String, required: true},
-  phone_number: {type: String, required: true},
+  phone_number: {type: String, required: false},
   role: {type: String, required: true},
-  channels: {type: [channelSchema], default: []},
-  // reminders: {type: [reminderSchema], default: []},
-  // company_id: {type: Schema.Types.ObjectId, ref: 'Company', required: true},
-  company_id: {type: String, required: false},
+  channels: {type: [String], default: []},
+  company_id: {type: mongoose.Schema.Types.ObjectId, ref: 'Company', required: true},
+  // reminders: {type: [String], default: []},
 });
 
 
@@ -31,9 +30,8 @@ const employeeSchema = mongoose.Schema({
 //   date: {type: Date, required: true},
 // })
 
-
 employeeSchema.statics.findEmployee = function(param, callback) {
-  const id = param.employee_id || param.id || param._id || undefined;
+  const id = param.employee_id || param.client_id || param.id || param._id || undefined;
   if (id)
     this.findById(id, callback);
   else if (param.email)

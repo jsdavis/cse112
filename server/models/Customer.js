@@ -30,7 +30,7 @@ customerSchema.methods.generateHash = function(password) {
 customerSchema.statics.findCustomer = function(param, callback) {
   const id = param.customer_id || param.id || param._id || undefined;
   if (id)
-    this.findById(param.customer_id, callback);
+    this.findById(id, callback);
 
   else if (param.email)
     this.findOne({
@@ -47,6 +47,7 @@ customerSchema.statics.findCustomer = function(param, callback) {
     callback({
       error: 'Bad request for finding customer.',
       message: param,
+      id: id,
     });
 };
 
