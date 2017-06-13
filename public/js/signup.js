@@ -8,11 +8,11 @@ $(document).ready(() => {
   $('#submit-btn').on('click', () => {
     const userData = grabUserData();
     console.log(userData);
-    if(userData.role=="employee") {
+    if(userData.role=='employee') {
       ajaxPost('/api/employees', userData);
-    } else if(userData.role=="customer") {
+    } else if(userData.role=='customer') {
       ajaxPost('/api/customers', userData);
-    } else if(userData.role=="admin") {
+    } else if(userData.role=='admin') {
       ajaxPost('/api/admins', userData);
     } else {
       alert('Enter in a valid role.');
