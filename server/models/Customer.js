@@ -28,19 +28,26 @@ customerSchema.methods.generateHash = function(password) {
 };
 
 customerSchema.statics.findCustomer = function(param, callback) {
+  // Make it impossible to screw this up
   const id = param.customer_id || param.id || param._id || undefined;
+  const email = param.customer_email || param.email || undefined;
+  const name = {
+    first: param.first_name || param.firstName || param.firstname || undefined,
+    last: param.last_name || param.lastName || param.lastname || undefined,
+  };
+
   if (id)
     this.findById(id, callback);
 
-  else if (param.email)
+  else if (email)
     this.findOne({
-      email: param.email,
+      email: email,
     }, callback);
 
-  else if (param.first_name && param.last_name)
+  else if (name.first && name.last)
     this.findOne({
-      first_name: param.first_name,
-      last_name: param.last_name,
+      first_name: name.first,
+      last_name: name.last,
     }, callback);
 
   else

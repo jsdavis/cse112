@@ -21,7 +21,6 @@ module.exports.create = function(req, res) {
   async.series([
     // Get the customer id
     (callback) => {
-      console.log('Finding customer');
       Customer.findCustomer(param, (err, customer) => {
         if (err || !customer)
           return res.status(400).json({
