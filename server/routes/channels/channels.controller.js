@@ -95,36 +95,18 @@ module.exports.chatBotPostResponse = function(req, res) {
   const param = req.body;
   console.log('RECEIVED REQUEST FROM chatbot');
 
-  request.post('https://slack.com/api/chat.postMessage',
-    {
-      'token': 'xoxp-167318334051-167150907856-190424847319-e55dd37b87b552a95a322d45ff6e69b8',
-      'channel': '#emissarycheckins',
-      'text': 'Your request via messenger chatbot to make an appointment with ' + param.given_name +
-              ' ' + param.any + ' on ' + param.date + ' at ' + param.time,
-    },
-     (err, response, body) => {
-       if (err || response.error)
-         res.status(500).send({
-           error: 'Posting to Slack failed',
-           message: err,
-           param: param,
-         });
-       else
-        res.status(200).send(body);
-     });
-
-  // var request = apiaiApp.textRequest('<Your text query>', {
+  // let req = apiaiApp.textRequest('<Your text query>', {
   //     sessionId: '<unique session id>'
   // });
 
-  // request.on('response', function(response) {
+  // req.on('response', function(response) {
   //     console.log(response);
   // });
 
-  // request.on('error', function(error) {
+  // req.on('error', function(error) {
   //     console.log(error);
   // });
 
-  // request.end();
+  // req.end();
 };
 

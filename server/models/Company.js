@@ -14,13 +14,16 @@ const companySchema = mongoose.Schema({
 });
 
 companySchema.statics.findCompany = function(param, callback) {
-  if (param.company_id)
+  const id = param.company_id || param.id || param._id || undefined;
+  if (id)
     this.findById(param.company_id, callback);
-  else if (param.id)
-    this.findById(param.id, callback);
-  else if (param.company_name) {
-    this.findOne({name: param.company_name}, callback);
-  } else
+
+  else if (param.company_name)
+    this.findOne({
+      name: param.company_name,
+    }, callback);
+
+  else
     callback({
       error: 'Bad request for finding company.',
       message: param,
