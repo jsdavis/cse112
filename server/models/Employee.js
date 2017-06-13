@@ -31,6 +31,27 @@ const employeeSchema = mongoose.Schema({
 //   date: {type: Date, required: true},
 // })
 
+
+employeeSchema.statics.findEmployee = function(param, callback) {
+  const id = param.employee_id || param.id || param._id || undefined;
+  if (id)
+    this.findById(id, callback);
+  else if (param.email)
+    this.findOne({
+      email: param.email,
+    }, callback);
+  else if (param.first_name && param.last_name)
+    this.findOne({
+      first_name: param.first_name,
+      last_name: param.last_name,
+    }, callback);
+  else
+    callback({
+      error: 'Bad request for finding customer.',
+      message: param,
+    });
+};
+
 // checking if password is valid
 employeeSchema.methods.validPassword = function(password) {
   return bcrypt.compareSync(password, this.password);

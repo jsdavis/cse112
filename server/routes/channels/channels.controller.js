@@ -7,6 +7,8 @@ const request = require('request');
  * routes that pertain to users
  */
 const SlackDB = require('../../models/SlackDB');
+const Appointment = require('../../models/Appointment');
+const AppointmentContr = require('../appointment/appointment.controller.js');
 
 // const apiai = require('apiai');
 // const apiaiApp = apiai('a0569614aa254d96a49d6068db16a718');
@@ -92,27 +94,23 @@ module.exports.deleteSlackInfo = function(req, res) {
 };
 
 module.exports.chatBotPostResponse = function(req, res) {
-  const param = req.body;
+  const param = req.body.result;
   console.log('RECEIVED REQUEST FROM chatbot');
 
-  request.post('https://slack.com/api/chat.postMessage',
-    {
-      'token': 'xoxp-167318334051-167150907856-190424847319-e55dd37b87b552a95a322d45ff6e69b8',
-      'channel': '#emissarycheckins',
-      'text': 'Your request via messenger chatbot to make an appointment with ' + param.given_name +
-              ' ' + param.any + ' on ' + param.date + ' at ' + param.time,
-    },
-     (err, response, body) => {
-       if (err)
-         res.status(500).send({
-           error: 'Posting to Slack failed',
-           message: err,
-           param: param,
-         });
-       else
-        res.status(200).send(body);
-     });
+  const action = param.action;
+  appointment = {};
+  if(action=='createAppointment') {
+    appointment.lastname = param.parameters.lastname;
+    appointment.firstname = param.parameters.given_name;
+    appointment.start = param.parameters.start_time;
+    appointment.end = param.parameters.end_time;
+    appointment.date = param.parameters.date;
+    appointment.username = param.parameters.username;
+    appointment.extras = param.parameters.extras;
 
+    req.body = appointment;
+    AppointmentContr.create(req, res);
+  }
   // var request = apiaiApp.textRequest('<Your text query>', {
   //     sessionId: '<unique session id>'
   // });
