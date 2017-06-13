@@ -6,6 +6,7 @@ const config = require('../server/config/config');
 const Appointment = require('../server/models/Appointment');
 const Company = require('../server/models/Company');
 const Customer = require('../server/models/Customer');
+const Employee = require('../server/models/Employee');
 const should = require('chai').should();
 
 describe('Appointment Test', () => {
@@ -25,13 +26,21 @@ describe('Appointment Test', () => {
 
   // customer info
   const customer = new Customer();
-  const customerFirstName = 'customer_name';
-  const customerLastName = 'customer_last_name';
-  const customerEmail = 'customer_test@ucsd.edu';
-  const customerPassword = 'customer_password';
+  const customerFirstName = 'Mer';
+  const customerLastName = 'Custo';
+  const customerEmail = 'customer@customer.com';
+  const customerPassword = '1234567890';
   const customerChannels = ['facebook', 'slack'];
-  const customerCompanies = ['test'];
   const customerReminders = ['meet up at 1'];
+
+  // employee info
+  const empFirstName = 'employee_name';
+  const empLastName = 'employee_last_name';
+  const empEmail = 'email_test@ucsd.edu';
+  const empPassword = 'employee_password';
+  const empRole = 'user';
+  const empChannles = ['slack'];
+  const empCompany = null;
 
   // new appointment info
   const newFirstName = 'test1';
@@ -59,44 +68,53 @@ describe('Appointment Test', () => {
 
     company.save((err, c) => {
       currCompany = c;
-      // setup customer
-      const customer = new Customer();
-      customer.first_name = customerFirstName;
-      customer.last_name = customerLastName;
-      customer.email = customerEmail;
-      customer.phone_number = phoneNumber;
-      customer.company_id = currCompany._id;
-      customer.password = customerPassword;
-      customer.role = 'customer';
 
-      customer.save((err, cust) => {
-        if (err || !cust) {
-          return done({
-            error: 'Failed to save customer',
-            message: err,
-            result: cust,
-            params: customer,
-          });
-        }
-        currCustomer = cust;
-        request(url)
-          .post('/api/appointments')
-          .send({
-            first_name: firstName,
-            last_name: lastName,
-            start: start,
-            end: end,
-            checked_in: checkedIn,
-            company_id: currCompany._id,
-            customer_id: currCustomer._id,
-            extras: providerNameExtra,
-          })
-          .end((err, res) => {
-            res.should.have.status(200);
-            res.body.should.have.property('_id');
-            currAppointment = res.body;
-            done();
-          });
+      // setup employee
+      const employee = new Employee();
+      employee.first_name = empFirstName;
+      employee.last_name = empLastName;
+      employee.email = empEmail;
+      employee.password = empPassword;
+      employee.company_id = currCompany._id;
+      employee.role = empRole;
+
+      employee.save((err, e) => {
+        // setup customer
+        const customer = new Customer();
+        customer.first_name = customerFirstName;
+        customer.last_name = customerLastName;
+        customer.email = customerEmail;
+        customer.companies[0] = currCompany._id;
+        customer.password = customerPassword;
+
+        customer.save((err, cust) => {
+          if (err || !cust) {
+            return done({
+              error: 'Failed to save customer',
+              message: err,
+              result: cust,
+              params: customer,
+            });
+          }
+          currCustomer = cust;
+          request(url)
+            .post('/api/appointments')
+            .send({
+              start: start,
+              end: end,
+              checked_in: checkedIn,
+              company_id: currCompany._id,
+              customer_id: currCustomer._id,
+              client_id: e._id,
+              extras: providerNameExtra,
+            })
+            .end((err, res) => {
+              res.should.have.status(200);
+              res.body.should.have.property('_id');
+              currAppointment = res.body;
+              done();
+            });
+        });
       });
     });
   });
