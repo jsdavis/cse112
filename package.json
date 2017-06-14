@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "NODE_ENV=production node index.js",
-    "dev": "NODE_ENV=development node index.js | bunyan -o short",
+    "dev": "NODE_ENV=development nodemon index.js | bunyan -o short",
     "test-start": "NODE_ENV=test node index.js",
     "lint": "eslint .",
     "lintfix": "eslint . --fix",
-    "test": "NODE_ENV=test nyc --reporter=lcov mocha --timeout 6000",
+    "test": "NODE_ENV=test nyc --reporter=lcov mocha --timeout 10000",
     "coverage": "npm test && cat ./coverage/lcov.info | codacy-coverage && rm -rf ./coverage",
     "doc": "jsdoc -d ./docs -c jsdoc.json",
     "e2e": "nightwatch --config nightwatch.js --env chrome,ie11,firefox",
@@ -29,6 +29,8 @@
   },
   "homepage": "https://github.com/jsdavis/cse112#readme",
   "dependencies": {
+    "apiai": "^4.0.2",
+    "async": "^2.4.1",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.17.1",
     "bunyan": "^1.8.10",
@@ -39,6 +41,8 @@
     "mocha-lcov-reporter": "^1.3.0",
     "mongoose": "^4.9.9",
     "mongoose-encryption": "^1.5.0",
+    "nodemailer": "^4.0.1",
+    "request": "^2.81.0",
     "selenium-download": "^2.0.10",
     "socket.io": "^2.0.1"
   },

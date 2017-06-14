@@ -1,4 +1,4 @@
-// employee.js
+// admin.js
 'use strict';
 
 /* Require mongoose to interact with mongoDB */
@@ -10,9 +10,9 @@ const channelSchema = mongoose.Schema({
 });
 
 /*
- * Employee schema
+ * admin schema
  */
-const employeeSchema = mongoose.Schema({
+const adminSchema = mongoose.Schema({
   first_name: {type: String, required: true},
   last_name: {type: String, required: true},
   email: {type: String, unique: true, index: true, required: true},
@@ -30,10 +30,10 @@ const employeeSchema = mongoose.Schema({
 //   date: {type: Date, required: true},
 // })
 
-employeeSchema.statics.findEmployee = function(param, callback) {
+adminSchema.statics.findAdmin = function(param, callback) {
   // Make it impossible to screw this up
-  const id = param.employee_id || param.client_id || param.id || param._id || undefined;
-  const email = param.employee_email || param.client_email || param.email || undefined;
+  const id = param.admin_id || param.client_id || param.id || param._id || undefined;
+  const email = param.admin_email || param.client_email || param.email || undefined;
   const name = {
     first: param.first_name || param.firstName || param.firstname || undefined,
     last: param.last_name || param.lastName || param.lastname || undefined,
@@ -60,11 +60,11 @@ employeeSchema.statics.findEmployee = function(param, callback) {
 };
 
 // checking if password is valid
-employeeSchema.methods.validPassword = function(password) {
+adminSchema.methods.validPassword = function(password) {
   return bcrypt.compareSync(password, this.password);
 };
 // generating a hash
-employeeSchema.methods.generateHash = function(password) {
+adminSchema.methods.generateHash = function(password) {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
-module.exports = mongoose.model('employee', employeeSchema);
+module.exports = mongoose.model('admin', adminSchema);

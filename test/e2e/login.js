@@ -1,6 +1,7 @@
 const config = require('../../nightwatch.js');
 
 module.exports = {
+  '@disabled': true,
   'beforeEach': (browser) => {
     browser
       .url('http://localhost:8080/login.html')

@@ -13,5 +13,10 @@ module.exports = function(app) {
   app.use('/api/visitorLists', r('./routes/visitorList'));
   app.use('/api/companies', r('./routes/company'));
   app.use('/api/appointments', r('./routes/appointment'));
-	// app.use('/payment'          , r('./routes/payment'));
+  app.use('/api/channels', r('./routes/channels'));
+  app.use('/api/slack', r('./routes/slack'));
+  app.use('/api/customers', r('./routes/customer'));
+  app.use('/api/admins', r('./routes/admin'));
+
+  // app.use('/payment'          , r('./routes/payment'));
 };

@@ -10,15 +10,44 @@ const Schema = mongoose.Schema;
  * Appointment schema
  */
 
-// TODO add last and first name field
 const appointmentSchema = mongoose.Schema({
-  first_name: {type: String, required: true},
-  last_name: {type: String, required: true},
-  phone_number: {type: String, required: true},
-  date: {type: Date, required: true},
-  provider_name: {type: String, required: true},
+  start: {type: Date, required: true},
+  end: {type: Date, required: true},
+  checked_in: {type: Boolean, default: false},
+  client_id: {type: Schema.Types.ObjectId, ref: 'Employee', required: true},
   company_id: {type: Schema.Types.ObjectId, ref: 'Company', required: true},
+  customer_id: {type: Schema.Types.ObjectId, ref: 'Customer', required: true},
+  extras: {type: Object, required: false},
 });
 
+appointmentSchema.statics.findAppointment = function(param, callback) {
+  const id = param.appointment_id || param.id || param._id || undefined;
+  if (id)
+    this.findById(id, callback);
+
+  else if (param.first_name && param.last_name && param.start && param.end) {
+    Customer.findCustomer(param, (err, customer) => {
+      if (err || !customer) {
+        Employee.findEmployee(param, (err, employee) => {
+          this.findOne({
+            client_id: employee._id,
+            start: param.start,
+            end: param.end,
+          }, callback);
+        });
+      } else {
+        this.findOne({
+          customer_id: customer._id,
+          start: param.start,
+          end: param.end,
+        }, callback);
+      }
+    });
+  } else
+    callback({
+      error: 'Bad request for finding appointment.',
+      message: param,
+    });
+};
 
 module.exports = mongoose.model('appointment', appointmentSchema);

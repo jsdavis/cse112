@@ -1,3 +1,4 @@
+
 'use strict';
 const log = require('../../../log');
 
@@ -16,11 +17,16 @@ module.exports.login = function(req, res) {
       return res.status(400).send({error: 'Incorrect Credentials'});
     const employeeJson=e.toJSON();
     delete employeeJson.password;
+
+
     return res.status(200).json(employeeJson);
   });
 };
 
 module.exports.getAllEmployees = function(req, res) {
+  // if(req.body.userType != 'employee_admin') {
+  //   res.redirect('/api/visitorList/company/'+req.params.company_id);
+  // }
   Employee.find({company_id: req.params.id}, {password: 0}, (err, result) => {
     if(err) {
       return res.status(400).send({error: 'Can not Find'});
@@ -29,16 +35,38 @@ module.exports.getAllEmployees = function(req, res) {
   });
 };
 
+// channels
+// module.exports.getAllReminders = function(req, res) {
+//   Employee.find({company_id: req.params.id}, {password: 0}, (err, result) => {
+//     if(err) {
+//       return res.status(400).send({error: 'Can not Find'});
+//     }
+//     return res.status(200).json(result.reminders);
+//   });
+// };
+
+
+module.exports.getAllChannels = function(req, res) {
+  Employee.find(req.params.id, {password: 0}, (err, result) => {
+    if(err) {
+      return res.status(400).send({error: 'Can not Find'});
+    }
+    return res.status(200).json(result.channels);
+  });
+};
+
+
 module.exports.getById = function(req, res) {
   Employee.findById(req.params.id, {password: 0}, (err, employee) => {
     if (err) {
       return res.status(400).json({error: 'Can not Find'});
     } else {
-      log.info(employee);
+      // log.info(employee);
       return res.status(200).json(employee);
     }
   });
 };
+
 
 module.exports.insert = function(req, res) {
   const employee = new Employee();
@@ -51,7 +79,7 @@ module.exports.insert = function(req, res) {
   employee.company_id = req.body.company_id;
   employee.password = employee.generateHash(req.body.password);
   employee.role = req.body.role;
-
+  employee.channels = [];
   employee.save((err, e) => {
     if(err) {
       return res.status(400).json({error: 'Can Not Save: ' + err});
@@ -59,6 +87,40 @@ module.exports.insert = function(req, res) {
     const employeeJson=e.toJSON();
     delete employeeJson.password;
     return res.status(200).json(employeeJson);
+  });
+};
+
+
+// channels
+module.exports.addChannel = function(req, res) {
+  const obj = {};
+
+  const channelName = req.params.name;
+  const id = req.params.id;
+  obj.params = {};
+  obj.params.id =id;
+
+  exports.getById(obj, (errMsg, employee) => {
+    if(errMsg) return res.status(400).json(errMsg);
+
+    employee.first_name = req.body.first_name || employee.first_name;
+    employee.last_name = req.body.last_name || employee.last_name;
+    employee.email = req.body.email || employee.email;
+    employee.phone_number = req.body.phone_number || employee.phone_number;
+    employee.password = employee.generateHash(req.body.password) ||
+        employee.password;
+    employee.role = req.body.role || employee.role;
+    console.log('in here!!!');
+    if(employee.channels.indexOf(channelName) < 0) {
+      console.log('An here!!'+employee.channels);
+      employee.channels.push(channelName);
+    }
+
+    employee.save((err) => {
+      const employeeJson=employee.toJSON();
+      delete employeeJson.password;
+      return res.status(200).json(employee);
+    });
   });
 };
 
@@ -97,6 +159,34 @@ module.exports.delete = function(req, res) {
         delete employeeJson.password;
         return res.status(200).send(employeeJson);
       }
+    });
+  });
+};
+
+// channels
+module.exports.deleteChannel = function(req, res) {
+  const obj = {};
+  const channelName = req.params.name;
+  const id = req.params.id;
+  obj.params.id =id;
+
+  exports.getById(id, (errMsg, employee) => {
+    if(errMsg) return res.status(400).json(errMsg);
+
+    employee.first_name = employee.first_name;
+    employee.last_name = employee.last_name;
+    employee.email = employee.email;
+    employee.phone_number = employee.phone_number;
+    employee.password = employee.password;
+    employee.role = employee.role;
+    const index = employee.channels.indexOf(channelName);
+    if(index >= 0)
+      employee.channels.splice(index, 1);
+
+    employee.save((err) => {
+      const employeeJson=employee.toJSON();
+      delete employeeJson.password;
+      return res.status(200).json(employee);
     });
   });
 };

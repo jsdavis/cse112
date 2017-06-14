@@ -1,13 +1,14 @@
 // with Button named loginButton
-$(() => {
-  $('#loginButton').click(() => {
-    const userData = grabUserData();
-       // alert(userData);
-    event.preventDefault();
-    ajaxPostUser('/api/employees/login', userData);
-  });
+$('#form_login').submit((event) => {
+  event.preventDefault();
 });
-
+$('#loginButton').click(() => {
+  alert('Hello');
+  const userData = grabUserData();
+     // alert(userData);
+  alert(JSON.stringify(userData));
+  ajaxPostUserEmployee(userData);
+});
 
 // with Button named signin-bt
 $(() => {
@@ -15,35 +16,55 @@ $(() => {
     localStorage.removeItem('userState');
     localStorage.removeItem('currentUser');
     localStorage.removeItem('currentCompany');
+    localStorage.removeItem('slackChannel');
+    localStorage.removeItem('slackToken');
   });
 });
 
 // Ajax function to create a POST request to server
-function ajaxPostUser(url, data) {
+function ajaxPostUserEmployee(data) {
   $.ajax({
     type: 'POST',
-    url: url,
+    url: '/api/employees/login',
     data: data,
     dataType: 'json',
     success: function(response) {
       console.log(response);
       if(response.role == 'admin') {
         localStorage.setItem('userState', 2);
+        localStorage.setItem('userType', 'employee_admin');
         location.href = '/admin-dashboard.html';
-      } else if(response.role == 'client') {
+      } else {
         localStorage.setItem('userState', 1);
         localStorage.setItem('currentUser', JSON.stringify(response));
+        localStorage.setItem('userType', 'employee');
+        alert(response.company_id);
         ajaxGetCompanyInfo('/api/companies/' + response.company_id);
         location.href = '/visitors.html';
-      }else if(response.role == 'customer') {
-        localStorage.setItem('userState', 3);
-        localStorage.setItem('currentUser', JSON.stringify(response));
-        location.href = '/user-dashboard.html';
       }
+      ajaxGetSlackInfo('api/channels/slack');
+    },
+    error: function() {
+      ajaxPostUserCustomer(data);
+      window.onerror=handleError();
+    },
+  });
+}
+
+function ajaxPostUserCustomer(data) {
+  $.ajax({
+    type: 'POST',
+    url: '/api/customers/login',
+    data: data,
+    dataType: 'json',
+    success: function(response) {
+      console.log(response);
+      localStorage.setItem('userState', 2);
+      location.href = '/admin-dashboard.html';
+      localStorage.setItem('userType', 'customer');
     },
     error: function() {
       window.onerror=handleError();
-      event.preventDefault();
            // location.href = '/login.html';
     },
   });
@@ -61,6 +82,21 @@ function ajaxGetCompanyInfo(url) {
       console.log(response);
            // alert(response.name);
       localStorage.setItem('currentCompany', JSON.stringify(response));
+    },
+  });
+}
+function ajaxGetSlackInfo(url) {
+  $.ajax({
+    type: 'GET',
+    url: url+'/'+JSON.parse(localStorage.getItem('currentUser'))._id,
+    async: false,
+    dataType: 'json',
+    success: function(response) {
+      console.log(response);
+      if(response.slackToken)
+        localStorage.setItem('slackToken', response.slackToken);
+      if(response.slackChannel)
+        localStorage.setItem('slackChannel', response.slackChannel);
     },
   });
 }
