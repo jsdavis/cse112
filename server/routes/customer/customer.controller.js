@@ -8,6 +8,7 @@ const log = require('../../../log');
 const Customer = require('../../models/Customer');
 
 module.exports.login = function(req, res) {
+  console.log(req.body.email + ' ' + req.body.password);
   Customer.findOne({email: req.body.email}, (err, c) => {
     if(err || !c) {
       return res.status(400).send({error: 'Can not Find'});

@@ -71,15 +71,25 @@ module.exports.getById = function(req, res) {
 module.exports.insert = function(req, res) {
   const employee = new Employee();
 
-    /* required info */
-  employee.first_name = req.body.first_name;
-  employee.last_name = req.body.last_name;
-  employee.email = req.body.email;
-  employee.phone_number = req.body.phone_number;
-  employee.company_id = req.body.company_id;
-  employee.password = employee.generateHash(req.body.password);
-  employee.role = req.body.role;
-  employee.channels = [];
+  if (req.body.name != undefined) {
+    employee.first_name = req.body.adminUser.first_name;
+    employee.last_name = req.body.adminUser.last_name;
+    employee.email = req.body.adminUser.email;
+    employee.phone_number = req.body.adminUser.phone_number;
+    // employee.company_id = req.body.company_id;
+    employee.password = employee.adminUser.generateHash(req.body.password);
+    employee.role = req.body.adminUser.role;
+    employee.channels = [];
+  } else {
+    employee.first_name = req.body.first_name;
+    employee.last_name = req.body.last_name;
+    employee.email = req.body.email;
+    employee.phone_number = req.body.phone_number;
+    employee.company_id = req.body.company_id;
+    employee.password = employee.generateHash(req.body.password);
+    employee.role = req.body.role;
+    employee.channels = [];
+  }
   employee.save((err, e) => {
     if(err) {
       return res.status(400).json({error: 'Can Not Save: ' + err});

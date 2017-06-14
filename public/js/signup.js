@@ -7,10 +7,12 @@ $(document).ready(() => {
     // Listener for Initial Sign up of an Employee
   $('#submit-btn').on('click', () => {
     const userData = grabUserData();
+    alert("njkbhjvg");
     console.log(userData);
     if(userData.role=='employee') {
       ajaxPost('/api/employees', userData);
     } else if(userData.role=='customer') {
+      alert("njkbhjvg");
       ajaxPost('/api/customers', userData);
     } else if(userData.role=='admin') {
       ajaxPost('/api/admins', userData);
@@ -18,6 +20,14 @@ $(document).ready(() => {
       console.log('Error invalid role');
     }
   });
+
+  $('#submit-btn-company').on('click', () => {
+    const companyData = grabCompanyData();
+
+    //validate data!!!
+    ajaxPost('/api/employees', companyData);
+  });
+
 
    // Listener for creating a company
   function submitCompany() {
@@ -31,41 +41,46 @@ $(document).ready(() => {
   }
   }
 
-    // next step
-  $('#submit-company-btn').on('click', function() {
-    const parent_fieldset = $(this).parents('fieldset');
-    let next_step = true;
-    console.log(next_step);
-    if(!submitCompany()) {
-      next_step = false;
-    }
-    console.log(next_step);
-    if( next_step ) {
-      parent_fieldset.fadeOut(400, function() {
-	      $(this).next().fadeIn();
-	    });
-    }
-  });
+  //   // next step
+  // $('#submit-company-btn').on('click', function() {
+  //   const parent_fieldset = $(this).parents('fieldset');
+  //   let next_step = true;
+  //   console.log(next_step);
+  //   if(!submitCompany()) {
+  //     next_step = false;
+  //   }
+  //   console.log(next_step);
+  //   if( next_step ) {
+  //     parent_fieldset.fadeOut(400, function() {
+	 //      $(this).next().fadeIn();
+	 //    });
+  //   }
+  // });
 
     // Grab Company Data from form
   function grabCompanyData() {
     const company = {};
-    company.name = $('#form-company-name').val();
-    company.email = $('#form-email').val();
-    company.phone_number = $('#form-phone').val();
+    company.name= $('#company_name').val();
+    company.adminUser = grabUserData();
+    company.adminUser.role = "employee_admin";
+    alert(JSON.stringify(company));
     return company;
   }
 
     // Grab user data from form
   function grabUserData() {
     const user = {};
-    user.first_name = $('#form-user-first').val();
-    user.last_name = $('#form-user-last').val();
-    user.email = $('#form-user-email').val();
+    user.first_name = $('#first_name').val();
+    user.last_name = $('#last_name').val();
+    user.email = $('#email').val();
     user.password = $('#form-password').val();
-    user.phone_number = $('#form-user-phone').val();
-    user.role = $('#form-user-role').val();
-    user.company_id = companyId;
+    user.phone_number = $('#telephone').val();
+    user.password = $('#password').val();
+    user.repeat_password = $('#repeat-password').val();
+    if(user.repeat_password != user.password){
+      alert("You put in two different passwords!");
+    }
+    user.role = "customer";
     return user;
   }
 
@@ -139,7 +154,7 @@ $(document).ready(() => {
     return true;
   }
 
-  function validateCompany() {
+  function validateData() {
     const companyName = $('#form-company-name').val();
     const companyEmail = $('#form-email').val();
     const companyNumber = $('#form-phone').val();
