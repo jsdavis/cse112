@@ -26,3 +26,9 @@ public/**/jquery.inputmask.bundle.js
 public/**/js.cookie.js
 public/**/datatables.js
 public/**/toastr.js
+
+
+
+/*Needs fixing*/
+public/js/signup.js
+public/js/index.js

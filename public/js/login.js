@@ -1,20 +1,14 @@
 // with Button named loginButton
-$(() => {
-  $('#loginButton').click(() => {
-    const userData = grabUserData();
-       // alert(userData);
-    event.preventDefault();
-    const role = $('#role').val();
-    if(role == 'employee') {
-      ajaxPostUser('/api/employees/login', userData);
-    } else if(role == 'customer') {
-      ajaxPostUser('/api/customers/login', userData);
-    } else if(role == 'admin') {
-      ajaxPostUser('/api/admins/login', userData);
-    }
-  });
+$('#form_login').submit((event) => {
+  event.preventDefault();
 });
-
+$('#loginButton').click(() => {
+  alert('Hello');
+  const userData = grabUserData();
+     // alert(userData);
+  alert(JSON.stringify(userData));
+  ajaxPostUserEmployee(userData);
+});
 
 // with Button named signin-bt
 $(() => {
@@ -28,32 +22,49 @@ $(() => {
 });
 
 // Ajax function to create a POST request to server
-function ajaxPostUser(url, data) {
+function ajaxPostUserEmployee(data) {
   $.ajax({
     type: 'POST',
-    url: url,
+    url: '/api/employees/login',
     data: data,
     dataType: 'json',
     success: function(response) {
       console.log(response);
       if(response.role == 'admin') {
         localStorage.setItem('userState', 2);
+        localStorage.setItem('userType', 'employee_admin');
         location.href = '/admin-dashboard.html';
-      } else if(response.role == 'employee') {
+      } else {
         localStorage.setItem('userState', 1);
         localStorage.setItem('currentUser', JSON.stringify(response));
+        localStorage.setItem('userType', 'employee');
+        alert(response.company_id);
         ajaxGetCompanyInfo('/api/companies/' + response.company_id);
         location.href = '/visitors.html';
-      }else if(response.role == 'customer') {
-        localStorage.setItem('userState', 3);
-        localStorage.setItem('currentUser', JSON.stringify(response));
-        location.href = '/user-dashboard.html';
       }
       ajaxGetSlackInfo('api/channels/slack');
     },
     error: function() {
+      ajaxPostUserCustomer(data);
       window.onerror=handleError();
-      event.preventDefault();
+    },
+  });
+}
+
+function ajaxPostUserCustomer(data) {
+  $.ajax({
+    type: 'POST',
+    url: '/api/customers/login',
+    data: data,
+    dataType: 'json',
+    success: function(response) {
+      console.log(response);
+      localStorage.setItem('userState', 2);
+      location.href = '/admin-dashboard.html';
+      localStorage.setItem('userType', 'customer');
+    },
+    error: function() {
+      window.onerror=handleError();
            // location.href = '/login.html';
     },
   });

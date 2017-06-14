@@ -4,6 +4,8 @@ $(document).ready(() => {
   const curUser = JSON.parse(localStorage.getItem('currentUser'));
 
 
+  $('#appt-date').datepicker();
+
   $('#user-name').text(curUser.first_name + ' ' + curUser.last_name);
 
   let appts = getAppts();
@@ -25,7 +27,7 @@ $(document).ready(() => {
   const compiledHtml = template(appts);
 
   $('#appt-list').html(compiledHtml);
-  $('.save-btn').click(submitForm);
+  $('#modal-save').click(submitForm);
 
   // Makes a get request to display list of appts
   function getAppts() {
@@ -52,7 +54,7 @@ $(document).ready(() => {
     appts = getAppts();
     appts = initializeAppts(appts);
     $('#appt-list').html(template(appts));
-    document.getElementById('appt-form').reset();
+    // document.getElementById('appt-form').reset();
   }
 
   // Makes a post request to update list of appts when adding a new employee

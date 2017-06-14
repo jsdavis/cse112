@@ -21,12 +21,9 @@
 	<link rel="stylesheet" href="font/entypo.css">
 	<link rel="stylesheet" href="font/NotoSans.css">
 	<!-- <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic"> -->
-	<link rel="stylesheet" href="css/vendor/bootstrap.css">
-	<link rel="stylesheet" href="css/vendor/loader.css">
 
-	<link rel="stylesheet" href="css/vendor/neon-core.css">
-	<link rel="stylesheet" href="css/vendor/neon-theme.css">
-	<link rel="stylesheet" href="css/vendor/neon-forms.css">
+	<link rel="stylesheet" href="css/user.css">
+
 	<script src="js/min/jquery-1.11.3.min.js"></script>
 
 	<!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -79,21 +76,25 @@
 				<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
 				<li>
 					<a href="user-dashboard.html">
-						<span class="title">User Dashboard</span>
+						<i class="entypo-calendar"></i>
+						<span class="title">Appointments</span>
 					</a>
 				</li>
 				<li>
 					<a href="XXXX.html">
-						<span class="title"> BLANK </span>
+						<i class="entypo-user"></i>
+						<span class="title">Employess</span>
 					</a>
 				</li>
 				<li>
 					<a href="XXXX.html">
-						<span class="title"> BLANK </span>
+						<i class="entypo-clipboard"></i>
+						<span class="title">Forms</span>
 					</a>
 				</li>
 				<li>
 					<a href="XXXX.html">
+						<i class="entypo-tools"></i>
 						<span class="title">Settings</span>
 					</a>
 				</li>
@@ -115,7 +116,7 @@
 					<!-- Profile Info -->
 					<li class="profile-info dropdown"><!-- add class "pull-right" if you want to place this from right -->
 						<a href="#" id="company-name">
-							<h3>User Dashboard</h3>
+							<h3>Hello, <span id="user-name"> </span></h3>
 						</a>
 						
 					</li>
@@ -137,16 +138,16 @@
 				</ul>
 		
 			</div>
+			
 		
 		</div>
 		
-
-		<!-- Footer -->
-		<footer class="main">
-			
-			&copy; 2015 <strong>Emissary</strong>
+		<hr>
+		<h1 class="page-title pull-left">Appointments</h1>
+		<div class = "sync-button pull-right" data-toggle="" data-target="#">Sync with Google Calendar</div>
 		
-		</footer>
+
+
 	</div>
 	
 </div>
@@ -157,34 +158,10 @@
 
 	<!-- Imported styles on this page -->
 	<link rel="stylesheet" href="css/vendor/jquery-jvectormap-1.2.2.css">
-	<link rel="stylesheet" href="css/vendor/rickshaw.min.css">
 
 	<!-- Bottom scripts (common) -->
-	<script src="js/min/TweenMax.min.js"></script>
 	<script src="js/min/jquery-ui-1.10.3.minimal.min.js"></script>
     <script src="js/min/ajax.jquery.validate.min.js"></script>
-	<!-- <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script> -->
-	<script src="js/vendor/joinable.js"></script>
-	<script src="js/vendor/resizeable.js"></script>
-	<script src="js/vendor/neon-api.js"></script>
 
-
-	<!-- Imported scripts on this page -->
-	<script src="js/min/jquery.sparkline.min.js"></script>
-	<script src="js/vendor/d3.v3.js"></script>
-	<script src="js/min/rickshaw.min.js"></script>
-	<script src="js/min/raphael-min.js"></script>
-	<script src="js/min/morris.min.js"></script>
-	<script src="js/vendor/toastr.js"></script>
-	<script src="js/vendor/neon-chat.js"></script>
-
-
-	<!-- JavaScripts initializations and stuff -->
-	<script src="js/vendor/neon-custom.js"></script>
-
-
-	<!-- Demo Settings -->
-	<script src="js/vendor/neon-demo.js"></script>
-	<!--<script src="https://apis.google.com/js/client.js?onload=authorize"></script> -->	
 </body>
 </html>

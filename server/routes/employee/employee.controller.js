@@ -24,6 +24,9 @@ module.exports.login = function(req, res) {
 };
 
 module.exports.getAllEmployees = function(req, res) {
+  // if(req.body.userType != 'employee_admin') {
+  //   res.redirect('/api/visitorList/company/'+req.params.company_id);
+  // }
   Employee.find({company_id: req.params.id}, {password: 0}, (err, result) => {
     if(err) {
       return res.status(400).send({error: 'Can not Find'});
