@@ -21,6 +21,7 @@ const employeeSchema = mongoose.Schema({
   role: {type: String, required: true},
   channels: {type: [String], default: []},
   company_id: {type: mongoose.Schema.Types.ObjectId, ref: 'Company', required: true},
+  role: {type: String, required: true},
   // reminders: {type: [String], default: []},
 });
 
