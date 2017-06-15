@@ -11,11 +11,15 @@ $(document).ready(() => {
   const source = $('#employee-list-template').html();
   const template = Handlebars.compile(source);
   const compiledHtml = template(employees);
-
+  const userObj = JSON.parse(localStorage.getItem('currentUser'));
+  if(userObj.role == 'employee') {
+    location.href = '/visitors.html';
+    document.getElementById('employees-link').hidden = true;
+    document.getElementById('form-build-link').hidden = true;
+  }
   $('#employee-list').html(compiledHtml);
   $('#saveEmployeeButton').click(submitForm);
   $('.modal').modal();
-
   // Makes a get request to display list of employees
   function getEmployees() {
     let json;

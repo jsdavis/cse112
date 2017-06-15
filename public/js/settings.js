@@ -14,7 +14,11 @@ $(document).ready(() => {
   const template = Handlebars.compile(source);
   const compiledHtml = template(employees);
 
-
+  const userObj = JSON.parse(localStorage.getItem('currentUser'));
+  if(userObj.role == 'employee') {
+    document.getElementById('employees-link').hidden = true;
+    document.getElementById('form-build-link').hidden = true;
+  }
    // Pre-fill in current user information
   document.getElementsByTagName('input')[0].setAttribute('value', curUser.first_name);
   document.getElementsByTagName('input')[1].setAttribute('value', curUser.last_name);

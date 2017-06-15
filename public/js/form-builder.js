@@ -14,6 +14,13 @@ $(document).ready(($) => {
     $('#optional_label').val('');
     return false;
   });
+
+  const userObj = JSON.parse(localStorage.getItem('currentUser'));
+  if(userObj.role == 'employee') {
+    location.href = '/visitors.html';
+    document.getElementById('employees-link').hidden = true;
+    document.getElementById('form-build-link').hidden = true;
+  }
 });
 
 $('.my-form').on('click', '.remove-box', function() {

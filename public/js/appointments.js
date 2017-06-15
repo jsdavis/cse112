@@ -18,8 +18,8 @@ $(document).ready(() => {
       return new Date(a.date) - new Date(b.date);
     });
     for(let i = 0, len = appts.length; i < len; i++) {
-      appts[i].fullDate = formatDate(appts[i].date.toString());
-      appts[i].appointmentTime = formatTime(appts[i].date.toString());
+      appts[i].fullDate = formatDate(appts[i].date);
+      appts[i].appointmentTime = formatTime(appts[i].date);
     }
     return appts;
   }
@@ -28,7 +28,11 @@ $(document).ready(() => {
   const source = $('#appt-list-template').html();
   const template = Handlebars.compile(source);
   const compiledHtml = template(appts);
-
+  const userObj = JSON.parse(localStorage.getItem('currentUser'));
+  if(userObj.role == 'employee') {
+    document.getElementById('employees-link').hidden = true;
+    document.getElementById('form-build-link').hidden = true;
+  }
   $('#appt-list').html(compiledHtml);
   $('#modal-save').click(submitForm);
 
