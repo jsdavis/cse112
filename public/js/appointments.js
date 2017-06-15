@@ -50,13 +50,14 @@ $(document).ready(() => {
 
   // When a patient submits their form
   function submitForm() {
-    alert(JSON.stringify(localStorage));
-
+    alert('in submit');
     const d = grabFormElements();
+    alert('1111'+JSON.stringify(d));
     console.log(d);
     updateApptList(d);
     appts = getAppts();
     appts = initializeAppts(appts);
+    alert(JSON.stringify(appts));
     $('#appt-list').html(template(appts));
     // document.getElementById('appt-form').reset();
   }
@@ -88,13 +89,18 @@ $(document).ready(() => {
     newAppt.customer_first_name= $('#appt-first').val();
     newAppt.customer_last_name = $('#appt-last').val();
     newAppt.phone_number = $('#appt-number').val();
-    // newAppt.provider_name = $('#appt-provider').val();
-    newAppt.employee_email = localStorage.getItem('email');
-
+    newAppt.employee_first_name = curUser.first_name;
+    newAppt.employee_last_name = curUser.last_name;
+    newAppt.employee_email = curUser.email;
+    alert('2222');
     const userDate = $('#appt-date').val();
-    const userTime = $('#appt-time').val();
+    const userStartTime = $('#appt-start-time').val();
+    const userEndTime = $('#appt-start-time').val();
+    alert('33333');
 
-    newAppt.date = jsDate(userDate, userTime);
+    newAppt.start = jsDate(userDate, userStartTime);
+    newAppt.end = jsDate(userDate, userEndTime);
+    alert('4444');
     return newAppt;
   }
 
@@ -142,9 +148,11 @@ $(document).ready(() => {
 
     // FUNCTION TO FORMAT DATE OBJECT IN JS
   function jsDate(date, time) {
+    alert('IN JSDATE');
     const jsDate = reFormatDate(date);
     const jsTime = reFormatTime(time);
     jsDateObj = jsDate + ' ' + jsTime;
+    alert('555');
     return jsDateObj;
   }
 
@@ -161,6 +169,7 @@ $(document).ready(() => {
     if(mm < 10) {
       mm = '0' + mm;
     }
+    alert('6666');
     return yyyy + '-' + mm +'-' + dd;
   }
 

@@ -104,7 +104,7 @@
 					<tr>
 						<th>First Name</th>
 						<th>Last Name</th>
-						<!-- <th>Provider Name</th> -->
+						<th>Provider Name</th>
 						<th>Phone Number</th>
 						<th>Date</th>
 						<th>Time</th>
@@ -156,10 +156,19 @@
 
 								<!-- <div class="form-group">
 									<label class="col-sm-2 control-label"
-											 for="inputPassword3" >Provider Name</label>
+											 for="inputPassword3" >Employee First Name</label>
 									<div class="col-sm-10">
 										<input type="text" class="validate form-control center"
-												 id="appt-provider" placeholder="Provider Name" required/>
+												 id="appt-provider-first-name" placeholder="Employee First Name" required/>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="col-sm-2 control-label"
+											 for="inputPassword3" >Employee Last Name</label>
+									<div class="col-sm-10">
+										<input type="text" class="validate form-control center"
+												 id="appt-provider-last-name" placeholder="Employee Last Name" required/>
 									</div>
 								</div> -->
 
@@ -175,10 +184,19 @@
 
 								<div class="form-group">
 									<label class="col-sm-2 control-label"
-											 for="inputPassword3" >Time</label>
+											 for="inputPassword3" >Start Time</label>
 									<div class="col-sm-10">
 										<input type="time" class="validate form-control center"
-												 id="appt-time" placeholder="Appointment Time" required/>
+												 id="appt-start-time" placeholder="Appointment Start Time" required/>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="col-sm-2 control-label"
+											 for="inputPassword3" >End Time</label>
+									<div class="col-sm-10">
+										<input type="time" class="validate form-control center"
+												 id="appt-end-time" placeholder="Appointment end Time" required/>
 									</div>
 								</div>
 
@@ -207,9 +225,10 @@
 		<script type = "text/x-handlebars-template" id = "appt-list-template">
 			{{#each []}}
 				<tr class="appt-row" value="{{this._id}}">
-				<td class="appt-data">{{this.first_name}}</td>
-				<td class="appt-data">{{this.last_name}}</td>
-				// <td class="appt-data">{{this.provider_name}}</td>
+				<td class="appt-data">{{this.customer_first_name}}</td>
+				<td class="appt-data">{{this.customer_last_name}}</td>
+				<td class="appt-data">{{this.employee_first_name}}</td>
+				<td class="appt-data">{{this.employee_last_name}}</td>
 				<td class="appt-data">{{this.phone_number}}</td>
 				<td class="appt-data">{{this.fullDate}}</td>
 				<td class="appt-data">{{this.appointmentTime}}
