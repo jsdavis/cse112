@@ -3,6 +3,7 @@
  */
 const request = require('supertest');
 const config = require('../server/config/config');
+const mongoose = require('mongoose');
 const Appointment = require('../server/models/Appointment');
 const Company = require('../server/models/Company');
 const Customer = require('../server/models/Customer');
@@ -59,6 +60,9 @@ describe('Appointment Test', () => {
   const userID = null;
 
   before((done) => {
+    // Nuke it before testing
+    mongoose.connection.dropDatabase();
+
     // setup company
     const company = new Company();
     company.email = email;
