@@ -17,8 +17,8 @@ module.exports.create = function(req, res) {
   let employee = null;
 
   // require provided info
-  appointment.start = param.start;
-  appointment.end = param.end;
+  appointment.start = new Date(param.start);
+  appointment.end = new Date(param.end);
   appointment.extras = param.extras;
 
   async.series([
