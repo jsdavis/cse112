@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<script src = "js/sh/ared.js"></script>
+	<script src = "js/shared.js"></script>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -17,7 +17,7 @@
 	<!-- <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic"> -->
 	<link rel="stylesheet" href="css/shared-dashboard.css">
 	<link rel="stylesheet" href="css/visitors.css">
-	<link type="text/css" rel="stylesheet" href="css/vendor/materialize.min.css" media="screen,projection"/>
+	<link type="text/css" rel="stylesheet" href="css/vendor/materialize.css" media="screen,projection"/>
     <link rel="stylesheet" href="fonts/Roboto.css">
 
 
@@ -44,23 +44,24 @@
         <ul class="right" id="main-menu">
             <li>
                 <a href="index.html">
-                    <span class="blue-text">Home</span>
+                    <span class="black-text">Home</span>
                 </a>
             </li>
             <li>
                 <a href="login.html">
-                    <span class="black-text">Login</span>
+                    <span class="black-text">Log-Out</span>
                 </a>
             </li>
-			<!-- Dropdown Trigger -->
 			<li>
-				<a class="dropdown-button black-text" href="#!" data-activates="dropdown1">Sign-Up<i class="material-icons right">arrow_drop_down</i></a>
-			</li>
+                <a href="/checkin.html">
+                    <span class="black-text">Check-In</span>
+                </a>
+            </li>
         </ul>
 		
     </nav>
 	
-	</div>
+</div>
 
 <div class="page-container"><!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
 <!-- Logo and Navigation -->
@@ -74,44 +75,45 @@
 			
 
 			
-			<ul id="side-menu" class="side-nav fixed" >
+			<ul id="side-menu" class="side-nav z-depth-5 fixed ">
 				<!-- add class "multiple-expanded" to allow multiple submenus to open -->
 				<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
+				<div class ="center">
 				<li class="z-depth-1">
-					<img src="image/newlogo.png" width="75" alt="" />
-					
+					<img src="image/newlogo.png" width="75" alt="" />	
 				</li>
-
-				<li class="z-depth-1">
+				
+				<li  class="z-depth-1">
+					<i class="material-icons">supervisor_account</i>
 					<a href="#">
-						<i class="material-icons">supervisor_account</i>
 						<span class="title">Visitors</span>
 					</a>
 				</li>
 				<li class="z-depth-1" id="employeeIcon">
+					<i class="material-icons">perm_identity</i>
 					<a href="/employees.html">
-						<i class="material-icons">perm_identity</i>
 						<span class="title">Employees</span>
 					</a>
 				</li>
 				<li class="z-depth-1">
+					<i class="material-icons">today</i>
 					<a href="/appointments.html">
-						<i class="material-icons">today</i>
 						<span class="title">Appointments</span>
 					</a>
 				</li>
 				<li class="z-depth-1" id="formIcon">
+					<i class="material-icons">assignment</i>
 					<a href="/form-builder.html">
-						<i class="material-icons">assignment</i>
-						<span class="title">Forms</span>assignment
+						<span class="title">Forms</span>
 					</a>
 				</li>
 				<li class="z-depth-1">
+					<i class="material-icons">settings</i>
 					<a href="/settings.html">
-						<i class="material-icons">settings</i>
 						<span class="title">Settings</span>
 					</a>
 				</li>
+				</div>
 			</ul>
 
 		</div>
@@ -133,27 +135,10 @@
 				</ul>
 			</div>
 
-			<!-- Raw Links -->
-			<div class="col-md-6 col-sm-4 clearfix hidden-xs">
-
-				<ul class="list-inline links-list pull-right">
-					<div class="dropdown">
-                        <i class="fa fa-3x fa-cog dropdown-toggle" data-toggle="dropdown"></i>
-                        <ul class="dropdown-menu">
-                            <li><a href="/checkin.html">Check-In</a></li>
-                            <li><a id="logoutButton" href="/index.html">
-                                Log Out <i class="entypo-logout right"></i></a>
-                            </li>
-                        </ul>
-                  </div>
-				</ul>
-
-			</div>
-
 		</div>
 
 		<hr />
-		<div class="visitor-container" >
+		<div class="visitor-container center" >
         <div id="visitor-queue">
 
            <h1 class="page-title">Visitors</h1>

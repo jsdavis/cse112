@@ -1,4 +1,13 @@
+.main-content {
+	padding-left: 150px;
+}
 
+@media only screen and (max-width : 992px) {
+	.main-content {
+		padding-left: 0;
+    }
+}
+	
 .page-title{
    margin: 35px auto;
 }
