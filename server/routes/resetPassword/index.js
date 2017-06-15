@@ -1,6 +1,6 @@
+'use strict';
 // admin index
 
-'use strict';
 
 const express = require('express');
 const controller = require('./resetPassword.controller');

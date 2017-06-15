@@ -7,8 +7,10 @@ const request = require('request');
  * routes that pertain to users
  */
 const SlackDB = require('../../models/SlackDB');
+const Customer = require('../../models/Customer');
 const Appointment = require('../../models/Appointment');
 const AppointmentContr = require('../appointment/appointment.controller.js');
+const CustomerContr = require('../customer/customer.controller.js');
 
 // const apiai = require('apiai');
 // const apiaiApp = apiai('a0569614aa254d96a49d6068db16a718');
@@ -99,13 +101,26 @@ module.exports.chatBotPostResponse = function(req, res) {
 
 
   const action = param.action;
-  appointment = {};
+
+  const appointment = {};
   if(action=='createAppointment') {
     appointment.start = param.parameters.start_time;
     appointment.end = param.parameters.end_time;
     appointment.date = param.parameters.date;
     appointment.extras = param.parameters.extras;
-    appointment.customer_id = param.parameters.email;
+    // req.params.email = param.parameters.email;
+
+    let customerObj;
+    Customer.findOne({email: param.parameters.email}, (err, customer) => {
+      if (err) {
+        return res.status(400).json({error: 'Can not Find'});
+      } else {
+      // log.info(customer);
+      // return res.status(200).json(customer);
+        customerObj = customer;
+      }
+    });
+    appointment.customer_id = customerObj._id;
 
     req.body = appointment;
     AppointmentContr.create(req, res);

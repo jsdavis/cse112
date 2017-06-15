@@ -17,6 +17,7 @@ module.exports.resetPassword = function(req, res) {
 
 
 function ajaxPostUserEmployee(data) {
+  console.log('Trying to find employee');
   $.ajax({
     type: 'GET',
     url: '/api/employees/email/'+data.email,
@@ -32,6 +33,7 @@ function ajaxPostUserEmployee(data) {
 }
 
 function ajaxPostUserCustomer(data) {
+  console.log('Trying to find customer');
   $.ajax({
     type: 'GET',
     url: '/api/employees/email/'+data.email,

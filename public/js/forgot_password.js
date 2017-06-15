@@ -2,7 +2,6 @@ $(document).ready(() => {
   $('#form_forgot_password').submit((event) => {
     event.preventDefault();
   });
-  alert('uweybjkn');
 
   $('#send-reset-btn').click(() => {
     alert('uewvjgdh');
@@ -16,10 +15,10 @@ $(document).ready(() => {
       dataType: 'json',
       data: data,
       success: function(response) {
-        cosnole.log('HELLOOOOO');
+        console.log('HELLOOOOO');
       },
       error: function(response) {
-        cosnole.log('EH FEKKKKK');
+        console.log('EH FEKKKKK');
       },
     });
   });
