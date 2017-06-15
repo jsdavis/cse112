@@ -34,6 +34,8 @@ module.exports.create = function(req, res) {
 
         customer = cust;
         appointment.customer_id = customer._id;
+        appointment.customer_first_name = customer.first_name;
+        appointment.customer_last_name = customer.last_name;
         callback();
       });
     },
@@ -48,6 +50,8 @@ module.exports.create = function(req, res) {
 
         employee = emp;
         appointment.client_id = employee._id;
+        appointment.employee_first_name = employee.first_name;
+        appointment.employee_last_name = employee.last_name;
         callback();
       });
     },
@@ -74,6 +78,7 @@ module.exports.create = function(req, res) {
           });
 
         appointment.company_id = company._id;
+        appointment.company_name = company.name;
         callback();
       });
     },
@@ -101,11 +106,15 @@ module.exports.create = function(req, res) {
 };
 
 module.exports.getAll = function(req, res) {
-  Appointment.find({company_id: req.params.id}, (err, result) => {
-    if(err) {
-      return res.status(400).json(err);
-    }
-    return res.status(200).json(result);
+  Appointment.find({company_id: req.params.id}, (err, appointments) => {
+    if (err || !appointments)
+      return res.status(400).json({
+        error: 'Failed to find any appointments associated with that company',
+        message: err,
+        param: req.params.id,
+      });
+
+    return res.status(200).json(appointments);
   });
 };
 
