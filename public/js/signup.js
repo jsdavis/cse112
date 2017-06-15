@@ -23,6 +23,12 @@ $(document).ready(() => {
 
     // Listener for Initial Sign up of an Employee
   $('#submit-btn').on('click', () => {
+    preventDefault();
+    if(!validateUser()){
+      preventDefault();
+      return false;
+    }
+    else{
     const userData = grabUserData();
     console.log(userData);
     if(userData.role=='employee') {
@@ -34,9 +40,13 @@ $(document).ready(() => {
     } else {
       console.log('Error invalid role');
     }
+    }
   });
 
   $('#submit-btn-company').on('click', () => {
+    if(!validateCompany()){
+      preventDefault();
+    }
     alert("HELLLO");
     const companyData = grabCompanyData();
     //validate data!!!
@@ -152,11 +162,13 @@ $(document).ready(() => {
     });
   }
 
-  function validateEmployee() {
-    const f_name = $('#form-employee-first').val();
-    const l_name = $('#form-employee-last').val();
-    const employee_email = $('#form-employee-email').val();
-    const employee_phone = $('#form-employee-phone').val();
+  function validateUser() {
+    const f_name = $('#first_name').val();
+    const l_name = $('#last_name').val();
+    const employee_email = $('#email').val();
+    const employee_phone = $('#telephone').val();
+    const password = $('#password').val();
+    const repeat_password = $('repeat-password').val();
     if(f_name == '') {
       console.log('name field cannot be blank');
       return false;
@@ -177,16 +189,27 @@ $(document).ready(() => {
       return false;
     }
 
-    if(!checkPassword() ) {
+    if(!checkPassword(password,repeat_password) ) {
       return false;
     }
     return true;
   }
 
-  function validateData() {
-    const companyName = $('#form-company-name').val();
-    const companyEmail = $('#form-email').val();
-    const companyNumber = $('#form-phone').val();
+  function validateCompany() {
+    const companyName = $('#company_name').val();
+    const adminName = $('#first_name').val();
+    const adminLName = $('#last_name').val();
+    const companyEmail = $('#email').val();
+    const companyNumber = $('#telephone').val();
+    if(adminName == '') {
+      console.log('name field cannot be blank');
+      return false;
+    }
+
+    if(adminLName == '') {
+      console.log('name field cannot be blank');
+      return false;
+    }
 
     if(companyName == '') {
       console.log('company name cannot be blank');
@@ -224,9 +247,7 @@ $(document).ready(() => {
   	return PhoneFormat.test(phone);
   }
 
-  function checkPassword() {
-    const password = $('#form-password').val();
-    const confirmPassword = $('#form-repeat-password').val();
+  function checkPassword(password, repeat_password) {
 
     if(password != '' ) {
       if(password.length < 6) {
