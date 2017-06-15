@@ -39,7 +39,7 @@ employeeSchema.statics.findEmployee = function(param, callback) {
     first: param.employee_first_name || param.first_name || param.firstName || param.firstname || undefined,
     last: param.employee_last_name || param.last_name || param.lastName || param.lastname || undefined,
   };
-  console.log('EMPLOYEE:'+name);
+  console.log(email);
 
   if (id)
     this.findById(id, callback);
@@ -69,4 +69,4 @@ employeeSchema.methods.validPassword = function(password) {
 employeeSchema.methods.generateHash = function(password) {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
-module.exports = mongoose.model('employee', employeeSchema);
+module.exports = mongoose.model('Employee', employeeSchema);
