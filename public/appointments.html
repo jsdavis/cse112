@@ -15,10 +15,16 @@
 	<link rel="stylesheet" href="css/vendor/jquery-ui.min.css">
 	<link rel="stylesheet" href="css/appointment.css">
 	<link rel="stylesheet" href="css/shared-dashboard.css">
+	<script src="js/min/jquery-1.11.3.min.js"></script>
+	<script src="js/vendor/js.cookie.js"></script>
+
+
+    <!-- <script src="assets/native/js/auth-cookies.js"></script> -->
+
 	<link type="text/css" rel="stylesheet" href="css/vendor/materialize.css"  media="screen,projection"/>
-
-
-
+  <script type="text/javascript" src="js/min/jquery-1.11.3.min.js"></script> 
+  <script src="js/min/jquery-ui.min.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 </head>
 
 <body class="page-body">
@@ -67,11 +73,11 @@
         <!-- add class "multiple-expanded" to allow multiple submenus to open -->
         <!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
         <div class ="center">
-          <li  class="hoverable"><a href="/visitors.html"><i class="material-icons vertical-align-middle">supervisor_account</i>Visitors</a></li>
-          <li class="hoverable"><a href="/employees.html"><i class="material-icons vertical-align-middle">supervisor_account</i>Visitors</a></li>
-          <li  class="hoverable"><a href="/appointments.html"><i class="material-icons vertical-align-middle">today</i>Appointments</a></li>
-          <li  class="hoverable"><a href="/form-builder.html"><i class="material-icons vertical-align-middle">assignment</i>Forms</a></li>
-          <li  class="hoverable"><a href="/settings.html"><i class="material-icons vertical-align-middle">settings</i>Settings</a></li>
+          <li class="hoverable"><a href="#"><i class="material-icons vertical-align-middle">supervisor_account</i>Visitors</a></li>
+          <li id="employees-link" class="hoverable"><a href="/employees.html"><i class="material-icons vertical-align-middle">supervisor_account</i>Employees</a></li>
+          <li class="hoverable"><a href="/appointments.html"><i class="material-icons vertical-align-middle">today</i>Appointments</a></li>
+          <li id="form-build-link"class="hoverable"><a href="/form-builder.html"><i class="material-icons vertical-align-middle">assignment</i>Forms</a></li>
+          <li class="hoverable"><a href="/settings.html"><i class="material-icons vertical-align-middle">settings</i>Settings</a></li>
         </div>
       </ul>
     </div>
@@ -147,14 +153,23 @@
 									</div>
 								</div>
 
-								<div class="form-group">
+								<!-- <div class="form-group">
 									<label class="col-sm-2 control-label"
-											 for="inputPassword3" >Provider Name</label>
+											 for="inputPassword3" >Employee First Name</label>
 									<div class="col-sm-10">
 										<input type="text" class="validate form-control center"
-												 id="appt-provider" placeholder="Provider Name" required/>
+												 id="appt-provider-first-name" placeholder="Employee First Name" required/>
 									</div>
 								</div>
+
+								<div class="form-group">
+									<label class="col-sm-2 control-label"
+											 for="inputPassword3" >Employee Last Name</label>
+									<div class="col-sm-10">
+										<input type="text" class="validate form-control center"
+												 id="appt-provider-last-name" placeholder="Employee Last Name" required/>
+									</div>
+								</div> -->
 
 								<div class="form-group">
 									<label class="col-sm-2 control-label"
@@ -165,12 +180,22 @@
 									</div>
 								</div>
 
+
 								<div class="form-group">
 									<label class="col-sm-2 control-label"
-											 for="inputPassword3" >Time</label>
+											 for="inputPassword3" >Start Time</label>
 									<div class="col-sm-10">
 										<input type="time" class="validate form-control center"
-												 id="appt-time" placeholder="Appointment Time" required/>
+												 id="appt-start-time" placeholder="Appointment Start Time" required/>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="col-sm-2 control-label"
+											 for="inputPassword3" >End Time</label>
+									<div class="col-sm-10">
+										<input type="time" class="validate form-control center"
+												 id="appt-end-time" placeholder="Appointment end Time" required/>
 									</div>
 								</div>
 
@@ -199,9 +224,10 @@
 		<script type = "text/x-handlebars-template" id = "appt-list-template">
 			{{#each []}}
 				<tr class="appt-row" value="{{this._id}}">
-				<td class="appt-data">{{this.first_name}}</td>
-				<td class="appt-data">{{this.last_name}}</td>
-				<td class="appt-data">{{this.provider_name}}</td>
+				<td class="appt-data">{{this.customer_first_name}}</td>
+				<td class="appt-data">{{this.customer_last_name}}</td>
+				<td class="appt-data">{{this.employee_first_name}}</td>
+				<td class="appt-data">{{this.employee_last_name}}</td>
 				<td class="appt-data">{{this.phone_number}}</td>
 				<td class="appt-data">{{this.fullDate}}</td>
 				<td class="appt-data">{{this.appointmentTime}}
@@ -210,6 +236,7 @@
 			</tr>	
 			{{/each}}
 		</script>
+
 		<br>
 
 		<div class="row center">
@@ -224,11 +251,7 @@
 
 
 <!-- Bottom scripts (common) -->
-<script type="text/javascript" src="js/min/jquery-1.11.3.min.js"></script> 
-<script src="js/min/jquery-ui.min.js"></script>
-<
 <script type = "text/javascript" src= "js/vendor/handlebars-v4.0.5.js"></script>
-<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="js/vendor/materialize.min.js"></script>
 <script type ="text/javascript" src = "js/appointments.js"> </script>
 <script type ="text/javascript" src = "js/dashboard.js"></script>

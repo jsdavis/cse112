@@ -4,20 +4,24 @@
 $(document).ready(() => {
   let companyId;
   let userId;
-
+  const message = document.getElementById('perror');
+  message.style.visibility = 'hidden';
+    
   $('#signupForm').on('submit',(event) => {
+    event.preventDefault();
+    
     let is_valid = validateUser();
-    alert(is_valid);
+    //  alert(is_valid);
     if(is_valid == false){
-      event.preventDefault();
-      alert('Failed');
-      return false;
+      message.style.visibility = 'visible';
     }
     else{
+      message.style.visibility = 'hidden';
       submitUser();
+      location.replace = '/login.html';
     }
   });
-  
+
   /*
   $('#password').on('focusout', (e) => {
 	  if( $(this).val() != $('#repeat-password').val()) {
@@ -53,15 +57,16 @@ $(document).ready(() => {
   }
 
   $('#companyForm').on('submit',(event) => {
+    event.preventDefault();
     let is_valid = validateCompany();
-    alert(is_valid);
+    //  alert(is_valid);
     if(is_valid == false){
-      event.preventDefault();
-      alert('Failed');
+      //  alert('Failed');
       return false;
     }
     else{
       submitCompany();
+      location.href = '/user-dashboard.html';
     }
   });
 
@@ -73,18 +78,17 @@ $(document).ready(() => {
   */
 
   function submitCompany(){
-    alert("HELLLO");
+    //  alert("HELLLO");
     const companyData = grabCompanyData();
     //validate data!!!
     ajaxPost('/api/companies', companyData, false);
     companyData.adminUser.company_id = companyId;
     companyData.company_id = companyId;
-    alert(JSON.stringify(companyData));
+    //  alert(JSON.stringify(companyData));
     ajaxPost('/api/employees', companyData,false);
-    alert("njkbhgvh");
+    //  alert("njkbhgvh");
     ajaxPost('/api/companies/addAdmin/'+userId,companyData,true,'PUT');
-    alert(JSON.Stringify(companyData.adminUser));
-    location.href='/login.html';
+    //  alert(JSON.Stringify(companyData.adminUser));
   }
 
 
@@ -137,7 +141,7 @@ $(document).ready(() => {
     user.password = $('#password').val();
     user.repeat_password = $('#repeat-password').val();
     if(user.repeat_password != user.password){
-      alert("You put in two different passwords!");
+      // alert("You put in two different passwords!");
     }
     user.role = "customer";
     return user;

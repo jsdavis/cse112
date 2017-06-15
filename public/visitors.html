@@ -18,7 +18,8 @@
 	<link rel="stylesheet" href="css/visitors.css">
 	<link type="text/css" rel="stylesheet" href="css/vendor/materialize.css" media="screen,projection"/>
 	<script src="js/min/jquery-1.11.3.min.js"></script>
-
+  <script type="text/javascript" src="js/min/jquery-1.11.3.min.js"></script> 
+  <script src="js/min/jquery-ui.min.js"></script>
 
   <!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
@@ -67,11 +68,11 @@
         <!-- add class "multiple-expanded" to allow multiple submenus to open -->
         <!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
         <div class ="center">
-          <li  class="hoverable"><a href="#"><i class="material-icons vertical-align-middle">supervisor_account</i>Visitors</a></li>
-          <li  class="hoverable"><a href="/employees.html"><i class="material-icons vertical-align-middle">supervisor_account</i>Employees</a></li>
-          <li  class="hoverable"><a href="/appointments.html"><i class="material-icons vertical-align-middle">today</i>Appointments</a></li>
-          <li  class="hoverable"><a href="/form-builder.html"><i class="material-icons vertical-align-middle">assignment</i>Forms</a></li>
-          <li  class="hoverable"><a href="/settings.html"><i class="material-icons vertical-align-middle">settings</i>Settings</a></li>
+          <li class="hoverable"><a href="#"><i class="material-icons vertical-align-middle">supervisor_account</i>Visitors</a></li>
+          <li id="employees-link" class="hoverable"><a href="/employees.html"><i class="material-icons vertical-align-middle">supervisor_account</i>Employees</a></li>
+          <li class="hoverable"><a href="/appointments.html"><i class="material-icons vertical-align-middle">today</i>Appointments</a></li>
+          <li id="form-build-link"class="hoverable"><a href="/form-builder.html"><i class="material-icons vertical-align-middle">assignment</i>Forms</a></li>
+          <li class="hoverable"><a href="/settings.html"><i class="material-icons vertical-align-middle">settings</i>Settings</a></li>
         </div>
       </ul>
     </div>
@@ -160,6 +161,11 @@
         <script>
           $(document).ready( () => {
             let userObj = JSON.parse(localStorage.getItem('currentUser'));
+            if(userObj.role == "employee") {
+              document.getElementById('employees-link').hidden = true;
+              document.getElementById('form-build-link').hidden = true;
+            }
+
             document.getElementById('user-name').innerHTML = userObj.first_name + " " + userObj.last_name ;
           });
         </script>
@@ -169,13 +175,11 @@
 
 <!-- Bottom scripts (common) -->
 <!-- jQuery Library -->
-<script type="text/javascript" src="js/min/jquery-1.11.3.min.js"></script> 
-<script src="js/min/jquery-ui.min.js"></script>
+
 <script type = "text/javascript" src= "js/vendor/handlebars-v4.0.5.js"></script>
 <script type="text/javascript" src = "js/dashboard.js"> </script>
 
 <!--materialize js-->
-<script type="text/javascript" src="js/vendor/materialize.js"></script>
 
 <script>
   //SideNav Collapse
