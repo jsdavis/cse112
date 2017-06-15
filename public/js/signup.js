@@ -3,16 +3,15 @@
  */
 $(document).ready(() => {
   let companyId;
+  let userId;
 
     // Listener for Initial Sign up of an Employee
   $('#submit-btn').on('click', () => {
     const userData = grabUserData();
-    alert("njkbhjvg");
     console.log(userData);
     if(userData.role=='employee') {
       ajaxPost('/api/employees', userData);
     } else if(userData.role=='customer') {
-      alert("njkbhjvg");
       ajaxPost('/api/customers', userData);
     } else if(userData.role=='admin') {
       ajaxPost('/api/admins', userData);
@@ -22,24 +21,32 @@ $(document).ready(() => {
   });
 
   $('#submit-btn-company').on('click', () => {
+    alert("HELLLO");
     const companyData = grabCompanyData();
-
     //validate data!!!
-    ajaxPost('/api/employees', companyData);
+    ajaxPost('/api/companies', companyData, false);
+    companyData.adminUser.company_id = companyId;
+    companyData.company_id = companyId;
+    ajaxPost('/api/employees', companyData,false);
+    alert("njkbhgvh");
+    ajaxPost('/api/companies/addAdmin/'+userId,companyData,true,'PUT');
+    alert(JSON.Stringify(companyData.adminUser));
+    location.href='/login.html';
   });
 
 
    // Listener for creating a company
-  function submitCompany() {
-  	if( validateCompany() === false) {
-  	  return false;
-  	}  	else{
-    const companyData = grabCompanyData();
-    console.log(companyData);
-      // ajaxPost('/api/companies', companyData);
-    return true;
-  }
-  }
+  // function submitCompany() {
+  // 	if( validateCompany() === false) {
+  // 	  return false;
+  // 	}  	else{
+  //   const companyData = grabCompanyData();
+  //   console.log(companyData);
+  //   companyData.company_id = companyId;
+  //     // ajaxPost('/api/companies', companyData);
+  //   return true;
+  // }
+  // }
 
   //   // next step
   // $('#submit-company-btn').on('click', function() {
@@ -60,10 +67,9 @@ $(document).ready(() => {
     // Grab Company Data from form
   function grabCompanyData() {
     const company = {};
-    company.name= $('#company_name').val();
+    company.company_name= $('#company_name').val();
     company.adminUser = grabUserData();
     company.adminUser.role = "employee_admin";
-    alert(JSON.stringify(company));
     return company;
   }
 
@@ -85,22 +91,25 @@ $(document).ready(() => {
   }
 
     // Ajax function to create a POST request to server
-  function ajaxPost(url, data) {
+  function ajaxPost(url, data, bool=true,type='POST') {
     $.ajax({
-      type: 'POST',
+      type: type,
+      async: false,
       url: url,
       data: data,
       dataType: 'json',
       success: function(response) {
         if(url == '/api/employees' || url == '/api/admins' || url == '/api/customers') {
           console.log(response);
+
           if(response.role == 'admin') {
             localStorage.setItem('userState', 2);
             localStorage.setItem('currentUser', JSON.stringify(response));
             location.href = '/admin-dashboard.html';
-          } else if(response.role == 'employee') {
+          } else if(response.role == 'employee' || response.role == 'employee_admin') {
             localStorage.setItem('userState', 1);
             localStorage.setItem('currentUser', JSON.stringify(response));
+            userId = response._id;
             location.href = '/visitors.html';
           } else{ // if(response.role == 'customer') {
             localStorage.setItem('userState', 3);
@@ -110,15 +119,18 @@ $(document).ready(() => {
         } else if (url == '/api/companies') {
           localStorage.setItem('currentCompany', JSON.stringify(response));
           companyId = response._id;
-        }
+        } 
       },
       error: function(response) {
-        console.log('HELLO');
         console.log(response);
         const resJSON = JSON.stringify(response);
-        alert(jQuery.parseJSON(resJSON).responseText);
         event.preventDefault();
-        location.href = '/signup.html';
+        if(data.company_name != undefined){
+          location.href = '/signup-company.html';
+        }
+        else {
+          location.href = '/signup.html';
+        }
       },
     });
   }

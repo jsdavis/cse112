@@ -31,6 +31,7 @@ function ajaxPostUserEmployee(data) {
     success: function(response) {
       console.log(response);
       if(response.role == 'admin') {
+        localStorage.setItem('currentUser', JSON.stringify(response));
         localStorage.setItem('userState', 2);
         localStorage.setItem('userType', 'employee_admin');
         location.href = '/admin-dashboard.html';

@@ -8,7 +8,8 @@ const mongoose = require('mongoose');
 // define the schema for our user model
 const companySchema = mongoose.Schema({
   name: {type: String, required: true},
-  adminUser: [{type: mongoose.Schema.Types.ObjectId, ref: 'Employee'}],
+  date: {type: Date, required: true},
+  adminUser: [{type: mongoose.Schema.Types.ObjectId, ref: 'Employee', required: false}],
 });
 
 companySchema.statics.findCompany = function(param, callback) {

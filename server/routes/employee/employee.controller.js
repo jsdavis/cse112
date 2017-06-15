@@ -70,32 +70,28 @@ module.exports.getById = function(req, res) {
 
 module.exports.insert = function(req, res) {
   const employee = new Employee();
-
-  if (req.body.name != undefined) {
-    employee.first_name = req.body.adminUser.first_name;
-    employee.last_name = req.body.adminUser.last_name;
-    employee.email = req.body.adminUser.email;
-    employee.phone_number = req.body.adminUser.phone_number;
-    // employee.company_id = req.body.company_id;
-    employee.password = employee.adminUser.generateHash(req.body.password);
-    employee.role = req.body.adminUser.role;
-    employee.channels = [];
-  } else {
-    employee.first_name = req.body.first_name;
-    employee.last_name = req.body.last_name;
-    employee.email = req.body.email;
-    employee.phone_number = req.body.phone_number;
-    employee.company_id = req.body.company_id;
-    employee.password = employee.generateHash(req.body.password);
-    employee.role = req.body.role;
-    employee.channels = [];
+  let params = req.body;
+  if (req.body.company_name != undefined) {
+    params = req.body.adminUser;
+    console.log(JSON.stringify(params));
   }
+
+  employee.first_name = params.first_name;
+  employee.last_name = params.last_name;
+  employee.email = params.email;
+  employee.phone_number = params.phone_number;
+  employee.company_id = params.company_id;
+  employee.password = employee.generateHash(params.password);
+  employee.role = params.role;
+  employee.channels = [];
+
   employee.save((err, e) => {
     if(err) {
       return res.status(400).json({error: 'Can Not Save: ' + err});
     }
     const employeeJson=e.toJSON();
     delete employeeJson.password;
+    console.log('Successfully added adming employee!!!');
     return res.status(200).json(employeeJson);
   });
 };
