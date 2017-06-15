@@ -47,6 +47,7 @@ module.exports.create = function(req, res) {
             error: 'Could not find employee ' + param.first_name + ' ' + param.last_name,
             message: err,
             param: param,
+            return: emp,
           });
 
         employee = emp;

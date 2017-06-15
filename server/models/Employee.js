@@ -39,6 +39,7 @@ employeeSchema.statics.findEmployee = function(param, callback) {
     first: param.employee_first_name || param.first_name || param.firstName || param.firstname || undefined,
     last: param.employee_last_name || param.last_name || param.lastName || param.lastname || undefined,
   };
+  console.log(email);
 
   if (id)
     this.findById(id, callback);
