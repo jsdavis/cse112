@@ -29,7 +29,11 @@ $(document).ready(() => {
   const source = $('#appt-list-template').html();
   const template = Handlebars.compile(source);
   const compiledHtml = template(appts);
-
+  const userObj = JSON.parse(localStorage.getItem('currentUser'));
+  if(userObj.role == 'employee') {
+    document.getElementById('employees-link').hidden = true;
+    document.getElementById('form-build-link').hidden = true;
+  }
   $('#appt-list').html(compiledHtml);
 
   // Makes a get request to display list of appts
