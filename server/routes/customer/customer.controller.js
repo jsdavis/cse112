@@ -166,6 +166,17 @@ module.exports.getById = function(req, res) {
   });
 };
 
+module.exports.getByEmail = function(req, res) {
+  Customer.findById({email: req.params.email}, (err, customer) => {
+    if (err) {
+      return res.status(400).json({error: 'Can not Find'});
+    } else {
+      // log.info(customer);
+      return res.status(200).json(customer);
+    }
+  });
+};
+
 module.exports.insert = function(req, res) {
   const customer = new Customer();
 

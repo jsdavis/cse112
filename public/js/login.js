@@ -5,8 +5,6 @@ $('#form_login').submit((event) => {
 $('#loginButton').click(() => {
   alert('Hello');
   const userData = grabUserData();
-     // alert(userData);
-  alert(JSON.stringify(userData));
   ajaxPostUserEmployee(userData);
 });
 
@@ -39,7 +37,6 @@ function ajaxPostUserEmployee(data) {
         localStorage.setItem('userState', 1);
         localStorage.setItem('currentUser', JSON.stringify(response));
         localStorage.setItem('userType', 'employee');
-        alert(response.company_id);
         ajaxGetCompanyInfo('/api/companies/' + response.company_id);
         location.href = '/visitors.html';
       }
@@ -61,7 +58,7 @@ function ajaxPostUserCustomer(data) {
     success: function(response) {
       console.log(response);
       localStorage.setItem('userState', 2);
-      location.href = '/admin-dashboard.html';
+      location.href = '/user-dashboard.html';
       localStorage.setItem('userType', 'customer');
     },
     error: function() {
