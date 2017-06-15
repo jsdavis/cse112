@@ -47,7 +47,7 @@ $(document).ready(() => {
       success: function(response) {
         json = response;
         console.log(response);
-      },  
+      },
     });
     return json;
   }
