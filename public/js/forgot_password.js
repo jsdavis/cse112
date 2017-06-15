@@ -1,4 +1,6 @@
 $(document).ready(() => {
+  let userObj = {};
+
   $('#form_forgot_password').submit((event) => {
     event.preventDefault();
   });
@@ -11,16 +13,18 @@ $(document).ready(() => {
   $('#send-reset-btn').click(() => {
     //  alert('uewvjgdh');
     const email = $('#emailInput').val();
-    const data = {};
-    data.email_address = email;
+
+    userObj.email = email;
+
+    ajaxPostUserEmployee(userObj);
     //  alert(JSON.stringify(data));
     $.ajax({
-      type: 'GET',
-      url: 'api/resetPassword/',
+      type: 'POST',
+      url: '/api/resetPassword/',
       dataType: 'json',
-      data: data,
+      data: userObj,
       success: function(response) {
-        console.log('HELLOOOOO');
+        console.log('HELLOOOOO' +JSON.stringify(response));
         $('#forgotSuccessMessage').show();
         $('#forgotErrorMessage').hide();
       },
@@ -31,4 +35,43 @@ $(document).ready(() => {
       },
     });
   });
+
+
+  function ajaxPostUserEmployee(data) {
+    console.log('Trying to find employee');
+    $.ajax({
+      type: 'GET',
+      url: '/api/employees/email/'+data.email,
+      data: data,
+      async: false,
+      dataType: 'json',
+      success: function(response) {
+        userObj = response;
+      },
+      error: function() {
+        console.log('Employee failed\n\n\n');
+        ajaxPostUserCustomer(data);
+      },
+    });
+  }
+
+  function ajaxPostUserCustomer(data) {
+    console.log('Trying to find customer');
+    $.ajax({
+      type: 'GET',
+      url: '/api/employees/email/'+data.email,
+      data: data,
+      async: false,
+      dataType: 'json',
+      success: function(response) {
+        userObj = response;
+        location.href = '/api/login';
+      },
+      error: function() {
+        console.log('Customer failed\n\n\n');
+        // window.onerror=handleError();
+        location.href = '/login.html';
+      },
+    });
+  }
 });

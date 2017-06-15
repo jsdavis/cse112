@@ -17,8 +17,6 @@ module.exports.login = function(req, res) {
       return res.status(400).send({error: 'Incorrect Credentials'});
     const employeeJson=e.toJSON();
     delete employeeJson.password;
-
-
     return res.status(200).json(employeeJson);
   });
 };
@@ -68,12 +66,16 @@ module.exports.getById = function(req, res) {
 };
 
 module.exports.getByEmail = function(req, res) {
-  Employee.findById({email: req.params.email}, (err, employee) => {
-    if (err) {
+  console.log('Trying to get employee with email:' +req.params.email);
+  Employee.findOne({email: req.params.email}, (err, employee) => {
+    if (err || !employee) {
+      console.log('nljkfewbhjs'+JSON.stringify(err));
       return res.status(400).json({error: 'Can not Find'});
     } else {
       // log.info(employee);
-      return res.status(200).json(employee);
+      const employeeJson=employee.toJSON();
+      console.log('Hello!!!');
+      return res.status(200).json(employeeJson);
     }
   });
 };
