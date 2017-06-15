@@ -5,6 +5,7 @@ $(document).ready(() => {
 
 
   $('#appt-date').datepicker();
+  $('.modal').modal();
 
   $('#user-name').text(curUser.first_name + ' ' + curUser.last_name);
 

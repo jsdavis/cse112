@@ -5,26 +5,21 @@
 
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta name="description" content="Neon Admin Panel" />
+	<meta name="description" content="" />
 	<meta name="author" content="" />
 
 	<link rel="icon" href="image/newlogo.png">
 
 	<title>One 4m | Appointments</title>
 
-	<link rel="stylesheet" href="font/font-awesome.css">
 	<link rel="stylesheet" href="css/vendor/jquery-ui.min.css">
-	<link rel="stylesheet" href="font/entypo.css">
-	<link rel="stylesheet" href="font/NotoSans.css">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link type="text/css" rel="stylesheet" href="css/vendor/materialize.css" media="screen,projection"/>
 	<link rel="stylesheet" href="css/appointment.css">
 	<link rel="stylesheet" href="css/shared-dashboard.css">
-
-	<!-- <link rel="stylesheet" href="assets/native/css/employees.css"> -->
-
 	<script src="js/min/jquery-1.11.3.min.js"></script>
 	<script src="js/vendor/js.cookie.js"></script>
+
 
     <!-- <script src="assets/native/js/auth-cookies.js"></script> -->
 
@@ -38,33 +33,32 @@
 
 
 </head>
+<body class="page-body">
 <div class="navbar-fixed z-depth-3" >
   <nav class="navbar navbar-default teal lighten-5">
     <div class="navbar-brand">
-          <a href="#" >
-            <img src="image/newlogo.png" width="60" alt="logo" class="button-collapse" data-activates="side-menu"/>
-          </a>
+      <a href="#" >
+        <img src="image/newlogo.png" width="60" alt="logo" class="button-collapse" data-activates="side-menu"/>
+      </a>
     </div>
-      <ul class="right" id="main-menu">
-        <li>
-          <a href="index.html">
-            <span class="black-text">Home</span>
-          </a>
-        </li>
-        <li>
-          <a href="login.html">
-            <span class="black-text">Log-Out</span>
-          </a>
-        </li>
+    <ul class="right" id="main-menu">
       <li>
-                <a href="/checkin.html">
-                    <span class="black-text">Check-In</span>
-                </a>
-            </li>
-        </ul>
-    
-    </nav>
-  
+        <a href="index.html">
+          <span class="black-text">Home</span>
+        </a>
+      </li>
+      <li>
+        <a href="login.html">
+          <span class="black-text">Log-Out</span>
+        </a>
+      </li>
+      <li>
+        <a href="/checkin.html">
+          <span class="black-text">Check-In</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
 </div>
 
 <div class="page-container"><!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
@@ -75,7 +69,8 @@
         <!-- add class "multiple-expanded" to allow multiple submenus to open -->
         <!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
         <div class ="center">
-          <li  class="hoverable"><a href="#"><i class="material-icons vertical-align-middle">supervisor_account</i>Visitors</a></li>
+          <li  class="hoverable"><a href="/visitors.html"><i class="material-icons vertical-align-middle">supervisor_account</i>Visitors</a></li>
+          <li  class="hoverable"><a href="/employees.html"><i class="material-icons vertical-align-middle">supervisor_account</i>Employees</a></li>
           <li  class="hoverable"><a href="/appointments.html"><i class="material-icons vertical-align-middle">today</i>Appointments</a></li>
           <li  class="hoverable"><a href="/form-builder.html"><i class="material-icons vertical-align-middle">assignment</i>Forms</a></li>
           <li  class="hoverable"><a href="/settings.html"><i class="material-icons vertical-align-middle">settings</i>Settings</a></li>
@@ -83,8 +78,6 @@
       </ul>
     </div>
 
-		<hr />
-	
     <div class="main-content">
 		    <div>
 			  <h1 class="page-title">Appointments</h1>
@@ -109,121 +102,117 @@
 				</table>
 				</div>
 
-				<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+        <br>
+			  <a class="update-button btn red accent-2 waves-effect waves-light" href="#apptModal">Add Appointment</a>
+				
+        <div class="modal fade" id="apptModal" tabindex="-1" role="dialog"
 							  aria-labelledby="myModalLabel" aria-hidden="true">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<!-- Modal Header -->
-									<div class="modal-header">
-										<button type="button" class="close"
-												  data-dismiss="modal">
-											<span aria-hidden="true">&times;</span>
-											<span class="sr-only">Close</span>
-										</button>
-										<h4 class="modal-title" id="myModalLabel">
-											Add an Appointment
-										</h4>
-									</div>
+			    <div class="modal-dialog">
+					  <div class="modal-content center">
+						  <!-- Modal Header -->
+							  <div class="modal-header">
+                  <h4 class="modal-title" id="myModalLabel">
+									  Add an Appointment
+								  </h4>
+							  </div>
 
-									<!-- Modal Body -->
-									<div class="modal-body">
+								<!-- Modal Body -->
+								<div class="modal-body">
 
-										<form class="form-horizontal" role="form" id="appt-form">
-											<div class="form-group">
-												<label class="col-sm-2 control-label"
-														 for="first-name" >First Name</label>
-												<div class="col-sm-10">
-													<input type="text" class="form-control"
-															 id="appt-first" placeholder="First Name" required/>
-												</div>
+									<form class="form-horizontal row" role="form" id="appt-form">
+										<div class="form-group">
+											<label class="col s2 control-label"
+													 for="first-name" >First Name</label>
+											<div class="col s10">
+												<input type="text" class="form-control"
+													 id="appt-first" placeholder="First" required/>
 											</div>
-											<div class="form-group">
-												<label class="col-sm-2 control-label"
-														 for="last-name" >Last Name</label>
-												<div class="col-sm-10">
-													<input type="text" class="form-control"
-															 id="appt-last" placeholder="Last Name" required/>
-												</div>
+										</div>
+										<div class="form-group">
+											<label class="col s2 control-label"
+													 for="last-name" >Last Name</label>
+											<div class="col s10">
+												<input type="text" class="form-control"
+														 id="appt-last" placeholder="Last Name" required/>
 											</div>
+										</div>
 
-											<div class="form-group">
-												<label class="col-sm-2 control-label"
-														 for="phone-number" >Phone</label>
-												<div class="col-sm-10">
-													<input type="tel" pattern="^\d{3}-\d{3}-\d{4}$" class="form-control"
-															 id="appt-number" placeholder="555-555-5555" title="(Format: 555-555-5555)" required/>
-												</div>
+										<div class="form-group">
+											<label class="col s2 control-label"
+													 for="phone-number" >Phone</label>
+											<div class="col s10">
+												<input type="tel" pattern="^\d{3}-\d{3}-\d{4}$" class="form-control"
+														 id="appt-number" placeholder="555-555-5555" title="(Format: 555-555-5555)" required/>
 											</div>
+										</div>
 
-											<div class="form-group">
-												<label class="col-sm-2 control-label"
-														 for="inputPassword3" >Provider Name</label>
-												<div class="col-sm-10">
-													<input type="text" class="form-control"
-															 id="appt-provider" placeholder="Provider Name" required/>
-												</div>
+										<div class="form-group">
+											<label class="col s2 control-label"
+												 for="inputPassword3" >Provider Name</label>
+											<div class="col s10">
+												<input type="text" class="form-control"
+														 id="appt-provider" placeholder="Provider Name" required/>
 											</div>
+										</div>
 
-											<div class="form-group">
-												<label class="col-sm-2 control-label"
-														 for="inputPassword3" >Date</label>
-												<div class="col-sm-10">
-													<input type="text" class="form-control"
-															 id="appt-date" placeholder="mm/dd/yyyy" required/>
-												</div>
+										<div class="form-group">
+											<label class="col s2 control-label"
+												 for="inputPassword3" >Date</label>
+											<div class="col s10">
+												<input type="text" class="form-control"
+													 id="appt-date" placeholder="mm/dd/yyyy" required/>
 											</div>
+										</div>
 
-											<div class="form-group">
-												<label class="col-sm-2 control-label"
-														 for="inputPassword3" >Time</label>
-												<div class="col-sm-10">
-													<input type="time" class="form-control"
-															 id="appt-time" placeholder="Appointment Time" required/>
-												</div>
+										<div class="form-group">
+											<label class="col s2 control-label"
+												 for="inputPassword3" >Time</label>
+								  		<div class="col s10">
+												<input type="time" class="form-control"
+													 id="appt-time" placeholder="Appointment Time" required/>
 											</div>
-											<p class='message-api'> To connect your appointment information to our system, please refer to our appointments api, <a href= "image/appointments.pdf" target= "_blank"> here</a></p>
-											<div class="modal-footer">
-											<input type="submit" id="modal-save" value="Save">
-											<input type="submit" data-dismiss="modal" value="Close">
-											</div>
+										</div>
+										<p class='message-api'> To connect your appointment information to our system, please refer to our appointments api, <a href= "image/appointments.pdf" target= "_blank"> here</a></p>
+										<div class="modal-footer">
+					  					<input type="submit" class="btn modal-close" id="modal-save" value="Save">
+											<input type="submit" class="btn modal-close" data-dismiss="modal" value="Close">
+										</div>
 
-										</form>
-									</div>
+									</form>
 								</div>
 							</div>
 						</div>
-            <br>
-						<div class="btn red accent-2 waves-effect waves-light" data-toggle="modal" data-target="#myModal">Add Appointment</div>
+					</div>
 
-		</div>
+		    </div>
 
-		<script type = "text/x-handlebars-template" id ="appt-list-template">
-			{{#each []}}
-			<tr class="appt-row" value="{{this._id}}">
-				<td class="appt-data">{{this.first_name}}</td>
-				<td class="appt-data">{{this.last_name}}</td>
-				<td class="appt-data">{{this.provider_name}}</td>
-				<td class="appt-data">{{this.phone_number}}</td>
-				<td class="appt-data">{{this.fullDate}}</td>
-				<td class="appt-data">{{this.appointmentTime}}
-					<i class="fa fa-trash-o delete-appt"></i>
-				</td>
-			</tr>
-			{{/each}}
-		</script>
-	</div>
+		    <script type = "text/x-handlebars-template" id ="appt-list-template">
+			  {{#each []}}
+			  <tr class="appt-row" value="{{this._id}}">
+				  <td class="appt-data">{{this.first_name}}</td>
+				  <td class="appt-data">{{this.last_name}}</td>
+				  <td class="appt-data">{{this.provider_name}}</td>
+				  <td class="appt-data">{{this.phone_number}}</td>
+				  <td class="appt-data">{{this.fullDate}}</td>
+				  <td class="appt-data">{{this.appointmentTime}}
+					  <i class="fa fa-trash-o delete-appt"></i>
+				  </td>
+			  </tr>
+			  {{/each}}
+		  </script>
+	  </div>
+  </div>
 </div>
-
 
 
 <!-- Bottom scripts (common) -->
 <script src="js/min/jquery-ui.min.js"></script>
 
-
+<script type ="text/javascript" src = "js/appointments.js"> </script>
+<script src="js/vendor/materialize.min.js"></script>
 <!--<script src="assets/js/jquery.sparkline.min.js"></script>-->
 
 <script type = "text/javascript" src= "js/vendor/handlebars-v4.0.5.js"></script>
-<script type ="text/javascript" src = "js/appointments.js"> </script>
 
 
 
