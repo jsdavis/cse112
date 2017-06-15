@@ -4,6 +4,7 @@
 'use strict';
 
 /* Require mongoose to interact with mongoDB */
+const async = require('async');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 /*
@@ -27,32 +28,34 @@ const appointmentSchema = mongoose.Schema({
 
 appointmentSchema.statics.findAppointment = function(param, callback) {
   const id = param.appointment_id || param.id || param._id || undefined;
+
   if (id)
     this.findById(id, callback);
 
-  else if (param.first_name && param.last_name && param.start && param.end) {
-    Customer.findCustomer(param, (err, customer) => {
-      if (err || !customer) {
-        Employee.findEmployee(param, (err, employee) => {
-          this.findOne({
-            client_id: employee._id,
-            start: param.start,
-            end: param.end,
-          }, callback);
-        });
-      } else {
-        this.findOne({
-          customer_id: customer._id,
-          start: param.start,
-          end: param.end,
-        }, callback);
-      }
-    });
-  } else
-    callback({
-      error: 'Bad request for finding appointment.',
-      message: param,
-    });
+  else
+    async.parallel([
+      (cb) => {
+        if (param.customer_email)
+          Customer.findOne({email: param.customer_email}, (err, cust) => {
+            if (err || !cust) cb();
+            param.customer_first_name = cust.first_name;
+            param.customer_last_name = cust.last_name;
+            cb();
+          });
+      },
+      (cb) => {
+        if (param.employee_email)
+          Employee.findOne({email: param.employee_email}, (err, emp) => {
+            if (err || !emp) cb();
+            param.employee_first_name = emp.first_name;
+            param.employee_last_name = emp.last_name;
+            cb();
+          });
+      },
+      (err, results) => {
+        this.findOne(param, callback);
+      },
+    ]);
 };
 
 module.exports = mongoose.model('appointment', appointmentSchema);

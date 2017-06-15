@@ -6,13 +6,12 @@ const Schema = mongoose.Schema;
 
 // Schema for user theme settings
 const ThemeSchema = new Schema({
-  user_id: String,
+  company_id: String,
   form_color: String,
-  background_img: String,
-  displayPhone: Boolean,
-  displayClock: Boolean,
-  displaySignature: Boolean,
-  additionalComments: Boolean,
+  elements: [{
+    label: String,
+    placeholder: String,
+  }],
 });
 
 // Export schema

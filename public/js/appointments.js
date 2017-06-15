@@ -56,8 +56,8 @@ $(document).ready(() => {
 
   // When a patient submits their form
   function submitForm() {
+    alert(JSON.stringify(localStorage));
     const d = grabFormElements();
-    console.log(d);
     updateApptList(d);
     appts = getAppts();
     appts = initializeAppts(appts);
@@ -67,7 +67,6 @@ $(document).ready(() => {
 
   // Makes a post request to update list of appts when adding a new employee
   function updateApptList(obj) {
-    alert('passing in'+JSON.stringify(obj));
     $.ajax({
       dataType: 'json',
       type: 'POST',
@@ -79,7 +78,6 @@ $(document).ready(() => {
         console.log(response);
       },
       error: function(response) {
-        alert(JSON.stringify(response));
       },
     });
   }

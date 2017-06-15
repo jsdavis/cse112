@@ -106,7 +106,7 @@
                 <tr>
                     <th st-sort="Name">First Name</th>
                     <th st-sort="Appointment">Last Name</th>
-                    <th st-sort="Appointment">Appointment Time</th>
+                    <!-- <th st-sort="Appointment">Appointment Time</th> -->
                     <th st-sort="Time">Check-in Time</th>
                 </tr>
             </thead>
@@ -128,7 +128,6 @@
             <tr class="patient-check-out" data-toggle="modal" data-target="#myModal" value = "{{this._id}}">                                
                 <td class="patient-queue-text">{{this.first_name}}</td>
                 <td class="patient-queue-text">{{this.last_name}}</td>
-                <td class="patient-queue-text appt-id">{{this.appointmentTime}}</td>
                 <td class="patient-queue-text"> {{this.checkin_time}}</td>
 
 
@@ -185,6 +184,7 @@
 <script type="text/javascript" src = "js/dashboard.js"> </script>
 
 <!--materialize js-->
+<script src="js/vendor/materialize.min.js"></script>
 
 <script>
   //SideNav Collapse

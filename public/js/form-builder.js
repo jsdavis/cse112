@@ -1,4 +1,26 @@
+let elementLabel;
+let elementPlaceholder;
+const elementsObj = [
+  {
+    'label': 'First Name',
+    'placeholder': 'Enter your first name',
+  },
+  {
+    'label': 'Last Name',
+    'placeholder': 'Enter your last name',
+  },
+  {
+    'label': 'Phone Number',
+    'placeholder': 'Enter your phone number',
+  },
+];
+
+const companyData = JSON.parse(localStorage.getItem('currentCompany'));
+const myCompanyId = companyData._id;
+const curUser = JSON.parse(localStorage.getItem('currentUser'));
+
 $(document).ready(($) => {
+  $('.modal').modal();
   $('.my-form:last .add-box').click(() => {
     const label = $('#optional_label').val();
     console.log('value: ' + label);
@@ -14,8 +36,8 @@ $(document).ready(($) => {
     $('#optional_label').val('');
     return false;
   });
-  const userObj = JSON.parse(localStorage.getItem('currentUser'));
-  if(userObj.role == 'employee') {
+  if(curUser.role == 'employee') {
+    location.href = '/visitors.html';
     document.getElementById('employees-link').hidden = true;
     document.getElementById('form-build-link').hidden = true;
   } else if(userObj.role != 'employee_admin' || userObj.role != 'employee') {
@@ -48,13 +70,16 @@ $(() => {
     });
     return hex.join('').toUpperCase();
   }
+
   function refreshSwatch() {
     const red = $('#red').slider('value');
     const green = $('#green').slider('value');
     const blue = $('#blue').slider( 'value' );
     const hex = hexFromRGB( red, green, blue );
     $('#swatch').css('background-color', '#' + hex );
+    return hex;
   }
+
   $('#red, #green, #blue').slider({
     orientation: 'horizontal',
     range: 'min',
@@ -63,20 +88,55 @@ $(() => {
     slide: refreshSwatch,
     change: refreshSwatch,
   });
+
   $( '#red' ).slider( 'value', 255 );
   $( '#green' ).slider( 'value', 140 );
   $( '#blue' ).slider( 'value', 60 );
+
+
+  $('#add-element-button').click(()=> {
+    console.log('Add element clicked');
+    $('#modal1').modal('open');
+  });
+
+  $('#modal-add-button').click(() => {
+    elementLabel = $('#element-label').val();
+    elementPlaceholder = $('#element-placeholder').val();
+    $('#wrapper').append('<div><label for="' + elementLabel + '">' + elementLabel +
+      '</label><input type="text" name="' + elementLabel +
+      '" placeholder="' + elementPlaceholder + '"/><div>');
+    elementsObj.push({'label': elementLabel, 'placeholder': elementPlaceholder});
+    console.log(elementsObj);
+  });
+
+  $('#submit-button').click(() => {
+    const formColor = refreshSwatch();
+    const putObj = {
+      company_id: myCompanyId,
+      form_color: formColor,
+      elements: elementsObj,
+    };
+    $.ajax({
+      type: 'PUT',
+      dataType: 'json',
+      url: '/api/theme/' + myCompanyId,
+      data: putObj,
+      success: (response) => {
+        console.log(response);
+      },
+    });
+  });
 });
 
-$('.dropdown-button').dropdown({
-  inDuration: 300,
-  outDuration: 225,
-  constrainWidth: false, // Does not change width of dropdown to that of the activator
-  hover: true, // Activate on hover
-  gutter: 0, // Spacing from edge
-  belowOrigin: false, // Displays dropdown below the button
-  alignment: 'left', // Displays dropdown with edge aligned to the left of button
-  stopPropagation: false, // Stops event propagation
+$('.my-form').on('click', '.remove-box', function() {
+  $(this).parent().css( 'background-color', '#FF6C6C' );
+  $(this).parent().fadeOut('slow', function() {
+    $(this).remove();
+    $('.box-number').each((index) => {
+      $('#box2').attr('id', 'box1');
+      $('#added_label').attr('for', 'optional_1');
+    });
+  });
+  return false;
 });
-$('.dropdown-button').dropdown();
-$('.dropdown-button').dropdown('close');
+
