@@ -5,6 +5,7 @@ $(document).ready(() => {
   let companyId;
   let userId;
   
+  /*
   $('#password').on('focusout', (e) => {
 	  if( $(this).val() != $('#repeat-password').val()) {
 		  $('#repeat-password').removeClass('valid').addClass('invalid');
@@ -20,15 +21,24 @@ $(document).ready(() => {
         $(this).removeClass('invalid').addClass('valid');
     }
   });
+  */
 
     // Listener for Initial Sign up of an Employee
+  
   $('#submit-btn').on('click', () => {
-    preventDefault();
-    if(!validateUser()){
-      preventDefault();
+    if(validateUser() == false){
+      event.preventDefault();
+      alert('Failed');
       return false;
     }
     else{
+      submitUser();
+    }
+  });
+      
+
+
+  function submitUser(){
     const userData = grabUserData();
     console.log(userData);
     if(userData.role=='employee') {
@@ -40,8 +50,8 @@ $(document).ready(() => {
     } else {
       console.log('Error invalid role');
     }
-    }
-  });
+  }
+  //});
 
   $('#submit-btn-company').on('click', () => {
     if(!validateCompany()){
@@ -184,12 +194,12 @@ $(document).ready(() => {
       return false;
     }
 
-    if(!validatePhone(employee_phone)) {
-      console.log('please enter a valid phone number');
+    if(!checkPassword(password,repeat_password) ) {
       return false;
     }
 
-    if(!checkPassword(password,repeat_password) ) {
+    if(!validatePhone(employee_phone)) {
+      console.log('please enter a valid phone number');
       return false;
     }
     return true;
@@ -249,7 +259,7 @@ $(document).ready(() => {
 
   function checkPassword(password, repeat_password) {
 
-    if(password != '' ) {
+
       if(password.length < 6) {
         console.log('Password must contain at least six characters!');
         return false;
@@ -274,11 +284,6 @@ $(document).ready(() => {
       	return false;
       }
       return true;
-    } else {
-      console.log('Error: Please check that you\'ve entered and confirmed your password!');
-      return false;
     }
-    // console.log('You entered a valid password: ' + password.value);
-    return false;
-  }
+  
 });
