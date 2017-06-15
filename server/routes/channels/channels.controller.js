@@ -111,6 +111,15 @@ module.exports.chatBotPostResponse = function(req, res) {
       lastname: p.lastname,
     };
     AppointmentContr.create(req, res);
+  } else if (action == 'checkIn') {
+    const p = param.parameters;
+    req.body = {
+      start: new Date(p.date + ' ' + p.start),
+      end: new Date(p.date + ' ' + p.end),
+      customer_email: p.email,
+    };
+
+    AppointmentContr.checkin(req, res);
   }
   // var request = apiaiApp.textRequest('<Your text query>', {
   // let req = apiaiApp.textRequest('<Your text query>', {
