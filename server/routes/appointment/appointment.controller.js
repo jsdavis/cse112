@@ -210,9 +210,9 @@ module.exports.delete = function(req, res) {
 
 module.exports.checkin = function(req, res) {
   if (req.params.id)
-    req.body.find.id = req.params.id;
+    req.body.appointment_id = req.params.id;
 
-  Appointment.findAppointment(req.body.find, (err, appointment) => {
+  Appointment.findAppointment(req.body, (err, appointment) => {
     if (err)
       res.status(400).json({
         error: 'Could not find appointment.',
@@ -227,7 +227,12 @@ module.exports.checkin = function(req, res) {
           message: err.message,
         });
 
-      return res.status(200).json(appointment);
+      const text = 'Successfully checked in appointment for ' + appointment.customer_first_name + ' ' + appointment.customer_last_name + ' at ' + appointment.start;
+      return res.status(200).json({
+        speech: text,
+        displayText: text,
+        data: appointment,
+      });
     });
   });
 };
