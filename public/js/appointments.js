@@ -4,11 +4,11 @@ $(document).ready(() => {
   const curUser = JSON.parse(localStorage.getItem('currentUser'));
 
 
-  //$('#appt-date').datepicker();
+  //  $('#appt-date').datepicker();
   $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
     selectYears: 15, // Creates a dropdown of 15 years to control year
-    container: 'body'
+    container: 'body',
   });
   $('.modal').modal();
   let appts = getAppts();
