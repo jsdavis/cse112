@@ -9,15 +9,15 @@ const router = express.Router();
 const controller = require('./theme.controller');
 
 // post with default values
-router.post('/:user_id/theme', controller.template.create);
+router.post('/:company_id/theme', controller.template.create);
 
-// get the theme correspond to the user
-router.get('/:user_id/theme', controller.template.get);
+// get the theme correspond to the company
+router.get('/:company_id/theme', controller.template.get);
 
-// Edit, when the user save new settings
-router.put('/:user_id/theme', controller.template.update);
+// Edit, when the company_id save new settings
+router.put('/:company_id/theme', controller.template.update);
 
 // Delete, when a user unsuscribed from the service
-router.delete('/:user_id/theme', controller.template.delete);
+router.delete('/:company_id/theme', controller.template.delete);
 
 module.exports = router;
