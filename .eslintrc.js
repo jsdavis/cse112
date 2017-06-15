@@ -14,7 +14,7 @@ module.exports = {
       "prefer-const": "error",
       "prefer-arrow-callback": "error",
       "new-cap": "off",
-      "max-len": ["warn", {"code": 100, "ignoreUrls": true}],
-      "require-jsdoc": "warn"
+      "max-len": ["off", {"code": 100, "ignoreUrls": true}],
+      "require-jsdoc": "off"
     }
 };

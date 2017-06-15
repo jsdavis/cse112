@@ -4,8 +4,13 @@ $(document).ready(() => {
   const curUser = JSON.parse(localStorage.getItem('currentUser'));
 
 
-  $('#user-name').text(curUser.first_name + ' ' + curUser.last_name);
-
+  //  $('#appt-date').datepicker();
+  $('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15, // Creates a dropdown of 15 years to control year
+    container: 'body',
+  });
+  $('.modal').modal();
   let appts = getAppts();
 
   function initializeAppts(appts) {
@@ -25,7 +30,7 @@ $(document).ready(() => {
   const compiledHtml = template(appts);
 
   $('#appt-list').html(compiledHtml);
-  $('.save-btn').click(submitForm);
+  $('#modal-save').click(submitForm);
 
   // Makes a get request to display list of appts
   function getAppts() {
@@ -52,7 +57,7 @@ $(document).ready(() => {
     appts = getAppts();
     appts = initializeAppts(appts);
     $('#appt-list').html(template(appts));
-    document.getElementById('appt-form').reset();
+    // document.getElementById('appt-form').reset();
   }
 
   // Makes a post request to update list of appts when adding a new employee

@@ -31,22 +31,42 @@ module.exports.template.create = function(req, res) {
   const company = new Company();
 
     // require provided info
-  company.email = req.body.email;
-  company.name = req.body.name;
-  company.phone_number = req.body.phone_number;
-  company.paid_time=new Date();
-
+  company.name = req.body.company_name;
+  company.date=new Date();
+  company.adminUser = [];
     // optinal info
     /* company.expiration_date=req.body.expiration_date;
     company.credit_card_number=req.body.credit_card_number;
     */
-
-
   company.save((err, c) => {
     if(err) {
-      return res.status(400).json({error: 'Could Not Save'});
+      console.log(JSON.stringify(err));
+      return res.status(400).json({error: 'Could Not Save'+JSON.stringify(err)});
     }
     return res.status(200).json(showCompanyPublicInfo(c));
+  });
+};
+
+
+module.exports.template.updateAdminList = function(req, res) {
+  const params = req.body;
+
+  Company.findCompany(params, (err, company) => {
+    if(err || !company)
+      return res.status(400).json({error: 'Can not Update'});
+
+    company.company_name = params.company_name;
+    const index = company.adminUser.indexOf(req.params.userId);
+    if(index < 0)
+      company.adminUser.push(req.params.userid);
+
+
+    company.save((err) => {
+      if (err)
+        return res.status(400).json({error: 'Can not Save'});
+      const companyJson = company.toJSON();
+      return res.status(200).send(companyJson);
+    });
   });
 };
 
@@ -80,8 +100,12 @@ module.exports.template.getAll = function(req, res) {
  */
 module.exports.template.get = function(req, res) {
   Company.findOne({_id: req.params.id}, (err, company) => {
-    if(err)
-      return res.status(400).json({error: 'Could Not Save'});
+    if(err || !company)
+      return res.status(400).json({
+        error: 'Could not find company with id ' + req.params.id,
+        params: req.params,
+        message: err,
+      });
     return res.status(200).json(showCompanyPublicInfo(company));
   });
 };
@@ -193,8 +217,7 @@ function showCompanyPublicInfo(c) {
   return {
     _id: c._id,
     name: c.name,
-    email: c.email,
     phone_number: c.phone_number,
-    paid_time: c.paid_time,
+    date: c.date,
   };
 }

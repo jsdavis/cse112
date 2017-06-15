@@ -89,3 +89,23 @@ h1.page-title{
 	margin-bottom: 15px;
 
 }
+
+
+#red, #green, #blue {
+  width: 100px;
+  margin: 15px;
+  border: 2px solid black;
+}
+#swatch {
+  float: center;
+  width: 120px;
+  height: 100px;
+  margin-top: 18px;
+  border: 2px solid black;
+}
+#red .ui-slider-range { background-color: red; }
+#red .ui-slider-handle { border: 2px solid darkred; background-color: darkred}
+#green .ui-slider-range { background-color: green; }
+#green .ui-slider-handle { border: 2px solid darkgreen; background-color: darkgreen}
+#blue .ui-slider-range { background-color: blue; }
+#blue .ui-slider-handle { border: 2px solid darkblue; background-color: darkblue}

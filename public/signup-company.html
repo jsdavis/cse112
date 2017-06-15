@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>One 4m | Signup</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/signup.css">
+	<link type="text/css" rel="stylesheet" href="css/vendor/materialize.min.css" media="screen,projection"/>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="font/Roboto.css"> -->
+    <!-- <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500"> -->
+
+    <!-- <link rel="stylesheet" href="font/font-awesome.min.css"> -->
+
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/min/jquery-1.11.3.min.js"></script>
+    <!-- <script src="js/vendor/scripts.js"></script>  -->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Favicon and touch icons -->
+    <link rel="icon" href="image/newlogo.png">
+
+</head>
+
+<body id="sign-up-body" class="teal lighten-3">
+<br><br><br>
+<!-- Top content -->
+<div class="container">
+  <div class="row card-panel z-depth-4">
+	<br><br>
+  <h4 class="header">Create Your Company Account</h4>
+    <form id="companyForm" class="col s12 ">
+    <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">work</i>
+          <input id="company_name" type="text" class="validate" required>
+          <label for="company_name">Company Name</label>
+        </div>
+    </div>
+    <div class="row">
+    <div class="input-field col s6">
+      <i class="material-icons prefix">account_circle</i>
+          <input id="first_name" type="text" class="validate" required>
+          <label for="first_name">Admin - First Name</label>
+        </div>
+    <div class="input-field col s6">
+          <input id="last_name" type="text" class="validate" required>
+          <label for="last_name">Admin - Last Name</label>
+        </div>
+    </div>
+    <div class="row">
+    <div class="input-field col s12">
+          <i class="material-icons prefix">phone</i>
+          <input id="telephone" type="tel" pattern="^\d{3}-\d{3}-\d{4}$" class="validate" required oninvalid="this.setCustomValidity('Enter a phone number with the format: XXX-XXX-XXXX')" oninput="setCustomValidity('')">
+          <label for="telephone">Telephone</label>
+        </div>
+    </div>
+    <div class="row">
+    <div class="input-field col s12">
+          <i class="material-icons prefix">mail</i>
+          <input id="email" type="email" class="validate" required>
+          <label for="email">Email</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s6">
+          <i class="material-icons prefix">lock</i>
+          <input id="password" type="password" class="validate" required>
+          <label for="Password">Password</label>
+        </div>
+    <div class="input-field col s6">
+          <input id="repeat-password" type="password" class="validate" required oninvalid="this.setCustomValidity('Passwords do not match')" oninput="setCustomValidity('')">
+          <label for="repeat-password"> Repeat Password</label>
+        </div>
+    </div>
+    <button id="submit-btn-company" class="btn red accent-2 center waves-effect" type="submit" name="action">Submit
+        </button>
+    </form>
+  </div>
+</div>
+
+
+
+
+<!-- Javascript -->
+<script src="js/vendor/materialize.js"></script>
+<script src="js/login.js"></script>
+<script src="js/signup.js"></script>
+
+<!-- google analytics -->
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','js/vendor/google_analytics.js','ga');
+        ga('create', 'UA-74424228-1', {'cookieDomain': 'none'});
+        ga('send', 'pageview');
+    </script>
+
+<!-- jQuery Library -->
+<!-- <script type="text/javascript" src="js/min/jquery-1.11.3.min.js"></script>  -->
+<!--materialize js-->
+
+
+
+<!--[if lt IE 10]>
+    <script src="assets/js/placeholder.js"></script>
+<![endif]-->
+
+</body>
+
+</html>

@@ -2,6 +2,7 @@ const config = require('../../nightwatch.js');
 num = Math.floor((Math.random() * 100000) + 1);
 
 module.exports = {
+  '@disabled': true,
   'beforeEach': (browser) => {
     browser
       .url('http://localhost:8080/signup.html')

@@ -4092,7 +4092,19 @@ hr + .mail-env {
   -o-transition: all 550ms ease-in-out;
   transition: all 550ms ease-in-out;
 }
-.login-page .login-content a {
+.policy-content{
+  position: relative;
+  width: 400px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 20px 0;
+  -moz-transition: all 550ms ease-in-out;
+  -webkit-transition: all 550ms ease-in-out;
+  -o-transition: all 550ms ease-in-out;
+  transition: all 550ms ease-in-out;
+}
+
+.login-page .login-content .policy-content a {
   color: #949494;
 }
 .login-page .login-header {

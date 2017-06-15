@@ -1,0 +1,21 @@
+/* logo colors #477998 = circle, #18D6C7 = ONE, #0EB16E = 4M, #E94F37 = checkMark*/
+.logo-circle{
+ 	color: #477998 !important 
+}
+.logo-ONE{
+ 	color: #18D6C7 !important 
+}
+.logo-4M{
+ 	color: #0EB16E !important 
+}
+.logo-checkMark{
+ 	color: #E94F37 !important 
+}
+
+.parallax-container{
+	height: 380px;
+}
+
+#testimonials{
+	height: 150px;
+}
