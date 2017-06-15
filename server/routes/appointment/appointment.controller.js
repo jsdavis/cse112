@@ -43,6 +43,7 @@ module.exports.create = function(req, res) {
     (callback) => {
       Employee.findEmployee(param, (err, emp) => {
         if (err || !emp)
+
           return res.status(400).json({
             error: 'Could not find employee ' + param.first_name + ' ' + param.last_name,
             message: err,
@@ -50,6 +51,7 @@ module.exports.create = function(req, res) {
             return: emp,
           });
 
+        console.log("Params: "+JSON.stringify(param));
         employee = emp;
         appointment.client_id = employee._id;
         appointment.employee_first_name = employee.first_name;
@@ -59,6 +61,7 @@ module.exports.create = function(req, res) {
     },
     // Get the company id
     (callback) => {
+      console.log("Employee is: "+JSON.stringify(employee));
       Company.findCompany(employee, (err, company) => {
         if (err || !company)
           return res.status(400).json({
@@ -81,6 +84,7 @@ module.exports.create = function(req, res) {
           });
         */
 
+        console.log("Company is: " +JSON.stringify(company));
         appointment.company_id = company._id;
         appointment.company_name = company.name;
         callback();
