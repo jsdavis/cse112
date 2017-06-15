@@ -3,7 +3,7 @@ $(document).ready(() => {
   const myCompanyId = companyData._id;
 
   console.log(myCompanyId);
-
+  $('.parallax').parallax();
 
   const curUser = JSON.parse(localStorage.getItem('currentUser'));
   $('#user-name').text(curUser.first_name + ' ' + curUser.last_name);

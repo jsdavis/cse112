@@ -1,29 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-us">
 <head>
     <script src = "js/shared.js"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Neon Admin Panel" />
+    <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <link rel="icon" href="image/logo-emissary.png">
+    <link rel="icon" href="image/newlogo.png">
 
-    <title>Emissary | Settings</title>
-    <link rel="stylesheet" href="font/font-awesome.css">
-    <link rel="stylesheet" href="css/shared-dashboard.css">
+    <title>One 4m | Settings</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="css/vendor/jquery-ui-1.10.3.custom.min.css">
-    <link rel="stylesheet" href="font/entypo.css">
-    <link rel="stylesheet" href="font/NotoSans.css">
+   <!-- <link rel="stylesheet" href="http://fonts.googleapis.com/  css?family=Noto+Sans:400,700,400italic"> -->
+    <link rel="stylesheet" href="css/shared-dashboard.css">    
+    <link type="text/css" rel="stylesheet" href="css/vendor/materialize.css"  media="screen,projection"/>
+
+
     <!-- <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic"> -->
- 
-    <link rel="stylesheet" href="css/employees.css">
-   <link rel="stylesheet" href="css/appointment.css">
 
-
-    <script src="js/min/jquery-1.11.3.min.js"></script>
 
     <!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
@@ -34,125 +31,78 @@
     <![endif]-->
 
 
+
 </head>
-<body class="page-body gray" data-url="http://neon.dev">
+
+<body class="page-body">
+
+<div class="navbar-fixed z-depth-3" >
+  <nav class="navbar navbar-default teal lighten-5">
+    <div class="navbar-brand">
+          <a href="#" >
+            <img src="image/newlogo.png" width="60" alt="logo" class="button-collapse" data-activates="side-menu"/>
+          </a>
+    </div>
+      <ul class="right" id="main-menu">
+        <li>
+          <a href="index.html">
+            <span class="black-text">Home</span>
+          </a>
+        </li>
+        <li>
+          <a href="login.html">
+            <span class="black-text">Log-Out</span>
+          </a>
+        </li>
+      <li>
+                <a href="/checkin.html">
+                    <span class="black-text">Check-In</span>
+                </a>
+            </li>
+        </ul>
+    
+    </nav>
+  
+</div>
 
 <div class="page-container"><!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
-
-    <div class="sidebar-menu">
-        <div class="sidebar-menu-inner">
-            <header class="logo-env">
-
-                <!-- logo -->
-                <div class="logo">
-                    <a href="visitors.html">
-                        <img src="image/emissary.png" width="150" alt="" />
-                    </a>
-                </div>
-
-                <!-- logo collapse icon -->
-                <div class="sidebar-collapse">
-                    <a href="#" class="sidebar-collapse-icon"><!-- add class "with-animation" if you want sidebar to have animation during expanding/collapsing transition -->
-                        <i class="entypo-menu"></i>
-                    </a>
-                </div>
-
-                <!-- open/close menu icon (do not remove if you want to enable menu on mobile devices) -->
-                <div class="sidebar-mobile-menu visible-xs">
-                    <a href="#" class="with-animation"><!-- add class "with-animation" to support animation -->
-                        <i class="entypo-menu"></i>
-                    </a>
-                </div>
-
-            </header>
+<!-- Logo and Navigation -->
 
 
-            <ul id="main-menu" class="main-menu">
-                <!-- add class "multiple-expanded" to allow multiple submenus to open -->
-                <!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
-                <li>
-                    <a href="/visitors.html">
-                        <i class="entypo-users"></i>
-                        <span class="title">Visitors</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/employees.html">
-                        <i class="entypo-user"></i>
-                        <span class="title">Employees</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/appointments.html">
-                        <i class="entypo-calendar"></i>
-                        <span class="title">Appointments</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/form-builder.html">
-                        <i class="entypo-clipboard"></i>
-                        <span class="title">Forms</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="entypo-tools"></i>
-                        <span class="title">Settings</span>
-                    </a>
-                </li>
-            </ul>
-
+  <div class="sidebar-menu">
+    
+    
+    
+    <div class="sidebar-menu-inner">
+      
+      
+      <ul id="side-menu" class="side-nav z-depth-5 fixed teal lighten-3">
+        <!-- add class "multiple-expanded" to allow multiple submenus to open -->
+        <!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
+        <div class ="center">
+          <li  class="hoverable"><a href="/visitors.html"><i class="material-icons vertical-align-middle">supervisor_account</i>Visitors</a></li>
+          <li  class="hoverable"><a href="/appointments.html"><i class="material-icons vertical-align-middle">today</i>Appointments</a></li>
+          <li  class="hoverable"><a href="/form-builder.html"><i class="material-icons vertical-align-middle">assignment</i>Forms</a></li>
+          <li  class="hoverable"><a href="#"><i class="material-icons vertical-align-middle">settings</i>Settings</a></li>
         </div>
-
+      </ul>
     </div>
 
-    <div class="main-content">
 
-        <div class="row">
-
-            <!-- Profile Info and Notifications -->
-            <div class="col-md-6 col-sm-8 clearfix">
-
-                <ul class="user-info pull-left pull-none-xsm">
-
-                    <!-- Profile Info -->
-                    <li class="profile-info dropdown"><!-- add class "pull-right" if you want to place this from right -->
-
-                        <div id="company-name">
-                            <h1>Hello, <span id="user-name"> </span></h1>
-                        </div>
-
-
-                    </li>
-
-                </ul>
-
-            </div>
-
-
-            <!-- Raw Links -->
-            <div class="col-md-6 col-sm-4 clearfix hidden-xs">
-
-                <ul class="list-inline links-list pull-right">
-                    <div class="dropdown">
-                        <i class="fa fa-3x fa-cog dropdown-toggle" data-toggle="dropdown"></i>
-                        <ul class="dropdown-menu">
-                            <li><a href="/checkin.html">Check-In</a></li>
-                            <li><a id="logoutButton" href="/index.html">
-                                Log Out <i class="entypo-logout right"></i></a>
-                            </li>
-                        </ul>
-                  </div>
-                </ul>
-
-            </div>
-
+  <div class="main-content">
+    <div class="row">
+      <!-- Profile Info and Notifications -->
+      <div class=" col-md-6 col-sm-8 clearfix">
+        <div id="company-name">
+          <h1>Hello, <span id="user-name"> </span></h1>
         </div>
+      </div>
+    </div>
 
 
         <hr />
 
-        <div class="employee-container">
+        <div class="employee-container center">
             <div id="visitor-queue">
                 <div class = "patient-table-header">
                     <!-- <h3>Click on a visitor for check-out</h3>-->
@@ -262,7 +212,9 @@
 
 
         <h2>Payment</h2>
-<!--         <form action="/payment/subscription" method="POST">
+        <a class="btn waves-effect waves-light cyan" disabled>Subscribe</a>
+        <!--
+        <form action="/payment/subscription" method="POST">
             <script
                     src="js/vendor/stripe_checkout.js" 
                     class="stripe-button"
@@ -272,33 +224,29 @@
                     data-amount="2000"
                     data-label="Subscribe" >
             </script>
-        </form> -->
+        </form> 
+        -->
 
         <h2>Get Check-In Notifications Via Slack</h2>
+        <a class="waves-effect waves-light btn teal" id="slackButton">Add Slack
+        <i class="material-icons left">phonelink_setup</i></a>
+        <a class="waves-effect waves-light btn red lighten-3" id="slackRemove">Remove Slack
+        <i class="material-icons left">phonelink_erase</i></a>
+        <!--
         <a id="slackButton"><img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" /></a>
         <a id="slackRemove"><img alt="REMOVE SLACK" height="40" width="139"/></a>
+        -->
     </div>
 </div>
-<!-- Imported styles on this page -->
 
-
-<!-- Bottom scripts (common) -->
-<script src="js/min/jquery-ui-1.10.3.minimal.min.js"></script>
-
-<script src="js/min/jquery-jvectormap-1.2.2.min.js"></script>
-
-
-<!-- Imported scripts on this page -->
-<script src="js/vendor/jquery-jvectormap-europe-merc-en.js"></script>
-<script src="js/min/jquery.sparkline.min.js"></script>
+<script type="text/javascript" src="js/min/jquery-1.11.3.min.js"></script> 
+<script src="js/min/jquery-ui.min.js"></script>
 <script type = "text/javascript" src= "js/vendor/handlebars-v4.0.5.js"></script>
-
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="js/vendor/materialize.min.js"></script>
 <script type ="text/javascript" src = "js/settings.js"> </script>
+<script type = "text/javascript" src="js/dashboard.js"></script>
 <script type ="text/javascript" src="js/login.js"></script>
-<!-- <script type ="text/javascript" src = "js/appointments.js"> </script> -->
-
-
 <script src="js/vendor/socket.io.js"></script>
-
 </body>
 </html>

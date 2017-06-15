@@ -5,8 +5,10 @@ $(document).ready(() => {
   let companyId;
   let userId;
 
-  ('#signupForm').submit((event) => {
-    if(validateUser() == false){
+  $('#signupForm').on('submit',(event) => {
+    let is_valid = validateUser();
+    alert(is_valid);
+    if(is_valid == false){
       event.preventDefault();
       alert('Failed');
       return false;
@@ -33,20 +35,7 @@ $(document).ready(() => {
     }
   });
   */
-
-    // Listener for Initial Sign up of an Employee
   
-  $('#submit-btn').on('click', () => {
-    if(validateUser() == false){
-      event.preventDefault();
-      alert('Failed');
-      return false;
-    }
-    else{
-      submitUser();
-    }
-  });
-      
 
 
   function submitUser(){
@@ -62,12 +51,28 @@ $(document).ready(() => {
       console.log('Error invalid role');
     }
   }
-  //});
 
+  $('#companyForm').on('submit',(event) => {
+    let is_valid = validateCompany();
+    alert(is_valid);
+    if(is_valid == false){
+      event.preventDefault();
+      alert('Failed');
+      return false;
+    }
+    else{
+      submitCompany();
+    }
+  });
+
+  /*
   $('#submit-btn-company').on('click', () => {
     if(!validateCompany()){
       preventDefault();
     }
+  */
+
+  function submitCompany(){
     alert("HELLLO");
     const companyData = grabCompanyData();
     //validate data!!!
@@ -80,7 +85,7 @@ $(document).ready(() => {
     ajaxPost('/api/companies/addAdmin/'+userId,companyData,true,'PUT');
     alert(JSON.Stringify(companyData.adminUser));
     location.href='/login.html';
-  });
+  }
 
 
    // Listener for creating a company
@@ -189,7 +194,7 @@ $(document).ready(() => {
     const employee_email = $('#email').val();
     const employee_phone = $('#telephone').val();
     const password = $('#password').val();
-    const repeat_password = $('repeat-password').val();
+    const repeat_password = $('#repeat-password').val();
     if(f_name == '') {
       console.log('name field cannot be blank');
       return false;
@@ -222,6 +227,8 @@ $(document).ready(() => {
     const adminLName = $('#last_name').val();
     const companyEmail = $('#email').val();
     const companyNumber = $('#telephone').val();
+    const password = $('#password').val();
+    const repeat_password = $('#repeat-password').val();
     if(adminName == '') {
       console.log('name field cannot be blank');
       return false;
@@ -244,6 +251,10 @@ $(document).ready(() => {
 
     if(!validatePhone(companyNumber)) {
       console.log('please enter a valid phone number');
+      return false;
+    }
+
+    if(!checkPassword(password,repeat_password)){
       return false;
     }
 
@@ -290,7 +301,7 @@ $(document).ready(() => {
         console.log('Error: password must contain at least one uppercase letter (A-Z)!');
         return false;
       }
-      if(password != confirmPassword ) {
+      if(password != repeat_password ) {
       	console.log('Error: passwords must match!');
       	return false;
       }
