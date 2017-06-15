@@ -33,12 +33,14 @@ module.exports.template.create = function(req, res) {
     // require provided info
   company.name = req.body.company_name;
   company.date=new Date();
+  company.adminUser = [];
     // optinal info
     /* company.expiration_date=req.body.expiration_date;
     company.credit_card_number=req.body.credit_card_number;
     */
   company.save((err, c) => {
     if(err) {
+      console.log(JSON.stringify(err));
       return res.status(400).json({error: 'Could Not Save'+JSON.stringify(err)});
     }
     return res.status(200).json(showCompanyPublicInfo(c));
