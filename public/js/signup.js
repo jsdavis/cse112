@@ -88,7 +88,27 @@ $(document).ready(() => {
     ajaxPost('/api/employees', companyData,false);
     //  alert("njkbhgvh");
     ajaxPost('/api/companies/addAdmin/'+userId,companyData,true,'PUT');
-    //  alert(JSON.Stringify(companyData.adminUser));
+    const themeData = {
+      company_id: companyId,
+      form_color: "#ff8c3c",
+      elements: [
+        {
+          label: 'First Name',
+          placeholder: 'Enter your first name',
+        },
+        {
+          label: 'Last Name',
+          placeholder: 'Enter your last name',
+        },
+        {
+          label: 'Phone Number',
+          placeholder: 'Enter your phone number',
+        },
+      ]
+    } 
+    console.log('hi');
+    ajaxPost('/api/theme/', themeData, false);
+    location.href='/login.html';
   }
 
 
@@ -177,6 +197,7 @@ $(document).ready(() => {
           localStorage.setItem('currentCompany', JSON.stringify(response));
           companyId = response._id;
         } 
+        console.log('request to ' + url);
       },
       error: function(response) {
         console.log(response);

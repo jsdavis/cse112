@@ -1,12 +1,5 @@
 $(document).ready(() => {
-  const socket = io();
-
-  const VALIDATE_COMPANY_ID = 'validate_company_id';
-  const ADD_VISITOR = 'add_visitor';
-
   const companyData = JSON.parse(localStorage.getItem('currentCompany'));
-  console.log(companyData);
-  socket.emit(VALIDATE_COMPANY_ID, companyData);
 
     // Prevent users from scrolling around on iPad
   document.ontouchmove = function(e) {
@@ -35,7 +28,7 @@ $(document).ready(() => {
       $('#visitor-first').val('');
       $('#visitor-last').val('');
       $('#visitor-number').val('');
-      
+
   });
   /* eslint-enable */
 
@@ -74,7 +67,6 @@ $(document).ready(() => {
              }
         );
     }
-    socket.emit(ADD_VISITOR, data);
 
 
     /* eslint-disable */ // eslint doesn't like 'this'
