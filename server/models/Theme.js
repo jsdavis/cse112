@@ -8,11 +8,10 @@ const Schema = mongoose.Schema;
 const ThemeSchema = new Schema({
   user_id: String,
   form_color: String,
-  background_img: String,
-  displayPhone: Boolean,
-  displayClock: Boolean,
-  displaySignature: Boolean,
-  additionalComments: Boolean,
+  elements: [{
+    type: String,
+    label: String
+  }]
 });
 
 // Export schema
