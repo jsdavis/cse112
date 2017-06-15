@@ -49,6 +49,7 @@ $(document).ready(() => {
   // When a patient submits their form
   function submitForm() {
     const d = grabFormElements();
+    alert(JSON.stringify(d));
     console.log(d);
     updateApptList(d);
     appts = getAppts();
