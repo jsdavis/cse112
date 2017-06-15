@@ -73,9 +73,9 @@ $(document).ready(() => {
         console.log(response);
       },
       error: function(response) {
-        alert("njkwbhrjvg"+JSON.stringify(response));
+        alert('njkwbhrjvg'+JSON.stringify(response));
         console.log(JSON.stringify(response));
-      }
+      },
     });
   }
 
