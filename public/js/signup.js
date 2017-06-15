@@ -4,6 +4,22 @@
 $(document).ready(() => {
   let companyId;
   let userId;
+  
+  $('#password').on('focusout', (e) => {
+	  if( $(this).val() != $('#repeat-password').val()) {
+		  $('#repeat-password').removeClass('valid').addClass('invalid');
+	  } else {
+		  $('#repeat-password').removeClass('invalid').addClass('valid');
+	  }
+  });
+
+  $('#repeat-password').on('keyup', (e) => {
+    if ($('#password').val() != $(this).val()) {
+        $(this).removeClass('valid').addClass('invalid');
+    } else {
+        $(this).removeClass('invalid').addClass('valid');
+    }
+  });
 
     // Listener for Initial Sign up of an Employee
   $('#submit-btn').on('click', () => {
