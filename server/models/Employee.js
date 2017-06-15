@@ -50,12 +50,12 @@ employeeSchema.statics.findEmployee = function(param, callback) {
 
   else if (name.first && name.last)
     this.findOne({
-      first_name: name.first,
-      last_name: name.last,
+      first_name: {$regex: new RegExp(name.first, 'i')},
+      last_name: {$regex: new RegExp(name.last, 'i')},
     }, callback);
   else
     callback({
-      error: 'Bad request for finding customer.',
+      error: 'Bad request for finding employee.',
       message: param,
     });
 };

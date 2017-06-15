@@ -95,19 +95,20 @@ module.exports.deleteSlackInfo = function(req, res) {
 
 module.exports.chatBotPostResponse = function(req, res) {
   const param = req.body.result;
-  console.log('RECEIVED REQUEST FROM chatbot');
 
 
   const action = param.action;
-  appointment = {};
   if(action=='createAppointment') {
-    appointment.start = param.parameters.start_time;
-    appointment.end = param.parameters.end_time;
-    appointment.date = param.parameters.date;
-    appointment.extras = param.parameters.extras;
-    appointment.customer_id = param.parameters.email;
+    const p = param.parameters;
+    req.body = {
+      start: new Date(p.date + ' ' + p.start_time),
+      end: new Date(p.date + ' ' + p.end_time),
+      extras: p.extras,
+      customer_email: p.email,
+      firstname: p.firstname,
+      lastname: p.lastname,
+    };
 
-    req.body = appointment;
     AppointmentContr.create(req, res);
   }
   // var request = apiaiApp.textRequest('<Your text query>', {
