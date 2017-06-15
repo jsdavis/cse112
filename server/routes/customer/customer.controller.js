@@ -167,12 +167,12 @@ module.exports.getById = function(req, res) {
 };
 
 module.exports.getByEmail = function(req, res) {
-  Customer.findById({email: req.params.email}, (err, customer) => {
-    if (err) {
+  Customer.findOne({email: req.params.email}, (err, customer) => {
+    if (err || !customer) {
       return res.status(400).json({error: 'Can not Find'});
     } else {
       // log.info(customer);
-      return res.status(200).json(customer);
+      return res.status(200).json(showCompanyPublicInfo(customer));
     }
   });
 };
@@ -237,3 +237,15 @@ module.exports.delete = function(req, res) {
     });
   });
 };
+
+function showCustomerPublicInfo(c) {
+  return {
+    _id: c._id,
+    first_name: c.first_name,
+    last_name: c.last_name,
+    email: c.email,
+    channels: c.channels,
+    companies: c.companies,
+    role: c.role,
+  };
+}
