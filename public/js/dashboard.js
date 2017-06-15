@@ -12,6 +12,7 @@ let myCompanyId;
 
 
 $(document).ready(() => {
+  $('.parallax').parallax();
   const socket = io(); // Initialize Socket
   // Socket variables
   // var CONNECTION = "connection";

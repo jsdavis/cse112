@@ -3,12 +3,17 @@ $(document).ready(() => {
     event.preventDefault();
   });
 
+
+  $('#forgotSuccessMessage').hide();
+  $('#forgotErrorMessage').hide();
+  //  alert('uweybjkn');
+
   $('#send-reset-btn').click(() => {
-    alert('uewvjgdh');
+    //  alert('uewvjgdh');
     const email = $('#emailInput').val();
     const data = {};
     data.email_address = email;
-    alert(JSON.stringify(data));
+    //  alert(JSON.stringify(data));
     $.ajax({
       type: 'GET',
       url: 'api/resetPassword/',
@@ -16,9 +21,13 @@ $(document).ready(() => {
       data: data,
       success: function(response) {
         console.log('HELLOOOOO');
+        $('#forgotSuccessMessage').show();
+        $('#forgotErrorMessage').hide();
       },
       error: function(response) {
         console.log('EH FEKKKKK');
+        $('#forgotSuccessMessage').hide();
+        $('#forgotErrorMessage').show();
       },
     });
   });

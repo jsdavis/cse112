@@ -4,7 +4,21 @@
 $(document).ready(() => {
   let companyId;
   let userId;
+
+  $('#signupForm').on('submit',(event) => {
+    let is_valid = validateUser();
+    alert(is_valid);
+    if(is_valid == false){
+      event.preventDefault();
+      alert('Failed');
+      return false;
+    }
+    else{
+      submitUser();
+    }
+  });
   
+  /*
   $('#password').on('focusout', (e) => {
 	  if( $(this).val() != $('#repeat-password').val()) {
 		  $('#repeat-password').removeClass('valid').addClass('invalid');
@@ -20,9 +34,11 @@ $(document).ready(() => {
         $(this).removeClass('invalid').addClass('valid');
     }
   });
+  */
+  
 
-    // Listener for Initial Sign up of an Employee
-  $('#submit-btn').on('click', () => {
+
+  function submitUser(){
     const userData = grabUserData();
     console.log(userData);
     if(userData.role=='employee') {
@@ -34,9 +50,29 @@ $(document).ready(() => {
     } else {
       console.log('Error invalid role');
     }
+  }
+
+  $('#companyForm').on('submit',(event) => {
+    let is_valid = validateCompany();
+    alert(is_valid);
+    if(is_valid == false){
+      event.preventDefault();
+      alert('Failed');
+      return false;
+    }
+    else{
+      submitCompany();
+    }
   });
 
+  /*
   $('#submit-btn-company').on('click', () => {
+    if(!validateCompany()){
+      preventDefault();
+    }
+  */
+
+  function submitCompany(){
     alert("HELLLO");
     const companyData = grabCompanyData();
     //validate data!!!
@@ -49,7 +85,7 @@ $(document).ready(() => {
     ajaxPost('/api/companies/addAdmin/'+userId,companyData,true,'PUT');
     alert(JSON.Stringify(companyData.adminUser));
     location.href='/login.html';
-  });
+  }
 
 
    // Listener for creating a company
@@ -152,11 +188,13 @@ $(document).ready(() => {
     });
   }
 
-  function validateEmployee() {
-    const f_name = $('#form-employee-first').val();
-    const l_name = $('#form-employee-last').val();
-    const employee_email = $('#form-employee-email').val();
-    const employee_phone = $('#form-employee-phone').val();
+  function validateUser() {
+    const f_name = $('#first_name').val();
+    const l_name = $('#last_name').val();
+    const employee_email = $('#email').val();
+    const employee_phone = $('#telephone').val();
+    const password = $('#password').val();
+    const repeat_password = $('#repeat-password').val();
     if(f_name == '') {
       console.log('name field cannot be blank');
       return false;
@@ -172,21 +210,34 @@ $(document).ready(() => {
       return false;
     }
 
-    if(!validatePhone(employee_phone)) {
-      console.log('please enter a valid phone number');
+    if(!checkPassword(password,repeat_password) ) {
       return false;
     }
 
-    if(!checkPassword() ) {
+    if(!validatePhone(employee_phone)) {
+      console.log('please enter a valid phone number');
       return false;
     }
     return true;
   }
 
-  function validateData() {
-    const companyName = $('#form-company-name').val();
-    const companyEmail = $('#form-email').val();
-    const companyNumber = $('#form-phone').val();
+  function validateCompany() {
+    const companyName = $('#company_name').val();
+    const adminName = $('#first_name').val();
+    const adminLName = $('#last_name').val();
+    const companyEmail = $('#email').val();
+    const companyNumber = $('#telephone').val();
+    const password = $('#password').val();
+    const repeat_password = $('#repeat-password').val();
+    if(adminName == '') {
+      console.log('name field cannot be blank');
+      return false;
+    }
+
+    if(adminLName == '') {
+      console.log('name field cannot be blank');
+      return false;
+    }
 
     if(companyName == '') {
       console.log('company name cannot be blank');
@@ -200,6 +251,10 @@ $(document).ready(() => {
 
     if(!validatePhone(companyNumber)) {
       console.log('please enter a valid phone number');
+      return false;
+    }
+
+    if(!checkPassword(password,repeat_password)){
       return false;
     }
 
@@ -224,11 +279,9 @@ $(document).ready(() => {
   	return PhoneFormat.test(phone);
   }
 
-  function checkPassword() {
-    const password = $('#form-password').val();
-    const confirmPassword = $('#form-repeat-password').val();
+  function checkPassword(password, repeat_password) {
 
-    if(password != '' ) {
+
       if(password.length < 6) {
         console.log('Password must contain at least six characters!');
         return false;
@@ -248,16 +301,11 @@ $(document).ready(() => {
         console.log('Error: password must contain at least one uppercase letter (A-Z)!');
         return false;
       }
-      if(password != confirmPassword ) {
+      if(password != repeat_password ) {
       	console.log('Error: passwords must match!');
       	return false;
       }
       return true;
-    } else {
-      console.log('Error: Please check that you\'ve entered and confirmed your password!');
-      return false;
     }
-    // console.log('You entered a valid password: ' + password.value);
-    return false;
-  }
+  
 });

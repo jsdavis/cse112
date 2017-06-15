@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Signup</title>
+    <title>One 4m | Signup</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/signup.css">
@@ -19,7 +19,6 @@
 
     <link rel="stylesheet" href="css/style.css">
     <script src="js/min/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="js/vendor/materialize.js"></script>
     <!-- <script src="js/vendor/scripts.js"></script>  -->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -34,55 +33,62 @@
 
 </head>
 
-<body id = 'sign-up-body'>
+<body id="sign-up-body" class="teal lighten-3">
+<br><br><br>
 <!-- Top content -->
 <div class="container">
-  <div class="row card-panel">
-	<h4 class="header">Create Your Company Account</h4>
-    <form class="col s12 ">
+  <div class="row card-panel z-depth-4">
+	<br><br>
+  <h4 class="header">Create Your Company Account</h4>
+    <form id="companyForm" class="col s12 ">
+    <div class="row">
         <div class="input-field col s12">
           <i class="material-icons prefix">work</i>
-          <input id="company_name" type="text" class="validate">
+          <input id="company_name" type="text" class="validate" required>
           <label for="company_name">Company Name</label>
         </div>
-		<div class="row">
-		<div class="input-field col s6">
-		  <i class="material-icons prefix">account_circle</i>
-          <input id="first_name" type="text" class="validate">
+    </div>
+    <div class="row">
+    <div class="input-field col s6">
+      <i class="material-icons prefix">account_circle</i>
+          <input id="first_name" type="text" class="validate" required>
           <label for="first_name">Admin - First Name</label>
         </div>
-		<div class="input-field col s6">
-          <input id="last_name" type="text" class="validate">
+    <div class="input-field col s6">
+          <input id="last_name" type="text" class="validate" required>
           <label for="last_name">Admin - Last Name</label>
         </div>
-		</div>
-		<div class="input-field col s12">
+    </div>
+    <div class="row">
+    <div class="input-field col s12">
           <i class="material-icons prefix">phone</i>
-          <input id="telephone" type="tel" class="validate">
+          <input id="telephone" type="tel" pattern="^\d{3}-\d{3}-\d{4}$" class="validate" required oninvalid="this.setCustomValidity('Enter a phone number with the format: XXX-XXX-XXXX')" oninput="setCustomValidity('')">
           <label for="telephone">Telephone</label>
         </div>
-		<div class="input-field col s12">
+    </div>
+    <div class="row">
+    <div class="input-field col s12">
           <i class="material-icons prefix">mail</i>
-          <input id="email" type="email" class="validate">
+          <input id="email" type="email" class="validate" required>
           <label for="email">Email</label>
         </div>
-		<div class="row">
+    </div>
+    <div class="row">
         <div class="input-field col s6">
           <i class="material-icons prefix">lock</i>
-          <input id="password" type="password" class="validate">
+          <input id="password" type="password" class="validate" required>
           <label for="Password">Password</label>
         </div>
-		<div class="input-field col s6">
-          <input id="repeat-password" type="password" class="validate">
-          <labelfor="repeat-password"> Repeat Password</label>
+    <div class="input-field col s6">
+          <input id="repeat-password" type="password" class="validate" required oninvalid="this.setCustomValidity('Passwords do not match')" oninput="setCustomValidity('')">
+          <label for="repeat-password"> Repeat Password</label>
         </div>
-		</div>
-		<button id="submit-btn-company" class="btn green center" type="submit" name="action">Submit
+    </div>
+    <button id="submit-btn-company" class="btn red accent-2 center waves-effect" type="submit" name="action">Submit
         </button>
     </form>
   </div>
 </div>
-
 
 
 
