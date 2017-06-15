@@ -3,6 +3,7 @@ $(document).ready(() => {
   const myCompanyId = companyData._id;
   const curUser = JSON.parse(localStorage.getItem('currentUser'));
 
+  $('#modal-save').click(submitForm);
 
   $('#appt-date').datepicker();
   $('.modal').modal();
@@ -28,7 +29,6 @@ $(document).ready(() => {
   const compiledHtml = template(appts);
 
   $('#appt-list').html(compiledHtml);
-  $('#modal-save').click(submitForm);
 
   // Makes a get request to display list of appts
   function getAppts() {
@@ -49,8 +49,9 @@ $(document).ready(() => {
 
   // When a patient submits their form
   function submitForm() {
+    alert(JSON.stringify(localStorage));
+
     const d = grabFormElements();
-    alert(JSON.stringify(d));
     console.log(d);
     updateApptList(d);
     appts = getAppts();
@@ -71,6 +72,10 @@ $(document).ready(() => {
         appts.push(response);
         console.log(response);
       },
+      error: function(response) {
+        alert("njkwbhrjvg"+JSON.stringify(response));
+        console.log(JSON.stringify(response));
+      }
     });
   }
 
@@ -79,10 +84,11 @@ $(document).ready(() => {
   function grabFormElements() {
     const newAppt = {};
     newAppt.company_id = myCompanyId;
-    newAppt.first_name= $('#appt-first').val();
-    newAppt.last_name = $('#appt-last').val();
+    newAppt.customer_first_name= $('#appt-first').val();
+    newAppt.customer_last_name = $('#appt-last').val();
     newAppt.phone_number = $('#appt-number').val();
     newAppt.provider_name = $('#appt-provider').val();
+    newAppt.employee_email = localStorage.getItem('email');
 
     const userDate = $('#appt-date').val();
     const userTime = $('#appt-time').val();
