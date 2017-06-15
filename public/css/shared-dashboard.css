@@ -19,3 +19,18 @@ tr:nth-last-child(1){
 body{
 	color: #5b677b !important
 }
+
+.page-title {
+  font-weight: 100;
+  font-size: 50px;
+}
+
+.main-content {
+	padding-left: 160px;
+}
+
+@media only screen and (max-width : 992px) {
+	.main-content {
+		padding-left: 10px;
+  }
+}
