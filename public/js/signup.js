@@ -4,6 +4,17 @@
 $(document).ready(() => {
   let companyId;
   let userId;
+
+  ('#signupForm').submit((event) => {
+    if(validateUser() == false){
+      event.preventDefault();
+      alert('Failed');
+      return false;
+    }
+    else{
+      submitUser();
+    }
+  });
   
   /*
   $('#password').on('focusout', (e) => {
