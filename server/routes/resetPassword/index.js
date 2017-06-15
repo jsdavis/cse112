@@ -1,6 +1,6 @@
-// admin index
-
 'use strict';
+// admin index
+const controller = require('./resetpassword.controller');
 
 const express = require('express');
 //  const controller = require('./resetPassword.controller');
@@ -8,6 +8,6 @@ const express = require('express');
 const router = express.Router();
 
 
-//  router.get('/', controller.resetPassword);
+router.post('/', controller.resetPassword);
 
 module.exports = router;

@@ -3,7 +3,6 @@ $('#form_login').submit((event) => {
   event.preventDefault();
 });
 $('#loginButton').click(() => {
-  alert('Hello');
   const userData = grabUserData();
   ajaxPostUserEmployee(userData);
 });

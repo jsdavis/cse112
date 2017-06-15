@@ -7,8 +7,10 @@ const request = require('request');
  * routes that pertain to users
  */
 const SlackDB = require('../../models/SlackDB');
+const Customer = require('../../models/Customer');
 const Appointment = require('../../models/Appointment');
 const AppointmentContr = require('../appointment/appointment.controller.js');
+const CustomerContr = require('../customer/customer.controller.js');
 
 // const apiai = require('apiai');
 // const apiaiApp = apiai('a0569614aa254d96a49d6068db16a718');
@@ -98,7 +100,7 @@ module.exports.chatBotPostResponse = function(req, res) {
 
 
   const action = param.action;
-  if(action=='createAppointment') {
+  if (action == 'createAppointment') {
     const p = param.parameters;
     req.body = {
       start: new Date(p.date + ' ' + p.start_time),
@@ -108,7 +110,6 @@ module.exports.chatBotPostResponse = function(req, res) {
       firstname: p.firstname,
       lastname: p.lastname,
     };
-
     AppointmentContr.create(req, res);
   }
   // var request = apiaiApp.textRequest('<Your text query>', {
