@@ -62,6 +62,7 @@ $(document).ready(() => {
     const data = grabFormElements();
     const slTok = localStorage.getItem('slackToken');
     const slChan = localStorage.getItem('slackChannel');
+
     if(slTok!=undefined&&slChan!=undefined) {
       $.post('https://slack.com/api/chat.postMessage',
         {

@@ -18,8 +18,12 @@
     <link rel="stylesheet" href="font/font-awesome.min.css">
 
     <link rel="stylesheet" href="css/style.css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- jQuery Library -->
+    <script type="text/javascript" src="js/min/jquery-1.11.3.min.js"></script> 
+    <!--materialize js-->
+    <script type="text/javascript" src="js/vendor/materialize.js"></script>
+<!--     <script src="js/vendor/scripts.js"></script>
+ -->    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -35,52 +39,59 @@
 <!-- Top content -->
 <div class="container">
   <div class="row card-panel">
-	<h4 class="header">Create Your Account</h4>
-    <form class="col s12 ">
-		<div class="row">
-		<div class="input-field col s6">
-		  <i class="material-icons prefix">account_circle</i>
-          <input id="first_name" type="text" class="validate">
+  <h4 class="header">Create Your Account</h4>
+    <form class="col s12">
+    <div class="row">
+    <div class="input-field col s6">
+      <i class="material-icons prefix">account_circle</i>
+          <input id="first_name" type="text" class="validate" required>
           <label for="first_name">First Name</label>
         </div>
-		<div class="input-field col s6">
-          <input id="last_name" type="text" class="validate">
+    <div class="input-field col s6">
+          <input id="last_name" type="text" class="validate" required>
           <label for="last_name">Last Name</label>
         </div>
-		</div>
-		<div class="input-field col s12">
+    </div>
+    <div class="row">
+    <div class="input-field col s12">
           <i class="material-icons prefix">phone</i>
-          <input id="telephone" type="tel" class="validate">
+          <input id="telephone" type="tel" pattern="^\d{3}-\d{3}-\d{4}$" class="validate" required 
+          oninvalid="this.setCustomValidity('Enter a phone number with the format: XXX-XXX-XXXX')" oninput="setCustomValidity('')">
           <label for="telephone">Telephone</label>
         </div>
-		<div class="input-field col s12">
+        </div>
+        <div class="row">
+    <div class="input-field col s12">
           <i class="material-icons prefix">mail</i>
-          <input id="email" type="email" class="validate">
+          <input id="email" type="email" class="validate" required>
           <label for="email">Email</label>
         </div>
-		<div class="row">
+        </div>
+    <div class="row">
         <div class="input-field col s6">
           <i class="material-icons prefix">lock</i>
-          <input id="password" type="password" class="validate">
+          <input id="password" type="password" class="validate" required>
           <label for="Password">Password</label>
         </div>
-		<div class="input-field col s6">
-          <input id="repeat-password" type="password" class="validate">
-          <label for="repeat-password"> Repeat Password</label>
+    <div class="input-field col s6">
+          <input id="repeat-password" type="password" required
+          oninvalid="this.setCustomValidity('Passwords do not match')" oninput="setCustomValidity('')">
+          <label for="repeat-password">Repeat Password</label>
         </div>
-		</div>
-		<button id="submit-btn" class="btn green center" type="submit" name="action">Submit
+    </div>
+    <button id="user-submit-btn" class="btn green center waves-effect" type="button" name="action">Submit
         </button>
     </form>
   </div>
 </div>
 
 
+
 <!-- Javascript -->
 <script src="js/vendor/materialize.js"></script>
 <script src="js/min/jquery-1.11.3.min.js"></script>
 <script src="js/signup.js"></script>
-
+<script src="js/signup2.js"></script>
 <!-- google analytics -->
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -91,11 +102,7 @@
         ga('send', 'pageview');
     </script>
 
-<script src="js/vendor/scripts.js"></script>
-<!-- jQuery Library -->
-<script type="text/javascript" src="js/min/jquery-1.11.3.min.js"></script> 
-<!--materialize js-->
-<script type="text/javascript" src="js/vendor/materialize.js"></script>
+
 
 <!--[if lt IE 10]>
     <script src="assets/js/placeholder.js"></script>
