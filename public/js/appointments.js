@@ -16,11 +16,11 @@ $(document).ready(() => {
 
   function initializeAppts(appts) {
     appts.sort((a, b) => {
-      return new Date(a.date) - new Date(b.date);
+      return new Date(a.start) - new Date(b.start);
     });
     for(let i = 0, len = appts.length; i < len; i++) {
-      appts[i].fullDate = formatDate(appts[i].date.toString());
-      appts[i].appointmentTime = formatTime(appts[i].date.toString());
+      appts[i].fullDate = formatDate(''+appts[i].start);
+      appts[i].appointmentTime = formatTime(''+appts[i].start);
     }
     return appts;
   }
@@ -38,7 +38,6 @@ $(document).ready(() => {
     $.ajax({
       dataType: 'json',
       type: 'GET',
-      data: $('#response').serialize(),
       async: false,
       url: '/api/appointments/company/' + myCompanyId,
       success: function(response) {
@@ -89,7 +88,7 @@ $(document).ready(() => {
     newAppt.customer_first_name= $('#appt-first').val();
     newAppt.customer_last_name = $('#appt-last').val();
     newAppt.phone_number = $('#appt-number').val();
-    newAppt.provider_name = $('#appt-provider').val();
+    // newAppt.provider_name = $('#appt-provider').val();
     newAppt.employee_email = localStorage.getItem('email');
 
     const userDate = $('#appt-date').val();
