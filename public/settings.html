@@ -93,7 +93,7 @@
     <div class="row">
       <!-- Profile Info and Notifications -->
       <div class=" col-md-6 col-sm-8 clearfix">
-        <div id="company-name">
+        <div class ="center" id="company-name">
           <h1>Hello, <span id="user-name"> </span></h1>
         </div>
       </div>
@@ -109,11 +109,11 @@
                     <!-- <input class="form-control" placeholder="Search ..." type="text"/>-->
                 </div>
 
-                <table class="table">
+                <table class="table centered">
                     <thead>
                     <tr>
-                        <th>First</th>
-                        <th>Last</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
                         <th>Phone Number</th>
                         <th>Email</th>
                     </tr>
@@ -125,14 +125,9 @@
                     <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
                          aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
-                            <div class="modal-content">
+                            <div class="modal-content center">
                                 <!-- Modal Header -->
                                 <div class="modal-header">
-                                    <button type="button" class="close"
-                                            data-dismiss="modal">
-                                        <span aria-hidden="true">&times;</span>
-                                        <span class="sr-only">Close</span>
-                                    </button>
                                     <h4 class="modal-title" id="myModalLabel">
                                         Change your Settings
                                     </h4>
@@ -146,7 +141,7 @@
                                             <label class="col-sm-2 control-label"
                                                    for="first-name" >First Name</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control"
+                                                <input type="text" class="form-control center"
                                                        id="employee-first" placeholder="First Name"/>
                                             </div>
                                         </div>
@@ -154,7 +149,7 @@
                                             <label class="col-sm-2 control-label"
                                                    for="last-name" >Last Name</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control"
+                                                <input type="text" class="form-control center"
                                                        id="employee-last" placeholder="Last Name"/>
                                             </div>
                                         </div>
@@ -162,7 +157,7 @@
                                             <label class="col-sm-2 control-label"
                                                    for="phone-number" >Phone</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control"
+                                                <input type="text" class="form-control center"
                                                        id="employee-number" placeholder="Phone Number"/>
                                             </div>
                                         </div>
@@ -170,7 +165,7 @@
                                             <label  class="col-sm-2 control-label"
                                                     for="email">Email</label>
                                             <div class="col-sm-10">
-                                                <input type="email" class="form-control"
+                                                <input type="email" class="form-control center"
                                                        id="employee-email" placeholder="Email">
                                             </div>
                                         </div>
@@ -181,7 +176,7 @@
 
                                 <!-- Modal Footer -->
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-default"
+                                    <button type="button" class="btn btn-default modal-close"
                                             data-dismiss="modal">
                                         Close
                                     </button>
@@ -206,13 +201,18 @@
             </tr>
 
         </script>
-        <div class = "update-button btn btn-default" data-toggle="modal" data-target="#myModal">Update</div>
-        <br><br>
+        <br>
+        <div class="row center">
+        <a class = "update-button btn pulse cyan lighten-2" data-toggle="modal" href="#myModal">Update</a>
+        </div>
 
 
-
-        <h2>Payment</h2>
+        <br>
+        <div class="center">
+        <h4>Payment</h4>
         <a class="btn waves-effect waves-light cyan" disabled>Subscribe</a>
+        </div>
+        <br>
         <!--
         <form action="/payment/subscription" method="POST">
             <script
@@ -227,11 +227,13 @@
         </form> 
         -->
 
-        <h2>Get Check-In Notifications Via Slack</h2>
+        <div class="center">
+        <h4>Get Check-In Notifications Via Slack</h4>
         <a class="waves-effect waves-light btn teal" id="slackButton">Add Slack
         <i class="material-icons left">phonelink_setup</i></a>
         <a class="waves-effect waves-light btn red lighten-3" id="slackRemove">Remove Slack
         <i class="material-icons left">phonelink_erase</i></a>
+        </div>
         <!--
         <a id="slackButton"><img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" /></a>
         <a id="slackRemove"><img alt="REMOVE SLACK" height="40" width="139"/></a>
