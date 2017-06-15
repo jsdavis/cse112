@@ -91,7 +91,7 @@ module.exports.create = function(req, res) {
         const text = 'Successfully created appointment for ' + customer.first_name + ' ' + customer.last_name + ' with ' + employee.first_name + ' ' + employee.last_name + ' from ' + appointment.start + ' to ' + appointment.end;
 
         res.status(200).json({
-          speech: 'Appointment created',
+          speech: text,
           displayText: text,
           data: appointment,
         });
