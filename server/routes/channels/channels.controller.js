@@ -97,32 +97,19 @@ module.exports.deleteSlackInfo = function(req, res) {
 
 module.exports.chatBotPostResponse = function(req, res) {
   const param = req.body.result;
-  console.log('RECEIVED REQUEST FROM chatbot');
 
 
   const action = param.action;
-
-  const appointment = {};
-  if(action=='createAppointment') {
-    appointment.start = param.parameters.start_time;
-    appointment.end = param.parameters.end_time;
-    appointment.date = param.parameters.date;
-    appointment.extras = param.parameters.extras;
-    // req.params.email = param.parameters.email;
-
-    let customerObj;
-    Customer.findOne({email: param.parameters.email}, (err, customer) => {
-      if (err) {
-        return res.status(400).json({error: 'Can not Find'});
-      } else {
-      // log.info(customer);
-      // return res.status(200).json(customer);
-        customerObj = customer;
-      }
-    });
-    appointment.customer_id = customerObj._id;
-
-    req.body = appointment;
+  if (action == 'createAppointment') {
+    const p = param.parameters;
+    req.body = {
+      start: new Date(p.date + ' ' + p.start_time),
+      end: new Date(p.date + ' ' + p.end_time),
+      extras: p.extras,
+      customer_email: p.email,
+      firstname: p.firstname,
+      lastname: p.lastname,
+    };
     AppointmentContr.create(req, res);
   }
   // var request = apiaiApp.textRequest('<Your text query>', {

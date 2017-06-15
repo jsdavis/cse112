@@ -87,7 +87,14 @@ module.exports.create = function(req, res) {
             message: JSON.stringify(err),
           });
 
-        res.status(200).json(appointment);
+        // Give response that API.ai can handle
+        const text = 'Successfully created appointment for ' + customer.first_name + ' ' + customer.last_name + ' with ' + employee.first_name + ' ' + employee.last_name + ' from ' + appointment.start + ' to ' + appointment.end;
+
+        res.status(200).json({
+          speech: text,
+          displayText: text,
+          data: appointment,
+        });
       });
     },
   ]);
