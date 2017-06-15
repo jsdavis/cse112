@@ -66,7 +66,7 @@ $(document).ready(() => {
     }
     else{
       submitCompany();
-      location.href = '/user-dashboard.html';
+      location.href = '/visitors.html';
     }
   });
 
@@ -90,7 +90,7 @@ $(document).ready(() => {
     ajaxPost('/api/companies/addAdmin/'+userId,companyData,true,'PUT');
     const themeData = {
       company_id: companyId,
-      form_color: "#ff8c3c",
+      form_color: "FF8C3C",
       elements: [
         {
           label: 'First Name',
