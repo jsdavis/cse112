@@ -12,7 +12,7 @@ if (typeof(jQuery) === 'undefined') {
   // Else use the dollar sign alias.
   } else {
     jQuery = $;
-  }
+  } 
 }
 ;/*
  * jQuery Easing v1.3 - http://gsgd.co.uk/sandbox/jquery/easing/

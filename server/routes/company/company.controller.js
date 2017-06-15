@@ -50,7 +50,7 @@ module.exports.template.updateAdminList = function(req, res) {
   const params = req.body;
 
   Company.findCompany(params, (err, company) => {
-    if(err)
+    if(err || !company)
       return res.status(400).json({error: 'Can not Update'});
 
     company.company_name = params.company_name;

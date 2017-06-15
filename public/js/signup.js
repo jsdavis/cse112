@@ -27,6 +27,7 @@ $(document).ready(() => {
     ajaxPost('/api/companies', companyData, false);
     companyData.adminUser.company_id = companyId;
     companyData.company_id = companyId;
+    alert(JSON.stringify(companyData));
     ajaxPost('/api/employees', companyData,false);
     alert("njkbhgvh");
     ajaxPost('/api/companies/addAdmin/'+userId,companyData,true,'PUT');
