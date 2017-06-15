@@ -20,7 +20,6 @@
 	<script src="js/min/jquery-1.11.3.min.js"></script>
 
 
-
   <!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -90,26 +89,27 @@
     <div class="row">
       <!-- Profile Info and Notifications -->
       <div class=" col-md-6 col-sm-8 clearfix">
-        <div id="company-name">
+        <div class="center" id="company-name">
           <h1>Hello, <span id="user-name"> </span></h1>
         </div>
       </div>
     </div>
 
     <hr />
-    
 
 
-    <div class="visitor-container center" >
+
+    <div class="container center" >
         <div id="visitor-queue">
 
-           <h1 class="left lower-title">Visitors</h1>
 
-        <table>
+           <h2 class="center lower-title">Visitors</h2>
+
+        <table class="responsive-table striped centered">
             <thead>
                 <tr>
-                    <th st-sort="Name">First</th>
-                    <th st-sort="Appointment">Last</th>
+                    <th st-sort="Name">First Name</th>
+                    <th st-sort="Appointment">Last Name</th>
                     <th st-sort="Appointment">Appointment Time</th>
                     <th st-sort="Time">Check-in Time</th>
                 </tr>

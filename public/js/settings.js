@@ -4,6 +4,7 @@ $(document).ready(() => {
 
   console.log(myCompanyId);
   $('.parallax').parallax();
+  $('#myModal').modal();
 
   const curUser = JSON.parse(localStorage.getItem('currentUser'));
   $('#user-name').text(curUser.first_name + ' ' + curUser.last_name);
