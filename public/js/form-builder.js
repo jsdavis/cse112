@@ -57,6 +57,14 @@ $(document).ready(($) => {
     return hex.join('').toUpperCase();
   }
 
+  function hexToRgb(hex) {
+    const bigint = parseInt(hex, 16);
+    const r = (bigint >> 16) & 255;
+    const g = (bigint >> 8) & 255;
+    const b = bigint & 255;
+    return {r: r, g: g, b: b};
+  }
+
   function refreshSwatch() {
     const red = $('#red').slider('value');
     const green = $('#green').slider('value');
@@ -75,9 +83,18 @@ $(document).ready(($) => {
     change: refreshSwatch,
   });
 
-  $( '#red' ).slider( 'value', 255 );
-  $( '#green' ).slider( 'value', 140 );
-  $( '#blue' ).slider( 'value', 60 );
+  // Setting slider values
+  $.ajax({
+    type: 'GET',
+    dataType: 'json',
+    url: '/api/theme/' + myCompanyId,
+    success: (response) => {
+      const rgbCode = hexToRgb(response.form_color);
+      $( '#red' ).slider( 'value', rgbCode.r);
+      $( '#green' ).slider( 'value', rgbCode.g );
+      $( '#blue' ).slider( 'value', rgbCode.b );
+    },
+  });
 
 
   $('#add-element-button').click(()=> {
