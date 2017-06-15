@@ -1,18 +1,23 @@
-var element_label, element_placeholder;
-var elementsObj = [
-{
-  "label" : "First Name",
-  "placeholder" : "Enter your first name",
-},
-{
-  "label" : "Last Name",
-  "placeholder" : "Enter your last name",
-},
-{
-  "label" : "Phone Number",
-  "placeholder" : "Enter your phone number",
-},
+let elementLabel;
+let elementPlaceholder;
+const elementsObj = [
+  {
+    'label': 'First Name',
+    'placeholder': 'Enter your first name',
+  },
+  {
+    'label': 'Last Name',
+    'placeholder': 'Enter your last name',
+  },
+  {
+    'label': 'Phone Number',
+    'placeholder': 'Enter your phone number',
+  },
 ];
+
+const companyData = JSON.parse(localStorage.getItem('currentCompany'));
+const myCompanyId = companyData._id;
+const curUser = JSON.parse(localStorage.getItem('currentUser'));
 
 $(document).ready(($) => {
   $('.modal').modal();
@@ -31,19 +36,75 @@ $(document).ready(($) => {
     $('#optional_label').val('');
     return false;
   });
-  $('#add-element-button').click(function() {
+
+  function hexFromRGB(r, g, b) {
+    const hex = [
+      r.toString( 16 ),
+      g.toString( 16 ),
+      b.toString( 16 ),
+    ];
+    $.each( hex, ( nr, val ) => {
+      if ( val.length === 1 ) {
+        hex[nr] = '0' + val;
+      }
+    });
+    return hex.join('').toUpperCase();
+  }
+
+  function refreshSwatch() {
+    const red = $('#red').slider('value');
+    const green = $('#green').slider('value');
+    const blue = $('#blue').slider( 'value' );
+    const hex = hexFromRGB( red, green, blue );
+    $('#swatch').css('background-color', '#' + hex );
+    return hex;
+  }
+
+  $('#red, #green, #blue').slider({
+    orientation: 'horizontal',
+    range: 'min',
+    max: 255,
+    value: 127,
+    slide: refreshSwatch,
+    change: refreshSwatch,
+  });
+
+  $( '#red' ).slider( 'value', 255 );
+  $( '#green' ).slider( 'value', 140 );
+  $( '#blue' ).slider( 'value', 60 );
+
+
+  $('#add-element-button').click(()=> {
     console.log('Add element clicked');
     $('#modal1').modal('open');
   });
 
-  $('#modal-add-button').click(function() {
-    element_label = $('#element-label').val();
-    element_placeholder = $('#element-placeholder').val();
-    $('#wrapper').append('<div><label for="' + element_label + '">' + element_label + 
-      '</label><input type="text" name="' + element_label + 
-      '" placeholder="' + element_placeholder + '"/><div>'); //add input box
-    elementsObj.push({ "label" : element_label, "placeholder" : element_placeholder,});
+  $('#modal-add-button').click(() => {
+    elementLabel = $('#element-label').val();
+    elementPlaceholder = $('#element-placeholder').val();
+    $('#wrapper').append('<div><label for="' + elementLabel + '">' + elementLabel +
+      '</label><input type="text" name="' + elementLabel +
+      '" placeholder="' + elementPlaceholder + '"/><div>');
+    elementsObj.push({'label': elementLabel, 'placeholder': elementPlaceholder});
     console.log(elementsObj);
+  });
+
+  $('#submit-button').click(() => {
+    const formColor = refreshSwatch();
+    const putObj = {
+      company_id: myCompanyId,
+      form_color: formColor,
+      elements: elementsObj,
+    };
+    $.ajax({
+      type: 'PUT',
+      dataType: 'json',
+      url: '/api/theme/' + myCompanyId,
+      data: putObj,
+      success: (response) => {
+        console.log(response);
+      },
+    });
   });
 });
 
@@ -58,51 +119,4 @@ $('.my-form').on('click', '.remove-box', function() {
   });
   return false;
 });
-
-$(() => {
-  function hexFromRGB(r, g, b) {
-    const hex = [
-      r.toString( 16 ),
-      g.toString( 16 ),
-      b.toString( 16 ),
-    ];
-    $.each( hex, ( nr, val ) => {
-      if ( val.length === 1 ) {
-        hex[nr] = '0' + val;
-      }
-    });
-    return hex.join('').toUpperCase();
-  }
-  function refreshSwatch() {
-    const red = $('#red').slider('value');
-    const green = $('#green').slider('value');
-    const blue = $('#blue').slider( 'value' );
-    const hex = hexFromRGB( red, green, blue );
-    $('#swatch').css('background-color', '#' + hex );
-  }
-  $('#red, #green, #blue').slider({
-    orientation: 'horizontal',
-    range: 'min',
-    max: 255,
-    value: 127,
-    slide: refreshSwatch,
-    change: refreshSwatch,
-  });
-  $( '#red' ).slider( 'value', 255 );
-  $( '#green' ).slider( 'value', 140 );
-  $( '#blue' ).slider( 'value', 60 );
-});
-
-/*$('.dropdown-button').dropdown({
-  inDuration: 300,
-  outDuration: 225,
-  constrainWidth: false, // Does not change width of dropdown to that of the activator
-  hover: true, // Activate on hover
-  gutter: 0, // Spacing from edge
-  belowOrigin: false, // Displays dropdown below the button
-  alignment: 'left', // Displays dropdown with edge aligned to the left of button
-  stopPropagation: false, // Stops event propagation
-});
-$('.dropdown-button').dropdown();
-$('.dropdown-button').dropdown('close');*/
 

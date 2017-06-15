@@ -9,8 +9,8 @@ const ThemeSchema = new Schema({
   company_id: String,
   form_color: String,
   elements: [{
-    type: String,
     label: String,
+    placeholder: String,
   }],
 });
 

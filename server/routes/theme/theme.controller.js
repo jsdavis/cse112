@@ -19,9 +19,9 @@ module.exports.template.use = function(req, res, next) {
 
 module.exports.template.create = function(req, res) {
   const theme = new Theme();
-  theme.company_id = req.params.company_id;
-  theme.form_color = req.params.form_color;
-  theme.elements = req.params.elements;
+  theme.company_id = req.body.company_id;
+  theme.form_color = req.body.form_color;
+  theme.elements = req.body.elements;
 
   theme.save((err) => {
     if (err)
@@ -49,7 +49,8 @@ module.exports.template.update = function(req, res) {
     if (err)
       res.status(400).send(err);
 
-    theme.company_id = req.body.company_id;
+    if(req.body.company_id)
+      theme.company_id = req.body.company_id;
     if (req.body.form_color)
       theme.form_color = req.body.form_color;
     if (req.body.elements)
@@ -58,7 +59,6 @@ module.exports.template.update = function(req, res) {
     theme.save((err) => {
       if (err)
         res.status(400).send(err);
-
       res.status(200).json(theme);
     });
   });
