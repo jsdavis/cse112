@@ -13,7 +13,7 @@ $(document).ready(() => {
   const compiledHtml = template(employees);
 
   $('#employee-list').html(compiledHtml);
-  $('.save-btn').click(submitForm);
+  $('#saveEmployeeButton').click(submitForm);
 
 
   // Makes a get request to display list of employees
@@ -50,8 +50,8 @@ $(document).ready(() => {
 
   // When a patient submits their form
   function submitForm() {
+    alert('ljkhbvgj');
     const d = grabFormElements();
-    console.log(d);
     updateEmployeeList(d);
     $('#employee-list').html(template(employees));
     document.getElementById('employee-form').reset();
@@ -61,7 +61,7 @@ $(document).ready(() => {
   function grabFormElements() {
     const newEmployee = {};
     newEmployee.company_id = myCompanyId;
-    newEmployee.role = 'c_employee',
+    newEmployee.role = 'employee',
         newEmployee.first_name= $('#employee-first').val();
     newEmployee.last_name = $('#employee-last').val();
     newEmployee.phone_number = $('#employee-number').val();
