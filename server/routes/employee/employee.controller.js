@@ -67,6 +67,16 @@ module.exports.getById = function(req, res) {
   });
 };
 
+module.exports.getByEmail = function(req, res) {
+  Employee.findById({email: req.params.email}, (err, employee) => {
+    if (err) {
+      return res.status(400).json({error: 'Can not Find'});
+    } else {
+      // log.info(employee);
+      return res.status(200).json(employee);
+    }
+  });
+};
 
 module.exports.insert = function(req, res) {
   const employee = new Employee();
