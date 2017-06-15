@@ -19,6 +19,7 @@
 	<link rel="stylesheet" href="css/form-builder.css">
 	<link rel="stylesheet" href="css/appointment.css">
 	<script src="js/min/jquery-1.11.3.min.js"></script>
+  <script src="js/vendor/materialize.min.js"></script>
   <script src="js/form-builder.js"></script>
 	<!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
@@ -128,38 +129,42 @@
 <form class = "form-builder" role = "form">
   <div class = "form-group">
     <label for = "f_name">First Name</label>
-    <input type = "text" class = "form-control" id = "f_name" placeholder = "Enter your First Name" required>
+    <input type = "text" class = "form-control" id = "f_name" placeholder = "Enter your First Name">
   </div>
   <div class = "form-group">
     <label for = "l_name">Last Name</label>
-    <input type = "text" class = "form-control" id = "l_name" placeholder = "Enter your Last Name" required>
+    <input type = "text" class = "form-control" id = "l_name" placeholder = "Enter your Last Name">
   </div>
   <div class = "form-group">
     <label for = "phone">Phone Number</label>
-    <input type = "tel" class = "form-control" pattern='[\(]\d{3}[\)]\d{3}[\-]\d{4}' id = "phone" placeholder = "Enter your Phone Number" required>
+    <input type = "tel" class = "form-control" pattern='[\(]\d{3}[\)]\d{3}[\-]\d{4}' id = "phone" placeholder = "Enter your Phone Number">
+  </div>
+  <div id="wrapper">
   </div>
   <div class = "form-group row">
-    <a href="#" class="dropdown-button btn waves-effect waves-light btn red accent-2 col s6 offset-s3" data-activates="element-select-dropdown">
+    <a id="add-element-button" href="#" class="dropdown-button btn waves-effect waves-light btn red accent-2 col s6 offset-s3" data-target="modal1">
       <i class="material-icons left">add</i>Add Element
     </a>
-  </div>
-
-  <div>
-    <ul id="element-select-dropdown" class="dropdown-content">
-      <li><input id="elementLabel" type="text" placeholder="Enter the label of the element"></input></li>
-      <li>
-        <ul id="elementType" >
-          <li value="text">Text Input</li>
-          <li value="toggle">Checkbox</li>
-        </ul>
-      </li>
-    </ul>
   </div>
   <div class="row">
     <button type = "Save" class = "col s6 offset-s3 save-form btn red accent-2">Submit</button>
   </div>
 </form>
 
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <h4>Add Element</h4>
+    <form>
+      <label for="label">Label Name</label>
+      <input type="text" class="form-control" id="element-label" placeholder="Email">
+      <label for="placeholder">Placeholder Text</label>
+      <input type="text" class="form-control" id="element-placeholder" placeholder="Enter your email.">
+    </form>
+  </div>
+  <div class="modal-footer">
+    <a id="modal-add-button" href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Add</a>
+  </div>
+</div>
 
 		<!-- Imported styles on this page -->
 
@@ -175,7 +180,7 @@
 
 
 		<script type = "text/javascript" src= "js/login.js"></script>
-		<script type = "text/javascript" src= "js/appointments.js"> </script>
+		<!--<script type = "text/javascript" src= "js/appointments.js"> </script>-->
 
 </body>
 </html>

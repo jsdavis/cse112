@@ -1,4 +1,21 @@
+var element_label, element_placeholder;
+var elementsObj = [
+{
+  "label" : "First Name",
+  "placeholder" : "Enter your first name",
+},
+{
+  "label" : "Last Name",
+  "placeholder" : "Enter your last name",
+},
+{
+  "label" : "Phone Number",
+  "placeholder" : "Enter your phone number",
+},
+];
+
 $(document).ready(($) => {
+  $('.modal').modal();
   $('.my-form:last .add-box').click(() => {
     const label = $('#optional_label').val();
     console.log('value: ' + label);
@@ -13,6 +30,20 @@ $(document).ready(($) => {
     boxHtml.fadeIn('slow');
     $('#optional_label').val('');
     return false;
+  });
+  $('#add-element-button').click(function() {
+    console.log('Add element clicked');
+    $('#modal1').modal('open');
+  });
+
+  $('#modal-add-button').click(function() {
+    element_label = $('#element-label').val();
+    element_placeholder = $('#element-placeholder').val();
+    $('#wrapper').append('<div><label for="' + element_label + '">' + element_label + 
+      '</label><input type="text" name="' + element_label + 
+      '" placeholder="' + element_placeholder + '"/><div>'); //add input box
+    elementsObj.push({ "label" : element_label, "placeholder" : element_placeholder,});
+    console.log(elementsObj);
   });
 });
 
@@ -62,7 +93,7 @@ $(() => {
   $( '#blue' ).slider( 'value', 60 );
 });
 
-$('.dropdown-button').dropdown({
+/*$('.dropdown-button').dropdown({
   inDuration: 300,
   outDuration: 225,
   constrainWidth: false, // Does not change width of dropdown to that of the activator
@@ -73,4 +104,5 @@ $('.dropdown-button').dropdown({
   stopPropagation: false, // Stops event propagation
 });
 $('.dropdown-button').dropdown();
-$('.dropdown-button').dropdown('close');
+$('.dropdown-button').dropdown('close');*/
+
