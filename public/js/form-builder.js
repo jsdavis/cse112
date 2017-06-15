@@ -27,3 +27,50 @@ $('.my-form').on('click', '.remove-box', function() {
   });
   return false;
 });
+
+$(() => {
+  function hexFromRGB(r, g, b) {
+    const hex = [
+      r.toString( 16 ),
+      g.toString( 16 ),
+      b.toString( 16 ),
+    ];
+    $.each( hex, ( nr, val ) => {
+      if ( val.length === 1 ) {
+        hex[nr] = '0' + val;
+      }
+    });
+    return hex.join('').toUpperCase();
+  }
+  function refreshSwatch() {
+    const red = $('#red').slider('value');
+    const green = $('#green').slider('value');
+    const blue = $('#blue').slider( 'value' );
+    const hex = hexFromRGB( red, green, blue );
+    $('#swatch').css('background-color', '#' + hex );
+  }
+  $('#red, #green, #blue').slider({
+    orientation: 'horizontal',
+    range: 'min',
+    max: 255,
+    value: 127,
+    slide: refreshSwatch,
+    change: refreshSwatch,
+  });
+  $( '#red' ).slider( 'value', 255 );
+  $( '#green' ).slider( 'value', 140 );
+  $( '#blue' ).slider( 'value', 60 );
+});
+
+$('.dropdown-button').dropdown({
+  inDuration: 300,
+  outDuration: 225,
+  constrainWidth: false, // Does not change width of dropdown to that of the activator
+  hover: true, // Activate on hover
+  gutter: 0, // Spacing from edge
+  belowOrigin: false, // Displays dropdown below the button
+  alignment: 'left', // Displays dropdown with edge aligned to the left of button
+  stopPropagation: false, // Stops event propagation
+});
+$('.dropdown-button').dropdown();
+$('.dropdown-button').dropdown('close');

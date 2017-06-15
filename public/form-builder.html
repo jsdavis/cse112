@@ -9,22 +9,17 @@
 	<meta name="description" content="Neon Admin Panel" />
 	<meta name="author" content="" />
 
-	<link rel="icon" href="image/logo-emissary.png">
+	<link rel="icon" href="image/newlogo.png">
 
-	<title>Emissary | Forms</title>
-	<link rel="stylesheet" href="font/font-awesome.css">
+	<title>One 4m | Forms</title>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">  
 	<link rel="stylesheet" href="css/shared-dashboard.css">
 	<link rel="stylesheet" href="css/vendor/jquery-ui-1.10.3.custom.min.css">
-	<link rel="stylesheet" href="font/entypo.css">
-	<link rel="stylesheet" href="font/NotoSans.css">
-	<!-- <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic"> -->
-
+	<link type="text/css" rel="stylesheet" href="css/vendor/materialize.css" media="screen,projection"/>
 	<link rel="stylesheet" href="css/form-builder.css">
-	
 	<link rel="stylesheet" href="css/appointment.css">
-
 	<script src="js/min/jquery-1.11.3.min.js"></script>
-
+  <script src="js/form-builder.js"></script>
 	<!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -35,77 +30,61 @@
 
 
 </head>
-<body class="page-body gray" data-url="http://neon.dev">
+<body class="page-body">
+
+<div class="navbar-fixed z-depth-3" >
+	<nav class="navbar navbar-default teal lighten-5">
+    <div class="navbar-brand">
+					<a href="#" >
+					  <img src="image/newlogo.png" width="60" alt="logo" class="button-collapse" data-activates="side-menu"/>
+          </a>
+    </div>
+      <ul class="right" id="main-menu">
+        <li>
+          <a href="index.html">
+            <span class="black-text">Home</span>
+          </a>
+        </li>
+        <li>
+          <a href="login.html">
+            <span class="black-text">Log-Out</span>
+          </a>
+        </li>
+			<li>
+                <a href="/checkin.html">
+                    <span class="black-text">Check-In</span>
+                </a>
+            </li>
+        </ul>
+		
+    </nav>
+	
+</div>
 
 <div class="page-container"><!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
+<!-- Logo and Navigation -->
+
 
 	<div class="sidebar-menu">
+		
+		
+		
 		<div class="sidebar-menu-inner">
-			<header class="logo-env">
-
-				<!-- logo -->
-				<div class="logo">
-					<a href="visitors.html">
-						<img src="image/emissary.png" width="150" alt="" />
-					</a>
-				</div>
-
-				<!-- logo collapse icon -->
-				<div class="sidebar-collapse">
-					<a href="#" class="sidebar-collapse-icon"><!-- add class "with-animation" if you want sidebar to have animation during expanding/collapsing transition -->
-						<i class="entypo-menu"></i>
-					</a>
-				</div>
-
-				<!-- open/close menu icon (do not remove if you want to enable menu on mobile devices) -->
-				<div class="sidebar-mobile-menu visible-xs">
-					<a href="#" class="with-animation"><!-- add class "with-animation" to support animation -->
-						<i class="entypo-menu"></i>
-					</a>
-				</div>
-
-			</header>
-
-
-			<ul id="main-menu" class="main-menu">
+			
+			
+			<ul id="side-menu" class="side-nav z-depth-5 fixed teal lighten-3">
 				<!-- add class "multiple-expanded" to allow multiple submenus to open -->
 				<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
-				<li>
-					<a href="/visitors.html">
-						<i class="entypo-users"></i>
-						<span class="title">Visitors</span>
-					</a>
-				</li>
-				<li>
-					<a href="/employees.html">
-						<i class="entypo-user"></i>
-						<span class="title">Employees</span>
-					</a>
-				</li>
-				<li>
-					<a href="/appointments.html">
-						<i class="entypo-calendar"></i>
-						<span class="title">Appointments</span>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<i class="entypo-clipboard"></i>
-						<span class="title">Forms</span>
-					</a>
-				</li>
-				<li>
-					<a href="/settings.html">
-						<i class="entypo-tools"></i>
-						<span class="title">Settings</span>
-					</a>
-				</li>
-			</ul>
-
+				<div class ="center">
+          <li  class="hoverable"><a href="#"><i class="material-icons vertical-align-middle">supervisor_account</i>Visitors</a></li>
+          <li  class="hoverable"><a href="/appointments.html"><i class="material-icons vertical-align-middle">today</i>Appointments</a></li>
+          <li  class="hoverable"><a href="/form-builder.html"><i class="material-icons vertical-align-middle">assignment</i>Forms</a></li>
+          <li  class="hoverable"><a href="/settings.html"><i class="material-icons vertical-align-middle">settings</i>Settings</a></li>
+			  </div>
+      </ul>
 		</div>
 
-	</div>
-
+	
 	<div class="main-content">
 
 		<div class="row">
@@ -128,66 +107,57 @@
 				</ul>
 
 			</div>
-
-
-			<!-- Raw Links -->
-			<div class="col-md-6 col-sm-4 clearfix hidden-xs">
-
-				<ul class="list-inline links-list pull-right">
-					<div class="dropdown">
-                        <i class="fa fa-3x fa-cog dropdown-toggle" data-toggle="dropdown"></i>
-                        <ul class="dropdown-menu">
-                            <li><a href="/checkin.html">Check-In</a></li>
-                            <li><a id="logoutButton" href="/index.html">
-                                Log Out <i class="entypo-logout right"></i></a>
-                            </li>
-                        </ul>
-                  </div>
-				</ul>
-
-			</div>
-
 		</div>
-
 
 		<hr />
 
-		<center>
-		  <h1>Build your form</h1>
-          <h2>Color picker:</h2> 
-           <div>Color: <input class="jscolor" value="1C7F79"> </div>
-         
+	<center class="row">
+	<h1 class="page-title">Build your form</h1>
+  <h2 class="lower-title">Color picker:</h2> 
+  <div class="z-depth-3 row col s6 offset-s3">
+    <br>
+    <div class="cols s6 offset-s3" id="red"></div>
+    <div class="cols s6 offset-s3" id="green"></div>
+    <div class="cols s6 offset-s3" id="blue"></div>
+    <div class="cols s6 offset-s3"></div>
+    <div class="cols s3 offset-s6" id="swatch" class="ui-widget-content"></div>
+    <br>
+  </div>
         </center>
 		<!--<center><h3>Preview</h3></center>-->
 <form class = "form-builder" role = "form">
-   <div class = "form-group">
-      <label for = "f_name">First Name</label>
-      <input type = "text" class = "form-control" id = "f_name" placeholder = "Enter your First Name" required>
-   </div>
-   <div class = "form-group">
-      <label for = "l_name">Last Name</label>
-      <input type = "text" class = "form-control" id = "l_name" placeholder = "Enter your Last Name" required>
-   </div>
-   <div class = "form-group">
-      <label for = "phone">Phone Number</label>
-      <input type = "tel" class = "form-control" pattern='[\(]\d{3}[\)]\d{3}[\-]\d{4}' id = "phone" placeholder = "Enter your Phone Number" required>
-   </div>
-    <div class = "form-group">
-		<div class="my-form">
-   			<div class="addField">
-   			</div>
-   		</div>
-   </div>
+  <div class = "form-group">
+    <label for = "f_name">First Name</label>
+    <input type = "text" class = "form-control" id = "f_name" placeholder = "Enter your First Name" required>
+  </div>
+  <div class = "form-group">
+    <label for = "l_name">Last Name</label>
+    <input type = "text" class = "form-control" id = "l_name" placeholder = "Enter your Last Name" required>
+  </div>
+  <div class = "form-group">
+    <label for = "phone">Phone Number</label>
+    <input type = "tel" class = "form-control" pattern='[\(]\d{3}[\)]\d{3}[\-]\d{4}' id = "phone" placeholder = "Enter your Phone Number" required>
+  </div>
+  <div class = "form-group row">
+    <a href="#" class="dropdown-button btn waves-effect waves-light btn red accent-2 col s6 offset-s3" data-activates="element-select-dropdown">
+      <i class="material-icons left">add</i>Add Element
+    </a>
+  </div>
 
-   <h3 class = "add-form-text">Add up to two fields</h3>
-   <input type = "text" class = "form-control" id = "optional_label" placeholder = "Enter label for field" maxlength="30">
-   
-   <div class="add-fields my-form">
-       
-        <button type= "button" class="btn btn-success add-box">Add</button>         
-		<button type = "submit" class = "save-form btn btn-primary">Submit</button>
-	</div>
-
+  <div>
+    <ul id="element-select-dropdown" class="dropdown-content">
+      <li><input id="elementLabel" type="text" placeholder="Enter the label of the element"></input></li>
+      <li>
+        <ul id="elementType" >
+          <li value="text">Text Input</li>
+          <li value="toggle">Checkbox</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div class="row">
+    <button type = "Save" class = "col s6 offset-s3 save-form btn red accent-2">Submit</button>
+  </div>
 </form>
 
 
@@ -202,7 +172,6 @@
 		<!-- Imported scripts on this page -->
 
 		<script src="js/min/fullcalendar.min.js"></script>
-		<script src="js/form-builder.js"></script>
 
 
 		<script type = "text/javascript" src= "js/login.js"></script>
