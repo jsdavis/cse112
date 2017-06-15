@@ -4373,7 +4373,7 @@ nav .input-field label.active i {
 .navbar-fixed {
   position: relative;
   height: 56px;
-  z-index: 997;
+  z-index: 100000;
 }
 
 .navbar-fixed nav {
@@ -7172,7 +7172,7 @@ input[type=range]:focus::-ms-fill-upper {
   display: block;
   font-size: 14px;
   font-weight: 500;
-  height: 48px;
+  height: 100px;
   line-height: 48px;
   padding: 0 32px;
 }
@@ -7204,10 +7204,10 @@ input[type=range]:focus::-ms-fill-upper {
 .side-nav li > a > i,
 .side-nav li > a > [class^="mdi-"], .side-nav li > a li > a > [class*="mdi-"],
 .side-nav li > a > i.material-icons {
-  float: left;
+  float: none;
   height: 48px;
   line-height: 48px;
-  margin: 0 32px 0 0;
+  margin: 0 15px 0 15px;
   width: 24px;
   color: rgba(0, 0, 0, 0.54);
 }
@@ -7292,6 +7292,8 @@ input[type=range]:focus::-ms-fill-upper {
   -webkit-transform: translateX(0);
           transform: translateX(0);
   position: fixed;
+  margin-top: 65px;
+  padding-top: 5px
 }
 
 .side-nav.fixed.right-aligned {

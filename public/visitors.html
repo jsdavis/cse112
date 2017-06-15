@@ -33,25 +33,26 @@
 
 </head>
 
-<body class="page-body gray">
+<body class="page-body">
 
-<div class="navbar-fixed-top z-depth-3" >
-	<nav class="navbar navbar-default white">
-                <div class="navbar-brand">
-					<a href="#" data-activates="side-menu" class="black lighten-3 btn button-collapse">
-					<i class="material-icons">reorder</i></a>
-            </div>
-        <ul class="right" id="main-menu">
-            <li>
-                <a href="index.html">
-                    <span class="black-text">Home</span>
-                </a>
-            </li>
-            <li>
-                <a href="login.html">
-                    <span class="black-text">Log-Out</span>
-                </a>
-            </li>
+<div class="navbar-fixed z-depth-3" >
+	<nav class="navbar navbar-default teal lighten-5">
+    <div class="navbar-brand">
+					<a href="#" >
+					  <img src="image/newlogo.png" width="75" alt="" class="button-collapse" data-activates="side-menu"/>	
+          </a>
+    </div>
+      <ul class="right" id="main-menu">
+        <li>
+          <a href="index.html">
+            <span class="black-text">Home</span>
+          </a>
+        </li>
+        <li>
+          <a href="login.html">
+            <span class="black-text">Log-Out</span>
+          </a>
+        </li>
 			<li>
                 <a href="/checkin.html">
                     <span class="black-text">Check-In</span>
@@ -73,49 +74,24 @@
 		
 		<div class="sidebar-menu-inner">
 			
-
 			
-			<ul id="side-menu" class="side-nav z-depth-5 fixed ">
+			<ul id="side-menu" class="side-nav z-depth-5 fixed teal lighten-3">
 				<!-- add class "multiple-expanded" to allow multiple submenus to open -->
 				<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
 				<div class ="center">
-				<li class="z-depth-1">
-					<img src="image/newlogo.png" width="75" alt="" />	
-				</li>
-				
-				<li  class="z-depth-1">
-					<i class="material-icons">supervisor_account</i>
-					<a href="#">
-						<span class="title">Visitors</span>
-					</a>
-				</li>
-				<li class="z-depth-1" id="employeeIcon">
-					<i class="material-icons">perm_identity</i>
-					<a href="/employees.html">
-						<span class="title">Employees</span>
-					</a>
-				</li>
-				<li class="z-depth-1">
-					<i class="material-icons">today</i>
-					<a href="/appointments.html">
-						<span class="title">Appointments</span>
-					</a>
-				</li>
-				<li class="z-depth-1" id="formIcon">
-					<i class="material-icons">assignment</i>
-					<a href="/form-builder.html">
-						<span class="title">Forms</span>
-					</a>
-				</li>
-				<li class="z-depth-1">
-					<i class="material-icons">settings</i>
-					<a href="/settings.html">
-						<span class="title">Settings</span>
-					</a>
-				</li>
-				</div>
-			</ul>
-
+          <li  class="hoverable center"><a href="#"><i class="material-icons vertical-align-middle">supervisor_account</i>Visitors</a></li>
+          <li><div class="divider"></div></li>                <li  class="hoverable" id="employeeIcon"><a href="/employees.html"><i class="material-icons">perm_identity</i>Employees</a></li>
+          <li><div class="divider"></div></li>
+                
+          <li  class="hoverable"><a href="/appointments.html"><i class="material-icons vertical-align-middle">today</i>Appointments</a></li>
+          <li><div class="divider"></div></li>
+                
+          <li  class="hoverable"><a href="/form-builder.html"><i class="material-icons vertical-align-middle">assignment</i>Forms</a></li>
+          <li><div class="divider"></div></li>
+                
+          <li  class="hoverable"><a href="/settings.html"><i class="material-icons vertical-align-middle">settings</i>Settings</a></li>
+			  </div>
+      </ul>
 		</div>
 
 
