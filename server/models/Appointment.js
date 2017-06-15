@@ -18,6 +18,11 @@ const appointmentSchema = mongoose.Schema({
   company_id: {type: Schema.Types.ObjectId, ref: 'Company', required: true},
   customer_id: {type: Schema.Types.ObjectId, ref: 'Customer', required: true},
   extras: {type: Object, required: false},
+  customer_first_name: {type: String, required: true},
+  customer_last_name: {type: String, required: true},
+  employee_first_name: {type: String, required: true},
+  employee_last_name: {type: String, required: true},
+  company_name: {type: String, required: true},
 });
 
 appointmentSchema.statics.findAppointment = function(param, callback) {
