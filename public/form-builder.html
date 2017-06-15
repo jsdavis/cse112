@@ -69,12 +69,12 @@
         <!-- add class "multiple-expanded" to allow multiple submenus to open -->
         <!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
         <div class ="center">
-          <li  class="hoverable"><a href="/visitors.html"><i class="material-icons vertical-align-middle">supervisor_account</i>Visitors</a></li>
-          <li  class="hoverable"><a href="/employees.html"><i class="material-icons vertical-align-middle">supervisor_account</i>Employees</a></li>
-          <li  class="hoverable"><a href="/appointments.html"><i class="material-icons vertical-align-middle">today</i>Appointments</a></li>
-          <li  class="hoverable"><a href="/form-builder.html"><i class="material-icons vertical-align-middle">assignment</i>Forms</a></li>
-          <li  class="hoverable"><a href="/settings.html"><i class="material-icons vertical-align-middle">settings</i>Settings</a></li>
-        </div>
+          <li class="hoverable"><a href="#"><i class="material-icons vertical-align-middle">supervisor_account</i>Visitors</a></li>
+          <li id="employees-link" class="hoverable"><a href="/employees.html"><i class="material-icons vertical-align-middle">supervisor_account</i>Employees</a></li>
+          <li class="hoverable"><a href="/appointments.html"><i class="material-icons vertical-align-middle">today</i>Appointments</a></li>
+          <li id="form-build-link"class="hoverable"><a href="/form-builder.html"><i class="material-icons vertical-align-middle">assignment</i>Forms</a></li>
+          <li class="hoverable"><a href="/settings.html"><i class="material-icons vertical-align-middle">settings</i>Settings</a></li>
+        </div> 
       </ul>
     </div>
 
@@ -154,11 +154,6 @@
     <button type = "Save" class = "col s6 offset-s3 save-form btn red accent-2">Submit</button>
   </div>
 </form>
-
-
-		<!-- Imported styles on this page -->
-
-
 		<!-- Bottom scripts (common) -->
 		<script src="js/min/jquery-ui-1.10.3.minimal.min.js"></script>
 

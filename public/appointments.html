@@ -16,9 +16,9 @@
 	<link rel="stylesheet" href="css/appointment.css">
 	<link rel="stylesheet" href="css/shared-dashboard.css">
 	<link type="text/css" rel="stylesheet" href="css/vendor/materialize.css"  media="screen,projection"/>
-
-
-
+  <script type="text/javascript" src="js/min/jquery-1.11.3.min.js"></script> 
+  <script src="js/min/jquery-ui.min.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 </head>
 
 <body class="page-body">
@@ -67,11 +67,11 @@
         <!-- add class "multiple-expanded" to allow multiple submenus to open -->
         <!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
         <div class ="center">
-          <li  class="hoverable"><a href="/visitors.html"><i class="material-icons vertical-align-middle">supervisor_account</i>Visitors</a></li>
-          <li class="hoverable"><a href="/employees.html"><i class="material-icons vertical-align-middle">supervisor_account</i>Visitors</a></li>
-          <li  class="hoverable"><a href="/appointments.html"><i class="material-icons vertical-align-middle">today</i>Appointments</a></li>
-          <li  class="hoverable"><a href="/form-builder.html"><i class="material-icons vertical-align-middle">assignment</i>Forms</a></li>
-          <li  class="hoverable"><a href="/settings.html"><i class="material-icons vertical-align-middle">settings</i>Settings</a></li>
+          <li class="hoverable"><a href="#"><i class="material-icons vertical-align-middle">supervisor_account</i>Visitors</a></li>
+          <li id="employees-link" class="hoverable"><a href="/employees.html"><i class="material-icons vertical-align-middle">supervisor_account</i>Employees</a></li>
+          <li class="hoverable"><a href="/appointments.html"><i class="material-icons vertical-align-middle">today</i>Appointments</a></li>
+          <li id="form-build-link"class="hoverable"><a href="/form-builder.html"><i class="material-icons vertical-align-middle">assignment</i>Forms</a></li>
+          <li class="hoverable"><a href="/settings.html"><i class="material-icons vertical-align-middle">settings</i>Settings</a></li>
         </div>
       </ul>
     </div>
@@ -210,6 +210,7 @@
 			</tr>	
 			{{/each}}
 		</script>
+
 		<br>
 
 		<div class="row center">
@@ -224,11 +225,7 @@
 
 
 <!-- Bottom scripts (common) -->
-<script type="text/javascript" src="js/min/jquery-1.11.3.min.js"></script> 
-<script src="js/min/jquery-ui.min.js"></script>
-<
 <script type = "text/javascript" src= "js/vendor/handlebars-v4.0.5.js"></script>
-<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="js/vendor/materialize.min.js"></script>
 <script type ="text/javascript" src = "js/appointments.js"> </script>
 <script type ="text/javascript" src = "js/dashboard.js"></script>
