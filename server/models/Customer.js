@@ -33,8 +33,8 @@ customerSchema.statics.findCustomer = function(param, callback) {
   const id = param.customer_id || param.id || param._id || undefined;
   const email = param.customer_email || param.email || undefined;
   const name = {
-    first: param.first_name || param.firstName || param.firstname || undefined,
-    last: param.last_name || param.lastName || param.lastname || undefined,
+    first: param.customer_first_name || param.first_name || param.firstName || param.firstname || undefined,
+    last: param.customer_last_name || param.last_name || param.lastName || param.lastname || undefined,
   };
 
   if (id)
