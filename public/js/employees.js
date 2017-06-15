@@ -14,7 +14,7 @@ $(document).ready(() => {
 
   $('#employee-list').html(compiledHtml);
   $('#saveEmployeeButton').click(submitForm);
-
+  $('.modal').modal();
 
   // Makes a get request to display list of employees
   function getEmployees() {
@@ -50,7 +50,6 @@ $(document).ready(() => {
 
   // When a patient submits their form
   function submitForm() {
-    alert('ljkhbvgj');
     const d = grabFormElements();
     updateEmployeeList(d);
     $('#employee-list').html(template(employees));

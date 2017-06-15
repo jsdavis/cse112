@@ -11,6 +11,10 @@
 
 }
 
+.custom-margin {
+  margin: 10px;
+}
+
 .table > thead > tr > th {
    border-bottom: none !important;
 }

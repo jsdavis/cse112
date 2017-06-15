@@ -11,13 +11,10 @@
 
 	<link rel="icon" href="image/logo-emissary.png">
 
-	<title>Emissary | Employees</title>
-	<link rel="stylesheet" href="font/font-awesome.css">
+	<title>One 4m | Employees</title>
 	<link rel="stylesheet" href="css/vendor/jquery-ui-1.10.3.custom.min.css">
-	<link rel="stylesheet" href="font/entypo.css">
-	<link rel="stylesheet" href="font/NotoSans.css">
-	<!-- <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic"> -->
-
+  <link type="text/css" rel="stylesheet" href="css/vendor/materialize.css"  media="screen,projection"/>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="css/vendor/patient-queue.css"> <!--FOR HOVER-->
 	<link rel="stylesheet" href="css/employees.css">
 	<link rel="stylesheet" href="css/shared-dashboard.css">
@@ -35,82 +32,59 @@
 
 
 </head>
-<body class="page-body gray" data-url="http://neon.dev">
+<body class="page-body">
+
+<div class="navbar-fixed z-depth-3" >
+  <nav class="navbar navbar-default teal lighten-5">
+    <div class="navbar-brand">
+          <a href="#" >
+            <img src="image/newlogo.png" width="60" alt="logo" class="button-collapse" data-activates="side-menu"/>
+          </a>
+    </div>
+      <ul class="right" id="main-menu">
+        <li>
+          <a href="index.html">
+            <span class="black-text">Home</span>
+          </a>
+        </li>
+        <li>
+          <a href="login.html">
+            <span class="black-text">Log-Out</span>
+          </a>
+        </li>
+      <li>
+                <a href="/checkin.html">
+                    <span class="black-text">Check-In</span>
+                </a>
+            </li>
+        </ul>
+    
+    </nav>
+  
+</div>
 
 <div class="page-container"><!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
-
-	<div class="sidebar-menu">
-		<div class="sidebar-menu-inner">
-			<header class="logo-env">
-
-				<!-- logo -->
-				<div class="logo">
-					<a href="visitors.html">
-						<img src="image/emissary.png" width="150" alt="" />
-					</a>
-				</div>
-
-				<!-- logo collapse icon -->
-				<div class="sidebar-collapse">
-					<a href="#" class="sidebar-collapse-icon"><!-- add class "with-animation" if you want sidebar to have animation during expanding/collapsing transition -->
-						<i class="entypo-menu"></i>
-					</a>
-				</div>
-
-				<!-- open/close menu icon (do not remove if you want to enable menu on mobile devices) -->
-				<div class="sidebar-mobile-menu visible-xs">
-					<a href="#" class="with-animation"><!-- add class "with-animation" to support animation -->
-						<i class="entypo-menu"></i>
-					</a>
-				</div>
-
-			</header>
-
-
-			<ul id="main-menu" class="main-menu">
-				<!-- add class "multiple-expanded" to allow multiple submenus to open -->
-				<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
-				<li>
-					<a href="/visitors.html">
-						<i class="entypo-users"></i>
-						<span class="title">Visitors</span>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<i class="entypo-user"></i>
-						<span class="title">Employees</span>
-					</a>
-				</li>
-				<li>
-					<a href="/appointments.html">
-						<i class="entypo-calendar"></i>
-						<span class="title">Appointments</span>
-					</a>
-				</li>
-				<li>
-					<a href="/form-builder.html">
-						<i class="entypo-clipboard"></i>
-						<span class="title">Forms</span>
-					</a>
-				</li>
-				<li>
-					<a href="/settings.html">
-						<i class="entypo-tools"></i>
-						<span class="title">Settings</span>
-					</a>
-				</li>
-			</ul>
-
-		</div>
-
-	</div>
+<!-- Logo and Navigation -->
+  <div class="sidebar-menu">
+    <div class="sidebar-menu-inner">
+      <ul id="side-menu" class="side-nav z-depth-5 fixed teal lighten-3">
+        <!-- add class "multiple-expanded" to allow multiple submenus to open -->
+        <!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
+        <div class ="center">
+          <li  class="hoverable"><a href="/visitors.html"><i class="material-icons vertical-align-middle">supervisor_account</i>Visitors</a></li>
+          <li  class="hoverable"><a href="/employees.html"><i class="material-icons vertical-align-middle">supervisor_account</i>Employees</a></li>
+          <li  class="hoverable"><a href="/appointments.html"><i class="material-icons vertical-align-middle">today</i>Appointments</a></li>
+          <li  class="hoverable"><a href="/form-builder.html"><i class="material-icons vertical-align-middle">assignment</i>Forms</a></li>
+          <li  class="hoverable"><a href="/settings.html"><i class="material-icons vertical-align-middle">settings</i>Settings</a></li>
+        </div>
+      </ul>
+    </div>
 
 	<div class="main-content">
 		<div class="row">
 
 			<!-- Profile Info and Notifications -->
-			<div class="col-md-6 col-sm-8 clearfix">
+			<div class="col-md-6 col s8 clearfix">
 
 				<ul class="user-info pull-left pull-none-xsm">
 					<!-- Profile Info -->
@@ -121,24 +95,6 @@
 					</li>
 				</ul>
 			</div>
-
-			<!-- Raw Links -->
-			<div class="col-md-6 col-sm-4 clearfix hidden-xs">
-
-				<ul class="list-inline links-list pull-right">
-					<div class="dropdown">
-                        <i class="fa fa-3x fa-cog dropdown-toggle" data-toggle="dropdown"></i>
-                        <ul class="dropdown-menu">
-                            <li><a href="/checkin.html">Check-In</a></li>
-                            <li><a id="logoutButton" href="/index.html">
-                                Log Out <i class="entypo-logout right"></i></a>
-                            </li>
-                        </ul>
-                  </div>
-				</ul>
-
-			</div>
-
 		</div>
 
 		<hr />
@@ -170,11 +126,6 @@
 
 
 									<div class="modal-header">
-										<button type="button" class="close"
-												  data-dismiss="modal">
-											<span aria-hidden="true">&times;</span>
-											<span class="sr-only">Close</span>
-										</button>
 										<h4 class="modal-title" id="myModalLabel">
 											Add an Employee
 										</h4>
@@ -184,52 +135,52 @@
 
 										<form class="form-horizontal" role="form" id="employee-form">
 											<div class="form-group">
-												<label class="col-sm-2 control-label"
+												<label class="col s2 control-label"
 														 for="first-name" >First Name</label>
-												<div class="col-sm-10">
+												<div class="col s10">
 													<input type="text" class="form-control"
 															 id="employee-first" placeholder="First Name"/>
 												</div>
 											</div>
 											<div class="form-group">
-												<label class="col-sm-2 control-label"
+												<label class="col s2 control-label"
 														 for="last-name" >Last Name</label>
-												<div class="col-sm-10">
+												<div class="col s10">
 													<input type="text" class="form-control"
 															 id="employee-last" placeholder="Last Name"/>
 												</div>
 											</div>
 
 											<div class="form-group">
-												<label  class="col-sm-2 control-label"
+												<label  class="col s2 control-label"
 														  for="inputEmail3">Email</label>
-												<div class="col-sm-10">
+												<div class="col s10">
 													<input type="email" class="form-control"
 															 id="employee-email" placeholder="Email"/>
 												</div>
 											</div>
 											<div class="form-group">
-												<label class="col-sm-2 control-label"
+												<label class="col s2 control-label"
 														 for="phone-number" >Phone</label>
-												<div class="col-sm-10">
+												<div class="col s10">
 													<input type="text" class="form-control"
 															 id="employee-number" placeholder="Phone Number"/>
 												</div>
 											</div>
 
 											<div class="form-group">
-												<label class="col-sm-2 control-label"
+												<label class="col s2 control-label"
 														 for="inputPassword3" >Password</label>
-												<div class="col-sm-10">
+												<div class="col s10">
 													<input type="password" class="form-control"
 															 id="employee-pw" placeholder="Password"/>
 												</div>
 											</div>
 
 											<div class="form-group">
-												<label class="col-sm-2 control-label"
+												<label class="col s2 control-label"
 														 for="inputPassword3" >Confirm</label>
-												<div class="col-sm-10">
+												<div class="col s10">
 													<input type="password" class="form-control"
 															 id="employee-confirm-pw" placeholder="Confirm Password"/>
 												</div>
@@ -241,11 +192,11 @@
 
 									<!-- Modal Footer -->
 									<div class="modal-footer">
-										<button type="button" class="btn btn-default"
+										<button type="button" class="btn btn-default custom-margin modal-close"
 												  data-dismiss="modal">
 											Close
 										</button>
-										<button id="saveEmployeeButton" type="button" class="check-in-btn btn btn-default save-btn" data-dismiss="modal">Save</button>
+										<button id="saveEmployeeButton" type="button" class="check-in-btn btn btn-default save-btn modal-close" data-dismiss="modal">Save</button>
 									</div>
 								</div>
 							</div>
@@ -253,7 +204,8 @@
 
 					</tbody>
 				</table>
-				<div class = "add-button" data-toggle="modal" data-target="#myModal">Add Employee</div>
+        <br>
+				<a class="update-button btn cyan lighten-2" data-toggle="modal" href="#myModal">Add Employee</a>
 			</div>
 			</div>
 		</div>
@@ -268,31 +220,15 @@
 			</tr>
 			{{/each}}
 		</script>
-	</div>
+  </div>
 </div>
 
-
-<!-- Imported styles on this page -->
-<!--<link rel="stylesheet" href="assets/js/jvectormap/jquery-jvectormap-1.2.2.css">
-<link rel="stylesheet" href="assets/js/rickshaw/rickshaw.min.css">-->
 
 <!-- Bottom scripts (common) -->
 <script src="js/min/jquery-ui-1.10.3.minimal.min.js"></script>
 
-<!--<script src="assets/js/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>-->
 
-
-<!-- Imported scripts on this page -->
-<!--<script src="assets/js/jvectormap/jquery-jvectormap-europe-merc-en.js"></script>
-<script src="assets/js/jquery.sparkline.min.js"></script>
-<script src="assets/js/rickshaw/vendor/d3.v3.js"></script>
-<script src="assets/js/rickshaw/rickshaw.min.js"></script>
-<script src="assets/js/raphael-min.js"></script>
-<script src="assets/js/morris.min.js"></script>
-<script src="assets/js/toastr.js"></script>
-<script src="assets/js/fullcalendar/fullcalendar.min.js"></script>
-<script src="assets/js/neon-chat.js"></script>-->
-
+<script src="js/vendor/materialize.min.js"></script>
 <script type = "text/javascript" src= "js/vendor/handlebars-v4.0.5.js"></script>
 <script type = "text/javascript" src= "js/employees.js"> </script>
 <script type = "text/javascript" src= "js/login.js"></script>
