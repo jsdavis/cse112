@@ -46,6 +46,8 @@ module.exports.create = function(req, res) {
           return res.status(400).json({
             error: 'Could not find employee ' + param.first_name + ' ' + param.last_name,
             message: err,
+            param: param,
+            return: emp,
           });
 
         employee = emp;
@@ -66,6 +68,7 @@ module.exports.create = function(req, res) {
             employee: employee,
           });
 
+        /* TODO: Have customers register for certain companies
         // Workaround for weird typing errors with id's
         const companies = customer.companies.map((comp) => {
           return '' + comp;
@@ -76,6 +79,7 @@ module.exports.create = function(req, res) {
             error: 'Customer ' + customer.first_name + ' ' + customer.last_name + ' is not registered with company ' + company.name,
             param: param,
           });
+        */
 
         appointment.company_id = company._id;
         appointment.company_name = company.name;

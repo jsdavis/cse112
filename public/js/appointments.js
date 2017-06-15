@@ -3,6 +3,7 @@ $(document).ready(() => {
   const myCompanyId = companyData._id;
   const curUser = JSON.parse(localStorage.getItem('currentUser'));
 
+  $('#modal-save').click(submitForm);
 
   //  $('#appt-date').datepicker();
   $('.datepicker').pickadate({
@@ -15,11 +16,11 @@ $(document).ready(() => {
 
   function initializeAppts(appts) {
     appts.sort((a, b) => {
-      return new Date(a.date) - new Date(b.date);
+      return new Date(a.start) - new Date(b.start);
     });
     for(let i = 0, len = appts.length; i < len; i++) {
-      appts[i].fullDate = formatDate(appts[i].date);
-      appts[i].appointmentTime = formatTime(appts[i].date);
+      appts[i].fullDate = formatDate(''+appts[i].start);
+      appts[i].appointmentTime = formatTime(''+appts[i].start);
     }
     return appts;
   }
@@ -34,7 +35,6 @@ $(document).ready(() => {
     document.getElementById('form-build-link').hidden = true;
   }
   $('#appt-list').html(compiledHtml);
-  $('#modal-save').click(submitForm);
 
   // Makes a get request to display list of appts
   function getAppts() {
@@ -42,7 +42,6 @@ $(document).ready(() => {
     $.ajax({
       dataType: 'json',
       type: 'GET',
-      data: $('#response').serialize(),
       async: false,
       url: '/api/appointments/company/' + myCompanyId,
       success: function(response) {
@@ -66,6 +65,7 @@ $(document).ready(() => {
 
   // Makes a post request to update list of appts when adding a new employee
   function updateApptList(obj) {
+    alert('passing in'+JSON.stringify(obj));
     $.ajax({
       dataType: 'json',
       type: 'POST',
@@ -76,6 +76,9 @@ $(document).ready(() => {
         appts.push(response);
         console.log(response);
       },
+      error: function(response) {
+        alert(JSON.stringify(response));
+      },
     });
   }
 
@@ -84,15 +87,18 @@ $(document).ready(() => {
   function grabFormElements() {
     const newAppt = {};
     newAppt.company_id = myCompanyId;
-    newAppt.first_name= $('#appt-first').val();
-    newAppt.last_name = $('#appt-last').val();
+    newAppt.customer_first_name= $('#appt-first').val();
+    newAppt.customer_last_name = $('#appt-last').val();
     newAppt.phone_number = $('#appt-number').val();
-    newAppt.provider_name = $('#appt-provider').val();
-
+    newAppt.employee_first_name = curUser.first_name;
+    newAppt.employee_last_name = curUser.last_name;
+    // newAppt.employee_email = curUser.email;
     const userDate = $('#appt-date').val();
-    const userTime = $('#appt-time').val();
+    const userStartTime = $('#appt-start-time').val();
+    const userEndTime = $('#appt-start-time').val();
 
-    newAppt.date = jsDate(userDate, userTime);
+    newAppt.start = jsDate(userDate, userStartTime);
+    newAppt.end = jsDate(userDate, userEndTime);
     return newAppt;
   }
 
