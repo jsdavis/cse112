@@ -33,6 +33,8 @@ $(document).ready(() => {
   if(userObj.role == 'employee') {
     document.getElementById('employees-link').hidden = true;
     document.getElementById('form-build-link').hidden = true;
+  } else if(userObj.role != 'employee_admin' || userObj.role != 'employee') {
+    location.href = '/user-dashboard.html';
   }
   $('#appt-list').html(compiledHtml);
 
