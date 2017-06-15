@@ -13,9 +13,10 @@ $(document).ready(() => {
   const compiledHtml = template(employees);
   const userObj = JSON.parse(localStorage.getItem('currentUser'));
   if(userObj.role == 'employee') {
-    location.href = '/visitors.html';
     document.getElementById('employees-link').hidden = true;
     document.getElementById('form-build-link').hidden = true;
+  } else if(userObj.role != 'employee_admin' || userObj.role != 'employee') {
+    location.href = '/user-dashboard.html';
   }
   $('#employee-list').html(compiledHtml);
   $('#saveEmployeeButton').click(submitForm);

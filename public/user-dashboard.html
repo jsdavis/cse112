@@ -13,18 +13,20 @@
 	<meta name="description" content="User Panel" />
 	<meta name="author" content="" />
 
-	<link rel="icon" href="image/logo-emissary.png">
+	<link rel="icon" href="image/newlogo.png">
 
-	<title>User | Dashboard</title>
+	<title>One 4m | User Dashboard</title>
 
-	<link rel="stylesheet" href="css/vendor/jquery-ui-1.10.3.custom.min.css">
-	<!-- <link rel="stylesheet" href="font/entypo.css"> -->
-	<!-- <link rel="stylesheet" href="font/NotoSans.css"> -->
-	<!-- <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic"> -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="css/vendor/jquery-ui-1.10.3.custom.min.css">
+	<link rel="stylesheet" href="css/shared-dashboard.css">  
+  <link type="text/css" rel="stylesheet" href="css/vendor/materialize.css"  media="screen,projection"/>
+  <script type="text/javascript" src="js/min/jquery-1.11.3.min.js"></script> 
+  <script src="js/min/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="js/vendor/materialize.min.js"> </script>
+  
 
 	<link rel="stylesheet" href="css/user.css">
-
-	<script src="js/min/jquery-1.11.3.min.js"></script>
 
 	<!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 	
@@ -36,107 +38,78 @@
 
 
 </head>
-<body class="page-body" data-url="http://neon.dev">
+<body class="page-body">
+
+<div class="navbar-fixed z-depth-3" >
+  <nav class="navbar navbar-default teal lighten-5">
+    <div class="navbar-brand">
+          <a href="#" >
+            <img src="image/newlogo.png" width="60" alt="logo" class="button-collapse" data-activates="side-menu"/>
+          </a>
+    </div>
+    <div class="right">
+      <a class="btn-floating btn-large dropdown-button btn" href="#" data-activates="main-menu">
+        <i class="material-icons">menu</i>
+      </a>
+      <ul class="dropdown-content" id="main-menu">
+        <li>
+          <a href="index.html">
+            <span class="black-text">Home</span>
+          </a>
+        </li>
+        <li>
+          <a href="login.html">
+            <span class="black-text">Log-Out</span>
+          </a>
+        </li>
+        <li>
+          <a href="/checkin.html">
+            <span class="black-text">Check-In</span>
+          </a>
+        </li>
+      </ul>
+    <div>
+    </nav>
+  
+</div>
 
 <div class="page-container"><!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
-	
-	<div class="sidebar-menu">
-
-		<div class="sidebar-menu-inner">
-			
-			<header class="logo-env">
-
-				<!-- logo -->
-				<div class="logo">
-					<a href="user-dashboard.html">
-						<img src="image/emissary.png" width="150" alt="" />
-					</a>
-				</div>
-
-				<!-- logo collapse icon -->
-				<div class="sidebar-collapse">
-					<a href="#" class="sidebar-collapse-icon"><!-- add class "with-animation" if you want sidebar to have animation during expanding/collapsing transition -->
-						<i class="entypo-menu"></i>
-					</a>
-				</div>
-
-								
-				<!-- open/close menu icon (do not remove if you want to enable menu on mobile devices) -->
-				<div class="sidebar-mobile-menu visible-xs">
-					<a href="#" class="with-animation"><!-- add class "with-animation" to support animation -->
-						<i class="entypo-menu"></i>
-					</a>
-				</div>
-
-			</header>
-			
-									
-			<ul id="main-menu" class="main-menu">
-				<!-- add class "multiple-expanded" to allow multiple submenus to open -->
-				<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
-				<li>
-					<a href="user-dashboard.html">
-						<i class="entypo-calendar"></i>
-						<span class="title">Appointments</span>
-					</a>
-				</li>
-				<li>
-					<a href="XXXX.html">
-						<i class="entypo-user"></i>
-						<span class="title">Employess</span>
-					</a>
-				</li>
-				<li>
-					<a href="XXXX.html">
-						<i class="entypo-clipboard"></i>
-						<span class="title">Forms</span>
-					</a>
-				</li>
-				<li>
-					<a href="XXXX.html">
-						<i class="entypo-tools"></i>
-						<span class="title">Settings</span>
-					</a>
-				</li>
-			</ul>
-			
-		</div>
-
-	</div>
+<!-- Logo and Navigation -->
+  <div class="sidebar-menu">
+    <div class="sidebar-menu-inner">
+      <ul id="side-menu" class="side-nav z-depth-5 fixed teal lighten-3">
+        <!-- add class "multiple-expanded" to allow multiple submenus to open -->
+        <!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
+        <div class ="center">
+          <li class="hoverable"><a href="#"><i class="material-icons vertical-align-middle">today</i>Appointments</a></li>
+          <li class="hoverable"><a href="#"><i class="material-icons vertical-align-middle">settings</i>Settings</a></li>
+        </div>
+      </ul>
+    </div>
 
 	<div class="main-content">
 				
 		<div class="row">
 		
 			<!-- Profile Info and Notifications -->
-			<div class="col-md-6 col-sm-8 clearfix">
+			<div class="col m6 col s8 clearfix">
 		
 				<ul class="user-info pull-left pull-none-xsm">
 		
 					<!-- Profile Info -->
 					<li class="profile-info dropdown"><!-- add class "pull-right" if you want to place this from right -->
 						<a href="#" id="company-name">
-							<h3>Hello, <span id="user-name"> </span></h3>
+							<h3>Hello, <span id="user-name"></span></h3>
 						</a>
-						
 					</li>
-		
 				</ul>
-		
 			</div>
 		
 		
 			<!-- Raw Links -->
-			<div class="col-md-6 col-sm-4 clearfix hidden-xs">
-		
+			<div class="col m6 col s4 clearfix hidden-xs">
 				<ul class="list-inline links-list pull-right">		
-					<li>
-						<a href="login.html">
-							Log Out <i class="entypo-logout right"></i>
-						</a>
-					</li>
 				</ul>
-		
 			</div>
 			
 		
@@ -161,7 +134,29 @@
 
 	<!-- Bottom scripts (common) -->
 	<script src="js/min/jquery-ui-1.10.3.minimal.min.js"></script>
-    <script src="js/min/ajax.jquery.validate.min.js"></script>
+  <script src="js/min/ajax.jquery.validate.min.js"></script>
+  <script>
+  $(document).ready(() => {
+    let userObj = JSON.parse(localStorage.getItem('currentUser'));
+    if(userObj.role == "employee") {
+      document.getElementById('employees-link').hidden = true;
+      document.getElementById('form-build-link').hidden = true;
+    } 
+    else if(userObj.role != 'customer') {
+      location.href = '/login.html';
+    }
 
+    $('.dropdown-button').dropdown({
+      inDuration: 300,
+      outDuration: 225,
+      constrainWidth: false, // Does not change width of dropdown to that of the activator
+      hover: true, // Activate on hover
+      gutter: 2, // Spacing from edge
+      belowOrigin: true, // Displays dropdown below the button
+      alignment: 'center', // Displays dropdown with edge aligned to the left of button
+      stopPropagation: false // Stops event propagation
+    });
+  });
+  </script>
 </body>
 </html>
