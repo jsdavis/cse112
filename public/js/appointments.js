@@ -5,11 +5,13 @@ $(document).ready(() => {
 
   $('#modal-save').click(submitForm);
 
-  $('#appt-date').datepicker();
+  //  $('#appt-date').datepicker();
+  $('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15, // Creates a dropdown of 15 years to control year
+    container: 'body',
+  });
   $('.modal').modal();
-
-  $('#user-name').text(curUser.first_name + ' ' + curUser.last_name);
-
   let appts = getAppts();
 
   function initializeAppts(appts) {
