@@ -1,0 +1,17 @@
+.sync-button{
+   float: left;
+   border-radius: 2px;
+   padding: 7px;
+   margin-top: 15px;
+   background-color: #01b2bd;
+   color: white;
+}
+
+.sync-button:hover{
+   background-color: #049099;
+   cursor: pointer;
+}
+
+hr{
+   border-top: 3px solid #01b2bd !important;
+}

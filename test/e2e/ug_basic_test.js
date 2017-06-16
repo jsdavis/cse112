@@ -1,6 +1,6 @@
 // const config = require('../../nightwatch.conf.js');
 
-module.exports = { // adapted from: https://git.io/vodU0
+/* module.exports = { // adapted from: https://git.io/vodU0
   'Unlucky Geniuses Assert Title Test': function(browser) {
     browser
       .url('http://localhost:8080')
@@ -85,7 +85,7 @@ module.exports = { // adapted from: https://git.io/vodU0
       .end();
   },
 
-};
+}; */
 
 /*
 module.exports = {

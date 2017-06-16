@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Check In</title>
+
+	<link type="text/css" rel="stylesheet" href="css/vendor/materialize.min.css" media="screen,projection"/>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css"/>
+
+	<link rel="icon" href="image/newlogo.png">
+
+	<script type="text/javascript" src="js/min/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="js/vendor/materialize.js"></script>
+	<script type="text/javascript" src="js/checkin.js"></script>
+</head>
+
+<body id='checkin-body' class="teal lighten-3">
+	<br><br><br>
+	<!--- Top content -->
+	<div class="container">
+		<div class="row">
+			<div class="white lighten-5 col s10 offset-s1 m8 offset-m2 16 offset-13 z-depth-4">
+				<br><br>
+				<img src="image/newlogo.png" width="200" alt="" />
+				<h1>Check In</h1>
+				<form id="checkinForm">
+
+					<div class="form-group">
+						<div class="input-group">
+							<input type="text" name="first_name" id="first_name" class="form-control validate" placeholder="First Name" required>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="input-group">
+							<input type="text" name="last_name" id="last_name" class="form-control validate" placeholder="Last Name" required>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="input-group">
+							<input type="email" name="email" id="email" class="form-control validate" placeholder="Email Address" required>
+						</div>
+					</div>
+
+					<div class="row">
+						<button id="submit-btn" class="btn red center" type="submit" name="action">Tap to Check In</button>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

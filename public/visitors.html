@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <script src = "js/shared.js"></script>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <link rel="icon" href="image/newlogo.png">
+
+	<title>One 4m | Visitors</title>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="css/vendor/jquery-ui-1.10.3.custom.min.css">
+	<!-- <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic"> -->
+	<link rel="stylesheet" href="css/shared-dashboard.css">
+	<link rel="stylesheet" href="css/visitors.css">
+	<link type="text/css" rel="stylesheet" href="css/vendor/materialize.css" media="screen,projection"/>
+	<script src="js/min/jquery-1.11.3.min.js"></script>
+  <script type="text/javascript" src="js/min/jquery-1.11.3.min.js"></script> 
+  <script src="js/min/jquery-ui.min.js"></script>
+  <script type="text/javascript" src = "js/vender/materialize.min.js"> </script>
+  
+
+  <!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+</head>
+
+<body class="page-body">
+
+<div class="navbar-fixed z-depth-3" >
+  <nav class="navbar navbar-default teal lighten-5">
+    <div class="navbar-brand">
+      <a href="#" >
+        <img src="image/newlogo.png" width="60" alt="logo" class="button-collapse" data-activates="side-menu"/>
+      </a>
+    </div>
+    <ul class="right" id="main-menu">
+      <li>
+        <a href="index.html">
+          <span class="black-text">Home</span>
+        </a>
+      </li>
+      <li>
+        <a href="login.html">
+          <span class="black-text">Log-Out</span>
+        </a>
+      </li>
+      <li>
+        <a href="/checkin.html">
+          <span class="black-text">Check-In</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>
+
+<div class="page-container"><!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
+<!-- Logo and Navigation -->
+  <div class="sidebar-menu">
+    <div class="sidebar-menu-inner">
+      <ul id="side-menu" class="side-nav z-depth-5 fixed teal lighten-3">
+        <!-- add class "multiple-expanded" to allow multiple submenus to open -->
+        <!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
+        <div class ="center">
+          <li class="hoverable"><a href="#"><i class="material-icons vertical-align-middle">supervisor_account</i>Visitors</a></li>
+          <li id="employees-link" class="hoverable"><a href="/employees.html"><i class="material-icons vertical-align-middle">supervisor_account</i>Employees</a></li>
+          <li class="hoverable"><a href="/appointments.html"><i class="material-icons vertical-align-middle">today</i>Appointments</a></li>
+          <li id="form-build-link"class="hoverable"><a href="/form-builder.html"><i class="material-icons vertical-align-middle">assignment</i>Forms</a></li>
+          <li class="hoverable"><a href="/settings.html"><i class="material-icons vertical-align-middle">settings</i>Settings</a></li>
+        </div>
+      </ul>
+    </div>
+
+
+
+  <div class="main-content">
+    <div class="row">
+      <!-- Profile Info and Notifications -->
+      <div class=" col-md-6 col-sm-8 clearfix">
+        <div class="center" id="company-name">
+          <h1>Hello, <span id="user-name"> </span></h1>
+        </div>
+      </div>
+    </div>
+
+    <hr />
+
+
+
+    <div class="container center" >
+        <div id="visitor-queue">
+
+
+           <h2 class="center lower-title">Visitors</h2>
+
+        <table class="responsive-table striped centered">
+            <thead>
+                <tr>
+                    <th st-sort="Name">First Name</th>
+                    <th st-sort="Appointment">Last Name</th>
+                    <!-- <th st-sort="Appointment">Appointment Time</th> -->
+                    <th st-sort="Time">Check-in Time</th>
+                </tr>
+            </thead>
+
+            <tbody id= "visitor-list">
+                <!-- PATIENT QUEUE TEMPLATE GOES HERE -->
+
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog"></div>
+                </div>
+
+            </tbody>
+        </table>
+        </div>
+        </div>
+        <!-- HANDLE BAR TEMPLATES -->
+        <script type = "text/x-handlebars-template" id = "visitor-list-template">
+            {{#each []}}
+            <tr class="patient-check-out" data-toggle="modal" data-target="#myModal" value = "{{this._id}}">                                
+                <td class="patient-queue-text">{{this.first_name}}</td>
+                <td class="patient-queue-text">{{this.last_name}}</td>
+                <td class="patient-queue-text"> {{this.checkin_time}}</td>
+
+
+                <!-- Modal -->
+            </tr>
+            {{/each}}
+        </script>
+
+        <script type = "text/x-handlebars-template" id="visitor-info-template">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h1 class="modal-title">Check in visitor</h1>
+                </div>
+                <div class="modal-body" value = "{{this._id}}">
+             <div class="modal-left" value = "{{this._apptId}}">
+               <p><span>First:</span> {{this.first_name}}</p>
+               <p><span>Last:</span> {{this.last_name}}</p>
+               <p><span>Appointment Time:</span> {{this.appointmentTime}}</p>
+             </div>
+             <div class="modal-right">
+                        <p><span>Check-In Time:</span> {{this.checkin_time}}</p>
+                        <p><span>Phone Number:</span> {{this.phone_number}}</p>
+             </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="removeButton check-in-btn btn btn-default" data-dismiss="modal">Remove</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </script>
+        <script>
+          $(document).ready( () => {
+            const userObj = JSON.parse(localStorage.getItem('currentUser'));
+            /*if(userObj.role == 'employee') {
+              document.getElementById('employees-link').hidden = true;
+              document.getElementById('form-build-link').hidden = true;
+            }
+            else if(userObj.role != 'employee_admin' || userObj.role != 'employee') {
+              location.href = '/user-dashboard.html';
+            }*/
+
+            document.getElementById('user-name').innerHTML = userObj.first_name + " " + userObj.last_name ;
+          });
+        </script>
+    </div>
+  </div>
+</div>
+
+<!-- Bottom scripts (common) -->
+<!-- jQuery Library -->
+
+<script type = "text/javascript" src= "js/vendor/handlebars-v4.0.5.js"></script>
+<script type="text/javascript" src = "js/dashboard.js"> </script>
+
+<!--materialize js-->
+<script src="js/vendor/materialize.min.js"></script>
+
+<script>
+  //SideNav Collapse
+  // Initialize collapse button
+  $(".button-collapse").sideNav();
+</script>
+</body>
+</html>

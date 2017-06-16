@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+
+	<link rel="icon" href="image/newlogo.png">
+
+	<title>One 4m | Appointments</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="css/vendor/jquery-ui.min.css">
+	<link rel="stylesheet" href="css/appointment.css">
+	<link rel="stylesheet" href="css/shared-dashboard.css">
+	<script src="js/min/jquery-1.11.3.min.js"></script>
+	<script src="js/vendor/js.cookie.js"></script>
+
+
+    <!-- <script src="assets/native/js/auth-cookies.js"></script> -->
+
+	<link type="text/css" rel="stylesheet" href="css/vendor/materialize.css"  media="screen,projection"/>
+  <script type="text/javascript" src="js/min/jquery-1.11.3.min.js"></script> 
+  <script src="js/min/jquery-ui.min.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+</head>
+
+<body class="page-body">
+
+<div class="navbar-fixed z-depth-3" >
+  <nav class="navbar navbar-default teal lighten-5">
+    <div class="navbar-brand">
+          <a href="visitors.html" >
+            <img src="image/newlogo.png" width="60" alt="logo" class="button-collapse" data-activates="side-menu"/>
+          </a>
+    </div>
+      <ul class="right" id="main-menu">
+        <li>
+          <a href="index.html">
+            <span class="black-text">Home</span>
+          </a>
+        </li>
+        <li>
+          <a href="login.html">
+            <span class="black-text">Log-Out</span>
+          </a>
+        </li>
+      <li>
+                <a href="/checkin.html">
+                    <span class="black-text">Check-In</span>
+                </a>
+            </li>
+        </ul>
+    
+    </nav>
+  
+</div>
+
+<div class="page-container"><!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
+<!-- Logo and Navigation -->
+
+
+  <div class="sidebar-menu">
+    
+    
+    
+    <div class="sidebar-menu-inner">
+      
+      
+      <ul id="side-menu" class="side-nav z-depth-5 fixed teal lighten-3">
+        <!-- add class "multiple-expanded" to allow multiple submenus to open -->
+        <!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
+        <div class ="center">
+          <li class="hoverable"><a href="/visitors.html"><i class="material-icons vertical-align-middle">supervisor_account</i>Visitors</a></li>
+          <li id="employees-link" class="hoverable"><a href="/employees.html"><i class="material-icons vertical-align-middle">supervisor_account</i>Employees</a></li>
+          <li class="hoverable"><a href="/appointments.html"><i class="material-icons vertical-align-middle">today</i>Appointments</a></li>
+          <li id="form-build-link"class="hoverable"><a href="/form-builder.html"><i class="material-icons vertical-align-middle">assignment</i>Forms</a></li>
+          <li class="hoverable"><a href="/settings.html"><i class="material-icons vertical-align-middle">settings</i>Settings</a></li>
+        </div>
+      </ul>
+    </div>
+
+
+  <div class="main-content">
+    <div class="row">
+      <!-- Profile Info and Notifications -->
+      <div class=" col-md-6 col-sm-8 clearfix">
+        <div class ="center" id="company-name">
+          <h1>Hello, <span id="user-name"> </span></h1>
+        </div>
+      </div>
+    </div>
+
+
+		<hr />
+		<div class="employee-container center">
+		<div id="appointment-queue">
+			<h2 class="page-title">Appointments</h2>
+				<table class="striped responsive-table centered">
+					<thead>
+					<tr>
+						<th>Customer Name</th>
+						<!-- <th>Last Name</th> -->
+						<th>Employee Name</th>
+						<!-- <th>Phone Number</th> -->
+						<th>Date</th>
+						<th>Time</th>
+					</tr>
+					</thead>
+					<tbody id= "appt-list">
+						<!-- HANDLE BAR TEMPLATES -->
+
+				<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+				  aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<!-- Modal Header -->
+						<div class="modal-header">
+							<h4 class="modal-title" id="myModalLabel">
+								Add an Appointment
+							</h4>
+						</div>
+
+						<!-- Modal Body -->
+						<div class="modal-body">
+
+							<form class="form-horizontal" role="form" id="appt-form">
+								<div class="form-group">
+									<label class="col-sm-2 control-label"
+											 for="first-name" >First Name</label>
+									<div class="col-sm-10">
+										<input type="text" class="validate form-control center"
+												 id="appt-first" placeholder="First Name" required/>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label"
+											 for="last-name" >Last Name</label>
+									<div class="col-sm-10">
+										<input type="text" class="validate form-control center"
+												 id="appt-last" placeholder="Last Name" required/>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="col-sm-2 control-label"
+											 for="phone-number" >Phone</label>
+									<div class="col-sm-10">
+										<input type="tel" pattern="^\d{3}-\d{3}-\d{4}$" class="validate form-control center"
+												 id="appt-number" placeholder="555-555-5555" title="(Format: 555-555-5555)" required/>
+									</div>
+								</div>
+
+								<!-- <div class="form-group">
+									<label class="col-sm-2 control-label"
+											 for="inputPassword3" >Employee First Name</label>
+									<div class="col-sm-10">
+										<input type="text" class="validate form-control center"
+												 id="appt-provider-first-name" placeholder="Employee First Name" required/>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="col-sm-2 control-label"
+											 for="inputPassword3" >Employee Last Name</label>
+									<div class="col-sm-10">
+										<input type="text" class="validate form-control center"
+												 id="appt-provider-last-name" placeholder="Employee Last Name" required/>
+									</div>
+								</div> -->
+
+								<div class="form-group">
+									<label class="col-sm-2 control-label"
+											 for="inputPassword3" >Date</label>
+									<div class="col-sm-10">
+										<input type="date" class="datepicker form-control center"
+												 id="appt-date" placeholder="mm/dd/yyyy" required/>
+									</div>
+								</div>
+
+
+								<div class="form-group">
+									<label class="col-sm-2 control-label"
+											 for="inputPassword3" >Start Time</label>
+									<div class="col-sm-10">
+										<input type="time" class="validate form-control center"
+												 id="appt-start-time" placeholder="Appointment Start Time" required/>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="col-sm-2 control-label"
+											 for="inputPassword3" >End Time</label>
+									<div class="col-sm-10">
+										<input type="time" class="validate form-control center"
+												 id="appt-end-time" placeholder="Appointment end Time" required/>
+									</div>
+								</div>
+
+								<div class="form-group">
+								<p> To connect your appointment information to our system, please refer to our appointments api, <a href= "image/appointments.pdf" target= "_blank"> here</a></p>
+								</div>
+
+							</form>
+						</div>
+
+						<div class="modal-footer">
+							<button type="button" class="btn modal-close" data-dismiss="modal">Close</button>
+							<button id="modal-save" type="button" class="btn" data-dismiss="modal" onclick="window.location.reload()">Save</button>
+						</div>
+					</div>
+				</div>
+				</div>
+				</tbody>
+				</table>
+				</div>
+		</div>
+
+
+		
+
+		<script type = "text/x-handlebars-template" id = "appt-list-template">
+			{{#each []}}
+				<tr class="appt-row" value="{{this._id}}">
+				<td class="appt-data">{{this.customer_first_name}} {{this.customer_last_name}}</td>
+				<td class="appt-data">{{this.employee_first_name}} {{this.employee_last_name}}</td>
+				<td class="appt-data">{{this.fullDate}}</td>
+				<td class="appt-data">{{this.appointmentTime}}
+					<i class="fa fa-trash-o delete-appt"></i>
+				</td>
+			</tr>	
+			{{/each}}
+		</script>
+
+		<br>
+
+		<div class="row center">
+		<a class = "addbutton cyan btn" data-toggle="modal" href="#myModal">Add Appointment</a>
+		</div>
+		</div>
+
+
+	</div>
+</div>
+
+
+
+<!-- Bottom scripts (common) -->
+<script type = "text/javascript" src= "js/vendor/handlebars-v4.0.5.js"></script>
+<script src="js/vendor/materialize.min.js"></script>
+<script type ="text/javascript" src = "js/appointments.js"> </script>
+<script type ="text/javascript" src = "js/dashboard.js"></script>
+<script src="js/vendor/js.cookie.js"></script>
+<script src="js/vendor/socket.io.js"></script>
+
+
+</body>
+</html>

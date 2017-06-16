@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<script src = "js/shared.js"></script>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="description" content="Neon Admin Panel" />
+	<meta name="author" content="" />
+
+	<link rel="icon" href="image/newlogo.png">
+
+	<title>One 4m | Forms</title>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">  
+	<link rel="stylesheet" href="css/shared-dashboard.css">
+	<link rel="stylesheet" href="css/vendor/jquery-ui-1.10.3.custom.min.css">
+	<link type="text/css" rel="stylesheet" href="css/vendor/materialize.css" media="screen,projection"/>
+	<link rel="stylesheet" href="css/form-builder.css">
+	<link rel="stylesheet" href="css/appointment.css">
+	<script src="js/min/jquery-1.11.3.min.js"></script>
+  <script src="js/vendor/materialize.min.js"></script>
+  <script src="js/form-builder.js"></script>
+	<!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+
+
+</head>
+<body class="page-body">
+
+<div class="navbar-fixed z-depth-3" >
+	<nav class="navbar navbar-default teal lighten-5">
+    <div class="navbar-brand">
+					<a href="#" >
+					  <img src="image/newlogo.png" width="60" alt="logo" class="button-collapse" data-activates="side-menu"/>
+          </a>
+    </div>
+      <ul class="right" id="main-menu">
+        <li>
+          <a href="index.html">
+            <span class="black-text">Home</span>
+          </a>
+        </li>
+        <li>
+          <a href="login.html">
+            <span class="black-text">Log-Out</span>
+          </a>
+        </li>
+			<li>
+                <a href="/checkin.html">
+                    <span class="black-text">Check-In</span>
+                </a>
+            </li>
+        </ul>
+		
+    </nav>
+	
+</div>
+
+<div class="page-container"><!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
+<!-- Logo and Navigation -->
+	<div class="sidebar-menu">
+    <div class="sidebar-menu-inner">
+      <ul id="side-menu" class="side-nav z-depth-5 fixed teal lighten-3">
+        <!-- add class "multiple-expanded" to allow multiple submenus to open -->
+        <!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
+        <div class ="center">
+          <li class="hoverable"><a href="#"><i class="material-icons vertical-align-middle">supervisor_account</i>Visitors</a></li>
+          <li id="employees-link" class="hoverable"><a href="/employees.html"><i class="material-icons vertical-align-middle">supervisor_account</i>Employees</a></li>
+          <li class="hoverable"><a href="/appointments.html"><i class="material-icons vertical-align-middle">today</i>Appointments</a></li>
+          <li id="form-build-link"class="hoverable"><a href="/form-builder.html"><i class="material-icons vertical-align-middle">assignment</i>Forms</a></li>
+          <li class="hoverable"><a href="/settings.html"><i class="material-icons vertical-align-middle">settings</i>Settings</a></li>
+        </div> 
+      </ul>
+    </div>
+
+
+	
+	  <div class="main-content">
+
+		  <div class="row">
+
+			<!-- Profile Info and Notifications -->
+			<div class="col-md-6 col-sm-8 clearfix">
+
+				<ul class="user-info pull-left pull-none-xsm">
+
+					<!-- Profile Info -->
+					<li class="profile-info dropdown"><!-- add class "pull-right" if you want to place this from right -->
+
+						<div id="company-name">
+							<h1>Hello, <span id="user-name"> </span></h1>
+						</div>
+
+
+					</li>
+
+				</ul>
+
+			</div>
+		</div>
+
+		<hr />
+
+	<center class="row">
+	<h1 class="page-title">Build your form</h1>
+  <h2 class="lower-title">Color picker:</h2> 
+  <div class="z-depth-3 row col s6 offset-s3">
+    <br>
+    <div class="cols s6 offset-s3" id="red"></div>
+    <div class="cols s6 offset-s3" id="green"></div>
+    <div class="cols s6 offset-s3" id="blue"></div>
+    <div class="cols s6 offset-s3"></div>
+    <div class="cols s3 offset-s6" id="swatch" class="ui-widget-content"></div>
+    <br>
+  </div>
+        </center>
+		<!--<center><h3>Preview</h3></center>-->
+<form class = "form-builder" role = "form">
+  <div class = "form-group">
+    <label for = "f_name">First Name</label>
+    <input type = "text" class = "form-control" id = "f_name" placeholder = "Enter your First Name">
+  </div>
+  <div class = "form-group">
+    <label for = "l_name">Last Name</label>
+    <input type = "text" class = "form-control" id = "l_name" placeholder = "Enter your Last Name">
+  </div>
+  <div class = "form-group">
+    <label for = "phone">Phone Number</label>
+    <input type = "tel" class = "form-control" pattern='[\(]\d{3}[\)]\d{3}[\-]\d{4}' id = "phone" placeholder = "Enter your Phone Number">
+  </div>
+  <div id="wrapper">
+  </div>
+  <div class = "form-group row">
+    <a id="add-element-button" href="#" class="dropdown-button btn waves-effect waves-light btn red accent-2 col s6 offset-s3" data-target="modal1">
+      <i class="material-icons left">add</i>Add Element
+    </a>
+  </div>
+  <div class="row">
+    <button id="submit-button" class = "col s6 offset-s3 save-form btn red accent-2">Submit</button>
+  </div>
+</form>
+
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <h4>Add Element</h4>
+    <form>
+      <label for="label">Label Name</label>
+      <input type="text" class="form-control" id="element-label" placeholder="Email">
+      <label for="placeholder">Placeholder Text</label>
+      <input type="text" class="form-control" id="element-placeholder" placeholder="Enter your email.">
+    </form>
+  </div>
+  <div class="modal-footer">
+    <a id="modal-add-button" href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Add</a>
+  </div>
+</div>
+
+		<!-- Imported styles on this page -->
+		<!-- Bottom scripts (common) -->
+		<script src="js/min/jquery-ui-1.10.3.minimal.min.js"></script>
+
+		
+
+		<!-- Imported scripts on this page -->
+
+		<script src="js/min/fullcalendar.min.js"></script>
+
+
+		<script type = "text/javascript" src= "js/login.js"></script>
+		<!--<script type = "text/javascript" src= "js/appointments.js"> </script>-->
+
+</body>
+</html>

@@ -1,124 +1,306 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-us">
 <head>
-<meta charset="utf-8">
-<title>CSE 112 Project 2</title>
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" type="text/css"/>
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Righteous"/>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito"/>
-<link rel="stylesheet" href="css/mainStyle.css" type="text/css"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="Neon Admin Panel"/>
+    <meta name="author" content=""/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+
+    <link rel="icon" href="image/newlogo.png">
+    <link type="text/css" rel="stylesheet" href="css/vendor/materialize.min.css"  media="screen,projection"/>
+    <link rel="stylesheet" href="css/index.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>One 4m | Home</title>
+
+    <!--[if lt IE 9]>
+    <script src="assets/js/ie8-responsive-file-warning.js" async></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js" async></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js" async></script>
+    <![endif]-->
+
+
 </head>
 <body>
-  <!-- Header with full-height image -->
-<img src="image/UnluckyGeniuses.jpg" alt="Header" style="height:30;">
-
-
-
-  <!-- Foo! -->
-  <form id="form1">
-    <div class="row">
-     <h1 class="header-font text-center">Foo Function</h1>
-      <div class="col-lg-4 col-lg-offset-4">
-        <div>
-      <label for="isValidTimeText"
-             class = "enter-label">Enter a string:</label>
-          <input id="textID"
-                 type="text"
-                 name="input"
-                 class="form-control form-fix"
-                 placeholder="Input text here"
-                 required>
-          <button class="btn submit-button"
-		  id="fooBtn"
-                type="button"
-                onclick ="submitFoo()">
-            Submit <i class="fa fa-share"> </i>
-          </button>
-          <h3 id ="foo_retval"
-              class ="text-center output">
-          </h3>
-        </div>
+<!-- Logo and Navigation -->
+<div class="header-wrapper navbar-fixed-top z-depth-3" style="margin-top: 0px;">
+	<nav class="navbar navbar-default white">
+    <a href="index.html" class="brand-logo left">
+      <img src="image/newlogo.png" height="55"/>
+    </a>
+    <div class="navbar-header">
+      <div class="navbar-brand">
       </div>
     </div>
-  </form>
+    <ul class="right" id="main-menu">
+      <li>
+        <a href="index.html">
+          <span class="blue-text">Home</span>
+        </a>
+      </li>
+      <li>
+        <a href="login.html">
+          <span class="black-text">Login</span>
+        </a>
+      </li>
+		  <!-- Dropdown Trigger -->
+			<li>
+			 <a class="dropdown-button black-text" href="#!" data-activates="dropdown1">Sign-Up<i class="material-icons right">arrow_drop_down</i></a>
+			</li>
+    </ul>
+  </nav>
+</div>
+<!-- Dropdown Structure -->
+<ul id="dropdown1" class="dropdown-content">
+	<li>
+        <a href="signup.html">
+            <span class="black-text">New User</span>
+        </a>
+    </li>
+	<li>
+		<a href="signup-company.html">
+			<span class="black-text">New Company</span>
+		</a>
+	</li>
+</ul>
 
-  <hr>
-
-  <!-- Time is valid! -->
-  <form id="formIsValidTime">
-    <div class="row">
-	<h3 class="header-font text-center">Time Validator</h3>
-      <div class="col-lg-4 col-lg-offset-4">
-        <div>
-		  <label for="isValidTimeText"
-             class="enter-label">Enter Time:</label>
-          <input id="isValidTimeText"
-                 type="text"
-                 name="inputValidtime"
-                 class="form-control form-fix"
-                 placeholder="ex: 4:31am"
-                 required>
-
-		  <button class="btn submit-button"
-	    	id="validTimeBtn"
-                type="button"
-                onclick ="submitValidTime()">
-                Submit <i class="fa fa-share"> </i>
-          </button>
-          <h3 id ="valid_time_retval"
-              class ="text-center output"
-          </h3>
-        </div>
-      </div>
+<div class="parallax-container z-depth-1">
+    <div class="parallax"><img src="image/background4.jpeg" style="opacity: 0.5;" >
     </div>
-  </form>
-
-  <hr>
-
-  <!-- Format time -->
-  <form id="formatTimeForm">
-    <div class="row">
-	<h3 class="header-font text-center">Time Formatter</h3>
-      <div class="col-lg-4 col-lg-offset-4">
-        <div>
-          <label for="timeFormatString"
-                 class="enter-label">Enter Time and Select Format:</label>
-		  <input id="timeFormatString"
-                   type="text"
-                   name="timeFormatString"
-                   class="form-control form-fix"
-                   placeholder="ex: hh:mm:ss">
-
-            <select id="timeFormatSelector" name="timeFormatSelector">
-              <option value="1">HH</option>
-              <option value="2">HH am/pm</option>
-      			  <option value="3">HH:MM</option>
-      			  <option value="4">HH:MM am/pm</option>
-      			  <option value="5">HH:MM:SS</option>
-      			  <option value="6">HH:MM:SS am/pm</option>
-            </select>
-			<button class="btn submit-button"
-	   		type="button"
-			id="formatTimeBtn"
-                onclick ="submitFormatTime()">
-        Submit <i class="fa fa-share"> </i>
-          </button>
-          <h3 id ="formatTimeRetval"
-              class ="text-center output">
-          </h3>
+    <div class="carousel carousel-slider" data-indicators="true"> 
+        <div class="carousel-item transparent" href="#one!">
+            <div class="row">
+                <div class="col s6 offset-s1">
+                    <h4>One 4m</h4>
+                    <h2 class="light black-text text-lighten-3"> Welcome your guests</h2>
+                    <p class="black-text flow-text">
+                        One 4m welcomes visitors with a simple,<br/>
+                        yet effective check-in process. It is all<br/>
+                        about making each step simpler and more efficient.
+                    </p>
+                </div>
+            </div>
         </div>
-      </div>
-	</div>
-  </form>
+        <div class="carousel-item black-text" href="#two!">
+            <div class="row">
+                <div class="col s6 offset-s1">
+                    <h4>One 4m</h4>
+                    <h2 class="light black-text text-lighten-3">Dashboard</h2>
+                    <p class="black-text flow-text">
+                        Manage employee access, patient information<br/>
+                        and company settings right from our dashboard. 
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item black-text" href="#three!">
+            <div class="row">
+                <div class="col s6 offset-s1">
+                    <h4>One 4m</h4>
+                    <h2 class="light black-text text-lighten-3">Know who has arrived</h2>
+                    <p class="black-text flow-text">
+                        Your team will be able to effortlessly identify<br/>
+                        who has arrived. They will then have more time<br/>
+                        to work on the essential tasks.<br/>
+                        Let us automate “check-in” for you!
+                    </p>  
+                </div>
+            </div>          
+        </div>
+    </div>
+</div>                      
 
 
+<section id="features-sec">
+    <!-- Features Blocks -->
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m4 center">
+                <h5>
+                    <i class="material-icons">settings</i>
+                    Customizable
+                </h5>
+                <p class="light">
+                Change the look and feel of your forms
+                through our easy to use system.
+                </p>
+            </div>
+            <div class="col s12 m4 center">
+                <h5>
+                    <i class="material-icons">vpn_key</i>
+                    Slack
+                </h5>
+                <p class="light">
+                Integrate your notifications into Slack,
+                so every part of your workflow is
+                connected.
+                </p>
+            </div>
+            <div class="col s12 m4 center">
+                <h5>
+                    <i class="material-icons">contact_phone</i>
+                    24/7 Support
+                </h5>
+                <p class="light">
+                Enjoy ease of mind knowing that our customer support
+                team is readily available at all times.
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- Separator -->
+    <div class="row">
+        <div class="col-md-12">
+            <hr width = "1000" size="1">
+        </div>
+    </div>
+</section>
+
+<!-- Pricing -->
+<section id="pricing-opts">
+<div class="container">
+    <div class="row">
+        <div class="col s12 m4 offset-m2">
+            <div class="card teal lighten-4 hoverable">
+                <div class="center">
+                    <span class="card-title">Free Trial</span>
+                    <div style="font-size:medium;">$0</div>
+                    <hr size = "1" color = "transparent">
+                </div>
+                <div>
+                    <ul class="browser-default">
+                        <li>
+                            <p>Try One 4m out for two weeks</p>
+                        </li>
+                        <li>
+                            <p>Easy sign up process, quickly set-up</p>
+                        </li>
+                        <li>
+                            <p>All features available in free trial</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m4">
+            <div class="card teal lighten-4 hoverable">
+                <a href="signup.html"></a>
+                <div class="center">
+                    <span class="card-title">Subscription</span>
+                    <div style="font-size:medium;">$20/month</div>
+                    <hr size="1" color="transparent">
+                </div>           
+                <div>
+                     <ul class="browser-default">
+                        <li>
+                            <p>Unlimited visitors and employees</p>
+                        </li>
+                        <li>
+                            <p>Sync employees with Slack</p>
+                        </li>
+                        <li>
+                            <p>Customizable check-in forms</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</section>
 
 
+<!-- Testimonails -->
 
+<div class="parallax-container center z-depth-1" id="testimonials">
+    <div class="parallax"><img src="image/background4.jpeg" style="opacity: 0.5;">
+    </div>
+    <div class="carousel carousel-slider" data-indicators="true"> 
+        <div class="carousel-item transparent" href="%one!">
+            <div class="col s4 offset-s1">
+                    <h3 class="flow-text"> Perfection. </h3>
+                    <small>
+                        <cite>Steve Jobs</cite> - Co-Founder at Apple
+                    </small>
+            </div>
+        </div>
+        <div class="carousel-item transparent" href="%two!">
+            <div class="col s4 offset-s1">
+                    <h3 class="flow-text">Truly remarkable. </h3>
+                    <small>
+                        <cite>Larry Page</cite> - Co-Founder at Google
+                    </small>
+            </div>
+        </div>
+        <div class="carousel-item transparent" href="%three!">
+            <div class="col s4 offset-s1">
+                    <h3 class="flow-text">I bought ten! </h3>
+                    <small>
+                        <cite>Bill Gates</cite> - CEO at Microsoft
+                    </small>
+            </div>
+        </div>
+    </div>
+</div>
 
-  <script src="js-es5/foo.js"></script>
-  <script src="js-es5/main.js"></script>
+<!-- Footer Widgets -->
+<footer class="page-footer white" id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col s6">
+                <a href="#">
+                    <img src="image/newlogo.png" width="100"/>
+                </a>
+                <p class="light">Checking In Made Simple.</p>
+            </div>
+            <div class="col s3">
+                <h5>Address</h5>
+                <p>
+                    UC San Diego <br/>
+                    9500 Gilman Dr., <br/>
+                    La Jolla, CA 92093
+                </p>
+            </div>
+            <div class="col s3">
+                <h5>Contact</h5>
+                <p>
+                    Phone: +1 (858) 123-456 <br/>
+                    Fax: +1 (858) 654-321 <br/>
+                    info@one4m.com
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- Site Footer -->
+    <div class="footer-copyright" id="footer-cr">
+        <div class="container black-text">
+            Copyright &copy; One 4m - All Rights Reserved.
+            <ul class="right">
+                <a href="#">
+                    <img src="image/instagram.png"></i>
+                </a>
+                <a href="#">
+                     <img src="image/twitter-box.png"></i>
+                 </a>
+                 <a href="#">
+                    <img src="image/facebook-box.png"></i>
+                </a>
+            </ul>
+        </div>
+    </div>
+</footer>
 
 </body>
+
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="js/vendor/materialize.min.js"></script>
+<script src="js/index.js"></script>
+
 </html>
