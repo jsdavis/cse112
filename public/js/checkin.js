@@ -15,7 +15,6 @@ $(document).ready(() => {
 
   /* eslint-disable */
   $('.check-in').on('submit', function(e) {
-    alert("lnjkbhj");
       e.preventDefault();
       submitForm();
       $('#clock').removeClass('hide');
