@@ -56,7 +56,6 @@ $(document).ready(() => {
 
   // When a patient submits their form
   function submitForm() {
-    alert(JSON.stringify(localStorage));
     const d = grabFormElements();
     updateApptList(d);
     appts = getAppts();

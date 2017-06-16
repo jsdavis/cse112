@@ -6,12 +6,11 @@ $(document).ready(() => {
   let userId;
   const message = document.getElementById('perror');
   message.style.visibility = 'hidden';
-    
+
   $('#signupForm').on('submit',(event) => {
     event.preventDefault();
-    
+
     let is_valid = validateUser();
-    //  alert(is_valid);
     if(is_valid == false){
       message.style.visibility = 'visible';
     }
@@ -39,7 +38,7 @@ $(document).ready(() => {
     }
   });
   */
-  
+
 
 
   function submitUser(){
@@ -59,9 +58,7 @@ $(document).ready(() => {
   $('#companyForm').on('submit',(event) => {
     event.preventDefault();
     let is_valid = validateCompany();
-    //  alert(is_valid);
     if(is_valid == false){
-      //  alert('Failed');
       return false;
     }
     else{
@@ -78,15 +75,12 @@ $(document).ready(() => {
   */
 
   function submitCompany(){
-    //  alert("HELLLO");
     const companyData = grabCompanyData();
     //validate data!!!
     ajaxPost('/api/companies', companyData, false);
     companyData.adminUser.company_id = companyId;
     companyData.company_id = companyId;
-    //  alert(JSON.stringify(companyData));
     ajaxPost('/api/employees', companyData,false);
-    //  alert("njkbhgvh");
     ajaxPost('/api/companies/addAdmin/'+userId,companyData,true,'PUT');
     const themeData = {
       company_id: companyId,
@@ -105,7 +99,7 @@ $(document).ready(() => {
           placeholder: 'Enter your phone number',
         },
       ]
-    } 
+    }
     console.log('hi');
     ajaxPost('/api/theme/', themeData, false);
     location.href='/login.html';
@@ -160,9 +154,6 @@ $(document).ready(() => {
     user.phone_number = $('#telephone').val();
     user.password = $('#password').val();
     user.repeat_password = $('#repeat-password').val();
-    if(user.repeat_password != user.password){
-      // alert("You put in two different passwords!");
-    }
     user.role = "customer";
     return user;
   }
@@ -197,7 +188,7 @@ $(document).ready(() => {
         } else if (url == '/api/companies') {
           localStorage.setItem('currentCompany', JSON.stringify(response));
           companyId = response._id;
-        } 
+        }
         console.log('request to ' + url);
       },
       error: function(response) {
@@ -333,5 +324,5 @@ $(document).ready(() => {
       }
       return true;
     }
-  
+
 });

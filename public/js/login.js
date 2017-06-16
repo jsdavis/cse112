@@ -78,7 +78,6 @@ function ajaxGetCompanyInfo(url) {
     dataType: 'json',
     success: function(response) {
       console.log(response);
-           // alert(response.name);
       localStorage.setItem('currentCompany', JSON.stringify(response));
     },
   });
