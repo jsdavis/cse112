@@ -36,7 +36,7 @@ function ajaxPostUserEmployee(data) {
       } else {
         localStorage.setItem('userState', 1);
         localStorage.setItem('currentUser', JSON.stringify(response));
-        localStorage.setItem('userType', 'employee');
+        localStorage.setItem('userType', 'employee_admin');
         ajaxGetCompanyInfo('/api/companies/' + response.company_id);
         location.href = '/visitors.html';
       }

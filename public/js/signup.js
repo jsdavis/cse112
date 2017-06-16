@@ -187,6 +187,7 @@ $(document).ready(() => {
             localStorage.setItem('userState', 1);
             localStorage.setItem('currentUser', JSON.stringify(response));
             userId = response._id;
+            console.log('hi');
             location.href = '/visitors.html';
           } else{ // if(response.role == 'customer') {
             localStorage.setItem('userState', 3);
