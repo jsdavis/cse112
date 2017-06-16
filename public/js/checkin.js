@@ -38,7 +38,30 @@ $(document).ready(() => {
 
   });
   /* eslint-enable */
+  $('#submit-btn').click((e) => {
+    e.preventDefault();
+    submitForm();
+    checkIn();
+      // $('#clock').removeClass('hide');
+      // $('#clock').addClass('show');
+      // $('#tap-to-check').removeClass('hide');
+      // $('#tap-to-check').addClass('show');
+      // $(this).removeClass('show');
+      // $(this).addClass('hide');
+  });
 
+  function grabFormElements() {
+    const newVisitor = {};
+    if(companyData==null) {
+      return null;
+    }
+    newVisitor.company_id = companyData._id;
+    newVisitor.first_name= $('#visitor-first').val();
+    newVisitor.last_name = $('#visitor-last').val();
+    newVisitor.phone_number = $('#visitor-email').val();
+    newVisitor.checkin_time = new Date();
+    return newVisitor;
+  }
     // Bind Listeners
   // $('#tap-to-check').on('click', startCheckIn);
   // $('.check-in').on('submit', submitForm);

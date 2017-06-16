@@ -40,7 +40,8 @@ $(document).ready(($) => {
     location.href = '/visitors.html';
     document.getElementById('employees-link').hidden = true;
     document.getElementById('form-build-link').hidden = true;
-  } else if(userObj.role != 'employee_admin' || userObj.role != 'employee') {
+  }
+  if(curUser.role == 'customer') {
     location.href = '/user-dashboard.html';
   }
 });

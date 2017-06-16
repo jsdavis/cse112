@@ -11,10 +11,14 @@ const Employee = require('../../models/Employee');
 module.exports.login = function(req, res) {
   Employee.findOne({email: req.body.email}, (err, e) => {
     if(err || !e) {
+      console.log(err);
       return res.status(400).send({error: 'Can not Find'});
     }
-    if(!e.validPassword(req.body.password))
+    if(!e.validPassword(req.body.password)) {
+      console.log(err);
       return res.status(400).send({error: 'Incorrect Credentials'});
+    }
+    console.log('njkhbjvg');
     const employeeJson=e.toJSON();
     delete employeeJson.password;
     return res.status(200).json(employeeJson);
