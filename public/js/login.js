@@ -4,6 +4,7 @@ $('#form_login').submit((event) => {
 });
 $('#loginButton').click(() => {
   const userData = grabUserData();
+  alert('njkbhjvgh');
   ajaxPostUserEmployee(userData);
 });
 
