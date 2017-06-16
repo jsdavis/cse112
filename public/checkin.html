@@ -13,6 +13,8 @@
 	<link rel="icon" href="image/newlogo.png">
 
 	<script type="text/javascript" src="js/min/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="js/vendor/socket.io.js"></script>
+	<script type="text/javascript" src="js/shared.js"></script>
 	<script type="text/javascript" src="js/vendor/materialize.js"></script>
 	<script type="text/javascript" src="js/checkin.js"></script>
 </head>
@@ -26,28 +28,28 @@
 				<br><br>
 				<img src="image/newlogo.png" width="200" alt="" />
 				<h1>Check In</h1>
-				<form id="checkinForm">
+				<form class="check-in" id="checkinForm">
 
 					<div class="form-group">
 						<div class="input-group">
-							<input type="text" name="first_name" id="first_name" class="form-control validate" placeholder="First Name" required>
+							<input type="text" name="first_name" id="first_name" class="form-control validate visitor-fields" placeholder="First Name" required>
 						</div>
 					</div>
 
 					<div class="form-group">
 						<div class="input-group">
-							<input type="text" name="last_name" id="last_name" class="form-control validate" placeholder="Last Name" required>
+							<input type="text" name="last_name" id="last_name" class="form-control validate visitor-fields" placeholder="Last Name" required>
 						</div>
 					</div>
 
 					<div class="form-group">
 						<div class="input-group">
-							<input type="email" name="email" id="email" class="form-control validate" placeholder="Email Address" required>
+							<input type="email" name="email" id="email" class="form-control validate visitor-fields" placeholder="Email Address" required>
 						</div>
 					</div>
 
 					<div class="row">
-						<button id="submit-btn" class="btn red center" type="submit" name="action">Tap to Check In</button>
+						<button id="#tap-to-check" class="btn red center" type="submit" name="action">Tap to Check In</button>
 					</div>
 
 				</form>
