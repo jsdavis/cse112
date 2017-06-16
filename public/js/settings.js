@@ -18,8 +18,6 @@ $(document).ready(() => {
   if(userObj.role == 'employee') {
     document.getElementById('employees-link').hidden = true;
     document.getElementById('form-build-link').hidden = true;
-  } else if(userObj.role != 'employee_admin' || userObj.role != 'employee') {
-    location.href = '/user-dashboard.html';
   }
    // Pre-fill in current user information
   document.getElementsByTagName('input')[0].setAttribute('value', curUser.first_name);
