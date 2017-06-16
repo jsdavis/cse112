@@ -1,7 +1,7 @@
 const config = require('../../nightwatch.js');
 
 module.exports = {
-  '@disabled': true,
+  '@disabled': false,
   'beforeEach': (browser) => {
     browser
       .url('http://localhost:8080')
@@ -11,7 +11,7 @@ module.exports = {
     browser
       .url('http://localhost:8080')
       .waitForElementVisible('body')
-      .assert.title('Emissary')
+      .assert.title('One 4m | Home')
       .end();
   },
   'Unlucky Geniuses Logo Test': function(browser) {
@@ -23,19 +23,17 @@ module.exports = {
   'Unlucky Geniuses Nav Bar Test': function(browser) {
     browser
       .url('http://localhost:8080')
-      .assert.containsText('#main-menu', 'HOME')
-			.assert.containsText('#main-menu', 'FEATURES')
-			.assert.containsText('#main-menu', 'PRICING')
-			.assert.containsText('#main-menu', 'LOGIN')
-			.assert.containsText('#main-menu', 'SIGN-UP')
+      .assert.containsText('#main-menu', 'Home')
+			.assert.containsText('#main-menu', 'Login')
+			.assert.containsText('#main-menu', 'Sign-Up')
       .end();
   },
   'Unlucky Geniuses Features Text Test': function(browser) {
     browser
       .url('http://localhost:8080')
-      .assert.containsText('#features-sec', 'CUSTOMIZABLE')
-			.assert.containsText('#features-sec', 'SLACK')
-			.assert.containsText('#features-sec', '24/7 SUPPORT')
+      .assert.containsText('#features-sec', 'Customizable')
+			.assert.containsText('#features-sec', 'Slack')
+			.assert.containsText('#features-sec', '24/7 Support')
       .end();
   },
   'Unlucky Geniuses Pricing Text Test': function(browser) {
@@ -45,31 +43,20 @@ module.exports = {
 			.assert.containsText('#pricing-opts', 'Subscription')
       .end();
   },
-  'Unlucky Geniuses Trial Text Test': function(browser) {
-    browser
-      .url('http://localhost:8080')
-      .assert.containsText('#trial-ad', 'Sign up for a free trial of Emissary now')
-			.assert.containsText('#trial-ad', 'SIGN-UP')
-      .end();
-  },
-  'Unlucky Geniuses Testimonials Text Test': function(browser) {
-    browser
-      .url('http://localhost:8080')
-      .assert.containsText('#testimonials', 'Perfection')
-      .end();
-  },
   'Unlucky Geniuses Footer Widget Text Test': function(browser) {
     browser
       .url('http://localhost:8080')
-      .assert.containsText('#footer-widget', 'Checking In Made Simple.')
+      .assert.containsText('#footer', 'Checking In Made Simple.')
+			.assert.containsText('#footer', 'Address')
+			.assert.containsText('#footer', 'Contact')
       .end();
   },
   'Unlucky Geniuses Footer Test': function(browser) {
     browser
       .url('http://localhost:8080')
-      .assert.containsText('#footer', 'Copyright © Emissary - All Rights Reserved.')
+      .assert.containsText('#footer-cr', 'Copyright © One 4m - All Rights Reserved.')
       .waitForElementVisible('body')
-      .assert.title('Unlucky Geniuses')
+      .assert.title('One 4m | Home')
       .end();
   },
   'after': (browser) => browser.end(),
