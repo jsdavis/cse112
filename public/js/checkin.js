@@ -15,12 +15,13 @@ $(document).ready(() => {
 
   /* eslint-disable */
   $('.check-in').on('submit', function(e) {
+    alert("lnjkbhj");
       e.preventDefault();
       submitForm();
       $('#clock').removeClass('hide');
       $('#clock').addClass('show');
       $('#tap-to-check').removeClass('hide');
-      $('#tap-to-check').addClass('show');
+      $('#tap-to-check').addClass('hide');
       $(this).removeClass('show');
       $(this).addClass('hide');
 
@@ -42,12 +43,12 @@ $(document).ready(() => {
     e.preventDefault();
     submitForm();
     checkIn();
-      // $('#clock').removeClass('hide');
-      // $('#clock').addClass('show');
-      // $('#tap-to-check').removeClass('hide');
-      // $('#tap-to-check').addClass('show');
-      // $(this).removeClass('show');
-      // $(this).addClass('hide');
+    $('#clock').removeClass('hide');
+    $('#clock').addClass('show');
+    $('#tap-to-check').removeClass('hide');
+    $('#tap-to-check').addClass('show');
+    $(this).removeClass('show');
+    $(this).addClass('hide');
   });
 
   function grabFormElements() {
