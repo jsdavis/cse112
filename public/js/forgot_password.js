@@ -8,16 +8,13 @@ $(document).ready(() => {
 
   $('#forgotSuccessMessage').hide();
   $('#forgotErrorMessage').hide();
-  //  alert('uweybjkn');
 
   $('#send-reset-btn').click(() => {
-    //  alert('uewvjgdh');
     const email = $('#emailInput').val();
 
     userObj.email = email;
 
     ajaxPostUserEmployee(userObj);
-    //  alert(JSON.stringify(data));
     $.ajax({
       type: 'POST',
       url: '/api/resetPassword/',
