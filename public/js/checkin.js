@@ -77,6 +77,7 @@ $(document).ready(() => {
 
     // When a patient submits their form
   function submitForm() {
+    alert('SUBMITTING');
     const data = grabFormElements();
     const slTok = localStorage.getItem('slackToken');
     const slChan = localStorage.getItem('slackChannel');
