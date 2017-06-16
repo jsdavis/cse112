@@ -100,7 +100,7 @@ module.exports.chatBotPostResponse = function(req, res) {
 
 
   const action = param.action;
-  if (action == 'createAppointment') {
+  if (action === 'createAppointment') {
     const p = param.parameters;
     req.body = {
       start: new Date(p.date + ' ' + p.start_time),
@@ -111,13 +111,17 @@ module.exports.chatBotPostResponse = function(req, res) {
       lastname: p.lastname,
     };
     AppointmentContr.create(req, res);
-  } else if (action == 'checkIn') {
+  } else if (action === 'checkIn') {
     const p = param.parameters;
     req.body = {
       start: new Date(p.date + ' ' + p.start),
       end: new Date(p.date + ' ' + p.end),
-      customer_email: p.email,
+      customer_email: p.customer_email,
     };
+
+    // Hacky bullshit for timezones. Please ignore
+    req.body.start.setHours(req.body.start.getHours() - 6);
+    req.body.end.setHours(req.body.end.getHours() - 6);
 
     AppointmentContr.checkin(req, res);
   }
