@@ -217,10 +217,10 @@ module.exports.checkin = function(req, res) {
     req.body.appointment_id = req.params.id;
 
   Appointment.findAppointment(req.body, (err, appointment) => {
-    if (err)
-      res.status(400).json({
+    if (err || !appointment)
+      return res.status(400).json({
         error: 'Could not find appointment.',
-        message: err.message,
+        message: err,
         param: req.body,
       });
     appointment.checked_in = true;
@@ -228,7 +228,8 @@ module.exports.checkin = function(req, res) {
       if (err)
         return res.status(500).json({
           error: 'Saving the appointment failed',
-          message: err.message,
+          message: err,
+          input: appointment,
         });
 
       const text = 'Successfully checked in appointment for ' + appointment.customer_first_name + ' ' + appointment.customer_last_name + ' at ' + appointment.start;
