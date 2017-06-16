@@ -27,6 +27,8 @@ module.exports = {
 			.setValue('input[id="form-phone"]', 'Test' + num)
 			.waitForElementVisible('button[id="submit-company-btn"]')
 			.click('button[id="submit-company-btn"]')
+			.waitForElementVisible('input[id="form-employee-role"]')
+			.setValue('input[id="form-employee-role"]', 'admin')
 			.waitForElementVisible('input[id="form-employee-first"]')
 			.setValue('input[id="form-employee-first"]', 'Test' + num)
 			.waitForElementVisible('input[id="form-employee-last"]')
@@ -41,7 +43,7 @@ module.exports = {
 			.setValue('input[id="form-repeat-password"]', 'Test' + num)
 			.waitForElementVisible('button[id="submit-btn"]')
 			.click('button[id="submit-btn"]')
-			.assert.urlEquals('http://localhost:8080/visitors.html')
+			.assert.urlEquals('http://localhost:8080/admin-dashboard.html')
       .end();
   },
   'after': (browser) => browser.end(),
