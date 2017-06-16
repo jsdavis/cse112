@@ -20,6 +20,8 @@
 	<script src="js/min/jquery-1.11.3.min.js"></script>
   <script type="text/javascript" src="js/min/jquery-1.11.3.min.js"></script> 
   <script src="js/min/jquery-ui.min.js"></script>
+  <script type="text/javascript" src = "js/vender/materialize.min.js"> </script>
+  
 
   <!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
@@ -159,11 +161,14 @@
         </script>
         <script>
           $(document).ready( () => {
-            let userObj = JSON.parse(localStorage.getItem('currentUser'));
-            if(userObj.role == "employee") {
+            const userObj = JSON.parse(localStorage.getItem('currentUser'));
+            /*if(userObj.role == 'employee') {
               document.getElementById('employees-link').hidden = true;
               document.getElementById('form-build-link').hidden = true;
             }
+            else if(userObj.role != 'employee_admin' || userObj.role != 'employee') {
+              location.href = '/user-dashboard.html';
+            }*/
 
             document.getElementById('user-name').innerHTML = userObj.first_name + " " + userObj.last_name ;
           });

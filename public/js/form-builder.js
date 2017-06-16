@@ -36,13 +36,27 @@ $(document).ready(($) => {
     $('#optional_label').val('');
     return false;
   });
-
   if(curUser.role == 'employee') {
     location.href = '/visitors.html';
     document.getElementById('employees-link').hidden = true;
     document.getElementById('form-build-link').hidden = true;
+  } else if(userObj.role != 'employee_admin' || userObj.role != 'employee') {
+    location.href = '/user-dashboard.html';
   }
+});
+$('.my-form').on('click', '.remove-box', function() {
+  $(this).parent().css( 'background-color', '#FF6C6C' );
+  $(this).parent().fadeOut('slow', function() {
+    $(this).remove();
+    $('.box-number').each((index) => {
+      $('#box2').attr('id', 'box1');
+      $('#added_label').attr('for', 'optional_1');
+    });
+  });
+  return false;
+});
 
+$(() => {
   function hexFromRGB(r, g, b) {
     const hex = [
       r.toString( 16 ),
@@ -55,6 +69,14 @@ $(document).ready(($) => {
       }
     });
     return hex.join('').toUpperCase();
+  }
+
+  function hexToRgb(hex) {
+    const bigint = parseInt(hex, 16);
+    const r = (bigint >> 16) & 255;
+    const g = (bigint >> 8) & 255;
+    const b = bigint & 255;
+    return {r: r, g: g, b: b};
   }
 
   function refreshSwatch() {
@@ -75,9 +97,18 @@ $(document).ready(($) => {
     change: refreshSwatch,
   });
 
-  $( '#red' ).slider( 'value', 255 );
-  $( '#green' ).slider( 'value', 140 );
-  $( '#blue' ).slider( 'value', 60 );
+  // Setting slider values
+  $.ajax({
+    type: 'GET',
+    dataType: 'json',
+    url: '/api/theme/' + myCompanyId,
+    success: (response) => {
+      const rgbCode = hexToRgb(response.form_color);
+      $( '#red' ).slider( 'value', rgbCode.r);
+      $( '#green' ).slider( 'value', rgbCode.g );
+      $( '#blue' ).slider( 'value', rgbCode.b );
+    },
+  });
 
 
   $('#add-element-button').click(()=> {

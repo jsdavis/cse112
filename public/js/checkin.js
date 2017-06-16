@@ -7,9 +7,10 @@ $(document).ready(() => {
   };
 
   /* eslint-disable */
-  $('.check-in').on('submit', function(e) {
+  $('#checkinForm').on('submit', function(e) {
       e.preventDefault();
       submitForm();
+      checkIn();
       $('#clock').removeClass('hide');
       $('#clock').addClass('show');
       $('#tap-to-check').removeClass('hide');
@@ -32,6 +33,30 @@ $(document).ready(() => {
   });
   /* eslint-enable */
 
+  function checkIn() {
+    $.post({
+      type: 'POST',
+      async: false,
+      data: {
+        employee_id: localStorage.getItem(currentUser._id),
+        customer_first_name: $('#first_name').val(),
+        customer_last_name: $('#last_name').val(),
+        customer_email: $('email').val(),
+      },
+      url: '/api/appointments/checkin/',
+      dataType: 'json',
+      success: function(response) {
+        if (response.statusCode !== 200)
+          alert('Checkin failed!');
+        else {
+          $('#first_name').val('');
+          $('#last_name').val('');
+          $('#email').val('');
+        }
+      },
+    });
+  }
+
     // Bind Listeners
   // $('#tap-to-check').on('click', startCheckIn);
   // $('.check-in').on('submit', submitForm);
@@ -52,6 +77,7 @@ $(document).ready(() => {
 
     // When a patient submits their form
   function submitForm() {
+    alert('SUBMITTING');
     const data = grabFormElements();
     const slTok = localStorage.getItem('slackToken');
     const slChan = localStorage.getItem('slackChannel');
