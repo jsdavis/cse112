@@ -162,13 +162,13 @@
         <script>
           $(document).ready( () => {
             const userObj = JSON.parse(localStorage.getItem('currentUser'));
-            if(userObj.role == 'employee') {
+            /*if(userObj.role == 'employee') {
               document.getElementById('employees-link').hidden = true;
               document.getElementById('form-build-link').hidden = true;
             }
             else if(userObj.role != 'employee_admin' || userObj.role != 'employee') {
               location.href = '/user-dashboard.html';
-            }
+            }*/
 
             document.getElementById('user-name').innerHTML = userObj.first_name + " " + userObj.last_name ;
           });

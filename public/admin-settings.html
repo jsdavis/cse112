@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-us">
 <head>
 	<script>
 		var userState = JSON.parse(localStorage.getItem("userState"));
   		if(userState != 2)
-    		location.href= "login.html";
+    		<location.href= "login.html";
 	</script>
 
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,17 +14,15 @@
 	<meta name="description" content="Admin Panel" />
 	<meta name="author" content="" />
 
-	<link rel="icon" href="image/logo-emissary.png">
+	<link rel="icon" href="image/newlogo.png">
 
 	<title>Admin | Settings</title>
-
-	<link rel="stylesheet" href="css/vendor/jquery-ui-1.10.3.custom.min.css">
-	<link rel="stylesheet" href="font/entypo.css">
-	<link rel="stylesheet" href="font/NotoSans.css">
-	<!-- <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic"> -->
-
-	<script src="js/min/jquery-1.11.3.min.js"></script>
-
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/vendor/jquery-ui-1.10.3.custom.min.css">
+    <link rel="stylesheet" href="css/shared-dashboard.css">    
+    <link type="text/css" rel="stylesheet" href="css/vendor/materialize.css"  media="screen,projection"/>
+    <script type="text/javascript" src="js/min/jquery-1.11.3.min.js"></script> 
+    <script src="js/min/jquery-ui.min.js"></script>
 	<!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -35,64 +33,48 @@
 
 
 </head>
-<body class="page-body" data-url="http://neon.dev">
+
+<body class="page-body">
+
+<div class="navbar-fixed z-depth-3" >
+  <nav class="navbar navbar-default teal lighten-5">
+    <div class="navbar-brand">
+          <a href="#" >
+            <img src="image/newlogo.png" width="60" alt="logo" class="button-collapse" data-activates="side-menu"/>
+          </a>
+    </div>
+	  <ul class="right" id="main-menu">
+	    <li>
+	      <a href="index.html">
+	        <span class="black-text">Home</span>
+	      </a>
+	    </li>
+	    <li>
+	      <a href="login.html">
+	        <span class="black-text">Log-Out</span>
+	      </a>
+	    </li>
+	  </ul>
+    </nav>
+</div>
 
 <div class="page-container"><!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
-
-	<div class="sidebar-menu">
-
-		<div class="sidebar-menu-inner">
-
-			<header class="logo-env">
-
-				<!-- logo -->
-				<div class="logo">
-					<a href="admin-dashboard.html">
-						<img src="image/emissary.png" width="150" alt="" />
-					</a>
-				</div>
-
-				<!-- logo collapse icon -->
-				<div class="sidebar-collapse">
-					<a href="#" class="sidebar-collapse-icon"><!-- add class "with-animation" if you want sidebar to have animation during expanding/collapsing transition -->
-						<i class="entypo-menu"></i>
-					</a>
-				</div>
-
-
-				<!-- open/close menu icon (do not remove if you want to enable menu on mobile devices) -->
-				<div class="sidebar-mobile-menu visible-xs">
-					<a href="#" class="with-animation"><!-- add class "with-animation" to support animation -->
-						<i class="entypo-menu"></i>
-					</a>
-				</div>
-
-			</header>
-
-
-			<ul id="main-menu" class="main-menu">
-				<!-- add class "multiple-expanded" to allow multiple submenus to open -->
-				<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
-				<li>
-					<a href="admin-dashboard.html">
-						<span class="title">Admin Dashboard</span>
-					</a>
-				</li>
-				<li>
-					<a href="admin-companies.html">
-						<span class="title">Companies</span>
-					</a>
-				</li>
-				<li>
-					<a href="admin-settings.html">
-						<span class="title">Settings</span>
-					</a>
-				</li>
-			</ul>
-
-		</div>
-	</div>
-
+<!-- Logo and Navigation -->
+  <div class="sidebar-menu">
+    <div class="sidebar-menu-inner">
+      <ul id="side-menu" class="side-nav z-depth-5 fixed teal lighten-3">
+        <!-- add class "multiple-expanded" to allow multiple submenus to open -->
+        <!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
+        <div class ="center">
+          <li class="hoverable"><a href="/admin-dashboard.html"><i class="material-icons vertical-align-middle">supervisor_account</i>Dashboard</a></li>
+          <li id="employees-link" class="hoverable"><a href="/employees.html"><i class="material-icons vertical-align-middle">supervisor_account</i>Employees</a></li>
+          <li class="hoverable"><a href="/companies.html"><i class="material-icons vertical-align-middle">today</i>Companies</a></li>
+          <li class="hoverable"><a href="#"><i class="material-icons vertical-align-middle">settings</i>Settings</a></li>
+        </div>
+      </ul>
+    </div>
+  </div>
+</div>
 	<div class="main-content">
 
 		<div class="row">
@@ -100,41 +82,29 @@
 			<!-- Profile Info and Notifications -->
 			<div class="col-md-6 col-sm-8 clearfix">
 
-				<ul class="user-info pull-left pull-none-xsm">
-
-					<!-- Profile Info -->
-					<li class="profile-info dropdown"><!-- add class "pull-right" if you want to place this from right -->
-
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<img src="image/thumb-1@2x.png" alt="" class="img-circle" width="44" />
-							Peter
-						</a>
-					</li>
-
-				</ul>
+				<div class = "center">
+					<h1>Hello, Peter</h1>
+						<img src="image/peter.png" alt="" class="img-circle" width="44" />
+				</div>
 			</div>
 
+			<hr />
 
-			<!-- Raw Links -->
-			<div class="col-md-6 col-sm-4 clearfix hidden-xs">
+			<div class="col-md-6 col-sm-8 clearfix">
+			<div class="center">
+			<h3>Settings</h3>
+			<br />
 
-				<ul class="list-inline links-list pull-right">
-					<li>
-						<a href="login.html">
-							Log Out <i class="entypo-logout right"></i>
-						</a>
-					</li>
-				</ul>
+		<!-- Modal -->
+		<div class="modal fade" id="setting-modal" tabindex="-1" role="dialog"
+		     aria-labelledby="myModalLabel" aria-hidden="true">
+		    <div class="modal-dialog">
+		        <div class="modal-content">
 
-			</div>
 
-		</div>
+		            <!-- Modal Body -->
+		            <div class="modal-body">
 
-		<hr />
-
-		<h1 class="margin-bottom">Settings</h1>
-
-		<br />
 
 		<form role="form" method="post" class="form-horizontal form-groups-bordered validate" action="">
 
@@ -174,49 +144,37 @@
 							</div>
 
 						</div>
-
 					</div>
+
 
 				</div>
 			</div>
-
-			<div class="form-group default-padding">
-				<button type="button" class="btn btn-success" data-toggle="modal" data-target="#setting-modal">Save Changes</button>
-			</div>
 		</form>
-
-		<!-- Modal -->
-		<div class="modal fade" id="setting-modal" tabindex="-1" role="dialog"
-		     aria-labelledby="myModalLabel" aria-hidden="true">
-		    <div class="modal-dialog">
-		        <div class="modal-content">
-		            <!-- Modal Header -->
-		            <div class="modal-header">
-		                <button type="button" class="close"
-		                   data-dismiss="modal">
-		                       <span aria-hidden="true">&times;</span>
-		                       <span class="sr-only">Close</span>
-		                </button>
-		                <h4 class="modal-title" id="myModalLabel">
-		                    Change Settings
-		                </h4>
-		            </div>
-
-		            <!-- Modal Body -->
-		            <div class="modal-body">
-		                 <h6>
-		                    Settings have been saved.
-		                </h6>
-
-		            </div>
-		        </div>
-		    </div>
 		</div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default modal-close"
+                        data-dismiss="modal">
+                    Close
+                </button>
+                <button type="button" class="check-in-btn update-btn btn btn-default" data-dismiss="modal" onClick="window.location.reload()">Save</button>
+            </div>
+
+		</div>
+		</div>
+		</div>
+		<div class="container">
+			<div class="form-group default-padding">
+				<a class="btn btn-success" href="#setting-modal">Change Admin Settings</a>
+			</div>
+		</div>
+
 
 		<!-- Footer -->
 		<footer class="main">
 
-			&copy; 2015 <strong>Emissary</strong>
+			&copy; 2017 <strong>One 4m</strong>
 
 		</footer>
 	</div>
@@ -228,8 +186,10 @@
 	<!-- Bottom scripts (common) -->
 	<script src="js/min/jquery-ui-1.10.3.minimal.min.js"></script>
 
+	<script src="js/vendor/materialize.min.js"></script>
 
-
+	<!--<script type = "text/javascript" src="js/dashboard.js"></script>-->
+	<script type = "text/javascript" src="js/admin-settings.js"></script>
 	<!-- Imported scripts on this page -->
 	<script src="js/min/jquery.validate.min.js"></script>
 
